@@ -115,6 +115,7 @@ class ApiInvoker(formats: Formats)(implicit system: ActorSystem) extends Untrust
 
   import ApiInvoker._
   import ParametersMap._
+  import spray.http.MessagePredicate._
 
   implicit val ec: ExecutionContextExecutor = system.dispatcher
   implicit val jsonFormats: Formats = formats
