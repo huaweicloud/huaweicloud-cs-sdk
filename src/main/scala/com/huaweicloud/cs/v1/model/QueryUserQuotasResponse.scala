@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class QueryUserQuotasResponse (
+case class QueryUserQuotasResponse(
   /* 消息类型ID */
   messageId: Option[String],
   /* 消息内容 */

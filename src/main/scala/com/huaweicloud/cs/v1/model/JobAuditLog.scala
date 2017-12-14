@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class JobAuditLog (
+case class JobAuditLog(
   resourceId: Option[String],
   resourceName: Option[String],
   eventName: Option[String],

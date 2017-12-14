@@ -13,8 +13,6 @@ import scala.util.Try
 sealed trait ApiReturnWithHeaders {
   def headers: Map[String, String]
 
-  def header(name: String): Option[String] = headers.get(name)
-
   def getStringHeader(name: String): Option[String] = header(name)
 
   // workaround: return date time header in string instead of datetime object
@@ -35,6 +33,8 @@ sealed trait ApiReturnWithHeaders {
       header(name).map(conversion)
     }.get
   }
+
+  def header(name: String): Option[String] = headers.get(name)
 }
 
 sealed case class ApiResponse[T](code: Int, content: T, headers: Map[String, String] = Map.empty)
@@ -114,10 +114,10 @@ object NumericValue {
 sealed case class ArrayValues(values: Seq[Any], format: CollectionFormat = CollectionFormats.CSV)
 
 object ArrayValues {
+  def apply(values: Option[Seq[Any]]): ArrayValues = ArrayValues(values, CollectionFormats.CSV)
+
   def apply(values: Option[Seq[Any]], format: CollectionFormat): ArrayValues =
     ArrayValues(values.getOrElse(Seq.empty), format)
-
-  def apply(values: Option[Seq[Any]]): ArrayValues = ArrayValues(values, CollectionFormats.CSV)
 }
 
 

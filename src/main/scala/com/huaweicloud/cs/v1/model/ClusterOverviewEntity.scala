@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class ClusterOverviewEntity (
+case class ClusterOverviewEntity(
   /* 集群总数 */
   totalClusters: Option[Int],
   /* 运行的集群总数 */
@@ -37,6 +35,7 @@ object ClusterOverviewEntityEnums {
 
   type BillingUnit = BillingUnit.Value
   type TimeUnit = TimeUnit.Value
+
   object BillingUnit extends Enumeration {
     val CNY = Value("CNY")
     val HKD = Value("HKD")

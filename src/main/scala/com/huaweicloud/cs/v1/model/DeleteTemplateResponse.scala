@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class DeleteTemplateResponse (
+case class DeleteTemplateResponse(
   /* 模板ID */
   templateId: Option[Long],
   /* 模板删除是否成功 */

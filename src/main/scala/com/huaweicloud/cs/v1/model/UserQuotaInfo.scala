@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class UserQuotaInfo (
+case class UserQuotaInfo(
   /* 用户ID */
   userId: Option[String],
   /* 用户名称 */

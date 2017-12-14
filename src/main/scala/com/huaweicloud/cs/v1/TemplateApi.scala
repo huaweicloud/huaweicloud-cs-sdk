@@ -5,22 +5,18 @@
  */
 package com.huaweicloud.cs.v1
 
-import com.huaweicloud.cs.v1.model.GlobalErrorResponse
-import com.huaweicloud.cs.v1.model.JobTemplate
-import com.huaweicloud.cs.v1.model.JobTemplateRequest
 import com.huaweicloud.cs.v1.client._
-import com.huaweicloud.cs.v1.client.CollectionFormats._
-import com.huaweicloud.cs.v1.client.ApiKeyLocations._
+import com.huaweicloud.cs.v1.model.{GlobalErrorResponse, JobTemplate, JobTemplateRequest}
 
 object TemplateApi {
 
   /**
    * Create on job template from CloudStream Service
-   * 
+   *
    * Expected answers:
-   *   code 200 : Boolean (创建作业模板成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : Boolean (创建作业模板成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param body Create job template request
    */
@@ -30,15 +26,16 @@ object TemplateApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[Boolean](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * 当前模板被引用也允许删除模板
-   * 
+   *
    * Expected answers:
-   *   code 200 : Boolean (查询模板详情成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : Boolean (查询模板详情成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
-   * @param templateId 
+   * @param templateId
    */
   def deleteJobTemplate(xProjectId: String, templateId: Long): ApiRequest[Boolean] =
     ApiRequest[Boolean](ApiMethods.DELETE, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job_template/{template_id}", "application/json")
@@ -46,13 +43,14 @@ object TemplateApi {
       .withPathParam("template_id", templateId)
       .withSuccessResponse[Boolean](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
-   * 
-   * 
+
+  /**
+   *
+   *
    * Expected answers:
-   *   code 200 : Seq[JobTemplate] (模板列表查询成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : Seq[JobTemplate] (模板列表查询成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param cursor 作业模板ID
    * @param limit 查询条数限制
@@ -66,7 +64,7 @@ object TemplateApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[Seq[JobTemplate]](200)
       .withErrorResponse[GlobalErrorResponse](400)
-      
+
 
 }
 

@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class UpdateUserQuotaRequest (
+case class UpdateUserQuotaRequest(
   /* 用户最大SPU配额 */
   spuQuota: Option[Int],
   /* 分配给用户的集群id列表 */

@@ -5,21 +5,18 @@
  */
 package com.huaweicloud.cs.v1
 
-import com.huaweicloud.cs.v1.model.GlobalErrorResponse
-import com.huaweicloud.cs.v1.model.JobAuditLog
 import com.huaweicloud.cs.v1.client._
-import com.huaweicloud.cs.v1.client.CollectionFormats._
-import com.huaweicloud.cs.v1.client.ApiKeyLocations._
+import com.huaweicloud.cs.v1.model.{GlobalErrorResponse, JobAuditLog}
 
 object LogApi {
 
   /**
-   * 
-   * 
+   *
+   *
    * Expected answers:
-   *   code 200 : Seq[JobAuditLog] (审计日志列表查询成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : Seq[JobAuditLog] (审计日志列表查询成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param resourceType 资源类型，包括job、template和cluster
    * @param cursor 作业ID游标
@@ -37,7 +34,7 @@ object LogApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[Seq[JobAuditLog]](200)
       .withErrorResponse[GlobalErrorResponse](400)
-      
+
 
 }
 

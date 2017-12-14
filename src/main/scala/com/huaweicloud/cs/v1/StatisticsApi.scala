@@ -5,20 +5,17 @@
  */
 package com.huaweicloud.cs.v1
 
-import com.huaweicloud.cs.v1.model.GlobalErrorResponse
-import com.huaweicloud.cs.v1.model.OverviewResponse
 import com.huaweicloud.cs.v1.client._
-import com.huaweicloud.cs.v1.client.CollectionFormats._
-import com.huaweicloud.cs.v1.client.ApiKeyLocations._
+import com.huaweicloud.cs.v1.model.{GlobalErrorResponse, OverviewResponse}
 
 object StatisticsApi {
 
   /**
-   * 
+   *
    * Expected answers:
-   *   code 200 : OverviewResponse (查询概要统计信息成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : OverviewResponse (查询概要统计信息成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    */
   def overview(xProjectId: String): ApiRequest[OverviewResponse] =
@@ -26,7 +23,7 @@ object StatisticsApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[OverviewResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-      
+
 
 }
 

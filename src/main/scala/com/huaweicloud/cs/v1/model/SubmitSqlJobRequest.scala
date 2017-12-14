@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class SubmitSqlJobRequest (
+case class SubmitSqlJobRequest(
   /* 作业名称 */
   name: String,
   /* 作业描述 */
@@ -43,6 +41,7 @@ object SubmitSqlJobRequestEnums {
 
   type RunMode = RunMode.Value
   type CheckpointMode = CheckpointMode.Value
+
   object RunMode extends Enumeration {
     val SharedCluster = Value("shared_cluster")
     val ExclusiveCluster = Value("exclusive_cluster")

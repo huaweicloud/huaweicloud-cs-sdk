@@ -6,27 +6,19 @@
 package com.huaweicloud.cs.v1
 
 import java.io.File
-import com.huaweicloud.cs.v1.model.GetJobDetailResponse
-import com.huaweicloud.cs.v1.model.GlobalErrorResponse
-import com.huaweicloud.cs.v1.model.JobExecutePlanResponse
-import com.huaweicloud.cs.v1.model.JobStatusResponse
-import com.huaweicloud.cs.v1.model.QueryJobListResponse
-import com.huaweicloud.cs.v1.model.SqlJobUpdateResponse
-import com.huaweicloud.cs.v1.model.SubmitSqlJobRequest
-import com.huaweicloud.cs.v1.model.UpdateSqlJobRequest
+
 import com.huaweicloud.cs.v1.client._
-import com.huaweicloud.cs.v1.client.CollectionFormats._
-import com.huaweicloud.cs.v1.client.ApiKeyLocations._
+import com.huaweicloud.cs.v1.model._
 
 object JobApi {
 
   /**
    * 删除任何状态的作业
-   * 
+   *
    * Expected answers:
-   *   code 200 : Boolean (删除作业成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : Boolean (删除作业成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param body 删除作业, JSON数组中为一到多个作业ID
    */
@@ -36,13 +28,14 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[Boolean](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * Get job detail information.
-   * 
+   *
    * Expected answers:
-   *   code 200 : GetJobDetailResponse (查询作业详情成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : GetJobDetailResponse (查询作业详情成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param jobId 作业ID
    */
@@ -52,13 +45,14 @@ object JobApi {
       .withPathParam("job_id", jobId)
       .withSuccessResponse[GetJobDetailResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * The execution graph is json format.
-   * 
+   *
    * Expected answers:
-   *   code 200 : JobExecutePlanResponse (查询作业执行图成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : JobExecutePlanResponse (查询作业执行图成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param jobId 作业ID
    */
@@ -68,13 +62,14 @@ object JobApi {
       .withPathParam("job_id", jobId)
       .withSuccessResponse[JobExecutePlanResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * 作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order. The cursor here is job id.
-   * 
+   *
    * Expected answers:
-   *   code 200 : QueryJobListResponse (查询作业列表成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : QueryJobListResponse (查询作业列表成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param name 作业名
    * @param status 作业状态码, 请参考CloudStream文档
@@ -98,13 +93,14 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[QueryJobListResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * 触发运行作业
-   * 
+   *
    * Expected answers:
-   *   code 200 : JobStatusResponse (运行作业请求发送成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : JobStatusResponse (运行作业请求发送成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param body 运行作业, JSON数组中为一到多个作业ID
    */
@@ -114,13 +110,14 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
-   * 
-   * 
+
+  /**
+   *
+   *
    * Expected answers:
-   *   code 200 : JobStatusResponse (停止作业的请求发送成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : JobStatusResponse (停止作业的请求发送成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param body 停止作业, JSON数组中为一到多个作业ID
    */
@@ -130,13 +127,14 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * 用户自定义作业目前支持jar格式, 运行在预留集群中
-   * 
+   *
    * Expected answers:
-   *   code 200 : JobStatusResponse (更新Jar作业成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : JobStatusResponse (更新Jar作业成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param name 作业名称
    * @param desc 作业描述
@@ -158,13 +156,14 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * 通过POST方式, 提交流式SQL作业, 请求体为JSON格式
-   * 
+   *
    * Expected answers:
-   *   code 200 : JobStatusResponse (流式SQL作业提交成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : JobStatusResponse (流式SQL作业提交成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param body JSON格式的请求体
    */
@@ -174,13 +173,14 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * 目前仅支持Jar格式, 运行在预留集群中
-   * 
+   *
    * Expected answers:
-   *   code 200 : JobStatusResponse (更新用户自定义Jar作业成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : JobStatusResponse (更新用户自定义Jar作业成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param jobId 作业ID
    * @param name 作业名称
@@ -204,13 +204,14 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-        /**
+
+  /**
    * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CloudStream官方文档
-   * 
+   *
    * Expected answers:
-   *   code 200 : SqlJobUpdateResponse (流式SQL作业更新成功)
-   *   code 400 : GlobalErrorResponse (无效的输入参数)
-   * 
+   * code 200 : SqlJobUpdateResponse (流式SQL作业更新成功)
+   * code 400 : GlobalErrorResponse (无效的输入参数)
+   *
    * @param xProjectId project id, 用于不同project取token.
    * @param body 提交修改SQL作业请求
    */
@@ -220,7 +221,7 @@ object JobApi {
       .withPathParam("X-Project-Id", xProjectId)
       .withSuccessResponse[SqlJobUpdateResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
-      
+
 
 }
 

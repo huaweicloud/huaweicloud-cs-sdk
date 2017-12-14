@@ -7,10 +7,8 @@
 package com.huaweicloud.cs.v1.model
 
 import com.huaweicloud.cs.v1.client.ApiModel
-import org.joda.time.DateTime
-import java.util.UUID
 
-case class SubmitJarJobRequest (
+case class SubmitJarJobRequest(
   /* 作业名称 */
   name: String,
   /* 作业描述 */
