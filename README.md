@@ -15,15 +15,14 @@ Quick links:
 
 ##  Install
 
-CS now is open beta, only provide snapshot SDK for developer.
+CS now is open beta, only provide [Snapshot SDK](https://oss.sonatype.org/content/repositories/snapshots/com/huaweicloud/cs/huaweicloud-cs-sdk/) for developer.
 
 ```
 <dependency>
-    <groupId>com.huaweicloud</groupId>
+    <groupId>com.huaweicloud.cs</groupId>
     <artifactId>HuaweiCloud-CS-SDK</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
-
 ```
 
 ##  Build
