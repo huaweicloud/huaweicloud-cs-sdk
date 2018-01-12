@@ -8,28 +8,11 @@ Quick links:
 - [issue](https://github.com/huaweicloudsdk/huaweicloud-cs-sdk/issues)
 - [CS Homepage](http://www.huaweicloud.com/en-us/product/cs.html), or Chinese language site [实时流计算服务](http://www.huaweicloud.com/product/cs.html)
 
-##  Requirements
+##  SDK
 
-- JDK 8
-- Maven or SBT
+- **huaweicloud-cs-java-sdk** is for Java 
+- **huaweicloud-cs-scala-sdk** is for Scala
 
-##  Install
-
-CS now is open beta, only provide [Snapshot SDK](https://oss.sonatype.org/content/repositories/snapshots/com/huaweicloud/cs/huaweicloud-cs-sdk/) for developer.
-
-```
-<dependency>
-    <groupId>com.huaweicloud.cs</groupId>
-    <artifactId>HuaweiCloud-CS-SDK</artifactId>
-    <version>1.0-SNAPSHOT</version>
-</dependency>
-```
-
-##  Build
-
-`mvn clean package`
-
-##  Usage
 
 ##  Licence
 
