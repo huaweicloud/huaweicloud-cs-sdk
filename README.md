@@ -13,6 +13,26 @@ Quick links:
 - **huaweicloud-cs-java-sdk** is for Java 
 - **huaweicloud-cs-scala-sdk** is for Scala
 
+##  Deploy to OSS
+
+```
+GPG_TTY=$(tty);export GPG_TTY;mvn clean deploy -Dgpg.passphrase=xxxx
+```
+
+add the `distributionManagement` to the pom. # todo add deploy script 
+
+```
+<distributionManagement>
+    <snapshotRepository>
+        <id>oss-snapshot</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+        <id>oss-release</id>
+        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+</distributionManagement>
+```
 
 ##  Licence
 
