@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * QueryClustersResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:15:22.492+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
 public class QueryClustersResponse {
   @SerializedName("message_id")
   private String messageId = null;
