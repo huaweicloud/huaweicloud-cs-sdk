@@ -29,11 +29,21 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param body 删除作业, JSON数组中为一到多个作业ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def deleteJob(xProjectId: String, body: Seq[Long]): ApiRequest[Boolean] =
+  def deleteJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[Boolean] =
     ApiRequest[Boolean](ApiMethods.DELETE, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[Boolean](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -45,11 +55,21 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param jobId 作业ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def getJobDetail(xProjectId: String, jobId: Long): ApiRequest[GetJobDetailResponse] =
+  def getJobDetail(xProjectId: String, jobId: Long, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GetJobDetailResponse] =
     ApiRequest[GetJobDetailResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/{job_id}", "application/json")
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("job_id", jobId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[GetJobDetailResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -61,11 +81,21 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param jobId 作业ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def getJobExecuteGraph(xProjectId: String, jobId: Long): ApiRequest[JobExecutePlanResponse] =
+  def getJobExecuteGraph(xProjectId: String, jobId: Long, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[JobExecutePlanResponse] =
     ApiRequest[JobExecutePlanResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/{job_id}/execute_graph", "application/json")
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("job_id", jobId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[JobExecutePlanResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -76,6 +106,11 @@ object JobApi {
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    * @param name 作业名
    * @param status 作业状态码, 请参考CloudStream文档
    * @param clusterId 用户预留集群ID
@@ -85,7 +120,7 @@ object JobApi {
    * @param limit 返回的数据条数
    * @param order 查询结果排序, 升序和降序两种可选
    */
-  def getJobs(xProjectId: String, name: Option[String] = None, status: Option[String] = None, clusterId: Option[Int] = None, showDetail: Option[Boolean], cursor: Option[Long] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryJobListResponse] =
+  def getJobs(xProjectId: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, name: Option[String] = None, status: Option[String] = None, clusterId: Option[Int] = None, showDetail: Option[Boolean], cursor: Option[Long] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryJobListResponse] =
     ApiRequest[QueryJobListResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/jobs", "application/json")
       .withQueryParam("name", name)
       .withQueryParam("status", status)
@@ -96,6 +131,11 @@ object JobApi {
       .withQueryParam("limit", limit)
       .withQueryParam("order", order)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[QueryJobListResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -107,11 +147,21 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param body 运行作业, JSON数组中为一到多个作业ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def runJob(xProjectId: String, body: Seq[Long]): ApiRequest[JobStatusResponse] =
+  def runJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[JobStatusResponse] =
     ApiRequest[JobStatusResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/run", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -123,11 +173,21 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param body 停止作业, JSON数组中为一到多个作业ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def stopJob(xProjectId: String, body: Seq[Long]): ApiRequest[JobStatusResponse] =
+  def stopJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[JobStatusResponse] =
     ApiRequest[JobStatusResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/stop", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -143,13 +203,18 @@ object JobApi {
    * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限
    * @param spuNumber 用户为作业选择的SPU数量
    * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径
    * @param jar upload user defined jar
    * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
    * @param mainClass 作业入口类
    * @param args 作业入口类参数
    */
-  def submitJarJob(xProjectId: String, name: String, desc: String, clusterId: Long, spuNumber: Int, logEnabled: Boolean, obsBucket: Option[String] = None, jar: Option[File] = None, jobType: Option[String] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobStatusResponse] =
+  def submitJarJob(xProjectId: String, name: String, desc: String, clusterId: Long, spuNumber: Int, logEnabled: Boolean, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, obsBucket: Option[String] = None, jar: Option[File] = None, jobType: Option[String] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobStatusResponse] =
     ApiRequest[JobStatusResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/jar_job", "multipart/form-data")
       .withFormParam("name", name)
       .withFormParam("desc", desc)
@@ -162,6 +227,11 @@ object JobApi {
       .withFormParam("main_class", mainClass)
       .withFormParam("args", args)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -173,11 +243,21 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param body JSON格式的请求体
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def submitSqlJob(xProjectId: String, body: SubmitSqlJobRequest): ApiRequest[JobStatusResponse] =
+  def submitSqlJob(xProjectId: String, body: SubmitSqlJobRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[JobStatusResponse] =
     ApiRequest[JobStatusResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/sql_job", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -189,6 +269,11 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param jobId 作业ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    * @param name 作业名称
    * @param desc 作业描述
    * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限
@@ -199,7 +284,7 @@ object JobApi {
    * @param mainClass 作业入口类
    * @param args 作业入口类参数
    */
-  def updateJarJob(xProjectId: String, jobId: String, name: Option[String] = None, desc: Option[String] = None, clusterId: Option[Long] = None, spuNumber: Option[Int] = None, logEnabled: Option[Boolean] = None, obsBucket: Option[String] = None, jar: Option[File] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobStatusResponse] =
+  def updateJarJob(xProjectId: String, jobId: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, name: Option[String] = None, desc: Option[String] = None, clusterId: Option[Long] = None, spuNumber: Option[Int] = None, logEnabled: Option[Boolean] = None, obsBucket: Option[String] = None, jar: Option[File] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobStatusResponse] =
     ApiRequest[JobStatusResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/jar_job", "multipart/form-data")
       .withFormParam("job_id", jobId)
       .withFormParam("name", name)
@@ -212,6 +297,11 @@ object JobApi {
       .withFormParam("main_class", mainClass)
       .withFormParam("args", args)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[JobStatusResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -223,11 +313,21 @@ object JobApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param body 提交修改SQL作业请求
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def updateSqlJob(xProjectId: String, body: UpdateSqlJobRequest): ApiRequest[SqlJobUpdateResponse] =
+  def updateSqlJob(xProjectId: String, body: UpdateSqlJobRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[SqlJobUpdateResponse] =
     ApiRequest[SqlJobUpdateResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/sql_job", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[SqlJobUpdateResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
       

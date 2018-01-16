@@ -23,11 +23,21 @@ object TemplateApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param body Create job template request
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def createJobTemplate(xProjectId: String, body: JobTemplateRequest): ApiRequest[Boolean] =
+  def createJobTemplate(xProjectId: String, body: JobTemplateRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[Boolean] =
     ApiRequest[Boolean](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job_template", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[Boolean](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -39,11 +49,21 @@ object TemplateApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param templateId 
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def deleteJobTemplate(xProjectId: String, templateId: Long): ApiRequest[Boolean] =
+  def deleteJobTemplate(xProjectId: String, templateId: Long, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[Boolean] =
     ApiRequest[Boolean](ApiMethods.DELETE, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job_template/{template_id}", "application/json")
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("template_id", templateId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[Boolean](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -57,13 +77,23 @@ object TemplateApi {
    * @param cursor 作业模板ID
    * @param limit 查询条数限制
    * @param order 查询结果排序, 升序和降序两种可选
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def getJobTemplates(xProjectId: String, cursor: Long, limit: Int, order: String): ApiRequest[Seq[JobTemplate]] =
+  def getJobTemplates(xProjectId: String, cursor: Long, limit: Int, order: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[Seq[JobTemplate]] =
     ApiRequest[Seq[JobTemplate]](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job_templates", "application/json")
       .withQueryParam("cursor", cursor)
       .withQueryParam("limit", limit)
       .withQueryParam("order", order)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[Seq[JobTemplate]](200)
       .withErrorResponse[GlobalErrorResponse](400)
       

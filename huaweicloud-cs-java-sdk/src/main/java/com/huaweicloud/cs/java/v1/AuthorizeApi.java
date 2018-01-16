@@ -63,12 +63,17 @@ public class AuthorizeApi {
      * Build call for authorizeBucket
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call authorizeBucketCall(String xProjectId, List<String> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call authorizeBucketCall(String xProjectId, List<String> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -79,6 +84,16 @@ public class AuthorizeApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -111,7 +126,7 @@ public class AuthorizeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call authorizeBucketValidateBeforeCall(String xProjectId, List<String> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call authorizeBucketValidateBeforeCall(String xProjectId, List<String> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -124,7 +139,7 @@ public class AuthorizeApi {
         }
         
 
-        com.squareup.okhttp.Call call = authorizeBucketCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = authorizeBucketCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -134,11 +149,16 @@ public class AuthorizeApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse authorizeBucket(String xProjectId, List<String> body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = authorizeBucketWithHttpInfo(xProjectId, body);
+    public GlobalResponse authorizeBucket(String xProjectId, List<String> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = authorizeBucketWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -147,11 +167,16 @@ public class AuthorizeApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> authorizeBucketWithHttpInfo(String xProjectId, List<String> body) throws ApiException {
-        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(xProjectId, body, null, null);
+    public ApiResponse<GlobalResponse> authorizeBucketWithHttpInfo(String xProjectId, List<String> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -161,11 +186,16 @@ public class AuthorizeApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call authorizeBucketAsync(String xProjectId, List<String> body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call authorizeBucketAsync(String xProjectId, List<String> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -186,7 +216,7 @@ public class AuthorizeApi {
             };
         }
 
-        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

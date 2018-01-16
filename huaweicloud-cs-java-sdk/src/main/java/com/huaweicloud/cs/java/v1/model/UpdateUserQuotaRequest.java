@@ -33,7 +33,7 @@ import java.util.List;
  * 更新用户配额信息
  */
 @ApiModel(description = "更新用户配额信息")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-15T16:39:17.271+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:15:22.492+08:00")
 public class UpdateUserQuotaRequest {
   @SerializedName("spu_quota")
   private Integer spuQuota = null;

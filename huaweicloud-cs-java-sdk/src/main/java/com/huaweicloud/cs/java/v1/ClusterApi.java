@@ -71,12 +71,17 @@ public class ClusterApi {
      * Build call for createReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createReservedClusterCall(String xProjectId, NewReservedClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call createReservedClusterCall(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -87,6 +92,16 @@ public class ClusterApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -119,7 +134,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createReservedClusterValidateBeforeCall(String xProjectId, NewReservedClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call createReservedClusterValidateBeforeCall(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -132,7 +147,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = createReservedClusterCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createReservedClusterCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -142,11 +157,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse createReservedCluster(String xProjectId, NewReservedClusterRequest body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = createReservedClusterWithHttpInfo(xProjectId, body);
+    public GlobalResponse createReservedCluster(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = createReservedClusterWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -155,11 +175,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> createReservedClusterWithHttpInfo(String xProjectId, NewReservedClusterRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, null, null);
+    public ApiResponse<GlobalResponse> createReservedClusterWithHttpInfo(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -169,11 +194,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createReservedClusterAsync(String xProjectId, NewReservedClusterRequest body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call createReservedClusterAsync(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -194,7 +224,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -203,12 +233,17 @@ public class ClusterApi {
      * Build call for deleteReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteReservedClusterCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call deleteReservedClusterCall(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -220,6 +255,16 @@ public class ClusterApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -252,7 +297,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -265,7 +310,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteReservedClusterCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteReservedClusterCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -275,11 +320,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse deleteReservedCluster(String xProjectId, Long clusterId) throws ApiException {
-        ApiResponse<GlobalResponse> resp = deleteReservedClusterWithHttpInfo(xProjectId, clusterId);
+    public GlobalResponse deleteReservedCluster(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = deleteReservedClusterWithHttpInfo(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -288,11 +338,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> deleteReservedClusterWithHttpInfo(String xProjectId, Long clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+    public ApiResponse<GlobalResponse> deleteReservedClusterWithHttpInfo(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -302,11 +357,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteReservedClusterAsync(String xProjectId, Long clusterId, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteReservedClusterAsync(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -327,7 +387,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -336,12 +396,17 @@ public class ClusterApi {
      * Build call for describeReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call describeReservedClusterCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call describeReservedClusterCall(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -353,6 +418,16 @@ public class ClusterApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -385,7 +460,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call describeReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call describeReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -398,7 +473,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = describeReservedClusterCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = describeReservedClusterCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -408,11 +483,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return QueryClusterResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryClusterResponse describeReservedCluster(String xProjectId, Long clusterId) throws ApiException {
-        ApiResponse<QueryClusterResponse> resp = describeReservedClusterWithHttpInfo(xProjectId, clusterId);
+    public QueryClusterResponse describeReservedCluster(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<QueryClusterResponse> resp = describeReservedClusterWithHttpInfo(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -421,11 +501,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return ApiResponse&lt;QueryClusterResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryClusterResponse> describeReservedClusterWithHttpInfo(String xProjectId, Long clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = describeReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+    public ApiResponse<QueryClusterResponse> describeReservedClusterWithHttpInfo(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        com.squareup.okhttp.Call call = describeReservedClusterValidateBeforeCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
         Type localVarReturnType = new TypeToken<QueryClusterResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -435,11 +520,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call describeReservedClusterAsync(String xProjectId, Long clusterId, final ApiCallback<QueryClusterResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call describeReservedClusterAsync(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<QueryClusterResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -460,7 +550,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = describeReservedClusterValidateBeforeCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = describeReservedClusterValidateBeforeCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<QueryClusterResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -469,6 +559,11 @@ public class ClusterApi {
      * Build call for getClusterJobs
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -481,7 +576,7 @@ public class ClusterApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getClusterJobsCall(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getClusterJobsCall(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -507,6 +602,16 @@ public class ClusterApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("order", order));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -539,7 +644,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getClusterJobsValidateBeforeCall(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getClusterJobsValidateBeforeCall(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -552,7 +657,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = getClusterJobsCall(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getClusterJobsCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, showDetail, cursor, next, limit, order, progressListener, progressRequestListener);
         return call;
 
     }
@@ -562,6 +667,11 @@ public class ClusterApi {
      * 预留集群作业列表查询
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -572,8 +682,8 @@ public class ClusterApi {
      * @return QueryJobListResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryJobListResponse getClusterJobs(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
-        ApiResponse<QueryJobListResponse> resp = getClusterJobsWithHttpInfo(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order);
+    public QueryJobListResponse getClusterJobs(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+        ApiResponse<QueryJobListResponse> resp = getClusterJobsWithHttpInfo(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, showDetail, cursor, next, limit, order);
         return resp.getData();
     }
 
@@ -582,6 +692,11 @@ public class ClusterApi {
      * 预留集群作业列表查询
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -592,8 +707,8 @@ public class ClusterApi {
      * @return ApiResponse&lt;QueryJobListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryJobListResponse> getClusterJobsWithHttpInfo(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
-        com.squareup.okhttp.Call call = getClusterJobsValidateBeforeCall(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order, null, null);
+    public ApiResponse<QueryJobListResponse> getClusterJobsWithHttpInfo(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+        com.squareup.okhttp.Call call = getClusterJobsValidateBeforeCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, showDetail, cursor, next, limit, order, null, null);
         Type localVarReturnType = new TypeToken<QueryJobListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -603,6 +718,11 @@ public class ClusterApi {
      * 预留集群作业列表查询
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -614,7 +734,7 @@ public class ClusterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getClusterJobsAsync(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryJobListResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getClusterJobsAsync(String xProjectId, Long clusterId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryJobListResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -635,7 +755,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getClusterJobsValidateBeforeCall(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getClusterJobsValidateBeforeCall(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, showDetail, cursor, next, limit, order, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<QueryJobListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -643,6 +763,11 @@ public class ClusterApi {
     /**
      * Build call for getReservedClusters
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 集群名 (optional)
      * @param status 集群状态码, 请参考CloudStream文档 (optional)
      * @param cursor 集群ID游标 (optional)
@@ -654,7 +779,7 @@ public class ClusterApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getReservedClustersCall(String xProjectId, String name, String status, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getReservedClustersCall(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -677,6 +802,16 @@ public class ClusterApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("order", order));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -709,7 +844,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getReservedClustersValidateBeforeCall(String xProjectId, String name, String status, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getReservedClustersValidateBeforeCall(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -717,7 +852,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = getReservedClustersCall(xProjectId, name, status, cursor, next, limit, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getReservedClustersCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, cursor, next, limit, order, progressListener, progressRequestListener);
         return call;
 
     }
@@ -726,6 +861,11 @@ public class ClusterApi {
      * 查询租户下的集群列表
      * 租户集群列表查询, 支持以下参数: name, status, cursor, next, limit, order. The cursor here is cluster id.
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 集群名 (optional)
      * @param status 集群状态码, 请参考CloudStream文档 (optional)
      * @param cursor 集群ID游标 (optional)
@@ -735,8 +875,8 @@ public class ClusterApi {
      * @return QueryClustersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryClustersResponse getReservedClusters(String xProjectId, String name, String status, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
-        ApiResponse<QueryClustersResponse> resp = getReservedClustersWithHttpInfo(xProjectId, name, status, cursor, next, limit, order);
+    public QueryClustersResponse getReservedClusters(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+        ApiResponse<QueryClustersResponse> resp = getReservedClustersWithHttpInfo(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, cursor, next, limit, order);
         return resp.getData();
     }
 
@@ -744,6 +884,11 @@ public class ClusterApi {
      * 查询租户下的集群列表
      * 租户集群列表查询, 支持以下参数: name, status, cursor, next, limit, order. The cursor here is cluster id.
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 集群名 (optional)
      * @param status 集群状态码, 请参考CloudStream文档 (optional)
      * @param cursor 集群ID游标 (optional)
@@ -753,8 +898,8 @@ public class ClusterApi {
      * @return ApiResponse&lt;QueryClustersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryClustersResponse> getReservedClustersWithHttpInfo(String xProjectId, String name, String status, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
-        com.squareup.okhttp.Call call = getReservedClustersValidateBeforeCall(xProjectId, name, status, cursor, next, limit, order, null, null);
+    public ApiResponse<QueryClustersResponse> getReservedClustersWithHttpInfo(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+        com.squareup.okhttp.Call call = getReservedClustersValidateBeforeCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, cursor, next, limit, order, null, null);
         Type localVarReturnType = new TypeToken<QueryClustersResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -763,6 +908,11 @@ public class ClusterApi {
      * 查询租户下的集群列表 (asynchronously)
      * 租户集群列表查询, 支持以下参数: name, status, cursor, next, limit, order. The cursor here is cluster id.
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 集群名 (optional)
      * @param status 集群状态码, 请参考CloudStream文档 (optional)
      * @param cursor 集群ID游标 (optional)
@@ -773,7 +923,7 @@ public class ClusterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getReservedClustersAsync(String xProjectId, String name, String status, Long cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryClustersResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getReservedClustersAsync(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String status, Long cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryClustersResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -794,7 +944,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getReservedClustersValidateBeforeCall(xProjectId, name, status, cursor, next, limit, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getReservedClustersValidateBeforeCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, cursor, next, limit, order, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<QueryClustersResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -803,12 +953,17 @@ public class ClusterApi {
      * Build call for getUserQuota
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getUserQuotaCall(String xProjectId, String userId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getUserQuotaCall(String xProjectId, String userId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -820,6 +975,16 @@ public class ClusterApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -852,7 +1017,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getUserQuotaValidateBeforeCall(String xProjectId, String userId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getUserQuotaValidateBeforeCall(String xProjectId, String userId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -865,7 +1030,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = getUserQuotaCall(xProjectId, userId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserQuotaCall(xProjectId, userId, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -875,11 +1040,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return QueryUserQuotaResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryUserQuotaResponse getUserQuota(String xProjectId, String userId) throws ApiException {
-        ApiResponse<QueryUserQuotaResponse> resp = getUserQuotaWithHttpInfo(xProjectId, userId);
+    public QueryUserQuotaResponse getUserQuota(String xProjectId, String userId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<QueryUserQuotaResponse> resp = getUserQuotaWithHttpInfo(xProjectId, userId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -888,11 +1058,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return ApiResponse&lt;QueryUserQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryUserQuotaResponse> getUserQuotaWithHttpInfo(String xProjectId, String userId) throws ApiException {
-        com.squareup.okhttp.Call call = getUserQuotaValidateBeforeCall(xProjectId, userId, null, null);
+    public ApiResponse<QueryUserQuotaResponse> getUserQuotaWithHttpInfo(String xProjectId, String userId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        com.squareup.okhttp.Call call = getUserQuotaValidateBeforeCall(xProjectId, userId, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
         Type localVarReturnType = new TypeToken<QueryUserQuotaResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -902,11 +1077,16 @@ public class ClusterApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getUserQuotaAsync(String xProjectId, String userId, final ApiCallback<QueryUserQuotaResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getUserQuotaAsync(String xProjectId, String userId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<QueryUserQuotaResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -927,7 +1107,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getUserQuotaValidateBeforeCall(xProjectId, userId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserQuotaValidateBeforeCall(xProjectId, userId, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<QueryUserQuotaResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -935,6 +1115,11 @@ public class ClusterApi {
     /**
      * Build call for getUserQuotas
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 用户名 (optional)
      * @param cursor 用户ID游标 (optional)
      * @param next 是否向下翻页 (optional, default to true)
@@ -945,7 +1130,7 @@ public class ClusterApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getUserQuotasCall(String xProjectId, String name, String cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getUserQuotasCall(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -966,6 +1151,16 @@ public class ClusterApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("order", order));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -998,7 +1193,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getUserQuotasValidateBeforeCall(String xProjectId, String name, String cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getUserQuotasValidateBeforeCall(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1006,7 +1201,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = getUserQuotasCall(xProjectId, name, cursor, next, limit, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserQuotasCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, cursor, next, limit, order, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1015,6 +1210,11 @@ public class ClusterApi {
      * 获取租户下的用户配额信息
      * 租户下用户配额信息列表查询, 支持以下参数: name, order, cursor, next, limit. The cursor here is user id.
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 用户名 (optional)
      * @param cursor 用户ID游标 (optional)
      * @param next 是否向下翻页 (optional, default to true)
@@ -1023,8 +1223,8 @@ public class ClusterApi {
      * @return QueryUserQuotasResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryUserQuotasResponse getUserQuotas(String xProjectId, String name, String cursor, Boolean next, Integer limit, String order) throws ApiException {
-        ApiResponse<QueryUserQuotasResponse> resp = getUserQuotasWithHttpInfo(xProjectId, name, cursor, next, limit, order);
+    public QueryUserQuotasResponse getUserQuotas(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String cursor, Boolean next, Integer limit, String order) throws ApiException {
+        ApiResponse<QueryUserQuotasResponse> resp = getUserQuotasWithHttpInfo(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, cursor, next, limit, order);
         return resp.getData();
     }
 
@@ -1032,6 +1232,11 @@ public class ClusterApi {
      * 获取租户下的用户配额信息
      * 租户下用户配额信息列表查询, 支持以下参数: name, order, cursor, next, limit. The cursor here is user id.
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 用户名 (optional)
      * @param cursor 用户ID游标 (optional)
      * @param next 是否向下翻页 (optional, default to true)
@@ -1040,8 +1245,8 @@ public class ClusterApi {
      * @return ApiResponse&lt;QueryUserQuotasResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryUserQuotasResponse> getUserQuotasWithHttpInfo(String xProjectId, String name, String cursor, Boolean next, Integer limit, String order) throws ApiException {
-        com.squareup.okhttp.Call call = getUserQuotasValidateBeforeCall(xProjectId, name, cursor, next, limit, order, null, null);
+    public ApiResponse<QueryUserQuotasResponse> getUserQuotasWithHttpInfo(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String cursor, Boolean next, Integer limit, String order) throws ApiException {
+        com.squareup.okhttp.Call call = getUserQuotasValidateBeforeCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, cursor, next, limit, order, null, null);
         Type localVarReturnType = new TypeToken<QueryUserQuotasResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1050,6 +1255,11 @@ public class ClusterApi {
      * 获取租户下的用户配额信息 (asynchronously)
      * 租户下用户配额信息列表查询, 支持以下参数: name, order, cursor, next, limit. The cursor here is user id.
      * @param xProjectId project id, 用于不同project取token. (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param name 用户名 (optional)
      * @param cursor 用户ID游标 (optional)
      * @param next 是否向下翻页 (optional, default to true)
@@ -1059,7 +1269,7 @@ public class ClusterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getUserQuotasAsync(String xProjectId, String name, String cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryUserQuotasResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getUserQuotasAsync(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryUserQuotasResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1080,7 +1290,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getUserQuotasValidateBeforeCall(xProjectId, name, cursor, next, limit, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserQuotasValidateBeforeCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, cursor, next, limit, order, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<QueryUserQuotasResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1090,12 +1300,17 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
      * @param body 提交修改集群请求 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateReservedClusterCall(String xProjectId, Long clusterId, UpdateClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateReservedClusterCall(String xProjectId, Long clusterId, UpdateClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1107,6 +1322,16 @@ public class ClusterApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -1139,7 +1364,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, UpdateClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, UpdateClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1157,7 +1382,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateReservedClusterCall(xProjectId, clusterId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateReservedClusterCall(xProjectId, clusterId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1168,11 +1393,16 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
      * @param body 提交修改集群请求 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse updateReservedCluster(String xProjectId, Long clusterId, UpdateClusterRequest body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = updateReservedClusterWithHttpInfo(xProjectId, clusterId, body);
+    public GlobalResponse updateReservedCluster(String xProjectId, Long clusterId, UpdateClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = updateReservedClusterWithHttpInfo(xProjectId, clusterId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -1182,11 +1412,16 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
      * @param body 提交修改集群请求 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> updateReservedClusterWithHttpInfo(String xProjectId, Long clusterId, UpdateClusterRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = updateReservedClusterValidateBeforeCall(xProjectId, clusterId, body, null, null);
+    public ApiResponse<GlobalResponse> updateReservedClusterWithHttpInfo(String xProjectId, Long clusterId, UpdateClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        com.squareup.okhttp.Call call = updateReservedClusterValidateBeforeCall(xProjectId, clusterId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1197,11 +1432,16 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 预留集群ID (required)
      * @param body 提交修改集群请求 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateReservedClusterAsync(String xProjectId, Long clusterId, UpdateClusterRequest body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateReservedClusterAsync(String xProjectId, Long clusterId, UpdateClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1222,7 +1462,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateReservedClusterValidateBeforeCall(xProjectId, clusterId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateReservedClusterValidateBeforeCall(xProjectId, clusterId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1232,12 +1472,17 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
      * @param body JSON格式的请求体 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateUserQuotaCall(String xProjectId, String userId, UpdateUserQuotaRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateUserQuotaCall(String xProjectId, String userId, UpdateUserQuotaRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1249,6 +1494,16 @@ public class ClusterApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xSdkDate != null)
+        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (host != null)
+        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
+        if (xProjectId2 != null)
+        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
+        if (xAuthToken != null)
+        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -1281,7 +1536,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateUserQuotaValidateBeforeCall(String xProjectId, String userId, UpdateUserQuotaRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateUserQuotaValidateBeforeCall(String xProjectId, String userId, UpdateUserQuotaRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1299,7 +1554,7 @@ public class ClusterApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateUserQuotaCall(xProjectId, userId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateUserQuotaCall(xProjectId, userId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1310,11 +1565,16 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
      * @param body JSON格式的请求体 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse updateUserQuota(String xProjectId, String userId, UpdateUserQuotaRequest body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = updateUserQuotaWithHttpInfo(xProjectId, userId, body);
+    public GlobalResponse updateUserQuota(String xProjectId, String userId, UpdateUserQuotaRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = updateUserQuotaWithHttpInfo(xProjectId, userId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -1324,11 +1584,16 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
      * @param body JSON格式的请求体 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> updateUserQuotaWithHttpInfo(String xProjectId, String userId, UpdateUserQuotaRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(xProjectId, userId, body, null, null);
+    public ApiResponse<GlobalResponse> updateUserQuotaWithHttpInfo(String xProjectId, String userId, UpdateUserQuotaRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(xProjectId, userId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1339,11 +1604,16 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param userId 用户ID (required)
      * @param body JSON格式的请求体 (required)
+     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
+     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
+     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
+     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
+     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateUserQuotaAsync(String xProjectId, String userId, UpdateUserQuotaRequest body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateUserQuotaAsync(String xProjectId, String userId, UpdateUserQuotaRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1364,7 +1634,7 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(xProjectId, userId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(xProjectId, userId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

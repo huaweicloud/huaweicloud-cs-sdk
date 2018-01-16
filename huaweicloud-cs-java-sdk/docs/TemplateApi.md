@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="createJobTemplate"></a>
 # **createJobTemplate**
-> Boolean createJobTemplate(xProjectId, body)
+> Boolean createJobTemplate(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 create the job template
 
@@ -27,8 +27,13 @@ Create on job template from CloudStream Service
 TemplateApi apiInstance = new TemplateApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 JobTemplateRequest body = new JobTemplateRequest(); // JobTemplateRequest | Create job template request
+String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
+String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
+String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    Boolean result = apiInstance.createJobTemplate(xProjectId, body);
+    Boolean result = apiInstance.createJobTemplate(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TemplateApi#createJobTemplate");
@@ -42,6 +47,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **body** | [**JobTemplateRequest**](JobTemplateRequest.md)| Create job template request |
+ **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
+ **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
+ **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
+ **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
+ **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -58,7 +68,7 @@ No authorization required
 
 <a name="deleteJobTemplate"></a>
 # **deleteJobTemplate**
-> Boolean deleteJobTemplate(xProjectId, templateId)
+> Boolean deleteJobTemplate(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 删除作业模板
 
@@ -74,8 +84,13 @@ No authorization required
 TemplateApi apiInstance = new TemplateApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 Long templateId = 789L; // Long | 
+String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
+String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
+String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    Boolean result = apiInstance.deleteJobTemplate(xProjectId, templateId);
+    Boolean result = apiInstance.deleteJobTemplate(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TemplateApi#deleteJobTemplate");
@@ -89,6 +104,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **templateId** | **Long**|  |
+ **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
+ **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
+ **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
+ **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
+ **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -105,7 +125,7 @@ No authorization required
 
 <a name="getJobTemplates"></a>
 # **getJobTemplates**
-> List&lt;JobTemplate&gt; getJobTemplates(xProjectId, cursor, limit, order)
+> List&lt;JobTemplate&gt; getJobTemplates(xProjectId, cursor, limit, order, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 query CloudStream Service job templates
 
@@ -121,8 +141,13 @@ String xProjectId = "xProjectId_example"; // String | project id, 用于不同pr
 Long cursor = 789L; // Long | 作业模板ID
 Integer limit = 56; // Integer | 查询条数限制
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
+String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
+String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
+String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    List<JobTemplate> result = apiInstance.getJobTemplates(xProjectId, cursor, limit, order);
+    List<JobTemplate> result = apiInstance.getJobTemplates(xProjectId, cursor, limit, order, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TemplateApi#getJobTemplates");
@@ -138,6 +163,11 @@ Name | Type | Description  | Notes
  **cursor** | **Long**| 作业模板ID |
  **limit** | **Integer**| 查询条数限制 |
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [default to desc] [enum: desc, asc]
+ **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
+ **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
+ **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
+ **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
+ **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 

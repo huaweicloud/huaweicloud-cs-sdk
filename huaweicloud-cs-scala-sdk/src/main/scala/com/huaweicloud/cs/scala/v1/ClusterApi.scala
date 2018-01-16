@@ -29,11 +29,21 @@ object ClusterApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param body 创建一个新的预留集群, 请求参数为json格式
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def createReservedCluster(xProjectId: String, body: NewReservedClusterRequest): ApiRequest[GlobalResponse] =
+  def createReservedCluster(xProjectId: String, body: NewReservedClusterRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
     ApiRequest[GlobalResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_cluster", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[GlobalResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -44,11 +54,21 @@ object ClusterApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param clusterId 预留集群ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def deleteReservedCluster(xProjectId: String, clusterId: Long): ApiRequest[GlobalResponse] =
+  def deleteReservedCluster(xProjectId: String, clusterId: Long, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
     ApiRequest[GlobalResponse](ApiMethods.DELETE, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_cluster/{cluster_id}", "application/json")
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("cluster_id", clusterId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[GlobalResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -59,11 +79,21 @@ object ClusterApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param clusterId 预留集群ID.
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def describeReservedCluster(xProjectId: String, clusterId: Long): ApiRequest[QueryClusterResponse] =
+  def describeReservedCluster(xProjectId: String, clusterId: Long, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[QueryClusterResponse] =
     ApiRequest[QueryClusterResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_cluster/{cluster_id}", "application/json")
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("cluster_id", clusterId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[QueryClusterResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -75,6 +105,11 @@ object ClusterApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param clusterId 预留集群ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    * @param name 作业名
    * @param status 作业状态码, 请参考CloudStream文档
    * @param showDetail 是否返回作业详情信息
@@ -83,7 +118,7 @@ object ClusterApi {
    * @param limit 返回的数据条数
    * @param order 查询结果排序, 升序和降序两种可选
    */
-  def getClusterJobs(xProjectId: String, clusterId: Long, name: Option[String] = None, status: Option[String] = None, showDetail: Option[Boolean], cursor: Option[Long] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryJobListResponse] =
+  def getClusterJobs(xProjectId: String, clusterId: Long, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, name: Option[String] = None, status: Option[String] = None, showDetail: Option[Boolean], cursor: Option[Long] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryJobListResponse] =
     ApiRequest[QueryJobListResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_cluster/{cluster_id}/jobs", "application/json")
       .withQueryParam("name", name)
       .withQueryParam("status", status)
@@ -94,6 +129,11 @@ object ClusterApi {
       .withQueryParam("order", order)
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("cluster_id", clusterId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[QueryJobListResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -104,6 +144,11 @@ object ClusterApi {
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    * @param name 集群名
    * @param status 集群状态码, 请参考CloudStream文档
    * @param cursor 集群ID游标
@@ -111,7 +156,7 @@ object ClusterApi {
    * @param limit 返回的数据条数
    * @param order 查询结果排序, 升序和降序两种可选
    */
-  def getReservedClusters(xProjectId: String, name: Option[String] = None, status: Option[String] = None, cursor: Option[Long] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryClustersResponse] =
+  def getReservedClusters(xProjectId: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, name: Option[String] = None, status: Option[String] = None, cursor: Option[Long] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryClustersResponse] =
     ApiRequest[QueryClustersResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_clusters", "application/json")
       .withQueryParam("name", name)
       .withQueryParam("status", status)
@@ -120,6 +165,11 @@ object ClusterApi {
       .withQueryParam("limit", limit)
       .withQueryParam("order", order)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[QueryClustersResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -130,11 +180,21 @@ object ClusterApi {
    * 
    * @param xProjectId project id, 用于不同project取token.
    * @param userId 用户ID
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def getUserQuota(xProjectId: String, userId: String): ApiRequest[QueryUserQuotaResponse] =
+  def getUserQuota(xProjectId: String, userId: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[QueryUserQuotaResponse] =
     ApiRequest[QueryUserQuotaResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/user_quota/{user_id}", "application/json")
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("user_id", userId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[QueryUserQuotaResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -145,13 +205,18 @@ object ClusterApi {
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    * @param name 用户名
    * @param cursor 用户ID游标
    * @param next 是否向下翻页
    * @param limit 返回的数据条数
    * @param order 查询结果排序, 升序和降序两种可选
    */
-  def getUserQuotas(xProjectId: String, name: Option[String] = None, cursor: Option[String] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryUserQuotasResponse] =
+  def getUserQuotas(xProjectId: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, name: Option[String] = None, cursor: Option[String] = None, next: Option[Boolean], limit: Option[Int], order: Option[String]): ApiRequest[QueryUserQuotasResponse] =
     ApiRequest[QueryUserQuotasResponse](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/user_quotas", "application/json")
       .withQueryParam("name", name)
       .withQueryParam("cursor", cursor)
@@ -159,6 +224,11 @@ object ClusterApi {
       .withQueryParam("limit", limit)
       .withQueryParam("order", order)
       .withPathParam("X-Project-Id", xProjectId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[QueryUserQuotasResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -170,12 +240,22 @@ object ClusterApi {
    * @param xProjectId project id, 用于不同project取token.
    * @param clusterId 预留集群ID
    * @param body 提交修改集群请求
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def updateReservedCluster(xProjectId: String, clusterId: Long, body: UpdateClusterRequest): ApiRequest[GlobalResponse] =
+  def updateReservedCluster(xProjectId: String, clusterId: Long, body: UpdateClusterRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
     ApiRequest[GlobalResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_cluster/{cluster_id}", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("cluster_id", clusterId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[GlobalResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
@@ -187,12 +267,22 @@ object ClusterApi {
    * @param xProjectId project id, 用于不同project取token.
    * @param userId 用户ID
    * @param body JSON格式的请求体
+   * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
+   * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+   * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+   * @param xProjectId2 可选。project id，用于不同project取token。
+   * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def updateUserQuota(xProjectId: String, userId: String, body: UpdateUserQuotaRequest): ApiRequest[GlobalResponse] =
+  def updateUserQuota(xProjectId: String, userId: String, body: UpdateUserQuotaRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
     ApiRequest[GlobalResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/user_quota/{user_id}", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
       .withPathParam("user_id", userId)
+      .withHeaderParam("X-Sdk-Date", xSdkDate)
+      .withHeaderParam("Authorization", authorization)
+      .withHeaderParam("Host", host)
+      .withHeaderParam("X-Project-Id", xProjectId2)
+      .withHeaderParam("X-Auth-Token", xAuthToken)
       .withSuccessResponse[GlobalResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
       

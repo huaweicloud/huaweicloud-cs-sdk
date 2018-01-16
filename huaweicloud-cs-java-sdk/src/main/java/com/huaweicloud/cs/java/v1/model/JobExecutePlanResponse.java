@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * JobExecutePlanResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-15T16:39:17.271+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:15:22.492+08:00")
 public class JobExecutePlanResponse {
   @SerializedName("message_id")
   private String messageId = null;
