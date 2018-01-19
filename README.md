@@ -46,8 +46,8 @@ import com.huaweicloud.cs.utils.UserTokenUtil;
 xAuthToken = userTokenUtil.getUserToken(
                 domainName, // IAM login domain
                 userName,   // IAM login user
-                password,   //IAM login password
-                projectId   //user's projectId 
+                password,   // IAM login password
+                projectId   // user's projectId 
                 );
 ...
 ```
