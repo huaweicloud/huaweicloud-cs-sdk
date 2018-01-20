@@ -46,7 +46,13 @@ public class UserAuthUtil {
     private String akSKBody;
     private Logger logger = LogManager.getLogger(getClass());
 
-
+    /**
+     * Set user auth client
+     *
+     * @param isSafe if true then create secure HTTPS connection, if false then HTTP connection
+     * @param connectTimeout connect timeout
+     * @param readTimeout    read timeout
+     */
     public UserAuthUtil(boolean isSafe, Integer connectTimeout, Integer readTimeout) {
         if (isSafe) {
             this.client = createSafeHttpClient(connectTimeout, readTimeout);
@@ -257,4 +263,3 @@ public class UserAuthUtil {
     }
 
 }
-
