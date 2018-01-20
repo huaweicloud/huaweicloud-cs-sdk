@@ -47,18 +47,13 @@ public class UserAuthUtil {
     private Logger logger = LogManager.getLogger(getClass());
 
     /**
-     * Set user auth client
+     * create secure HTTPS connection
      *
-     * @param isSafe if true then create secure HTTPS connection, if false then HTTP connection
      * @param connectTimeout connect timeout
      * @param readTimeout    read timeout
      */
-    public UserAuthUtil(boolean isSafe, Integer connectTimeout, Integer readTimeout) {
-        if (isSafe) {
-            this.client = createSafeHttpClient(connectTimeout, readTimeout);
-        } else {
-            this.client = createHttpClient(connectTimeout, readTimeout);
-        }
+    public UserAuthUtil(Integer connectTimeout, Integer readTimeout) {
+        client = createHttpsClient(connectTimeout, readTimeout);
     }
 
     /**
@@ -201,11 +196,11 @@ public class UserAuthUtil {
     /**
      * create secure HTTPS connection
      *
-     * @param connectTimeout connect timeout
-     * @param readTimeout    read timeout
+     * @param connectTimeout connect timeout, milliseconds
+     * @param readTimeout    read timeout, milliseconds
      * @return HttpClient
      */
-    private OkHttpClient createSafeHttpClient(Integer connectTimeout, Integer readTimeout) {
+    private OkHttpClient createHttpsClient(Integer connectTimeout, Integer readTimeout) {
         X509TrustManager trustManager;
         SSLSocketFactory sslSocketFactory;
         try {
@@ -246,20 +241,4 @@ public class UserAuthUtil {
 
         return okHttpClient;
     }
-
-    /**
-     * create HTTP connections
-     *
-     * @param connectTimeout connect timeout
-     * @param readTimeout    read timeout
-     * @return HttpClient
-     */
-    private OkHttpClient createHttpClient(Integer connectTimeout, Integer readTimeout) {
-
-        return new OkHttpClient().newBuilder()
-                .connectTimeout(connectTimeout, TimeUnit.SECONDS)
-                .readTimeout(readTimeout, TimeUnit.SECONDS)
-                .build();
-    }
-
 }
