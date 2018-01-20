@@ -36,25 +36,26 @@ add the `distributionManagement` to the pom. # todo add deploy script
 
 ## User authorization
 
-Before invoking CS SDK, you need to use `\src\main\java\com\huaweicloud\cs\utils` to get user token or ak/sk authorization.For example:
+Before invoking CS SDK, you need to use `\src\main\java\com\huaweicloud\cs\utils` to get user token or ak/sk authorization info.
 
-- get token authorization
+- get user authorization to a JSON object which includes token and ak/sk
+
+For example:
 ```java
 ...
-import com.huaweicloud.cs.utils.UserTokenUtil;
+import com.huaweicloud.cs.utils.UserAuthUtil;
+import org.json.JSONObject;
 ...
-xAuthToken = userTokenUtil.getUserToken(
-                domainName, // IAM login domain
-                userName,   // IAM login user
-                password,   // IAM login password
-                projectId   // user's projectId 
-                );
+JSONObject authObject = userAuthUtil.getUserAuth(
+                csConfig.get("DomainName", null), // domain name for Logging console
+                csConfig.get("UserName", null),   // user name for Logging console
+                csConfig.get("Password", null),   // password for Logging console
+                csConfig.get("ProjectId", null)); // project ID getting from project list in user credential
+                
+String vxAuthToken = authObject.getString("token");
+String ak = authObject.getString("ak");
+String sk = authObject.getString("sk");
 ...
-```
-
-- get ak/sk authorization
-```java
-todo
 ```
 
 ##  Licence
