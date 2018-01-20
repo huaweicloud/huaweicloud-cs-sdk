@@ -65,8 +65,6 @@ public class UserAuthUtil {
      * @return user temporary Token and AKSK
      */
     public JSONObject getUserAuth(String domainName, String userName, String password, String projectId) {
-
-
         tokenBody = "{\"auth\":{\"identity\":{\"password\":{\"user\":{\"password\":\"" + password + "\",\"domain\":{\"name\":\"" + domainName + "\"},\"name\":\"" + userName + "\"}},\"methods\":[\"password\"]},\"scope\":{\"project\":{\"id\":\"" + projectId + "\"}}}}";
 
         MediaType JSON = MediaType.parse("application/json; charset=utf=8");
