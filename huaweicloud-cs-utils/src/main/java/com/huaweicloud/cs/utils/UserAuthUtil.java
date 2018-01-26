@@ -17,10 +17,11 @@
  */
 package com.huaweicloud.cs.utils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import okhttp3.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
 
 import javax.net.ssl.*;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class UserAuthUtil {
      * @param projectId  project ID getting from project list in user credential
      * @return user temporary Token and AKSK
      */
-    public JSONObject getUserAuth(String domainName, String userName, String password, String projectId) {
+    public JsonObject getUserAuth(String domainName, String userName, String password, String projectId) {
         tokenBody = "{\"auth\":{\"identity\":{\"password\":{\"user\":{\"password\":\"" + password + "\",\"domain\":{\"name\":\"" + domainName + "\"},\"name\":\"" + userName + "\"}},\"methods\":[\"password\"]},\"scope\":{\"project\":{\"id\":\"" + projectId + "\"}}}}";
 
         MediaType JSON = MediaType.parse("application/json; charset=utf=8");
@@ -96,19 +97,19 @@ public class UserAuthUtil {
         try {
             response = client.newCall(request).execute();
             String resp = response.body().string();
-            JSONObject jsonObject = new JSONObject(resp).getJSONObject("credential");
-            ak = jsonObject.get("access").toString();
-            sk = jsonObject.get("secret").toString();
+            JsonObject jsonObject = new JsonParser().parse(resp).getAsJsonObject().getAsJsonObject("credential");
+            ak = jsonObject.get("access").getAsString();
+            sk = jsonObject.get("secret").getAsString();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             response.close();
         }
 
-        JSONObject authObject = new JSONObject();
-        authObject.put("token", token);
-        authObject.put("ak", ak);
-        authObject.put("sk", sk);
+        JsonObject authObject = new JsonObject();
+        authObject.addProperty("token", token);
+        authObject.addProperty("ak", ak);
+        authObject.addProperty("sk", sk);
 
         return authObject;
     }
