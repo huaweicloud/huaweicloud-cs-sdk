@@ -94,8 +94,8 @@ object ApiInvoker {
 
 class ApiInvoker(formats: Formats)(implicit system: ActorSystem) extends UntrustedSslContext with CustomContentTypes {
 
-  import io.swagger.client.core.ApiInvoker._
-  import io.swagger.client.core.ParametersMap._
+  import com.huaweicloud.cs.scala.v1.client.ApiInvoker._
+  import com.huaweicloud.cs.scala.v1.client.ParametersMap._
 
   implicit val ec: ExecutionContextExecutor = system.dispatcher
   implicit val jsonFormats: Formats = formats
