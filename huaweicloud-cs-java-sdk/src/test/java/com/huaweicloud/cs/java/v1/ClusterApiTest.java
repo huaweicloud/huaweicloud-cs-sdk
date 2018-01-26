@@ -18,6 +18,7 @@
 package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
+import com.huaweicloud.cs.java.v1.model.CreateClusterResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.NewReservedClusterRequest;
@@ -62,7 +63,7 @@ public class ClusterApiTest {
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        GlobalResponse response = api.createReservedCluster(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        CreateClusterResponse response = api.createReservedCluster(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
 
         // TODO: test validations
     }

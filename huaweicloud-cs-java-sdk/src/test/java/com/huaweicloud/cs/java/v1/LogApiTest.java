@@ -19,7 +19,7 @@ package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
-import com.huaweicloud.cs.java.v1.model.JobAuditLog;
+import com.huaweicloud.cs.java.v1.model.JobAuditLogResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -58,7 +58,7 @@ public class LogApiTest {
         String resourceId = null;
         Integer pageNumber = null;
         Integer limit = null;
-        List<JobAuditLog> response = api.getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
+        List<JobAuditLogResponse> response = api.getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
 
         // TODO: test validations
     }

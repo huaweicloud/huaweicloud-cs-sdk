@@ -19,7 +19,9 @@ package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
-import com.huaweicloud.cs.java.v1.model.JobTemplate;
+import com.huaweicloud.cs.java.v1.model.JobTemplateCreateResponse;
+import com.huaweicloud.cs.java.v1.model.JobTemplateDeleteResponse;
+import com.huaweicloud.cs.java.v1.model.JobTemplateListResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateRequest;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -55,7 +57,7 @@ public class TemplateApiTest {
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        Boolean response = api.createJobTemplate(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        JobTemplateCreateResponse response = api.createJobTemplate(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
 
         // TODO: test validations
     }
@@ -77,7 +79,7 @@ public class TemplateApiTest {
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        Boolean response = api.deleteJobTemplate(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        JobTemplateDeleteResponse response = api.deleteJobTemplate(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
 
         // TODO: test validations
     }
@@ -93,15 +95,15 @@ public class TemplateApiTest {
     @Test
     public void getJobTemplatesTest() throws ApiException {
         String xProjectId = null;
-        Long cursor = null;
-        Integer limit = null;
-        String order = null;
         String xSdkDate = null;
         String authorization = null;
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        List<JobTemplate> response = api.getJobTemplates(xProjectId, cursor, limit, order, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        Long cursor = null;
+        Integer limit = null;
+        String order = null;
+        List<JobTemplateListResponse> response = api.getJobTemplates(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order);
 
         // TODO: test validations
     }

@@ -15,9 +15,7 @@ object EnumsSerializers {
     new EnumNameSerializer(ClusterOverviewEntityEnums.BillingUnit) :+
     new EnumNameSerializer(ClusterOverviewEntityEnums.TimeUnit) :+
     new EnumNameSerializer(JobDetailEntityEnums.RunMode) :+
-    new EnumNameSerializer(JobDetailEntityEnums.CheckpointMode) :+
     new EnumNameSerializer(JobEntityEnums.RunMode) :+
-    new EnumNameSerializer(JobEntityEnums.CheckpointMode) :+
     new EnumNameSerializer(JobOverviewEntityEnums.BillingUnit) :+
     new EnumNameSerializer(JobOverviewEntityEnums.TimeUnit) :+
     new EnumNameSerializer(SubmitSqlJobRequestEnums.RunMode) :+

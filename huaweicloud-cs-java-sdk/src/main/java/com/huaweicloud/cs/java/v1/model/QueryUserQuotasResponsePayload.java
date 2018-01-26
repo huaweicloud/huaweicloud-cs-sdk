@@ -23,34 +23,66 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.huaweicloud.cs.java.v1.model.UserQuotaInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * SqlJobUpdateTime
+ * QueryUserQuotasResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
-public class SqlJobUpdateTime {
-  @SerializedName("update_time")
-  private Long updateTime = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
+public class QueryUserQuotasResponsePayload {
+  @SerializedName("total")
+  private Integer total = null;
 
-  public SqlJobUpdateTime updateTime(Long updateTime) {
-    this.updateTime = updateTime;
+  @SerializedName("users")
+  private List<UserQuotaInfo> users = null;
+
+  public QueryUserQuotasResponsePayload total(Integer total) {
+    this.total = total;
     return this;
   }
 
    /**
-   * 作业更新时间, 毫秒数
-   * @return updateTime
+   * 用户配额查询结果条数
+   * @return total
   **/
-  @ApiModelProperty(example = "4000000", value = "作业更新时间, 毫秒数")
-  public Long getUpdateTime() {
-    return updateTime;
+  @ApiModelProperty(value = "用户配额查询结果条数")
+  public Integer getTotal() {
+    return total;
   }
 
-  public void setUpdateTime(Long updateTime) {
-    this.updateTime = updateTime;
+  public void setTotal(Integer total) {
+    this.total = total;
+  }
+
+  public QueryUserQuotasResponsePayload users(List<UserQuotaInfo> users) {
+    this.users = users;
+    return this;
+  }
+
+  public QueryUserQuotasResponsePayload addUsersItem(UserQuotaInfo usersItem) {
+    if (this.users == null) {
+      this.users = new ArrayList<UserQuotaInfo>();
+    }
+    this.users.add(usersItem);
+    return this;
+  }
+
+   /**
+   * Get users
+   * @return users
+  **/
+  @ApiModelProperty(value = "")
+  public List<UserQuotaInfo> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<UserQuotaInfo> users) {
+    this.users = users;
   }
 
 
@@ -62,22 +94,24 @@ public class SqlJobUpdateTime {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SqlJobUpdateTime sqlJobUpdateTime = (SqlJobUpdateTime) o;
-    return Objects.equals(this.updateTime, sqlJobUpdateTime.updateTime);
+    QueryUserQuotasResponsePayload queryUserQuotasResponsePayload = (QueryUserQuotasResponsePayload) o;
+    return Objects.equals(this.total, queryUserQuotasResponsePayload.total) &&
+        Objects.equals(this.users, queryUserQuotasResponsePayload.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updateTime);
+    return Objects.hash(total, users);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SqlJobUpdateTime {\n");
+    sb.append("class QueryUserQuotasResponsePayload {\n");
     
-    sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("}");
     return sb.toString();
   }

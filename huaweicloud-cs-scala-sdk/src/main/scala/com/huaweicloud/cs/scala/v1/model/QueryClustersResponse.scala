@@ -17,7 +17,7 @@ case class QueryClustersResponse (
   message: Option[String],
   /* 当前时间, 毫秒数 */
   currentTime: Option[Long],
-  payload: Option[Seq[ClusterInfo]]
+  payload: Option[QueryClustersResponsePayload]
 ) extends ApiModel
 
 

@@ -6,7 +6,7 @@
 package com.huaweicloud.cs.scala.v1
 
 import com.huaweicloud.cs.scala.v1.model.GlobalErrorResponse
-import com.huaweicloud.cs.scala.v1.model.JobAuditLog
+import com.huaweicloud.cs.scala.v1.model.JobAuditLogResponse
 import com.huaweicloud.cs.scala.v1.client._
 import com.huaweicloud.cs.scala.v1.client.CollectionFormats._
 import com.huaweicloud.cs.scala.v1.client.ApiKeyLocations._
@@ -17,7 +17,7 @@ object LogApi {
    * 
    * 
    * Expected answers:
-   *   code 200 : Seq[JobAuditLog] (审计日志列表查询成功)
+   *   code 200 : Seq[JobAuditLogResponse] (审计日志列表查询成功)
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
@@ -32,8 +32,8 @@ object LogApi {
    * @param pageNumber 查询的页码
    * @param limit 查询条数限制
    */
-  def getJobAuditLogs(xProjectId: String, resourceType: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, cursor: Option[String] = None, resourceId: Option[String] = None, pageNumber: Option[Int], limit: Option[Int] = None): ApiRequest[Seq[JobAuditLog]] =
-    ApiRequest[Seq[JobAuditLog]](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/audit_logs", "application/json")
+  def getJobAuditLogs(xProjectId: String, resourceType: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, cursor: Option[String] = None, resourceId: Option[String] = None, pageNumber: Option[Int], limit: Option[Int] = None): ApiRequest[Seq[JobAuditLogResponse]] =
+    ApiRequest[Seq[JobAuditLogResponse]](ApiMethods.GET, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/audit_logs", "application/json")
       .withQueryParam("resource_type", resourceType)
       .withQueryParam("cursor", cursor)
       .withQueryParam("resource_id", resourceId)
@@ -45,7 +45,7 @@ object LogApi {
       .withHeaderParam("Host", host)
       .withHeaderParam("X-Project-Id", xProjectId2)
       .withHeaderParam("X-Auth-Token", xAuthToken)
-      .withSuccessResponse[Seq[JobAuditLog]](200)
+      .withSuccessResponse[Seq[JobAuditLogResponse]](200)
       .withErrorResponse[GlobalErrorResponse](400)
       
 

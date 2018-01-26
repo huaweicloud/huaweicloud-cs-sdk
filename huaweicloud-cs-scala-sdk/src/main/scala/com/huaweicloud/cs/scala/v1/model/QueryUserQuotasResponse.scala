@@ -17,7 +17,7 @@ case class QueryUserQuotasResponse (
   message: Option[String],
   /* 当前时间, 毫秒数 */
   currentTime: Option[Long],
-  payload: Option[Seq[UserQuotaInfo]]
+  payload: Option[QueryUserQuotasResponsePayload]
 ) extends ApiModel
 
 

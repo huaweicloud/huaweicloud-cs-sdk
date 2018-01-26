@@ -5,6 +5,7 @@
  */
 package com.huaweicloud.cs.scala.v1
 
+import com.huaweicloud.cs.scala.v1.model.CreateClusterResponse
 import com.huaweicloud.cs.scala.v1.model.GlobalErrorResponse
 import com.huaweicloud.cs.scala.v1.model.GlobalResponse
 import com.huaweicloud.cs.scala.v1.model.NewReservedClusterRequest
@@ -24,7 +25,7 @@ object ClusterApi {
   /**
    * 
    * Expected answers:
-   *   code 200 : GlobalResponse (预留集群创建成功)
+   *   code 200 : CreateClusterResponse (预留集群创建成功)
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
@@ -35,8 +36,8 @@ object ClusterApi {
    * @param xProjectId2 可选。project id，用于不同project取token。
    * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def createReservedCluster(xProjectId: String, body: NewReservedClusterRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
-    ApiRequest[GlobalResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_cluster", "application/json")
+  def createReservedCluster(xProjectId: String, body: NewReservedClusterRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[CreateClusterResponse] =
+    ApiRequest[CreateClusterResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/reserved_cluster", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
       .withHeaderParam("X-Sdk-Date", xSdkDate)
@@ -44,7 +45,7 @@ object ClusterApi {
       .withHeaderParam("Host", host)
       .withHeaderParam("X-Project-Id", xProjectId2)
       .withHeaderParam("X-Auth-Token", xAuthToken)
-      .withSuccessResponse[GlobalResponse](200)
+      .withSuccessResponse[CreateClusterResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
    * 

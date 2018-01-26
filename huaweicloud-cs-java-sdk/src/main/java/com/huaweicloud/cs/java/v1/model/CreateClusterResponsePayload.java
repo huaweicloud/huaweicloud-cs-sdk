@@ -28,50 +28,29 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * DeleteTemplateResponse
+ * CreateClusterResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
-public class DeleteTemplateResponse {
-  @SerializedName("template_id")
-  private Long templateId = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
+public class CreateClusterResponsePayload {
+  @SerializedName("cluster_id")
+  private String clusterId = null;
 
-  @SerializedName("is_success")
-  private Boolean isSuccess = null;
-
-  public DeleteTemplateResponse templateId(Long templateId) {
-    this.templateId = templateId;
+  public CreateClusterResponsePayload clusterId(String clusterId) {
+    this.clusterId = clusterId;
     return this;
   }
 
    /**
-   * 模板ID
-   * @return templateId
+   * 集群标识
+   * @return clusterId
   **/
-  @ApiModelProperty(example = "10000", value = "模板ID")
-  public Long getTemplateId() {
-    return templateId;
+  @ApiModelProperty(example = "533", value = "集群标识")
+  public String getClusterId() {
+    return clusterId;
   }
 
-  public void setTemplateId(Long templateId) {
-    this.templateId = templateId;
-  }
-
-  public DeleteTemplateResponse isSuccess(Boolean isSuccess) {
-    this.isSuccess = isSuccess;
-    return this;
-  }
-
-   /**
-   * 模板删除是否成功
-   * @return isSuccess
-  **/
-  @ApiModelProperty(example = "true", value = "模板删除是否成功")
-  public Boolean isIsSuccess() {
-    return isSuccess;
-  }
-
-  public void setIsSuccess(Boolean isSuccess) {
-    this.isSuccess = isSuccess;
+  public void setClusterId(String clusterId) {
+    this.clusterId = clusterId;
   }
 
 
@@ -83,24 +62,22 @@ public class DeleteTemplateResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeleteTemplateResponse deleteTemplateResponse = (DeleteTemplateResponse) o;
-    return Objects.equals(this.templateId, deleteTemplateResponse.templateId) &&
-        Objects.equals(this.isSuccess, deleteTemplateResponse.isSuccess);
+    CreateClusterResponsePayload createClusterResponsePayload = (CreateClusterResponsePayload) o;
+    return Objects.equals(this.clusterId, createClusterResponsePayload.clusterId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, isSuccess);
+    return Objects.hash(clusterId);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeleteTemplateResponse {\n");
+    sb.append("class CreateClusterResponsePayload {\n");
     
-    sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
-    sb.append("    isSuccess: ").append(toIndentedString(isSuccess)).append("\n");
+    sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

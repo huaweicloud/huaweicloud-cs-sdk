@@ -34,10 +34,11 @@ import java.io.IOException;
 import java.io.File;
 import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
+import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
 import com.huaweicloud.cs.java.v1.model.JobStatusResponse;
+import com.huaweicloud.cs.java.v1.model.JobUpdateResponse;
 import com.huaweicloud.cs.java.v1.model.QueryJobListResponse;
-import com.huaweicloud.cs.java.v1.model.SqlJobUpdateResponse;
 import com.huaweicloud.cs.java.v1.model.SubmitSqlJobRequest;
 import com.huaweicloud.cs.java.v1.model.UpdateSqlJobRequest;
 
@@ -161,11 +162,11 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return Boolean
+     * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean deleteJob(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<Boolean> resp = deleteJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public GlobalResponse deleteJob(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = deleteJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -179,12 +180,12 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;Boolean&gt;
+     * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> deleteJobWithHttpInfo(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+    public ApiResponse<GlobalResponse> deleteJobWithHttpInfo(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
         com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -202,7 +203,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteJobAsync(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteJobAsync(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -224,7 +225,7 @@ public class JobApi {
         }
 
         com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -850,11 +851,11 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return JobStatusResponse
+     * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobStatusResponse runJob(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<JobStatusResponse> resp = runJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public GlobalResponse runJob(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = runJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -868,12 +869,12 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;JobStatusResponse&gt;
+     * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobStatusResponse> runJobWithHttpInfo(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+    public ApiResponse<GlobalResponse> runJobWithHttpInfo(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
         com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -891,7 +892,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call runJobAsync(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<JobStatusResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call runJobAsync(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -913,7 +914,7 @@ public class JobApi {
         }
 
         com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1012,11 +1013,11 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return JobStatusResponse
+     * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobStatusResponse stopJob(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<JobStatusResponse> resp = stopJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public GlobalResponse stopJob(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<GlobalResponse> resp = stopJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -1030,12 +1031,12 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;JobStatusResponse&gt;
+     * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobStatusResponse> stopJobWithHttpInfo(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+    public ApiResponse<GlobalResponse> stopJobWithHttpInfo(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
         com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1053,7 +1054,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call stopJobAsync(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<JobStatusResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call stopJobAsync(String xProjectId, List<Long> body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1075,7 +1076,7 @@ public class JobApi {
         }
 
         com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1086,15 +1087,17 @@ public class JobApi {
      * @param desc 作业描述 (required)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (required)
      * @param spuNumber 用户为作业选择的SPU数量 (required)
-     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (required)
+     * @param parallelNumber 用户为作业选择的并发量 (required)
+     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
+     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
-     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param progressListener Progress listener
@@ -1102,7 +1105,7 @@ public class JobApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobCall(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String obsBucket, File jar, String jobType, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobCall(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, String jobType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1133,12 +1136,16 @@ public class JobApi {
         localVarFormParams.put("cluster_id", clusterId);
         if (spuNumber != null)
         localVarFormParams.put("spu_number", spuNumber);
+        if (parallelNumber != null)
+        localVarFormParams.put("parallel_number", parallelNumber);
         if (logEnabled != null)
         localVarFormParams.put("log_enabled", logEnabled);
         if (obsBucket != null)
         localVarFormParams.put("obs_bucket", obsBucket);
         if (jar != null)
         localVarFormParams.put("jar", jar);
+        if (jarUrl != null)
+        localVarFormParams.put("jar_url", jarUrl);
         if (jobType != null)
         localVarFormParams.put("job_type", jobType);
         if (mainClass != null)
@@ -1175,7 +1182,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String obsBucket, File jar, String jobType, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, String jobType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1202,13 +1209,18 @@ public class JobApi {
             throw new ApiException("Missing the required parameter 'spuNumber' when calling submitJarJob(Async)");
         }
         
-        // verify the required parameter 'logEnabled' is set
-        if (logEnabled == null) {
-            throw new ApiException("Missing the required parameter 'logEnabled' when calling submitJarJob(Async)");
+        // verify the required parameter 'parallelNumber' is set
+        if (parallelNumber == null) {
+            throw new ApiException("Missing the required parameter 'parallelNumber' when calling submitJarJob(Async)");
+        }
+        
+        // verify the required parameter 'jobType' is set
+        if (jobType == null) {
+            throw new ApiException("Missing the required parameter 'jobType' when calling submitJarJob(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = submitJarJobCall(xProjectId, name, desc, clusterId, spuNumber, logEnabled, xSdkDate, authorization, host, xProjectId2, xAuthToken, obsBucket, jar, jobType, mainClass, args, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitJarJobCall(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1221,22 +1233,24 @@ public class JobApi {
      * @param desc 作业描述 (required)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (required)
      * @param spuNumber 用户为作业选择的SPU数量 (required)
-     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (required)
+     * @param parallelNumber 用户为作业选择的并发量 (required)
+     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
+     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
-     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @return JobStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobStatusResponse submitJarJob(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String obsBucket, File jar, String jobType, String mainClass, String args) throws ApiException {
-        ApiResponse<JobStatusResponse> resp = submitJarJobWithHttpInfo(xProjectId, name, desc, clusterId, spuNumber, logEnabled, xSdkDate, authorization, host, xProjectId2, xAuthToken, obsBucket, jar, jobType, mainClass, args);
+    public JobStatusResponse submitJarJob(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, String jobType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+        ApiResponse<JobStatusResponse> resp = submitJarJobWithHttpInfo(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
         return resp.getData();
     }
 
@@ -1248,22 +1262,24 @@ public class JobApi {
      * @param desc 作业描述 (required)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (required)
      * @param spuNumber 用户为作业选择的SPU数量 (required)
-     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (required)
+     * @param parallelNumber 用户为作业选择的并发量 (required)
+     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
+     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
-     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @return ApiResponse&lt;JobStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String obsBucket, File jar, String jobType, String mainClass, String args) throws ApiException {
-        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, spuNumber, logEnabled, xSdkDate, authorization, host, xProjectId2, xAuthToken, obsBucket, jar, jobType, mainClass, args, null, null);
+    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, String jobType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args, null, null);
         Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1276,22 +1292,24 @@ public class JobApi {
      * @param desc 作业描述 (required)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (required)
      * @param spuNumber 用户为作业选择的SPU数量 (required)
-     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (required)
+     * @param parallelNumber 用户为作业选择的并发量 (required)
+     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
+     * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
-     * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobAsync(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String obsBucket, File jar, String jobType, String mainClass, String args, final ApiCallback<JobStatusResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobAsync(String xProjectId, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, String jobType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ApiCallback<JobStatusResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1312,7 +1330,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, spuNumber, logEnabled, xSdkDate, authorization, host, xProjectId2, xAuthToken, obsBucket, jar, jobType, mainClass, args, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1492,9 +1510,11 @@ public class JobApi {
      * @param desc 作业描述 (optional)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (optional)
      * @param spuNumber 用户为作业选择的SPU数量 (optional)
+     * @param parallelNumber 用户为作业选择的并发量 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param progressListener Progress listener
@@ -1502,7 +1522,7 @@ public class JobApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateJarJobCall(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String obsBucket, File jar, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateJarJobCall(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1535,12 +1555,16 @@ public class JobApi {
         localVarFormParams.put("cluster_id", clusterId);
         if (spuNumber != null)
         localVarFormParams.put("spu_number", spuNumber);
+        if (parallelNumber != null)
+        localVarFormParams.put("parallel_number", parallelNumber);
         if (logEnabled != null)
         localVarFormParams.put("log_enabled", logEnabled);
         if (obsBucket != null)
         localVarFormParams.put("obs_bucket", obsBucket);
         if (jar != null)
         localVarFormParams.put("jar", jar);
+        if (jarUrl != null)
+        localVarFormParams.put("jar_url", jarUrl);
         if (mainClass != null)
         localVarFormParams.put("main_class", mainClass);
         if (args != null)
@@ -1575,7 +1599,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateJarJobValidateBeforeCall(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String obsBucket, File jar, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateJarJobValidateBeforeCall(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1588,7 +1612,7 @@ public class JobApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateJarJobCall(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, logEnabled, obsBucket, jar, mainClass, args, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateJarJobCall(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1607,16 +1631,18 @@ public class JobApi {
      * @param desc 作业描述 (optional)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (optional)
      * @param spuNumber 用户为作业选择的SPU数量 (optional)
+     * @param parallelNumber 用户为作业选择的并发量 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
-     * @return JobStatusResponse
+     * @return JobUpdateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobStatusResponse updateJarJob(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String obsBucket, File jar, String mainClass, String args) throws ApiException {
-        ApiResponse<JobStatusResponse> resp = updateJarJobWithHttpInfo(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, logEnabled, obsBucket, jar, mainClass, args);
+    public JobUpdateResponse updateJarJob(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+        ApiResponse<JobUpdateResponse> resp = updateJarJobWithHttpInfo(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
         return resp.getData();
     }
 
@@ -1634,17 +1660,19 @@ public class JobApi {
      * @param desc 作业描述 (optional)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (optional)
      * @param spuNumber 用户为作业选择的SPU数量 (optional)
+     * @param parallelNumber 用户为作业选择的并发量 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
-     * @return ApiResponse&lt;JobStatusResponse&gt;
+     * @return ApiResponse&lt;JobUpdateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobStatusResponse> updateJarJobWithHttpInfo(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String obsBucket, File jar, String mainClass, String args) throws ApiException {
-        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, logEnabled, obsBucket, jar, mainClass, args, null, null);
-        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+    public ApiResponse<JobUpdateResponse> updateJarJobWithHttpInfo(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args, null, null);
+        Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1662,16 +1690,18 @@ public class JobApi {
      * @param desc 作业描述 (optional)
      * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限 (optional)
      * @param spuNumber 用户为作业选择的SPU数量 (optional)
+     * @param parallelNumber 用户为作业选择的并发量 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
-     * @param jar upload user defined jar (optional)
+     * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
+     * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateJarJobAsync(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Boolean logEnabled, String obsBucket, File jar, String mainClass, String args, final ApiCallback<JobStatusResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateJarJobAsync(String xProjectId, String jobId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String name, String desc, Long clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ApiCallback<JobUpdateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1692,8 +1722,8 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, logEnabled, obsBucket, jar, mainClass, args, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1792,11 +1822,11 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return SqlJobUpdateResponse
+     * @return JobUpdateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SqlJobUpdateResponse updateSqlJob(String xProjectId, UpdateSqlJobRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<SqlJobUpdateResponse> resp = updateSqlJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public JobUpdateResponse updateSqlJob(String xProjectId, UpdateSqlJobRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<JobUpdateResponse> resp = updateSqlJobWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -1810,12 +1840,12 @@ public class JobApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;SqlJobUpdateResponse&gt;
+     * @return ApiResponse&lt;JobUpdateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SqlJobUpdateResponse> updateSqlJobWithHttpInfo(String xProjectId, UpdateSqlJobRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+    public ApiResponse<JobUpdateResponse> updateSqlJobWithHttpInfo(String xProjectId, UpdateSqlJobRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
         com.squareup.okhttp.Call call = updateSqlJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<SqlJobUpdateResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1833,7 +1863,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateSqlJobAsync(String xProjectId, UpdateSqlJobRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<SqlJobUpdateResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateSqlJobAsync(String xProjectId, UpdateSqlJobRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<JobUpdateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1855,7 +1885,7 @@ public class JobApi {
         }
 
         com.squareup.okhttp.Call call = updateSqlJobValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<SqlJobUpdateResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

@@ -12,59 +12,58 @@ import java.util.UUID
 
 case class JobEntity (
   /* 作业ID */
-  jobId: Long,
+  jobId: Option[Long],
   /* 作业名称 */
   name: Option[String],
   /* 作业描述 */
   desc: Option[String],
-  /* 作业创建时间 */
-  createTime: Long,
-  /* 作业启动时间, 0尚未启动 */
-  startTime: Option[Long],
-  /* 作业状态码 */
-  statusCode: Int,
-  /* 作业状态名称 */
-  statusName: Option[String],
+  /* 用户名, show_detail为false时独有 */
+  username: Option[String],
+  /* 作业类型 */
+  jobType: Option[String],
+  /* 作业状态 */
+  status: Option[String],
   /* 作业状态描述 */
   statusDesc: Option[String],
-  /* 作业运行时长，单位ms */
+  /* 作业创建时间 */
+  createTime: Option[Long],
+  /* 作业启动时间, 0尚未启动 */
+  startTime: Option[Long],
+  /* 作业运行时长, 单位ms, show_detail为false时独有 */
   duration: Option[Long],
-  /* 作业提交者 */
-  provider: Option[String],
-  /* 预留的集群资源ID, 当前用户有该预留资源的使用权限 */
+  /* 作业所属用户标识, show_detail为true时独有 */
+  userId: Option[String],
+  /* 预留的集群资源ID, 当前用户有该预留资源的使用权限, show_detail为true时独有 */
   clusterId: Option[Long],
-  /* Stream SQL语句分 */
+  /* 作业所属项目标识, show_detail为true时独有 */
+  projectId: Option[String],
+  /* Stream SQL语句, show_detail为true时独有 */
   sqlBody: Option[String],
-  /* CloudStream Service Jar job Size */
-  jarBody: Option[String],
-  /* 作业运行模式，共享或者独享模式 */
+  /* 作业运行模式，共享或者独享模式, show_detail为true时独有 */
   runMode: Option[JobEntityEnums.RunMode],
-  /* 用户为作业选择的SPU数量 */
+  /* 用户为作业选择的SPU数量, show_detail为true时独有 */
   spuNumber: Option[Int],
-  /* 用户设置的作业并行数 */
+  /* 用户设置的作业并行数, show_detail为true时独有 */
   parallelNumber: Option[Int],
-  /* 是否开启作业自动快照功能, true开启, false关闭, 默认false */
-  checkpointEnabled: Option[Boolean],
-  /* 快照模式, 两种可选, exactly_once和at_least_once */
-  checkpointMode: Option[JobEntityEnums.CheckpointMode],
-  /* checkpoint_enabled==true是, 用户授权保存快照的OBS路径 */
-  obsBucket: Option[String],
-  /* 快照时间间隔, 单位为秒 */
-  checkpointInterval: Option[Int]
+  jobConfig: Option[JobConfig],
+  /* jar包的OBS路径, show_detail为true时独有 */
+  jarUrl: Option[String],
+  /* checkpoint_enabled==true是, 用户授权保存快照的OBS路径, show_detail为true时独有 */
+  mainClass: Option[String],
+  /* jar包作业运行参数, show_detail为true时独有 */
+  args: Option[String],
+  /* 作业执行计划, show_detail为true时独有 */
+  executionGraph: Option[String],
+  /* 作业更新时间, show_detail为true时独有 */
+  updateTime: Option[Long]
 ) extends ApiModel
 
 object JobEntityEnums {
 
   type RunMode = RunMode.Value
-  type CheckpointMode = CheckpointMode.Value
   object RunMode extends Enumeration {
     val SharedCluster = Value("shared_cluster")
     val ExclusiveCluster = Value("exclusive_cluster")
-  }
-
-  object CheckpointMode extends Enumeration {
-    val ExactlyOnce = Value("exactly_once")
-    val AtLeastOnce = Value("at_least_once")
   }
 
 }

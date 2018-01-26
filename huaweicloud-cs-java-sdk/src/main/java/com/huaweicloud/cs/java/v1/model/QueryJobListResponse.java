@@ -23,17 +23,15 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.huaweicloud.cs.java.v1.model.JobEntity;
+import com.huaweicloud.cs.java.v1.model.QueryJobListResponsePayload;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * QueryJobListResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
 public class QueryJobListResponse {
   @SerializedName("message_id")
   private String messageId = null;
@@ -45,7 +43,7 @@ public class QueryJobListResponse {
   private Long currentTime = null;
 
   @SerializedName("payload")
-  private List<JobEntity> payload = null;
+  private QueryJobListResponsePayload payload = null;
 
   public QueryJobListResponse messageId(String messageId) {
     this.messageId = messageId;
@@ -101,16 +99,8 @@ public class QueryJobListResponse {
     this.currentTime = currentTime;
   }
 
-  public QueryJobListResponse payload(List<JobEntity> payload) {
+  public QueryJobListResponse payload(QueryJobListResponsePayload payload) {
     this.payload = payload;
-    return this;
-  }
-
-  public QueryJobListResponse addPayloadItem(JobEntity payloadItem) {
-    if (this.payload == null) {
-      this.payload = new ArrayList<JobEntity>();
-    }
-    this.payload.add(payloadItem);
     return this;
   }
 
@@ -119,11 +109,11 @@ public class QueryJobListResponse {
    * @return payload
   **/
   @ApiModelProperty(value = "")
-  public List<JobEntity> getPayload() {
+  public QueryJobListResponsePayload getPayload() {
     return payload;
   }
 
-  public void setPayload(List<JobEntity> payload) {
+  public void setPayload(QueryJobListResponsePayload payload) {
     this.payload = payload;
   }
 

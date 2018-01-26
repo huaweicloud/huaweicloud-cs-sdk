@@ -30,48 +30,27 @@ import java.io.IOException;
 /**
  * JobExecutePlan
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
 public class JobExecutePlan {
-  @SerializedName("job_id")
-  private Long jobId = null;
+  @SerializedName("execute_plan_items")
+  private String executePlanItems = null;
 
-  @SerializedName("execute_plan")
-  private String executePlan = null;
-
-  public JobExecutePlan jobId(Long jobId) {
-    this.jobId = jobId;
+  public JobExecutePlan executePlanItems(String executePlanItems) {
+    this.executePlanItems = executePlanItems;
     return this;
   }
 
    /**
-   * Get jobId
-   * @return jobId
-  **/
-  @ApiModelProperty(example = "100000", value = "")
-  public Long getJobId() {
-    return jobId;
-  }
-
-  public void setJobId(Long jobId) {
-    this.jobId = jobId;
-  }
-
-  public JobExecutePlan executePlan(String executePlan) {
-    this.executePlan = executePlan;
-    return this;
-  }
-
-   /**
-   * Get executePlan
-   * @return executePlan
+   * Get executePlanItems
+   * @return executePlanItems
   **/
   @ApiModelProperty(example = "[{\"key\":\"value\"}]", value = "")
-  public String getExecutePlan() {
-    return executePlan;
+  public String getExecutePlanItems() {
+    return executePlanItems;
   }
 
-  public void setExecutePlan(String executePlan) {
-    this.executePlan = executePlan;
+  public void setExecutePlanItems(String executePlanItems) {
+    this.executePlanItems = executePlanItems;
   }
 
 
@@ -84,13 +63,12 @@ public class JobExecutePlan {
       return false;
     }
     JobExecutePlan jobExecutePlan = (JobExecutePlan) o;
-    return Objects.equals(this.jobId, jobExecutePlan.jobId) &&
-        Objects.equals(this.executePlan, jobExecutePlan.executePlan);
+    return Objects.equals(this.executePlanItems, jobExecutePlan.executePlanItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobId, executePlan);
+    return Objects.hash(executePlanItems);
   }
 
 
@@ -99,8 +77,7 @@ public class JobExecutePlan {
     StringBuilder sb = new StringBuilder();
     sb.append("class JobExecutePlan {\n");
     
-    sb.append("    jobId: ").append(toIndentedString(jobId)).append("\n");
-    sb.append("    executePlan: ").append(toIndentedString(executePlan)).append("\n");
+    sb.append("    executePlanItems: ").append(toIndentedString(executePlanItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }

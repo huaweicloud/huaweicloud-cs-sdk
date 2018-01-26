@@ -17,7 +17,7 @@ case class QueryJobListResponse (
   message: Option[String],
   /* 当前时间, 毫秒数 */
   currentTime: Option[Long],
-  payload: Option[Seq[JobEntity]]
+  payload: Option[QueryJobListResponsePayload]
 ) extends ApiModel
 
 

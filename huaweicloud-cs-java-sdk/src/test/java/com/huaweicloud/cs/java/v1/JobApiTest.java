@@ -21,10 +21,11 @@ import com.huaweicloud.cs.java.v1.client.ApiException;
 import java.io.File;
 import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
+import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
 import com.huaweicloud.cs.java.v1.model.JobStatusResponse;
+import com.huaweicloud.cs.java.v1.model.JobUpdateResponse;
 import com.huaweicloud.cs.java.v1.model.QueryJobListResponse;
-import com.huaweicloud.cs.java.v1.model.SqlJobUpdateResponse;
 import com.huaweicloud.cs.java.v1.model.SubmitSqlJobRequest;
 import com.huaweicloud.cs.java.v1.model.UpdateSqlJobRequest;
 import org.junit.Test;
@@ -61,7 +62,7 @@ public class JobApiTest {
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        Boolean response = api.deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
 
         // TODO: test validations
     }
@@ -156,7 +157,7 @@ public class JobApiTest {
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        JobStatusResponse response = api.runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
 
         // TODO: test validations
     }
@@ -178,7 +179,7 @@ public class JobApiTest {
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        JobStatusResponse response = api.stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
 
         // TODO: test validations
     }
@@ -198,18 +199,20 @@ public class JobApiTest {
         String desc = null;
         Long clusterId = null;
         Integer spuNumber = null;
-        Boolean logEnabled = null;
+        Integer parallelNumber = null;
+        String jobType = null;
         String xSdkDate = null;
         String authorization = null;
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
+        Boolean logEnabled = null;
         String obsBucket = null;
         File jar = null;
-        String jobType = null;
+        File jarUrl = null;
         String mainClass = null;
         String args = null;
-        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, logEnabled, xSdkDate, authorization, host, xProjectId2, xAuthToken, obsBucket, jar, jobType, mainClass, args);
+        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
 
         // TODO: test validations
     }
@@ -257,12 +260,14 @@ public class JobApiTest {
         String desc = null;
         Long clusterId = null;
         Integer spuNumber = null;
+        Integer parallelNumber = null;
         Boolean logEnabled = null;
         String obsBucket = null;
         File jar = null;
+        File jarUrl = null;
         String mainClass = null;
         String args = null;
-        JobStatusResponse response = api.updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, logEnabled, obsBucket, jar, mainClass, args);
+        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
 
         // TODO: test validations
     }
@@ -284,7 +289,7 @@ public class JobApiTest {
         String host = null;
         String xProjectId2 = null;
         String xAuthToken = null;
-        SqlJobUpdateResponse response = api.updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        JobUpdateResponse response = api.updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
 
         // TODO: test validations
     }

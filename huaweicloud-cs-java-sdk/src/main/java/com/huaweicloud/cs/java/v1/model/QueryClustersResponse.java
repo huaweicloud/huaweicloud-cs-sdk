@@ -23,17 +23,15 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.huaweicloud.cs.java.v1.model.ClusterInfo;
+import com.huaweicloud.cs.java.v1.model.QueryClustersResponsePayload;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * QueryClustersResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
 public class QueryClustersResponse {
   @SerializedName("message_id")
   private String messageId = null;
@@ -45,7 +43,7 @@ public class QueryClustersResponse {
   private Long currentTime = null;
 
   @SerializedName("payload")
-  private List<ClusterInfo> payload = null;
+  private QueryClustersResponsePayload payload = null;
 
   public QueryClustersResponse messageId(String messageId) {
     this.messageId = messageId;
@@ -101,16 +99,8 @@ public class QueryClustersResponse {
     this.currentTime = currentTime;
   }
 
-  public QueryClustersResponse payload(List<ClusterInfo> payload) {
+  public QueryClustersResponse payload(QueryClustersResponsePayload payload) {
     this.payload = payload;
-    return this;
-  }
-
-  public QueryClustersResponse addPayloadItem(ClusterInfo payloadItem) {
-    if (this.payload == null) {
-      this.payload = new ArrayList<ClusterInfo>();
-    }
-    this.payload.add(payloadItem);
     return this;
   }
 
@@ -119,11 +109,11 @@ public class QueryClustersResponse {
    * @return payload
   **/
   @ApiModelProperty(value = "")
-  public List<ClusterInfo> getPayload() {
+  public QueryClustersResponsePayload getPayload() {
     return payload;
   }
 
-  public void setPayload(List<ClusterInfo> payload) {
+  public void setPayload(QueryClustersResponsePayload payload) {
     this.payload = payload;
   }
 

@@ -32,7 +32,9 @@ import java.io.IOException;
 
 
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
-import com.huaweicloud.cs.java.v1.model.JobTemplate;
+import com.huaweicloud.cs.java.v1.model.JobTemplateCreateResponse;
+import com.huaweicloud.cs.java.v1.model.JobTemplateDeleteResponse;
+import com.huaweicloud.cs.java.v1.model.JobTemplateListResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateRequest;
 
 import java.lang.reflect.Type;
@@ -155,11 +157,11 @@ public class TemplateApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return Boolean
+     * @return JobTemplateCreateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean createJobTemplate(String xProjectId, JobTemplateRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<Boolean> resp = createJobTemplateWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public JobTemplateCreateResponse createJobTemplate(String xProjectId, JobTemplateRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<JobTemplateCreateResponse> resp = createJobTemplateWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -173,12 +175,12 @@ public class TemplateApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;Boolean&gt;
+     * @return ApiResponse&lt;JobTemplateCreateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> createJobTemplateWithHttpInfo(String xProjectId, JobTemplateRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+    public ApiResponse<JobTemplateCreateResponse> createJobTemplateWithHttpInfo(String xProjectId, JobTemplateRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
         com.squareup.okhttp.Call call = createJobTemplateValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobTemplateCreateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -196,7 +198,7 @@ public class TemplateApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createJobTemplateAsync(String xProjectId, JobTemplateRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call createJobTemplateAsync(String xProjectId, JobTemplateRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<JobTemplateCreateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -218,7 +220,7 @@ public class TemplateApi {
         }
 
         com.squareup.okhttp.Call call = createJobTemplateValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobTemplateCreateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -318,11 +320,11 @@ public class TemplateApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return Boolean
+     * @return JobTemplateDeleteResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean deleteJobTemplate(String xProjectId, Long templateId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<Boolean> resp = deleteJobTemplateWithHttpInfo(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public JobTemplateDeleteResponse deleteJobTemplate(String xProjectId, Long templateId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<JobTemplateDeleteResponse> resp = deleteJobTemplateWithHttpInfo(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -336,12 +338,12 @@ public class TemplateApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;Boolean&gt;
+     * @return ApiResponse&lt;JobTemplateDeleteResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> deleteJobTemplateWithHttpInfo(String xProjectId, Long templateId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+    public ApiResponse<JobTemplateDeleteResponse> deleteJobTemplateWithHttpInfo(String xProjectId, Long templateId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
         com.squareup.okhttp.Call call = deleteJobTemplateValidateBeforeCall(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobTemplateDeleteResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -359,7 +361,7 @@ public class TemplateApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteJobTemplateAsync(String xProjectId, Long templateId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteJobTemplateAsync(String xProjectId, Long templateId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<JobTemplateDeleteResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -381,27 +383,27 @@ public class TemplateApi {
         }
 
         com.squareup.okhttp.Call call = deleteJobTemplateValidateBeforeCall(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobTemplateDeleteResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for getJobTemplates
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param cursor 作业模板ID (required)
-     * @param limit 查询条数限制 (required)
-     * @param order 查询结果排序, 升序和降序两种可选 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
+     * @param cursor 作业模板ID (optional)
+     * @param limit 查询条数限制 (optional)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getJobTemplatesCall(String xProjectId, Long cursor, Integer limit, String order, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getJobTemplatesCall(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Long cursor, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -460,30 +462,15 @@ public class TemplateApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getJobTemplatesValidateBeforeCall(String xProjectId, Long cursor, Integer limit, String order, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getJobTemplatesValidateBeforeCall(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Long cursor, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
             throw new ApiException("Missing the required parameter 'xProjectId' when calling getJobTemplates(Async)");
         }
         
-        // verify the required parameter 'cursor' is set
-        if (cursor == null) {
-            throw new ApiException("Missing the required parameter 'cursor' when calling getJobTemplates(Async)");
-        }
-        
-        // verify the required parameter 'limit' is set
-        if (limit == null) {
-            throw new ApiException("Missing the required parameter 'limit' when calling getJobTemplates(Async)");
-        }
-        
-        // verify the required parameter 'order' is set
-        if (order == null) {
-            throw new ApiException("Missing the required parameter 'order' when calling getJobTemplates(Async)");
-        }
-        
 
-        com.squareup.okhttp.Call call = getJobTemplatesCall(xProjectId, cursor, limit, order, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getJobTemplatesCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order, progressListener, progressRequestListener);
         return call;
 
     }
@@ -492,19 +479,19 @@ public class TemplateApi {
      * query CloudStream Service job templates
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param cursor 作业模板ID (required)
-     * @param limit 查询条数限制 (required)
-     * @param order 查询结果排序, 升序和降序两种可选 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return List&lt;JobTemplate&gt;
+     * @param cursor 作业模板ID (optional)
+     * @param limit 查询条数限制 (optional)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
+     * @return List&lt;JobTemplateListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<JobTemplate> getJobTemplates(String xProjectId, Long cursor, Integer limit, String order, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<List<JobTemplate>> resp = getJobTemplatesWithHttpInfo(xProjectId, cursor, limit, order, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public List<JobTemplateListResponse> getJobTemplates(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Long cursor, Integer limit, String order) throws ApiException {
+        ApiResponse<List<JobTemplateListResponse>> resp = getJobTemplatesWithHttpInfo(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order);
         return resp.getData();
     }
 
@@ -512,20 +499,20 @@ public class TemplateApi {
      * query CloudStream Service job templates
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param cursor 作业模板ID (required)
-     * @param limit 查询条数限制 (required)
-     * @param order 查询结果排序, 升序和降序两种可选 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;List&lt;JobTemplate&gt;&gt;
+     * @param cursor 作业模板ID (optional)
+     * @param limit 查询条数限制 (optional)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
+     * @return ApiResponse&lt;List&lt;JobTemplateListResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<JobTemplate>> getJobTemplatesWithHttpInfo(String xProjectId, Long cursor, Integer limit, String order, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        com.squareup.okhttp.Call call = getJobTemplatesValidateBeforeCall(xProjectId, cursor, limit, order, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<List<JobTemplate>>(){}.getType();
+    public ApiResponse<List<JobTemplateListResponse>> getJobTemplatesWithHttpInfo(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Long cursor, Integer limit, String order) throws ApiException {
+        com.squareup.okhttp.Call call = getJobTemplatesValidateBeforeCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order, null, null);
+        Type localVarReturnType = new TypeToken<List<JobTemplateListResponse>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -533,19 +520,19 @@ public class TemplateApi {
      * query CloudStream Service job templates (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param cursor 作业模板ID (required)
-     * @param limit 查询条数限制 (required)
-     * @param order 查询结果排序, 升序和降序两种可选 (required)
      * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
      * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
+     * @param cursor 作业模板ID (optional)
+     * @param limit 查询条数限制 (optional)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJobTemplatesAsync(String xProjectId, Long cursor, Integer limit, String order, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<List<JobTemplate>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJobTemplatesAsync(String xProjectId, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, Long cursor, Integer limit, String order, final ApiCallback<List<JobTemplateListResponse>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -566,8 +553,8 @@ public class TemplateApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getJobTemplatesValidateBeforeCall(xProjectId, cursor, limit, order, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<JobTemplate>>(){}.getType();
+        com.squareup.okhttp.Call call = getJobTemplatesValidateBeforeCall(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<JobTemplateListResponse>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

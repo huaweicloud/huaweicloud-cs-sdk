@@ -23,6 +23,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.huaweicloud.cs.java.v1.model.JobConfig;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,7 +31,7 @@ import java.io.IOException;
 /**
  * JobDetailEntity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
 public class JobDetailEntity {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -41,32 +42,32 @@ public class JobDetailEntity {
   @SerializedName("desc")
   private String desc = null;
 
+  @SerializedName("job_type")
+  private String jobType = null;
+
+  @SerializedName("status")
+  private String status = null;
+
+  @SerializedName("status_desc")
+  private String statusDesc = null;
+
   @SerializedName("create_time")
   private Long createTime = null;
 
   @SerializedName("start_time")
   private Long startTime = null;
 
-  @SerializedName("status_code")
-  private Integer statusCode = null;
-
-  @SerializedName("status_name")
-  private String statusName = null;
-
-  @SerializedName("status_desc")
-  private String statusDesc = null;
-
-  @SerializedName("provider")
-  private String provider = null;
+  @SerializedName("user_id")
+  private String userId = null;
 
   @SerializedName("cluster_id")
   private Long clusterId = null;
 
+  @SerializedName("project_id")
+  private String projectId = null;
+
   @SerializedName("sql_body")
   private String sqlBody = null;
-
-  @SerializedName("jar_body")
-  private String jarBody = null;
 
   /**
    * 作业运行模式，共享或者独享模式
@@ -124,64 +125,23 @@ public class JobDetailEntity {
   @SerializedName("parallel_number")
   private Integer parallelNumber = null;
 
-  @SerializedName("checkpoint_enabled")
-  private Boolean checkpointEnabled = null;
+  @SerializedName("job_config")
+  private JobConfig jobConfig = null;
 
-  /**
-   * 快照模式, 两种可选, exactly_once和at_least_once
-   */
-  @JsonAdapter(CheckpointModeEnum.Adapter.class)
-  public enum CheckpointModeEnum {
-    EXACTLY_ONCE("exactly_once"),
-    
-    AT_LEAST_ONCE("at_least_once");
+  @SerializedName("jar_url")
+  private String jarUrl = null;
 
-    private String value;
+  @SerializedName("main_class")
+  private String mainClass = null;
 
-    CheckpointModeEnum(String value) {
-      this.value = value;
-    }
+  @SerializedName("args")
+  private String args = null;
 
-    public String getValue() {
-      return value;
-    }
+  @SerializedName("execution_graph")
+  private String executionGraph = null;
 
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static CheckpointModeEnum fromValue(String text) {
-      for (CheckpointModeEnum b : CheckpointModeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<CheckpointModeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final CheckpointModeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public CheckpointModeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return CheckpointModeEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("checkpoint_mode")
-  private CheckpointModeEnum checkpointMode = null;
-
-  @SerializedName("obs_bucket")
-  private String obsBucket = null;
-
-  @SerializedName("checkpoint_interval")
-  private Integer checkpointInterval = null;
+  @SerializedName("update_time")
+  private Long updateTime = null;
 
   public JobDetailEntity jobId(Long jobId) {
     this.jobId = jobId;
@@ -192,7 +152,7 @@ public class JobDetailEntity {
    * 作业ID
    * @return jobId
   **/
-  @ApiModelProperty(required = true, value = "作业ID")
+  @ApiModelProperty(value = "作业ID")
   public Long getJobId() {
     return jobId;
   }
@@ -237,6 +197,60 @@ public class JobDetailEntity {
     this.desc = desc;
   }
 
+  public JobDetailEntity jobType(String jobType) {
+    this.jobType = jobType;
+    return this;
+  }
+
+   /**
+   * 作业类型
+   * @return jobType
+  **/
+  @ApiModelProperty(value = "作业类型")
+  public String getJobType() {
+    return jobType;
+  }
+
+  public void setJobType(String jobType) {
+    this.jobType = jobType;
+  }
+
+  public JobDetailEntity status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * 作业状态
+   * @return status
+  **/
+  @ApiModelProperty(value = "作业状态")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  public JobDetailEntity statusDesc(String statusDesc) {
+    this.statusDesc = statusDesc;
+    return this;
+  }
+
+   /**
+   * 作业状态描述
+   * @return statusDesc
+  **/
+  @ApiModelProperty(value = "作业状态描述")
+  public String getStatusDesc() {
+    return statusDesc;
+  }
+
+  public void setStatusDesc(String statusDesc) {
+    this.statusDesc = statusDesc;
+  }
+
   public JobDetailEntity createTime(Long createTime) {
     this.createTime = createTime;
     return this;
@@ -246,7 +260,7 @@ public class JobDetailEntity {
    * 作业创建时间
    * @return createTime
   **/
-  @ApiModelProperty(required = true, value = "作业创建时间")
+  @ApiModelProperty(value = "作业创建时间")
   public Long getCreateTime() {
     return createTime;
   }
@@ -273,76 +287,22 @@ public class JobDetailEntity {
     this.startTime = startTime;
   }
 
-  public JobDetailEntity statusCode(Integer statusCode) {
-    this.statusCode = statusCode;
+  public JobDetailEntity userId(String userId) {
+    this.userId = userId;
     return this;
   }
 
    /**
-   * 作业状态码
-   * @return statusCode
+   * 作业所属用户标识
+   * @return userId
   **/
-  @ApiModelProperty(required = true, value = "作业状态码")
-  public Integer getStatusCode() {
-    return statusCode;
+  @ApiModelProperty(value = "作业所属用户标识")
+  public String getUserId() {
+    return userId;
   }
 
-  public void setStatusCode(Integer statusCode) {
-    this.statusCode = statusCode;
-  }
-
-  public JobDetailEntity statusName(String statusName) {
-    this.statusName = statusName;
-    return this;
-  }
-
-   /**
-   * 作业状态名称
-   * @return statusName
-  **/
-  @ApiModelProperty(value = "作业状态名称")
-  public String getStatusName() {
-    return statusName;
-  }
-
-  public void setStatusName(String statusName) {
-    this.statusName = statusName;
-  }
-
-  public JobDetailEntity statusDesc(String statusDesc) {
-    this.statusDesc = statusDesc;
-    return this;
-  }
-
-   /**
-   * 作业状态描述
-   * @return statusDesc
-  **/
-  @ApiModelProperty(value = "作业状态描述")
-  public String getStatusDesc() {
-    return statusDesc;
-  }
-
-  public void setStatusDesc(String statusDesc) {
-    this.statusDesc = statusDesc;
-  }
-
-  public JobDetailEntity provider(String provider) {
-    this.provider = provider;
-    return this;
-  }
-
-   /**
-   * 作业提交者
-   * @return provider
-  **/
-  @ApiModelProperty(value = "作业提交者")
-  public String getProvider() {
-    return provider;
-  }
-
-  public void setProvider(String provider) {
-    this.provider = provider;
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
   public JobDetailEntity clusterId(Long clusterId) {
@@ -363,40 +323,40 @@ public class JobDetailEntity {
     this.clusterId = clusterId;
   }
 
+  public JobDetailEntity projectId(String projectId) {
+    this.projectId = projectId;
+    return this;
+  }
+
+   /**
+   * 作业所属项目标识
+   * @return projectId
+  **/
+  @ApiModelProperty(value = "作业所属项目标识")
+  public String getProjectId() {
+    return projectId;
+  }
+
+  public void setProjectId(String projectId) {
+    this.projectId = projectId;
+  }
+
   public JobDetailEntity sqlBody(String sqlBody) {
     this.sqlBody = sqlBody;
     return this;
   }
 
    /**
-   * Stream SQL语句分
+   * Stream SQL语句
    * @return sqlBody
   **/
-  @ApiModelProperty(example = "select * from source_table", value = "Stream SQL语句分")
+  @ApiModelProperty(example = "select * from source_table", value = "Stream SQL语句")
   public String getSqlBody() {
     return sqlBody;
   }
 
   public void setSqlBody(String sqlBody) {
     this.sqlBody = sqlBody;
-  }
-
-  public JobDetailEntity jarBody(String jarBody) {
-    this.jarBody = jarBody;
-    return this;
-  }
-
-   /**
-   * CloudStream Service Jar job Size
-   * @return jarBody
-  **/
-  @ApiModelProperty(value = "CloudStream Service Jar job Size")
-  public String getJarBody() {
-    return jarBody;
-  }
-
-  public void setJarBody(String jarBody) {
-    this.jarBody = jarBody;
   }
 
   public JobDetailEntity runMode(RunModeEnum runMode) {
@@ -457,76 +417,112 @@ public class JobDetailEntity {
     this.parallelNumber = parallelNumber;
   }
 
-  public JobDetailEntity checkpointEnabled(Boolean checkpointEnabled) {
-    this.checkpointEnabled = checkpointEnabled;
+  public JobDetailEntity jobConfig(JobConfig jobConfig) {
+    this.jobConfig = jobConfig;
     return this;
   }
 
    /**
-   * 是否开启作业自动快照功能, true开启, false关闭, 默认false
-   * @return checkpointEnabled
+   * Get jobConfig
+   * @return jobConfig
   **/
-  @ApiModelProperty(value = "是否开启作业自动快照功能, true开启, false关闭, 默认false")
-  public Boolean isCheckpointEnabled() {
-    return checkpointEnabled;
+  @ApiModelProperty(value = "")
+  public JobConfig getJobConfig() {
+    return jobConfig;
   }
 
-  public void setCheckpointEnabled(Boolean checkpointEnabled) {
-    this.checkpointEnabled = checkpointEnabled;
+  public void setJobConfig(JobConfig jobConfig) {
+    this.jobConfig = jobConfig;
   }
 
-  public JobDetailEntity checkpointMode(CheckpointModeEnum checkpointMode) {
-    this.checkpointMode = checkpointMode;
+  public JobDetailEntity jarUrl(String jarUrl) {
+    this.jarUrl = jarUrl;
     return this;
   }
 
    /**
-   * 快照模式, 两种可选, exactly_once和at_least_once
-   * @return checkpointMode
+   * jar包的OBS路径
+   * @return jarUrl
   **/
-  @ApiModelProperty(example = "exactly_once", value = "快照模式, 两种可选, exactly_once和at_least_once")
-  public CheckpointModeEnum getCheckpointMode() {
-    return checkpointMode;
+  @ApiModelProperty(value = "jar包的OBS路径")
+  public String getJarUrl() {
+    return jarUrl;
   }
 
-  public void setCheckpointMode(CheckpointModeEnum checkpointMode) {
-    this.checkpointMode = checkpointMode;
+  public void setJarUrl(String jarUrl) {
+    this.jarUrl = jarUrl;
   }
 
-  public JobDetailEntity obsBucket(String obsBucket) {
-    this.obsBucket = obsBucket;
+  public JobDetailEntity mainClass(String mainClass) {
+    this.mainClass = mainClass;
     return this;
   }
 
    /**
    * checkpoint_enabled&#x3D;&#x3D;true是, 用户授权保存快照的OBS路径
-   * @return obsBucket
+   * @return mainClass
   **/
   @ApiModelProperty(value = "checkpoint_enabled==true是, 用户授权保存快照的OBS路径")
-  public String getObsBucket() {
-    return obsBucket;
+  public String getMainClass() {
+    return mainClass;
   }
 
-  public void setObsBucket(String obsBucket) {
-    this.obsBucket = obsBucket;
+  public void setMainClass(String mainClass) {
+    this.mainClass = mainClass;
   }
 
-  public JobDetailEntity checkpointInterval(Integer checkpointInterval) {
-    this.checkpointInterval = checkpointInterval;
+  public JobDetailEntity args(String args) {
+    this.args = args;
     return this;
   }
 
    /**
-   * 快照时间间隔, 单位为秒
-   * @return checkpointInterval
+   * jar包作业运行参数
+   * @return args
   **/
-  @ApiModelProperty(value = "快照时间间隔, 单位为秒")
-  public Integer getCheckpointInterval() {
-    return checkpointInterval;
+  @ApiModelProperty(value = "jar包作业运行参数")
+  public String getArgs() {
+    return args;
   }
 
-  public void setCheckpointInterval(Integer checkpointInterval) {
-    this.checkpointInterval = checkpointInterval;
+  public void setArgs(String args) {
+    this.args = args;
+  }
+
+  public JobDetailEntity executionGraph(String executionGraph) {
+    this.executionGraph = executionGraph;
+    return this;
+  }
+
+   /**
+   * 作业执行计划
+   * @return executionGraph
+  **/
+  @ApiModelProperty(value = "作业执行计划")
+  public String getExecutionGraph() {
+    return executionGraph;
+  }
+
+  public void setExecutionGraph(String executionGraph) {
+    this.executionGraph = executionGraph;
+  }
+
+  public JobDetailEntity updateTime(Long updateTime) {
+    this.updateTime = updateTime;
+    return this;
+  }
+
+   /**
+   * 作业更新时间
+   * @return updateTime
+  **/
+  @ApiModelProperty(value = "作业更新时间")
+  public Long getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(Long updateTime) {
+    this.updateTime = updateTime;
   }
 
 
@@ -542,27 +538,29 @@ public class JobDetailEntity {
     return Objects.equals(this.jobId, jobDetailEntity.jobId) &&
         Objects.equals(this.name, jobDetailEntity.name) &&
         Objects.equals(this.desc, jobDetailEntity.desc) &&
+        Objects.equals(this.jobType, jobDetailEntity.jobType) &&
+        Objects.equals(this.status, jobDetailEntity.status) &&
+        Objects.equals(this.statusDesc, jobDetailEntity.statusDesc) &&
         Objects.equals(this.createTime, jobDetailEntity.createTime) &&
         Objects.equals(this.startTime, jobDetailEntity.startTime) &&
-        Objects.equals(this.statusCode, jobDetailEntity.statusCode) &&
-        Objects.equals(this.statusName, jobDetailEntity.statusName) &&
-        Objects.equals(this.statusDesc, jobDetailEntity.statusDesc) &&
-        Objects.equals(this.provider, jobDetailEntity.provider) &&
+        Objects.equals(this.userId, jobDetailEntity.userId) &&
         Objects.equals(this.clusterId, jobDetailEntity.clusterId) &&
+        Objects.equals(this.projectId, jobDetailEntity.projectId) &&
         Objects.equals(this.sqlBody, jobDetailEntity.sqlBody) &&
-        Objects.equals(this.jarBody, jobDetailEntity.jarBody) &&
         Objects.equals(this.runMode, jobDetailEntity.runMode) &&
         Objects.equals(this.spuNumber, jobDetailEntity.spuNumber) &&
         Objects.equals(this.parallelNumber, jobDetailEntity.parallelNumber) &&
-        Objects.equals(this.checkpointEnabled, jobDetailEntity.checkpointEnabled) &&
-        Objects.equals(this.checkpointMode, jobDetailEntity.checkpointMode) &&
-        Objects.equals(this.obsBucket, jobDetailEntity.obsBucket) &&
-        Objects.equals(this.checkpointInterval, jobDetailEntity.checkpointInterval);
+        Objects.equals(this.jobConfig, jobDetailEntity.jobConfig) &&
+        Objects.equals(this.jarUrl, jobDetailEntity.jarUrl) &&
+        Objects.equals(this.mainClass, jobDetailEntity.mainClass) &&
+        Objects.equals(this.args, jobDetailEntity.args) &&
+        Objects.equals(this.executionGraph, jobDetailEntity.executionGraph) &&
+        Objects.equals(this.updateTime, jobDetailEntity.updateTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobId, name, desc, createTime, startTime, statusCode, statusName, statusDesc, provider, clusterId, sqlBody, jarBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, obsBucket, checkpointInterval);
+    return Objects.hash(jobId, name, desc, jobType, status, statusDesc, createTime, startTime, userId, clusterId, projectId, sqlBody, runMode, spuNumber, parallelNumber, jobConfig, jarUrl, mainClass, args, executionGraph, updateTime);
   }
 
 
@@ -574,22 +572,24 @@ public class JobDetailEntity {
     sb.append("    jobId: ").append(toIndentedString(jobId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    desc: ").append(toIndentedString(desc)).append("\n");
+    sb.append("    jobType: ").append(toIndentedString(jobType)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    statusDesc: ").append(toIndentedString(statusDesc)).append("\n");
     sb.append("    createTime: ").append(toIndentedString(createTime)).append("\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
-    sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
-    sb.append("    statusName: ").append(toIndentedString(statusName)).append("\n");
-    sb.append("    statusDesc: ").append(toIndentedString(statusDesc)).append("\n");
-    sb.append("    provider: ").append(toIndentedString(provider)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
+    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    sqlBody: ").append(toIndentedString(sqlBody)).append("\n");
-    sb.append("    jarBody: ").append(toIndentedString(jarBody)).append("\n");
     sb.append("    runMode: ").append(toIndentedString(runMode)).append("\n");
     sb.append("    spuNumber: ").append(toIndentedString(spuNumber)).append("\n");
     sb.append("    parallelNumber: ").append(toIndentedString(parallelNumber)).append("\n");
-    sb.append("    checkpointEnabled: ").append(toIndentedString(checkpointEnabled)).append("\n");
-    sb.append("    checkpointMode: ").append(toIndentedString(checkpointMode)).append("\n");
-    sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
-    sb.append("    checkpointInterval: ").append(toIndentedString(checkpointInterval)).append("\n");
+    sb.append("    jobConfig: ").append(toIndentedString(jobConfig)).append("\n");
+    sb.append("    jarUrl: ").append(toIndentedString(jarUrl)).append("\n");
+    sb.append("    mainClass: ").append(toIndentedString(mainClass)).append("\n");
+    sb.append("    args: ").append(toIndentedString(args)).append("\n");
+    sb.append("    executionGraph: ").append(toIndentedString(executionGraph)).append("\n");
+    sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }

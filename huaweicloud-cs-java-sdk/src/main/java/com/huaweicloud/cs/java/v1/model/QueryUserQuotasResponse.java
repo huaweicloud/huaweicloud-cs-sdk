@@ -23,17 +23,15 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.huaweicloud.cs.java.v1.model.UserQuotaInfo;
+import com.huaweicloud.cs.java.v1.model.QueryUserQuotasResponsePayload;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * QueryUserQuotasResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
 public class QueryUserQuotasResponse {
   @SerializedName("message_id")
   private String messageId = null;
@@ -45,7 +43,7 @@ public class QueryUserQuotasResponse {
   private Long currentTime = null;
 
   @SerializedName("payload")
-  private List<UserQuotaInfo> payload = null;
+  private QueryUserQuotasResponsePayload payload = null;
 
   public QueryUserQuotasResponse messageId(String messageId) {
     this.messageId = messageId;
@@ -101,16 +99,8 @@ public class QueryUserQuotasResponse {
     this.currentTime = currentTime;
   }
 
-  public QueryUserQuotasResponse payload(List<UserQuotaInfo> payload) {
+  public QueryUserQuotasResponse payload(QueryUserQuotasResponsePayload payload) {
     this.payload = payload;
-    return this;
-  }
-
-  public QueryUserQuotasResponse addPayloadItem(UserQuotaInfo payloadItem) {
-    if (this.payload == null) {
-      this.payload = new ArrayList<UserQuotaInfo>();
-    }
-    this.payload.add(payloadItem);
     return this;
   }
 
@@ -119,11 +109,11 @@ public class QueryUserQuotasResponse {
    * @return payload
   **/
   @ApiModelProperty(value = "")
-  public List<UserQuotaInfo> getPayload() {
+  public QueryUserQuotasResponsePayload getPayload() {
     return payload;
   }
 
-  public void setPayload(List<UserQuotaInfo> payload) {
+  public void setPayload(QueryUserQuotasResponsePayload payload) {
     this.payload = payload;
   }
 

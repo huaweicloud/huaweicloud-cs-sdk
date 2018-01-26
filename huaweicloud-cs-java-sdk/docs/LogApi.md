@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getJobAuditLogs"></a>
 # **getJobAuditLogs**
-> List&lt;JobAuditLog&gt; getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit)
+> List&lt;JobAuditLogResponse&gt; getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit)
 
 query CloudStream Service job audit logs
 
@@ -33,7 +33,7 @@ String resourceId = "resourceId_example"; // String | 资源ID
 Integer pageNumber = 0; // Integer | 查询的页码
 Integer limit = 56; // Integer | 查询条数限制
 try {
-    List<JobAuditLog> result = apiInstance.getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
+    List<JobAuditLogResponse> result = apiInstance.getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling LogApi#getJobAuditLogs");
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;JobAuditLog&gt;**](JobAuditLog.md)
+[**List&lt;JobAuditLogResponse&gt;**](JobAuditLogResponse.md)
 
 ### Authorization
 

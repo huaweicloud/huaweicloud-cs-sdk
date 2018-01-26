@@ -32,7 +32,7 @@ import java.io.IOException;
 
 
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
-import com.huaweicloud.cs.java.v1.model.JobAuditLog;
+import com.huaweicloud.cs.java.v1.model.JobAuditLogResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -172,11 +172,11 @@ public class LogApi {
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional)
-     * @return List&lt;JobAuditLog&gt;
+     * @return List&lt;JobAuditLogResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<JobAuditLog> getJobAuditLogs(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
-        ApiResponse<List<JobAuditLog>> resp = getJobAuditLogsWithHttpInfo(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
+    public List<JobAuditLogResponse> getJobAuditLogs(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+        ApiResponse<List<JobAuditLogResponse>> resp = getJobAuditLogsWithHttpInfo(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
         return resp.getData();
     }
 
@@ -194,12 +194,12 @@ public class LogApi {
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional)
-     * @return ApiResponse&lt;List&lt;JobAuditLog&gt;&gt;
+     * @return ApiResponse&lt;List&lt;JobAuditLogResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<JobAuditLog>> getJobAuditLogsWithHttpInfo(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+    public ApiResponse<List<JobAuditLogResponse>> getJobAuditLogsWithHttpInfo(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
         com.squareup.okhttp.Call call = getJobAuditLogsValidateBeforeCall(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit, null, null);
-        Type localVarReturnType = new TypeToken<List<JobAuditLog>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<JobAuditLogResponse>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -221,7 +221,7 @@ public class LogApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJobAuditLogsAsync(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<List<JobAuditLog>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJobAuditLogsAsync(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<List<JobAuditLogResponse>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -243,7 +243,7 @@ public class LogApi {
         }
 
         com.squareup.okhttp.Call call = getJobAuditLogsValidateBeforeCall(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<JobAuditLog>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<JobAuditLogResponse>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

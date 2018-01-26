@@ -23,32 +23,29 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.huaweicloud.cs.java.v1.model.SqlJobUpdateTime;
+import com.huaweicloud.cs.java.v1.model.JobTemplateDeleted;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * SqlJobUpdateResponse
+ * JobTemplateDeleteResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
-public class SqlJobUpdateResponse {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
+public class JobTemplateDeleteResponse {
   @SerializedName("message_id")
   private String messageId = null;
 
   @SerializedName("message")
   private String message = null;
 
-  @SerializedName("update_time")
-  private Long updateTime = null;
-
   @SerializedName("current_time")
   private Long currentTime = null;
 
   @SerializedName("payload")
-  private SqlJobUpdateTime payload = null;
+  private JobTemplateDeleted payload = null;
 
-  public SqlJobUpdateResponse messageId(String messageId) {
+  public JobTemplateDeleteResponse messageId(String messageId) {
     this.messageId = messageId;
     return this;
   }
@@ -66,7 +63,7 @@ public class SqlJobUpdateResponse {
     this.messageId = messageId;
   }
 
-  public SqlJobUpdateResponse message(String message) {
+  public JobTemplateDeleteResponse message(String message) {
     this.message = message;
     return this;
   }
@@ -75,7 +72,7 @@ public class SqlJobUpdateResponse {
    * 消息内容
    * @return message
   **/
-  @ApiModelProperty(example = "消息内容", value = "消息内容")
+  @ApiModelProperty(value = "消息内容")
   public String getMessage() {
     return message;
   }
@@ -84,25 +81,7 @@ public class SqlJobUpdateResponse {
     this.message = message;
   }
 
-  public SqlJobUpdateResponse updateTime(Long updateTime) {
-    this.updateTime = updateTime;
-    return this;
-  }
-
-   /**
-   * 作业更新时间, 毫秒数
-   * @return updateTime
-  **/
-  @ApiModelProperty(example = "4000000", value = "作业更新时间, 毫秒数")
-  public Long getUpdateTime() {
-    return updateTime;
-  }
-
-  public void setUpdateTime(Long updateTime) {
-    this.updateTime = updateTime;
-  }
-
-  public SqlJobUpdateResponse currentTime(Long currentTime) {
+  public JobTemplateDeleteResponse currentTime(Long currentTime) {
     this.currentTime = currentTime;
     return this;
   }
@@ -111,7 +90,7 @@ public class SqlJobUpdateResponse {
    * 当前时间, 毫秒数
    * @return currentTime
   **/
-  @ApiModelProperty(example = "4000000", value = "当前时间, 毫秒数")
+  @ApiModelProperty(value = "当前时间, 毫秒数")
   public Long getCurrentTime() {
     return currentTime;
   }
@@ -120,7 +99,7 @@ public class SqlJobUpdateResponse {
     this.currentTime = currentTime;
   }
 
-  public SqlJobUpdateResponse payload(SqlJobUpdateTime payload) {
+  public JobTemplateDeleteResponse payload(JobTemplateDeleted payload) {
     this.payload = payload;
     return this;
   }
@@ -130,11 +109,11 @@ public class SqlJobUpdateResponse {
    * @return payload
   **/
   @ApiModelProperty(value = "")
-  public SqlJobUpdateTime getPayload() {
+  public JobTemplateDeleted getPayload() {
     return payload;
   }
 
-  public void setPayload(SqlJobUpdateTime payload) {
+  public void setPayload(JobTemplateDeleted payload) {
     this.payload = payload;
   }
 
@@ -147,28 +126,26 @@ public class SqlJobUpdateResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SqlJobUpdateResponse sqlJobUpdateResponse = (SqlJobUpdateResponse) o;
-    return Objects.equals(this.messageId, sqlJobUpdateResponse.messageId) &&
-        Objects.equals(this.message, sqlJobUpdateResponse.message) &&
-        Objects.equals(this.updateTime, sqlJobUpdateResponse.updateTime) &&
-        Objects.equals(this.currentTime, sqlJobUpdateResponse.currentTime) &&
-        Objects.equals(this.payload, sqlJobUpdateResponse.payload);
+    JobTemplateDeleteResponse jobTemplateDeleteResponse = (JobTemplateDeleteResponse) o;
+    return Objects.equals(this.messageId, jobTemplateDeleteResponse.messageId) &&
+        Objects.equals(this.message, jobTemplateDeleteResponse.message) &&
+        Objects.equals(this.currentTime, jobTemplateDeleteResponse.currentTime) &&
+        Objects.equals(this.payload, jobTemplateDeleteResponse.payload);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messageId, message, updateTime, currentTime, payload);
+    return Objects.hash(messageId, message, currentTime, payload);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SqlJobUpdateResponse {\n");
+    sb.append("class JobTemplateDeleteResponse {\n");
     
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    currentTime: ").append(toIndentedString(currentTime)).append("\n");
     sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("}");

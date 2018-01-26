@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * JobTemplate
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-16T19:51:54.952+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-26T18:16:13.272+08:00")
 public class JobTemplate {
   @SerializedName("template_id")
   private Long templateId = null;

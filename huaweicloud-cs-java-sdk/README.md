@@ -73,8 +73,13 @@ public class AuthorizeApiExample {
         AuthorizeApi apiInstance = new AuthorizeApi();
         String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
         List<String> body = Arrays.asList(new List<String>()); // List<String> | 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式
+        String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
+        String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
+        String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
+        String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
+        String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
         try {
-            GlobalResponse result = apiInstance.authorizeBucket(xProjectId, body);
+            GlobalResponse result = apiInstance.authorizeBucket(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AuthorizeApi#authorizeBucket");
@@ -122,11 +127,14 @@ Class | Method | HTTP request | Description
 
  - [ClusterInfo](docs/ClusterInfo.md)
  - [ClusterOverviewEntity](docs/ClusterOverviewEntity.md)
- - [DeleteTemplateResponse](docs/DeleteTemplateResponse.md)
+ - [CreateClusterResponse](docs/CreateClusterResponse.md)
+ - [CreateClusterResponsePayload](docs/CreateClusterResponsePayload.md)
  - [GetJobDetailResponse](docs/GetJobDetailResponse.md)
  - [GlobalErrorResponse](docs/GlobalErrorResponse.md)
  - [GlobalResponse](docs/GlobalResponse.md)
  - [JobAuditLog](docs/JobAuditLog.md)
+ - [JobAuditLogResponse](docs/JobAuditLogResponse.md)
+ - [JobAuditLogResponsePayload](docs/JobAuditLogResponsePayload.md)
  - [JobDetailEntity](docs/JobDetailEntity.md)
  - [JobEntity](docs/JobEntity.md)
  - [JobExecutePlan](docs/JobExecutePlan.md)
@@ -135,17 +143,26 @@ Class | Method | HTTP request | Description
  - [JobStatusInfo](docs/JobStatusInfo.md)
  - [JobStatusResponse](docs/JobStatusResponse.md)
  - [JobTemplate](docs/JobTemplate.md)
+ - [JobTemplateCreateResponse](docs/JobTemplateCreateResponse.md)
+ - [JobTemplateCreated](docs/JobTemplateCreated.md)
+ - [JobTemplateDeleteResponse](docs/JobTemplateDeleteResponse.md)
+ - [JobTemplateDeleted](docs/JobTemplateDeleted.md)
+ - [JobTemplateListResponse](docs/JobTemplateListResponse.md)
+ - [JobTemplateListResponsePayload](docs/JobTemplateListResponsePayload.md)
  - [JobTemplateRequest](docs/JobTemplateRequest.md)
+ - [JobUpdateResponse](docs/JobUpdateResponse.md)
+ - [JobUpdateTime](docs/JobUpdateTime.md)
  - [NewReservedClusterRequest](docs/NewReservedClusterRequest.md)
  - [OverviewEntity](docs/OverviewEntity.md)
  - [OverviewResponse](docs/OverviewResponse.md)
  - [QueryClusterResponse](docs/QueryClusterResponse.md)
  - [QueryClustersResponse](docs/QueryClustersResponse.md)
+ - [QueryClustersResponsePayload](docs/QueryClustersResponsePayload.md)
  - [QueryJobListResponse](docs/QueryJobListResponse.md)
+ - [QueryJobListResponsePayload](docs/QueryJobListResponsePayload.md)
  - [QueryUserQuotaResponse](docs/QueryUserQuotaResponse.md)
  - [QueryUserQuotasResponse](docs/QueryUserQuotasResponse.md)
- - [SqlJobUpdateResponse](docs/SqlJobUpdateResponse.md)
- - [SqlJobUpdateTime](docs/SqlJobUpdateTime.md)
+ - [QueryUserQuotasResponsePayload](docs/QueryUserQuotasResponsePayload.md)
  - [SubmitJarJobRequest](docs/SubmitJarJobRequest.md)
  - [SubmitSqlJobRequest](docs/SubmitSqlJobRequest.md)
  - [UpdateClusterRequest](docs/UpdateClusterRequest.md)

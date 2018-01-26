@@ -12,7 +12,7 @@ import java.util.UUID
 
 case class JobTemplateRequest (
   /* 模板名称 */
-  name: Option[String],
+  name: String,
   /* 模板描述 */
   desc: Option[String],
   /* Stream SQL语句, 至少包含source, query, sink三个部分 */

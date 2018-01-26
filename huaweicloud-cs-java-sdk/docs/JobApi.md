@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 <a name="deleteJob"></a>
 # **deleteJob**
-> Boolean deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> GlobalResponse deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 删除作业
 
@@ -40,7 +40,7 @@ String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的�
 String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
 String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    Boolean result = apiInstance.deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    GlobalResponse result = apiInstance.deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#deleteJob");
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Boolean**
+[**GlobalResponse**](GlobalResponse.md)
 
 ### Authorization
 
@@ -260,7 +260,7 @@ No authorization required
 
 <a name="runJob"></a>
 # **runJob**
-> JobStatusResponse runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> GlobalResponse runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 运行作业
 
@@ -282,7 +282,7 @@ String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的�
 String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
 String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    JobStatusResponse result = apiInstance.runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    GlobalResponse result = apiInstance.runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#runJob");
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**JobStatusResponse**](JobStatusResponse.md)
+[**GlobalResponse**](GlobalResponse.md)
 
 ### Authorization
 
@@ -317,7 +317,7 @@ No authorization required
 
 <a name="stopJob"></a>
 # **stopJob**
-> JobStatusResponse stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> GlobalResponse stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 Trigger to stop the running job
 
@@ -337,7 +337,7 @@ String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的�
 String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
 String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    JobStatusResponse result = apiInstance.stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    GlobalResponse result = apiInstance.stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#stopJob");
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**JobStatusResponse**](JobStatusResponse.md)
+[**GlobalResponse**](GlobalResponse.md)
 
 ### Authorization
 
@@ -372,7 +372,7 @@ No authorization required
 
 <a name="submitJarJob"></a>
 # **submitJarJob**
-> JobStatusResponse submitJarJob(xProjectId, name, desc, clusterId, spuNumber, logEnabled, xSdkDate, authorization, host, xProjectId2, xAuthToken, obsBucket, jar, jobType, mainClass, args)
+> JobStatusResponse submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
 
 创建一个用户自定义作业
 
@@ -391,19 +391,21 @@ String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
 Long clusterId = 789L; // Long | 预留的集群资源ID, 当前用户有该预留资源的使用权限
 Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量
-Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
+Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
+String jobType = "jobType_example"; // String | 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
 String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
 String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
 String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
 String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
 String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
+Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
 String obsBucket = "obsBucket_example"; // String | log_enabled==true是, 用户授权保存日志的OBS路径
-File jar = new File("/path/to/file.txt"); // File | upload user defined jar
-String jobType = "jobType_example"; // String | 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
+File jar = new File("/path/to/file.txt"); // File | 用户上传的jar文件, 优先级高于jar_url参数
+File jarUrl = new File("/path/to/file.txt"); // File | 用户上传的jar包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
-    JobStatusResponse result = apiInstance.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, logEnabled, xSdkDate, authorization, host, xProjectId2, xAuthToken, obsBucket, jar, jobType, mainClass, args);
+    JobStatusResponse result = apiInstance.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitJarJob");
@@ -420,15 +422,17 @@ Name | Type | Description  | Notes
  **desc** | **String**| 作业描述 |
  **clusterId** | **Long**| 预留的集群资源ID, 当前用户有该预留资源的使用权限 |
  **spuNumber** | **Integer**| 用户为作业选择的SPU数量 |
- **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false |
+ **parallelNumber** | **Integer**| 用户为作业选择的并发量 |
+ **jobType** | **String**| 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 |
  **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
  **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
  **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
  **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
  **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
+ **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]
  **obsBucket** | **String**| log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 | [optional]
- **jar** | **File**| upload user defined jar | [optional]
- **jobType** | **String**| 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 | [optional]
+ **jar** | **File**| 用户上传的jar文件, 优先级高于jar_url参数 | [optional]
+ **jarUrl** | **File**| 用户上传的jar包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
 
@@ -504,7 +508,7 @@ No authorization required
 
 <a name="updateJarJob"></a>
 # **updateJarJob**
-> JobStatusResponse updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, logEnabled, obsBucket, jar, mainClass, args)
+> JobUpdateResponse updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
 
 更新用户自定义作业
 
@@ -529,13 +533,15 @@ String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
 Long clusterId = 789L; // Long | 预留的集群资源ID, 当前用户有该预留资源的使用权限
 Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量
+Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
 Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
 String obsBucket = "obsBucket_example"; // String | log_enabled==true是, 用户授权保存日志的OBS路径
-File jar = new File("/path/to/file.txt"); // File | upload user defined jar
+File jar = new File("/path/to/file.txt"); // File | 用户上传的jar文件, 优先级高于jar_url参数
+File jarUrl = new File("/path/to/file.txt"); // File | 用户上传的jar包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
-    JobStatusResponse result = apiInstance.updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, logEnabled, obsBucket, jar, mainClass, args);
+    JobUpdateResponse result = apiInstance.updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateJarJob");
@@ -558,15 +564,17 @@ Name | Type | Description  | Notes
  **desc** | **String**| 作业描述 | [optional]
  **clusterId** | **Long**| 预留的集群资源ID, 当前用户有该预留资源的使用权限 | [optional]
  **spuNumber** | **Integer**| 用户为作业选择的SPU数量 | [optional]
+ **parallelNumber** | **Integer**| 用户为作业选择的并发量 | [optional]
  **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]
  **obsBucket** | **String**| log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 | [optional]
- **jar** | **File**| upload user defined jar | [optional]
+ **jar** | **File**| 用户上传的jar文件, 优先级高于jar_url参数 | [optional]
+ **jarUrl** | **File**| 用户上传的jar包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
 
 ### Return type
 
-[**JobStatusResponse**](JobStatusResponse.md)
+[**JobUpdateResponse**](JobUpdateResponse.md)
 
 ### Authorization
 
@@ -579,7 +587,7 @@ No authorization required
 
 <a name="updateSqlJob"></a>
 # **updateSqlJob**
-> SqlJobUpdateResponse updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> JobUpdateResponse updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 更新流式SQL作业
 
@@ -601,7 +609,7 @@ String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的�
 String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
 String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    SqlJobUpdateResponse result = apiInstance.updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    JobUpdateResponse result = apiInstance.updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateSqlJob");
@@ -623,7 +631,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SqlJobUpdateResponse**](SqlJobUpdateResponse.md)
+[**JobUpdateResponse**](JobUpdateResponse.md)
 
 ### Authorization
 

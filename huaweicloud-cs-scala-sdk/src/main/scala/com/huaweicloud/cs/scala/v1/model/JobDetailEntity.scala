@@ -12,57 +12,54 @@ import java.util.UUID
 
 case class JobDetailEntity (
   /* 作业ID */
-  jobId: Long,
+  jobId: Option[Long],
   /* 作业名称 */
   name: Option[String],
   /* 作业描述 */
   desc: Option[String],
-  /* 作业创建时间 */
-  createTime: Long,
-  /* 作业启动时间, 0尚未启动 */
-  startTime: Option[Long],
-  /* 作业状态码 */
-  statusCode: Int,
-  /* 作业状态名称 */
-  statusName: Option[String],
+  /* 作业类型 */
+  jobType: Option[String],
+  /* 作业状态 */
+  status: Option[String],
   /* 作业状态描述 */
   statusDesc: Option[String],
-  /* 作业提交者 */
-  provider: Option[String],
+  /* 作业创建时间 */
+  createTime: Option[Long],
+  /* 作业启动时间, 0尚未启动 */
+  startTime: Option[Long],
+  /* 作业所属用户标识 */
+  userId: Option[String],
   /* 预留的集群资源ID, 当前用户有该预留资源的使用权限 */
   clusterId: Option[Long],
-  /* Stream SQL语句分 */
+  /* 作业所属项目标识 */
+  projectId: Option[String],
+  /* Stream SQL语句 */
   sqlBody: Option[String],
-  /* CloudStream Service Jar job Size */
-  jarBody: Option[String],
   /* 作业运行模式，共享或者独享模式 */
   runMode: Option[JobDetailEntityEnums.RunMode],
   /* 用户为作业选择的SPU数量 */
   spuNumber: Option[Int],
   /* 用户设置的作业并行数 */
   parallelNumber: Option[Int],
-  /* 是否开启作业自动快照功能, true开启, false关闭, 默认false */
-  checkpointEnabled: Option[Boolean],
-  /* 快照模式, 两种可选, exactly_once和at_least_once */
-  checkpointMode: Option[JobDetailEntityEnums.CheckpointMode],
+  jobConfig: Option[JobConfig],
+  /* jar包的OBS路径 */
+  jarUrl: Option[String],
   /* checkpoint_enabled==true是, 用户授权保存快照的OBS路径 */
-  obsBucket: Option[String],
-  /* 快照时间间隔, 单位为秒 */
-  checkpointInterval: Option[Int]
+  mainClass: Option[String],
+  /* jar包作业运行参数 */
+  args: Option[String],
+  /* 作业执行计划 */
+  executionGraph: Option[String],
+  /* 作业更新时间 */
+  updateTime: Option[Long]
 ) extends ApiModel
 
 object JobDetailEntityEnums {
 
   type RunMode = RunMode.Value
-  type CheckpointMode = CheckpointMode.Value
   object RunMode extends Enumeration {
     val SharedCluster = Value("shared_cluster")
     val ExclusiveCluster = Value("exclusive_cluster")
-  }
-
-  object CheckpointMode extends Enumeration {
-    val ExactlyOnce = Value("exactly_once")
-    val AtLeastOnce = Value("at_least_once")
   }
 
 }

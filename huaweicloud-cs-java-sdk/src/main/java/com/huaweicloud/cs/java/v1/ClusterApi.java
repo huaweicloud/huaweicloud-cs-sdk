@@ -31,6 +31,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.huaweicloud.cs.java.v1.model.CreateClusterResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.NewReservedClusterRequest;
@@ -162,11 +163,11 @@ public class ClusterApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return GlobalResponse
+     * @return CreateClusterResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse createReservedCluster(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
-        ApiResponse<GlobalResponse> resp = createReservedClusterWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    public CreateClusterResponse createReservedCluster(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+        ApiResponse<CreateClusterResponse> resp = createReservedClusterWithHttpInfo(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
         return resp.getData();
     }
 
@@ -180,12 +181,12 @@ public class ClusterApi {
      * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
      * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
      * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
-     * @return ApiResponse&lt;GlobalResponse&gt;
+     * @return ApiResponse&lt;CreateClusterResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> createReservedClusterWithHttpInfo(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
+    public ApiResponse<CreateClusterResponse> createReservedClusterWithHttpInfo(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken) throws ApiException {
         com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, null, null);
-        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<CreateClusterResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -203,7 +204,7 @@ public class ClusterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createReservedClusterAsync(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call createReservedClusterAsync(String xProjectId, NewReservedClusterRequest body, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, final ApiCallback<CreateClusterResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -225,7 +226,7 @@ public class ClusterApi {
         }
 
         com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<CreateClusterResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

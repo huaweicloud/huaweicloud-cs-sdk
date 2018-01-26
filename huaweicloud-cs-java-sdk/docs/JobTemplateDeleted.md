@@ -1,5 +1,5 @@
 
-# DeleteTemplateResponse
+# JobTemplateDeleted
 
 ## Properties
 Name | Type | Description | Notes

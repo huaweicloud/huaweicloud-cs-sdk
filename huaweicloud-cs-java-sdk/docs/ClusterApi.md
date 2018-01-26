@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 <a name="createReservedCluster"></a>
 # **createReservedCluster**
-> GlobalResponse createReservedCluster(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> CreateClusterResponse createReservedCluster(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
 
 创建一个为具有cs_adm角色的CloudStream用户预留一个计算集群, 预留的集群会折算成SPU, 按需计费
 
@@ -39,7 +39,7 @@ String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的�
 String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
 String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    GlobalResponse result = apiInstance.createReservedCluster(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    CreateClusterResponse result = apiInstance.createReservedCluster(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ClusterApi#createReservedCluster");
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GlobalResponse**](GlobalResponse.md)
+[**CreateClusterResponse**](CreateClusterResponse.md)
 
 ### Authorization
 

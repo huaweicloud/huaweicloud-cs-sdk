@@ -1,5 +1,5 @@
 
-# SqlJobUpdateTime
+# JobUpdateTime
 
 ## Properties
 Name | Type | Description | Notes

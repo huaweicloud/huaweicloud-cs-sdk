@@ -8,10 +8,11 @@ package com.huaweicloud.cs.scala.v1
 import java.io.File
 import com.huaweicloud.cs.scala.v1.model.GetJobDetailResponse
 import com.huaweicloud.cs.scala.v1.model.GlobalErrorResponse
+import com.huaweicloud.cs.scala.v1.model.GlobalResponse
 import com.huaweicloud.cs.scala.v1.model.JobExecutePlanResponse
 import com.huaweicloud.cs.scala.v1.model.JobStatusResponse
+import com.huaweicloud.cs.scala.v1.model.JobUpdateResponse
 import com.huaweicloud.cs.scala.v1.model.QueryJobListResponse
-import com.huaweicloud.cs.scala.v1.model.SqlJobUpdateResponse
 import com.huaweicloud.cs.scala.v1.model.SubmitSqlJobRequest
 import com.huaweicloud.cs.scala.v1.model.UpdateSqlJobRequest
 import com.huaweicloud.cs.scala.v1.client._
@@ -24,7 +25,7 @@ object JobApi {
    * 删除任何状态的作业
    * 
    * Expected answers:
-   *   code 200 : Boolean (删除作业成功)
+   *   code 200 : GlobalResponse (删除作业成功)
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
@@ -35,8 +36,8 @@ object JobApi {
    * @param xProjectId2 可选。project id，用于不同project取token。
    * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def deleteJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[Boolean] =
-    ApiRequest[Boolean](ApiMethods.DELETE, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job", "application/json")
+  def deleteJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
+    ApiRequest[GlobalResponse](ApiMethods.DELETE, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
       .withHeaderParam("X-Sdk-Date", xSdkDate)
@@ -44,7 +45,7 @@ object JobApi {
       .withHeaderParam("Host", host)
       .withHeaderParam("X-Project-Id", xProjectId2)
       .withHeaderParam("X-Auth-Token", xAuthToken)
-      .withSuccessResponse[Boolean](200)
+      .withSuccessResponse[GlobalResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
    * Get job detail information.
@@ -142,7 +143,7 @@ object JobApi {
    * 触发运行作业
    * 
    * Expected answers:
-   *   code 200 : JobStatusResponse (运行作业请求发送成功)
+   *   code 200 : GlobalResponse (运行作业请求发送成功)
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
@@ -153,8 +154,8 @@ object JobApi {
    * @param xProjectId2 可选。project id，用于不同project取token。
    * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def runJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[JobStatusResponse] =
-    ApiRequest[JobStatusResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/run", "application/json")
+  def runJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
+    ApiRequest[GlobalResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/run", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
       .withHeaderParam("X-Sdk-Date", xSdkDate)
@@ -162,13 +163,13 @@ object JobApi {
       .withHeaderParam("Host", host)
       .withHeaderParam("X-Project-Id", xProjectId2)
       .withHeaderParam("X-Auth-Token", xAuthToken)
-      .withSuccessResponse[JobStatusResponse](200)
+      .withSuccessResponse[GlobalResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
    * 
    * 
    * Expected answers:
-   *   code 200 : JobStatusResponse (停止作业的请求发送成功)
+   *   code 200 : GlobalResponse (停止作业的请求发送成功)
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
@@ -179,8 +180,8 @@ object JobApi {
    * @param xProjectId2 可选。project id，用于不同project取token。
    * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def stopJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[JobStatusResponse] =
-    ApiRequest[JobStatusResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/stop", "application/json")
+  def stopJob(xProjectId: String, body: Seq[Long], xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[GlobalResponse] =
+    ApiRequest[GlobalResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/job/stop", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
       .withHeaderParam("X-Sdk-Date", xSdkDate)
@@ -188,7 +189,7 @@ object JobApi {
       .withHeaderParam("Host", host)
       .withHeaderParam("X-Project-Id", xProjectId2)
       .withHeaderParam("X-Auth-Token", xAuthToken)
-      .withSuccessResponse[JobStatusResponse](200)
+      .withSuccessResponse[GlobalResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
    * 用户自定义作业目前支持jar格式, 运行在预留集群中
@@ -202,27 +203,31 @@ object JobApi {
    * @param desc 作业描述
    * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限
    * @param spuNumber 用户为作业选择的SPU数量
-   * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false
+   * @param parallelNumber 用户为作业选择的并发量
+   * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
    * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。
    * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
    * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
    * @param xProjectId2 可选。project id，用于不同project取token。
    * @param xAuthToken 使用Token认证时必选: 用户Token
+   * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false
    * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径
-   * @param jar upload user defined jar
-   * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
+   * @param jar 用户上传的jar文件, 优先级高于jar_url参数
+   * @param jarUrl 用户上传的jar包OBS路径
    * @param mainClass 作业入口类
    * @param args 作业入口类参数
    */
-  def submitJarJob(xProjectId: String, name: String, desc: String, clusterId: Long, spuNumber: Int, logEnabled: Boolean, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, obsBucket: Option[String] = None, jar: Option[File] = None, jobType: Option[String] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobStatusResponse] =
+  def submitJarJob(xProjectId: String, name: String, desc: String, clusterId: Long, spuNumber: Int, parallelNumber: Int, jobType: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, logEnabled: Option[Boolean] = None, obsBucket: Option[String] = None, jar: Option[File] = None, jarUrl: Option[File] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobStatusResponse] =
     ApiRequest[JobStatusResponse](ApiMethods.POST, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/jar_job", "multipart/form-data")
       .withFormParam("name", name)
       .withFormParam("desc", desc)
       .withFormParam("cluster_id", clusterId)
       .withFormParam("spu_number", spuNumber)
+      .withFormParam("parallel_number", parallelNumber)
       .withFormParam("log_enabled", logEnabled)
       .withFormParam("obs_bucket", obsBucket)
       .withFormParam("jar", jar)
+      .withFormParam("jar_url", jarUrl)
       .withFormParam("job_type", jobType)
       .withFormParam("main_class", mainClass)
       .withFormParam("args", args)
@@ -264,7 +269,7 @@ object JobApi {
    * 目前仅支持Jar格式, 运行在预留集群中
    * 
    * Expected answers:
-   *   code 200 : JobStatusResponse (更新用户自定义Jar作业成功)
+   *   code 200 : JobUpdateResponse (更新用户自定义Jar作业成功)
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
@@ -278,22 +283,26 @@ object JobApi {
    * @param desc 作业描述
    * @param clusterId 预留的集群资源ID, 当前用户有该预留资源的使用权限
    * @param spuNumber 用户为作业选择的SPU数量
+   * @param parallelNumber 用户为作业选择的并发量
    * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false
    * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径
-   * @param jar upload user defined jar
+   * @param jar 用户上传的jar文件, 优先级高于jar_url参数
+   * @param jarUrl 用户上传的jar包OBS路径
    * @param mainClass 作业入口类
    * @param args 作业入口类参数
    */
-  def updateJarJob(xProjectId: String, jobId: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, name: Option[String] = None, desc: Option[String] = None, clusterId: Option[Long] = None, spuNumber: Option[Int] = None, logEnabled: Option[Boolean] = None, obsBucket: Option[String] = None, jar: Option[File] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobStatusResponse] =
-    ApiRequest[JobStatusResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/jar_job", "multipart/form-data")
+  def updateJarJob(xProjectId: String, jobId: String, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None, name: Option[String] = None, desc: Option[String] = None, clusterId: Option[Long] = None, spuNumber: Option[Int] = None, parallelNumber: Option[Int] = None, logEnabled: Option[Boolean] = None, obsBucket: Option[String] = None, jar: Option[File] = None, jarUrl: Option[File] = None, mainClass: Option[String] = None, args: Option[String] = None): ApiRequest[JobUpdateResponse] =
+    ApiRequest[JobUpdateResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/jar_job", "multipart/form-data")
       .withFormParam("job_id", jobId)
       .withFormParam("name", name)
       .withFormParam("desc", desc)
       .withFormParam("cluster_id", clusterId)
       .withFormParam("spu_number", spuNumber)
+      .withFormParam("parallel_number", parallelNumber)
       .withFormParam("log_enabled", logEnabled)
       .withFormParam("obs_bucket", obsBucket)
       .withFormParam("jar", jar)
+      .withFormParam("jar_url", jarUrl)
       .withFormParam("main_class", mainClass)
       .withFormParam("args", args)
       .withPathParam("X-Project-Id", xProjectId)
@@ -302,13 +311,13 @@ object JobApi {
       .withHeaderParam("Host", host)
       .withHeaderParam("X-Project-Id", xProjectId2)
       .withHeaderParam("X-Auth-Token", xAuthToken)
-      .withSuccessResponse[JobStatusResponse](200)
+      .withSuccessResponse[JobUpdateResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
         /**
    * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CloudStream官方文档
    * 
    * Expected answers:
-   *   code 200 : SqlJobUpdateResponse (流式SQL作业更新成功)
+   *   code 200 : JobUpdateResponse (流式SQL作业更新成功)
    *   code 400 : GlobalErrorResponse (无效的输入参数)
    * 
    * @param xProjectId project id, 用于不同project取token.
@@ -319,8 +328,8 @@ object JobApi {
    * @param xProjectId2 可选。project id，用于不同project取token。
    * @param xAuthToken 使用Token认证时必选: 用户Token
    */
-  def updateSqlJob(xProjectId: String, body: UpdateSqlJobRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[SqlJobUpdateResponse] =
-    ApiRequest[SqlJobUpdateResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/sql_job", "application/json")
+  def updateSqlJob(xProjectId: String, body: UpdateSqlJobRequest, xSdkDate: Option[String] = None, authorization: Option[String] = None, host: Option[String] = None, xProjectId2: Option[String] = None, xAuthToken: Option[String] = None): ApiRequest[JobUpdateResponse] =
+    ApiRequest[JobUpdateResponse](ApiMethods.PATCH, "https://cs.cn-north-1.myhuaweicloud.com/v1.0", "/{X-Project-Id}/sql_job", "application/json")
       .withBody(body)
       .withPathParam("X-Project-Id", xProjectId)
       .withHeaderParam("X-Sdk-Date", xSdkDate)
@@ -328,7 +337,7 @@ object JobApi {
       .withHeaderParam("Host", host)
       .withHeaderParam("X-Project-Id", xProjectId2)
       .withHeaderParam("X-Auth-Token", xAuthToken)
-      .withSuccessResponse[SqlJobUpdateResponse](200)
+      .withSuccessResponse[JobUpdateResponse](200)
       .withErrorResponse[GlobalErrorResponse](400)
       
 
