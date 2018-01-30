@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 import akka.actor.{ExtendedActorSystem, Extension, ExtensionKey}
 import com.typesafe.config.Config
-import io.swagger.client.core.ApiInvoker.CustomStatusCode
+import com.huaweicloud.cs.scala.v1.client.ApiInvoker.CustomStatusCode
 import spray.http.HttpHeaders.RawHeader
 
 import scala.collection.JavaConversions._
