@@ -14,6 +14,7 @@ object EnumsSerializers {
   def all: Seq[Serializer[_]] = Seq[Serializer[_]]() :+
     new EnumNameSerializer(ClusterOverviewEntityEnums.BillingUnit) :+
     new EnumNameSerializer(ClusterOverviewEntityEnums.TimeUnit) :+
+    new EnumNameSerializer(JobConfigEnums.CheckpointMode) :+
     new EnumNameSerializer(JobDetailEntityEnums.RunMode) :+
     new EnumNameSerializer(JobEntityEnums.RunMode) :+
     new EnumNameSerializer(JobOverviewEntityEnums.BillingUnit) :+
