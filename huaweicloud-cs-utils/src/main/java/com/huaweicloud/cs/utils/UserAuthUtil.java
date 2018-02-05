@@ -19,7 +19,7 @@ package com.huaweicloud.cs.utils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import okhttp3.*;
+import com.squareup.okhttp.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,7 +33,6 @@ import java.util.concurrent.TimeUnit;
 
 
 public class UserAuthUtil {
-
     private final OkHttpClient client;
     private Map<String, String> headerMap = new HashMap<String, String>() {
         {
@@ -84,7 +83,6 @@ public class UserAuthUtil {
             e.printStackTrace();
         } finally {
             assert response != null;
-            response.close();
         }
 
         akSKBody = "{\"auth\":{\"identity\":{\"methods\":[\"token\"],\"token\":{\"id\":\"" + token + "\"}}}}";
@@ -103,7 +101,7 @@ public class UserAuthUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            response.close();
+            assert response != null;
         }
 
         JsonObject authObject = new JsonObject();
@@ -120,7 +118,7 @@ public class UserAuthUtil {
      * @param url     request URL
      * @param headMap map of request header
      * @param body    request body
-     * @return
+     * @return request builder
      */
     private Request.Builder requestBuilder(String url, Map<String, String> headMap, RequestBody body) {
         Request.Builder builder = new Request.Builder();
@@ -199,7 +197,7 @@ public class UserAuthUtil {
      *
      * @param connectTimeout connect timeout, milliseconds
      * @param readTimeout    read timeout, milliseconds
-     * @return HttpClient
+     * @return okHttpClient
      */
     private OkHttpClient createHttpsClient(Integer connectTimeout, Integer readTimeout) {
         X509TrustManager trustManager;
@@ -228,18 +226,22 @@ public class UserAuthUtil {
         } catch (GeneralSecurityException e) {
             throw new RuntimeException(e);
         }
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-                .connectTimeout(connectTimeout, TimeUnit.SECONDS)
-                .readTimeout(readTimeout, TimeUnit.SECONDS)
-                .sslSocketFactory(sslSocketFactory, trustManager)
-                .hostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String hostname, SSLSession session) {
 
-                        return true;
-                    }
-                }).build();
+        //set okHttpClient
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(connectTimeout, TimeUnit.SECONDS);
+        okHttpClient.setReadTimeout(readTimeout, TimeUnit.SECONDS);
+        okHttpClient.setSslSocketFactory(sslSocketFactory).setHostnameVerifier((hostname, session) -> true);
 
         return okHttpClient;
+    }
+
+    /**
+     * get client which has disabled SSL certification
+     *
+     * @return client
+     */
+    public OkHttpClient getClient() {
+        return client;
     }
 }
