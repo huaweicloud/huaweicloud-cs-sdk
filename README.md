@@ -52,9 +52,14 @@ JSONObject authObject = userAuthUtil.getUserAuth(
                 csConfig.get("Password", null),   // password for Logging console
                 csConfig.get("ProjectId", null)); // project ID getting from project list in user credential
                 
-String vxAuthToken = authObject.getString("token");
-String ak = authObject.getString("ak");
-String sk = authObject.getString("sk");
+String token = authObject.getString("token");
+
+ApiClient client = new ApiClient();
+client.setVerifyingSsl(false);
+client.setBasePath("https://cs.cn-north-1.myhuaweicloud.com/v1.0");
+//client.setToken("token");
+client.setAksk("southchina", "SKZEZMYRC28NC9LY9UIY", "V1zmJzG5LuxGwNvGMqqKTF0bWTD3AEXc3Fkrab8w");
+JobApi jobapi = new JobApi(client);
 ...
 ```
 

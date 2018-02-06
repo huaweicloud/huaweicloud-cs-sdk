@@ -63,11 +63,6 @@ public class LogApi {
      * Build call for getJobAuditLogs
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
-     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
-     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
-     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
-     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param cursor 作业ID游标 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
@@ -77,7 +72,7 @@ public class LogApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getJobAuditLogsCall(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getJobAuditLogsCall(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -98,16 +93,6 @@ public class LogApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xSdkDate != null)
-        localVarHeaderParams.put("X-Sdk-Date", apiClient.parameterToString(xSdkDate));
-        if (authorization != null)
-        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
-        if (host != null)
-        localVarHeaderParams.put("Host", apiClient.parameterToString(host));
-        if (xProjectId2 != null)
-        localVarHeaderParams.put("X-Project-Id", apiClient.parameterToString(xProjectId2));
-        if (xAuthToken != null)
-        localVarHeaderParams.put("X-Auth-Token", apiClient.parameterToString(xAuthToken));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -140,7 +125,7 @@ public class LogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getJobAuditLogsValidateBeforeCall(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getJobAuditLogsValidateBeforeCall(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -153,7 +138,7 @@ public class LogApi {
         }
         
 
-        com.squareup.okhttp.Call call = getJobAuditLogsCall(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getJobAuditLogsCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -163,20 +148,15 @@ public class LogApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
-     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
-     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
-     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
-     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param cursor 作业ID游标 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional)
-     * @return List&lt;JobAuditLogResponse&gt;
+     * @return JobAuditLogResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<JobAuditLogResponse> getJobAuditLogs(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
-        ApiResponse<List<JobAuditLogResponse>> resp = getJobAuditLogsWithHttpInfo(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
+    public JobAuditLogResponse getJobAuditLogs(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+        ApiResponse<JobAuditLogResponse> resp = getJobAuditLogsWithHttpInfo(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
         return resp.getData();
     }
 
@@ -185,21 +165,16 @@ public class LogApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
-     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
-     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
-     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
-     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param cursor 作业ID游标 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional)
-     * @return ApiResponse&lt;List&lt;JobAuditLogResponse&gt;&gt;
+     * @return ApiResponse&lt;JobAuditLogResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<JobAuditLogResponse>> getJobAuditLogsWithHttpInfo(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
-        com.squareup.okhttp.Call call = getJobAuditLogsValidateBeforeCall(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit, null, null);
-        Type localVarReturnType = new TypeToken<List<JobAuditLogResponse>>(){}.getType();
+    public ApiResponse<JobAuditLogResponse> getJobAuditLogsWithHttpInfo(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = getJobAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, null, null);
+        Type localVarReturnType = new TypeToken<JobAuditLogResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -208,11 +183,6 @@ public class LogApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param xSdkDate 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 (optional)
-     * @param authorization 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html (optional)
-     * @param host 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 (optional)
-     * @param xProjectId2 可选。project id，用于不同project取token。 (optional)
-     * @param xAuthToken 使用Token认证时必选: 用户Token (optional)
      * @param cursor 作业ID游标 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
@@ -221,7 +191,7 @@ public class LogApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJobAuditLogsAsync(String xProjectId, String resourceType, String xSdkDate, String authorization, String host, String xProjectId2, String xAuthToken, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<List<JobAuditLogResponse>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJobAuditLogsAsync(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<JobAuditLogResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -242,8 +212,8 @@ public class LogApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getJobAuditLogsValidateBeforeCall(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<JobAuditLogResponse>>(){}.getType();
+        com.squareup.okhttp.Call call = getJobAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<JobAuditLogResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

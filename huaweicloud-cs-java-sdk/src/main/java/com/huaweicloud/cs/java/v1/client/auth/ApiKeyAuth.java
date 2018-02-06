@@ -19,61 +19,89 @@ package com.huaweicloud.cs.java.v1.client.auth;
 
 import com.huaweicloud.cs.java.v1.client.Pair;
 
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-01-30T14:26:06.746+08:00")
+import com.cloud.sdk.DefaultRequest;
+import com.cloud.sdk.auth.credentials.BasicCredentials;
+import com.cloud.sdk.auth.signer.Signer;
+import com.cloud.sdk.auth.signer.SignerFactory;
+import com.cloud.sdk.http.HttpMethodName;
+import com.squareup.okhttp.Headers;
+import com.squareup.okhttp.Request;
+import okio.Buffer;
+
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-06T15:53:12.407+08:00")
 public class ApiKeyAuth implements Authentication {
-  private final String location;
-  private final String paramName;
+    private String serviceName;
+    private String region;
+    private String accessKey;
+    private String secretKey;
 
-  private String apiKey;
-  private String apiKeyPrefix;
-
-  public ApiKeyAuth(String location, String paramName) {
-    this.location = location;
-    this.paramName = paramName;
-  }
-
-  public String getLocation() {
-    return location;
-  }
-
-  public String getParamName() {
-    return paramName;
-  }
-
-  public String getApiKey() {
-    return apiKey;
-  }
-
-  public void setApiKey(String apiKey) {
-    this.apiKey = apiKey;
-  }
-
-  public String getApiKeyPrefix() {
-    return apiKeyPrefix;
-  }
-
-  public void setApiKeyPrefix(String apiKeyPrefix) {
-    this.apiKeyPrefix = apiKeyPrefix;
-  }
-
-  @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {
-    if (apiKey == null) {
-      return;
+    public void setAksk(String serviceName, String region, String accessKey, String secretKey) {
+        this.serviceName = serviceName;
+        this.region = region;
+        this.accessKey = accessKey;
+        this.secretKey = secretKey;
     }
-    String value;
-    if (apiKeyPrefix != null) {
-      value = apiKeyPrefix + " " + apiKey;
-    } else {
-      value = apiKey;
+
+    @Override
+    public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {}
+
+    public Request applyToParams(Request request) {
+        if (serviceName == null || region == null || accessKey == null || secretKey == null) {
+            return request;
+        }
+        DefaultRequest reqForSigner = new DefaultRequest(this.serviceName);
+        try {
+            reqForSigner.setEndpoint(request.uri());
+
+            reqForSigner.setHttpMethod(HttpMethodName.valueOf(request.method()));
+
+            // add query string
+            String urlString = request.urlString();
+            if (urlString.contains("?")) {
+                String parameters = urlString.substring(urlString.indexOf("?") + 1);
+                Map<String, String> parametersMap = new HashMap<>();
+
+                if (!parameters.isEmpty()) {
+                    for (String p : parameters.split("&")) {
+                        String key = p.split("=")[0];
+                        String value = p.split("=")[1];
+                        parametersMap.put(key, value);
+                    }
+                    reqForSigner.setParameters(parametersMap);
+                }
+            }
+
+            // add headers
+            Map<String, String> headersMap = new HashMap<>();
+            for (Map.Entry<String, List<String>> header: request.headers().toMultimap().entrySet()) {
+                headersMap.putIfAbsent(header.getKey(), header.getValue().get(0));
+            }
+            reqForSigner.setHeaders(headersMap);
+
+            // add body
+            if (request.body() != null) {
+                Request copy = request.newBuilder().build();
+                Buffer buffer = new Buffer();
+                copy.body().writeTo(buffer);
+                reqForSigner.setContent(buffer.inputStream());
+            }
+
+            Signer signer = SignerFactory.getSigner(serviceName, region);
+            signer.sign(reqForSigner, new BasicCredentials(this.accessKey, this.secretKey));
+
+            Request.Builder builder = request.newBuilder();
+            builder.headers(Headers.of(reqForSigner.getHeaders()));
+            return builder.build();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return request;
     }
-    if ("query".equals(location)) {
-      queryParams.add(new Pair(paramName, value));
-    } else if ("header".equals(location)) {
-      headerParams.put(paramName, value);
-    }
-  }
 }
+

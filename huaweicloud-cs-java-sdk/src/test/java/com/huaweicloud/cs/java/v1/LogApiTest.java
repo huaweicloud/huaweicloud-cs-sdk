@@ -58,7 +58,7 @@ public class LogApiTest {
         String resourceId = null;
         Integer pageNumber = null;
         Integer limit = null;
-        List<JobAuditLogResponse> response = api.getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
+        JobAuditLogResponse response = api.getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
 
         // TODO: test validations
     }

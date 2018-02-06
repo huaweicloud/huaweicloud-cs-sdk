@@ -135,6 +135,7 @@ Class | Method | HTTP request | Description
  - [JobAuditLog](docs/JobAuditLog.md)
  - [JobAuditLogResponse](docs/JobAuditLogResponse.md)
  - [JobAuditLogResponsePayload](docs/JobAuditLogResponsePayload.md)
+ - [JobConfig](docs/JobConfig.md)
  - [JobDetailEntity](docs/JobDetailEntity.md)
  - [JobEntity](docs/JobEntity.md)
  - [JobExecutePlan](docs/JobExecutePlan.md)

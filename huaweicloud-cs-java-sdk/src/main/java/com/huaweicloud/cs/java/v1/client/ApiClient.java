@@ -49,10 +49,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.huaweicloud.cs.java.v1.client.auth.Authentication;
-import com.huaweicloud.cs.java.v1.client.auth.HttpBasicAuth;
-import com.huaweicloud.cs.java.v1.client.auth.ApiKeyAuth;
-import com.huaweicloud.cs.java.v1.client.auth.OAuth;
+import com.huaweicloud.cs.java.v1.client.auth.*;
 
 public class ApiClient {
 
@@ -77,6 +74,8 @@ public class ApiClient {
 
     private HttpLoggingInterceptor loggingInterceptor;
 
+    private boolean useAkSk = true;
+
     /*
      * Constructor for ApiClient
      */
@@ -93,6 +92,8 @@ public class ApiClient {
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications = new HashMap<String, Authentication>();
+        authentications.put("token", new HttpBasicAuth());
+        authentications.put("aksk", new ApiKeyAuth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
@@ -268,78 +269,37 @@ public class ApiClient {
     }
 
     /**
-     * Helper method to set username for the first HTTP basic authentication.
+     * Helper method to set token for huawei token authentication.
      *
-     * @param username Username
+     * @param token Access token
      */
-    public void setUsername(String username) {
+    public void setToken(String token) {
         for (Authentication auth : authentications.values()) {
             if (auth instanceof HttpBasicAuth) {
-                ((HttpBasicAuth) auth).setUsername(username);
+                useAkSk = false;
+                ((HttpBasicAuth) auth).setToken(token);
                 return;
             }
         }
-        throw new RuntimeException("No HTTP basic authentication configured!");
+        throw new RuntimeException("No Huawei token authentication configured!");
     }
 
     /**
-     * Helper method to set password for the first HTTP basic authentication.
+     * Helper method to set token for huawei ak/sk authentication.
      *
-     * @param password Password
+     * @param region service region
+     * @param accessKey account accessKey
+     * @param secretKey account secretKey
      */
-    public void setPassword(String password) {
-        for (Authentication auth : authentications.values()) {
-            if (auth instanceof HttpBasicAuth) {
-                ((HttpBasicAuth) auth).setPassword(password);
-                return;
-            }
-        }
-        throw new RuntimeException("No HTTP basic authentication configured!");
-    }
-
-    /**
-     * Helper method to set API key value for the first API key authentication.
-     *
-     * @param apiKey API key
-     */
-    public void setApiKey(String apiKey) {
+    public void setAksk(String region, String accessKey, String secretKey) {
         for (Authentication auth : authentications.values()) {
             if (auth instanceof ApiKeyAuth) {
-                ((ApiKeyAuth) auth).setApiKey(apiKey);
+                useAkSk = true;
+                ((ApiKeyAuth) auth).setAksk("CS", region, accessKey, secretKey);
                 return;
             }
         }
-        throw new RuntimeException("No API key authentication configured!");
-    }
-
-    /**
-     * Helper method to set API key prefix for the first API key authentication.
-     *
-     * @param apiKeyPrefix API key prefix
-     */
-    public void setApiKeyPrefix(String apiKeyPrefix) {
-        for (Authentication auth : authentications.values()) {
-            if (auth instanceof ApiKeyAuth) {
-                ((ApiKeyAuth) auth).setApiKeyPrefix(apiKeyPrefix);
-                return;
-            }
-        }
-        throw new RuntimeException("No API key authentication configured!");
-    }
-
-    /**
-     * Helper method to set access token for the first OAuth2 authentication.
-     *
-     * @param accessToken Access token
-     */
-    public void setAccessToken(String accessToken) {
-        for (Authentication auth : authentications.values()) {
-            if (auth instanceof OAuth) {
-                ((OAuth) auth).setAccessToken(accessToken);
-                return;
-            }
-        }
-        throw new RuntimeException("No OAuth2 authentication configured!");
+        throw new RuntimeException("No Huawei ak/sk authentication configured!");
     }
 
     /**
@@ -967,7 +927,6 @@ public class ApiClient {
      * @throws ApiException If fail to serialize the request body object
      */
     public Request buildRequest(String path, String method, List<Pair> queryParams, List<Pair> collectionQueryParams, Object body, Map<String, String> headerParams, Map<String, Object> formParams, String[] authNames, ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        updateParamsForAuth(authNames, queryParams, headerParams);
 
         final String url = buildUrl(path, queryParams, collectionQueryParams);
         final Request.Builder reqBuilder = new Request.Builder().url(url);
@@ -1006,6 +965,8 @@ public class ApiClient {
         } else {
             request = reqBuilder.method(method, reqBody).build();
         }
+
+        request = updateParamsForAuth(request);
 
         return request;
     }
@@ -1076,20 +1037,26 @@ public class ApiClient {
         }
     }
 
-    /**
+
+     /**
      * Update query and header parameters based on authentication settings.
      *
-     * @param authNames The authentications to apply
-     * @param queryParams  List of query parameters
-     * @param headerParams  Map of header parameters
+     * @param request The HTTP request
      */
-    public void updateParamsForAuth(String[] authNames, List<Pair> queryParams, Map<String, String> headerParams) {
-        for (String authName : authNames) {
-            Authentication auth = authentications.get(authName);
-            if (auth == null) throw new RuntimeException("Authentication undefined: " + authName);
-            auth.applyToParams(queryParams, headerParams);
+     public Request updateParamsForAuth(Request request) {
+        String authName = useAkSk ? "aksk" : "token";
+        Authentication auth = authentications.get(authName);
+        if (auth == null) throw new RuntimeException("Authentication undefined: " + authName);
+
+        if (auth instanceof ApiKeyAuth) {
+            return ((ApiKeyAuth) auth).applyToParams(request);
+        } else if (auth instanceof HttpBasicAuth){
+            return ((HttpBasicAuth) auth).applyToParams(request);
         }
-    }
+
+        return request;
+     }
+
 
     /**
      * Build a form-encoding request body with the given form parameters.

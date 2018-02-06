@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 <a name="deleteJob"></a>
 # **deleteJob**
-> GlobalResponse deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> GlobalResponse deleteJob(xProjectId, body)
 
 删除作业
 
@@ -34,13 +34,8 @@ Method | HTTP request | Description
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 List<Long> body = Arrays.asList(new List<Long>()); // List<Long> | 删除作业, JSON数组中为一到多个作业ID
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    GlobalResponse result = apiInstance.deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    GlobalResponse result = apiInstance.deleteJob(xProjectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#deleteJob");
@@ -54,11 +49,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **body** | **List&lt;Long&gt;**| 删除作业, JSON数组中为一到多个作业ID |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -75,7 +65,7 @@ No authorization required
 
 <a name="getJobDetail"></a>
 # **getJobDetail**
-> GetJobDetailResponse getJobDetail(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> GetJobDetailResponse getJobDetail(xProjectId, jobId)
 
 get job detail
 
@@ -91,13 +81,8 @@ Get job detail information.
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    GetJobDetailResponse result = apiInstance.getJobDetail(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    GetJobDetailResponse result = apiInstance.getJobDetail(xProjectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getJobDetail");
@@ -111,11 +96,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -132,7 +112,7 @@ No authorization required
 
 <a name="getJobExecuteGraph"></a>
 # **getJobExecuteGraph**
-> JobExecutePlanResponse getJobExecuteGraph(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> JobExecutePlanResponse getJobExecuteGraph(xProjectId, jobId)
 
 get job execution graph
 
@@ -148,13 +128,8 @@ The execution graph is json format.
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    JobExecutePlanResponse result = apiInstance.getJobExecuteGraph(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    JobExecutePlanResponse result = apiInstance.getJobExecuteGraph(xProjectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getJobExecuteGraph");
@@ -168,11 +143,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -189,7 +159,7 @@ No authorization required
 
 <a name="getJobs"></a>
 # **getJobs**
-> QueryJobListResponse getJobs(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, clusterId, showDetail, cursor, next, limit, order)
+> QueryJobListResponse getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order)
 
 查询作业列表
 
@@ -204,11 +174,6 @@ No authorization required
 
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 String name = "name_example"; // String | 作业名
 String status = "status_example"; // String | 作业状态码, 请参考CloudStream文档
 Integer clusterId = 56; // Integer | 用户预留集群ID
@@ -218,7 +183,7 @@ Boolean next = true; // Boolean | 是否向下翻页
 Integer limit = 20; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
 try {
-    QueryJobListResponse result = apiInstance.getJobs(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, clusterId, showDetail, cursor, next, limit, order);
+    QueryJobListResponse result = apiInstance.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getJobs");
@@ -231,11 +196,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
  **name** | **String**| 作业名 | [optional]
  **status** | **String**| 作业状态码, 请参考CloudStream文档 | [optional] [enum: job_init, job_submiting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
  **clusterId** | **Integer**| 用户预留集群ID | [optional]
@@ -260,7 +220,7 @@ No authorization required
 
 <a name="runJob"></a>
 # **runJob**
-> GlobalResponse runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> GlobalResponse runJob(xProjectId, body)
 
 运行作业
 
@@ -276,13 +236,8 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 List<Long> body = Arrays.asList(new List<Long>()); // List<Long> | 运行作业, JSON数组中为一到多个作业ID
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    GlobalResponse result = apiInstance.runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    GlobalResponse result = apiInstance.runJob(xProjectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#runJob");
@@ -296,11 +251,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **body** | **List&lt;Long&gt;**| 运行作业, JSON数组中为一到多个作业ID |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -317,7 +267,7 @@ No authorization required
 
 <a name="stopJob"></a>
 # **stopJob**
-> GlobalResponse stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> GlobalResponse stopJob(xProjectId, body)
 
 Trigger to stop the running job
 
@@ -331,13 +281,8 @@ Trigger to stop the running job
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 List<Long> body = Arrays.asList(new List<Long>()); // List<Long> | 停止作业, JSON数组中为一到多个作业ID
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    GlobalResponse result = apiInstance.stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    GlobalResponse result = apiInstance.stopJob(xProjectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#stopJob");
@@ -351,11 +296,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **body** | **List&lt;Long&gt;**| 停止作业, JSON数组中为一到多个作业ID |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -372,7 +312,7 @@ No authorization required
 
 <a name="submitJarJob"></a>
 # **submitJarJob**
-> JobStatusResponse submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
+> JobStatusResponse submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
 
 创建一个用户自定义作业
 
@@ -393,11 +333,6 @@ Long clusterId = 789L; // Long | 预留的集群资源ID, 当前用户有该预�
 Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量
 Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
 String jobType = "jobType_example"; // String | 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
 String obsBucket = "obsBucket_example"; // String | log_enabled==true是, 用户授权保存日志的OBS路径
 File jar = new File("/path/to/file.txt"); // File | 用户上传的jar文件, 优先级高于jar_url参数
@@ -405,7 +340,7 @@ File jarUrl = new File("/path/to/file.txt"); // File | 用户上传的jar包OBS�
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
-    JobStatusResponse result = apiInstance.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+    JobStatusResponse result = apiInstance.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitJarJob");
@@ -424,11 +359,6 @@ Name | Type | Description  | Notes
  **spuNumber** | **Integer**| 用户为作业选择的SPU数量 |
  **parallelNumber** | **Integer**| 用户为作业选择的并发量 |
  **jobType** | **String**| 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
  **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]
  **obsBucket** | **String**| log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 | [optional]
  **jar** | **File**| 用户上传的jar文件, 优先级高于jar_url参数 | [optional]
@@ -451,7 +381,7 @@ No authorization required
 
 <a name="submitSqlJob"></a>
 # **submitSqlJob**
-> JobStatusResponse submitSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> JobStatusResponse submitSqlJob(xProjectId, body)
 
 提交流式SQL作业到CloudStream服务
 
@@ -467,13 +397,8 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 SubmitSqlJobRequest body = new SubmitSqlJobRequest(); // SubmitSqlJobRequest | JSON格式的请求体
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    JobStatusResponse result = apiInstance.submitSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    JobStatusResponse result = apiInstance.submitSqlJob(xProjectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitSqlJob");
@@ -487,11 +412,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **body** | [**SubmitSqlJobRequest**](SubmitSqlJobRequest.md)| JSON格式的请求体 |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 
@@ -508,7 +428,7 @@ No authorization required
 
 <a name="updateJarJob"></a>
 # **updateJarJob**
-> JobUpdateResponse updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
+> JobUpdateResponse updateJarJob(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
 
 更新用户自定义作业
 
@@ -524,11 +444,6 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 String jobId = "jobId_example"; // String | 作业ID
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
 Long clusterId = 789L; // Long | 预留的集群资源ID, 当前用户有该预留资源的使用权限
@@ -541,7 +456,7 @@ File jarUrl = new File("/path/to/file.txt"); // File | 用户上传的jar包OBS�
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
-    JobUpdateResponse result = apiInstance.updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+    JobUpdateResponse result = apiInstance.updateJarJob(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateJarJob");
@@ -555,11 +470,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **String**| 作业ID |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
  **name** | **String**| 作业名称 | [optional]
  **desc** | **String**| 作业描述 | [optional]
  **clusterId** | **Long**| 预留的集群资源ID, 当前用户有该预留资源的使用权限 | [optional]
@@ -587,7 +497,7 @@ No authorization required
 
 <a name="updateSqlJob"></a>
 # **updateSqlJob**
-> JobUpdateResponse updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken)
+> JobUpdateResponse updateSqlJob(xProjectId, body)
 
 更新流式SQL作业
 
@@ -603,13 +513,8 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 UpdateSqlJobRequest body = new UpdateSqlJobRequest(); // UpdateSqlJobRequest | 提交修改SQL作业请求
-String xSdkDate = "xSdkDate_example"; // String | 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD'T'HHMMSS'Z')。取值为当前系统的GMT时间。
-String authorization = "authorization_example"; // String | 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html
-String host = "host_example"; // String | 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。
-String xProjectId2 = "xProjectId_example"; // String | 可选。project id，用于不同project取token。
-String xAuthToken = "xAuthToken_example"; // String | 使用Token认证时必选: 用户Token
 try {
-    JobUpdateResponse result = apiInstance.updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+    JobUpdateResponse result = apiInstance.updateSqlJob(xProjectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateSqlJob");
@@ -623,11 +528,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **body** | [**UpdateSqlJobRequest**](UpdateSqlJobRequest.md)| 提交修改SQL作业请求 |
- **xSdkDate** | **String**| 使用AK/SK认证时必选: 请求的发生时间，格式为(YYYYMMDD&#39;T&#39;HHMMSS&#39;Z&#39;)。取值为当前系统的GMT时间。 | [optional]
- **authorization** | **String**| 使用AK/SK认证时必选: 签名认证信息。该值来源于请求签名结果。请参考请求签名流程。http://support.huaweicloud.com/api-cs/cs_02_0008.html | [optional]
- **host** | **String**| 使用AK/SK认证时必选: 请求的服务器信息，从服务API的URL中获取。值为hostname[:port]。端口缺省时使用默认的端口，https的默认端口为443。 | [optional]
- **xProjectId2** | **String**| 可选。project id，用于不同project取token。 | [optional]
- **xAuthToken** | **String**| 使用Token认证时必选: 用户Token | [optional]
 
 ### Return type
 

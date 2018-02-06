@@ -103,7 +103,7 @@ public class TemplateApiTest {
         Long cursor = null;
         Integer limit = null;
         String order = null;
-        List<JobTemplateListResponse> response = api.getJobTemplates(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order);
+        JobTemplateListResponse response = api.getJobTemplates(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order);
 
         // TODO: test validations
     }

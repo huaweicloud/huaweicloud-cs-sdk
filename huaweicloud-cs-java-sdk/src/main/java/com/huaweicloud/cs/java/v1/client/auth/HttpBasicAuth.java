@@ -19,40 +19,29 @@ package com.huaweicloud.cs.java.v1.client.auth;
 
 import com.huaweicloud.cs.java.v1.client.Pair;
 
-import com.squareup.okhttp.Credentials;
 
 import java.util.Map;
 import java.util.List;
 
-import java.io.UnsupportedEncodingException;
+import com.squareup.okhttp.Request;
 
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-06T15:53:12.407+08:00")
 public class HttpBasicAuth implements Authentication {
-    private String username;
-    private String password;
+    private String token;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override
-    public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {
-        if (username == null && password == null) {
-            return;
+    public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) { }
+
+    public Request applyToParams(Request request) {
+        if (token == null) {
+            return request;
         }
-        headerParams.put("Authorization", Credentials.basic(
-            username == null ? "" : username,
-            password == null ? "" : password));
+        Request.Builder builder = request.newBuilder();
+        builder.addHeader("x-auth-token", token);
+        return builder.build();
     }
 }

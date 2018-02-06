@@ -122,11 +122,6 @@ public class JobApiTest {
     @Test
     public void getJobsTest() throws ApiException {
         String xProjectId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         String name = null;
         String status = null;
         Integer clusterId = null;
@@ -135,7 +130,7 @@ public class JobApiTest {
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryJobListResponse response = api.getJobs(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, clusterId, showDetail, cursor, next, limit, order);
+        QueryJobListResponse response = api.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order);
 
         // TODO: test validations
     }
