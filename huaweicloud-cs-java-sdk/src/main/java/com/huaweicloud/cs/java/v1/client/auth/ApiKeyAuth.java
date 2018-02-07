@@ -24,16 +24,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
-import com.cloud.sdk.DefaultRequest;
+/*import com.cloud.sdk.DefaultRequest;
 import com.cloud.sdk.auth.credentials.BasicCredentials;
 import com.cloud.sdk.auth.signer.Signer;
 import com.cloud.sdk.auth.signer.SignerFactory;
-import com.cloud.sdk.http.HttpMethodName;
+import com.cloud.sdk.http.HttpMethodName;*/
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Request;
 import okio.Buffer;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-06T15:53:12.407+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-07T15:01:13.888+08:00")
 public class ApiKeyAuth implements Authentication {
     private String serviceName;
     private String region;
@@ -51,7 +51,7 @@ public class ApiKeyAuth implements Authentication {
     public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {}
 
     public Request applyToParams(Request request) {
-        if (serviceName == null || region == null || accessKey == null || secretKey == null) {
+        /*if (serviceName == null || region == null || accessKey == null || secretKey == null) {
             return request;
         }
         DefaultRequest reqForSigner = new DefaultRequest(this.serviceName);
@@ -100,7 +100,7 @@ public class ApiKeyAuth implements Authentication {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return request;
     }
 }
