@@ -49,12 +49,7 @@ public class AuthorizeApiTest {
     public void authorizeBucketTest() throws ApiException {
         String xProjectId = null;
         List<String> body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GlobalResponse response = api.authorizeBucket(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.authorizeBucket(xProjectId, body);
 
         // TODO: test validations
     }

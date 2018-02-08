@@ -48,12 +48,7 @@ public class StatisticsApiTest {
     @Test
     public void overviewTest() throws ApiException {
         String xProjectId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        OverviewResponse response = api.overview(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        OverviewResponse response = api.overview(xProjectId);
 
         // TODO: test validations
     }

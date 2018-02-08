@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createJobTemplate**](TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | create the job template
 [**deleteJobTemplate**](TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板
 [**getJobTemplates**](TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | query CloudStream Service job templates
+[**updateJobTemplate**](TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | update the job template
 
 
 <a name="createJobTemplate"></a>
@@ -15,7 +16,7 @@ Method | HTTP request | Description
 
 create the job template
 
-Create on job template from CloudStream Service
+Create job template on CloudStream Service
 
 ### Example
 ```java
@@ -26,7 +27,7 @@ Create on job template from CloudStream Service
 
 TemplateApi apiInstance = new TemplateApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-JobTemplateRequest body = new JobTemplateRequest(); // JobTemplateRequest | Create job template request
+CreateJobTemplateRequest body = new CreateJobTemplateRequest(); // CreateJobTemplateRequest | Create job template request
 try {
     JobTemplateCreateResponse result = apiInstance.createJobTemplate(xProjectId, body);
     System.out.println(result);
@@ -41,7 +42,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **body** | [**JobTemplateRequest**](JobTemplateRequest.md)| Create job template request |
+ **body** | [**CreateJobTemplateRequest**](CreateJobTemplateRequest.md)| Create job template request |
 
 ### Return type
 
@@ -142,6 +143,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**JobTemplateListResponse**](JobTemplateListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateJobTemplate"></a>
+# **updateJobTemplate**
+> JobTemplateUpdateResponse updateJobTemplate(xProjectId, body)
+
+update the job template
+
+Update job template on CloudStream Service
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.TemplateApi;
+
+
+TemplateApi apiInstance = new TemplateApi();
+String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+UpdateJobTemplateRequest body = new UpdateJobTemplateRequest(); // UpdateJobTemplateRequest | 提交修改SQL作业模板请求
+try {
+    JobTemplateUpdateResponse result = apiInstance.updateJobTemplate(xProjectId, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling TemplateApi#updateJobTemplate");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xProjectId** | **String**| project id, 用于不同project取token. |
+ **body** | [**UpdateJobTemplateRequest**](UpdateJobTemplateRequest.md)| 提交修改SQL作业模板请求 |
+
+### Return type
+
+[**JobTemplateUpdateResponse**](JobTemplateUpdateResponse.md)
 
 ### Authorization
 

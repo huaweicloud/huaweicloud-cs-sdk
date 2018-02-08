@@ -18,11 +18,13 @@
 package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
+import com.huaweicloud.cs.java.v1.model.CreateJobTemplateRequest;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateCreateResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateDeleteResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateListResponse;
-import com.huaweicloud.cs.java.v1.model.JobTemplateRequest;
+import com.huaweicloud.cs.java.v1.model.JobTemplateUpdateResponse;
+import com.huaweicloud.cs.java.v1.model.UpdateJobTemplateRequest;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -43,7 +45,7 @@ public class TemplateApiTest {
     /**
      * create the job template
      *
-     * Create on job template from CloudStream Service
+     * Create job template on CloudStream Service
      *
      * @throws ApiException
      *          if the Api call fails
@@ -51,13 +53,8 @@ public class TemplateApiTest {
     @Test
     public void createJobTemplateTest() throws ApiException {
         String xProjectId = null;
-        JobTemplateRequest body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        JobTemplateCreateResponse response = api.createJobTemplate(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        CreateJobTemplateRequest body = null;
+        JobTemplateCreateResponse response = api.createJobTemplate(xProjectId, body);
 
         // TODO: test validations
     }
@@ -74,12 +71,7 @@ public class TemplateApiTest {
     public void deleteJobTemplateTest() throws ApiException {
         String xProjectId = null;
         Long templateId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        JobTemplateDeleteResponse response = api.deleteJobTemplate(xProjectId, templateId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        JobTemplateDeleteResponse response = api.deleteJobTemplate(xProjectId, templateId);
 
         // TODO: test validations
     }
@@ -95,15 +87,27 @@ public class TemplateApiTest {
     @Test
     public void getJobTemplatesTest() throws ApiException {
         String xProjectId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         Long cursor = null;
         Integer limit = null;
         String order = null;
-        JobTemplateListResponse response = api.getJobTemplates(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, limit, order);
+        JobTemplateListResponse response = api.getJobTemplates(xProjectId, cursor, limit, order);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * update the job template
+     *
+     * Update job template on CloudStream Service
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateJobTemplateTest() throws ApiException {
+        String xProjectId = null;
+        UpdateJobTemplateRequest body = null;
+        JobTemplateUpdateResponse response = api.updateJobTemplate(xProjectId, body);
 
         // TODO: test validations
     }

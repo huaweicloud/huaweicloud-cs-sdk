@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * GlobalErrorResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-07T15:01:13.888+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-08T17:28:20.453+08:00")
 public class GlobalErrorResponse {
   @SerializedName("error_id")
   private String errorId = null;

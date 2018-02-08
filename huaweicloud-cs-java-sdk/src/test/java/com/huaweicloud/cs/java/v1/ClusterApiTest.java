@@ -58,12 +58,7 @@ public class ClusterApiTest {
     public void createReservedClusterTest() throws ApiException {
         String xProjectId = null;
         NewReservedClusterRequest body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        CreateClusterResponse response = api.createReservedCluster(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        CreateClusterResponse response = api.createReservedCluster(xProjectId, body);
 
         // TODO: test validations
     }
@@ -80,12 +75,7 @@ public class ClusterApiTest {
     public void deleteReservedClusterTest() throws ApiException {
         String xProjectId = null;
         Long clusterId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GlobalResponse response = api.deleteReservedCluster(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.deleteReservedCluster(xProjectId, clusterId);
 
         // TODO: test validations
     }
@@ -102,12 +92,7 @@ public class ClusterApiTest {
     public void describeReservedClusterTest() throws ApiException {
         String xProjectId = null;
         Long clusterId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        QueryClusterResponse response = api.describeReservedCluster(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        QueryClusterResponse response = api.describeReservedCluster(xProjectId, clusterId);
 
         // TODO: test validations
     }
@@ -124,11 +109,6 @@ public class ClusterApiTest {
     public void getClusterJobsTest() throws ApiException {
         String xProjectId = null;
         Long clusterId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         String name = null;
         String status = null;
         Boolean showDetail = null;
@@ -136,7 +116,7 @@ public class ClusterApiTest {
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryJobListResponse response = api.getClusterJobs(xProjectId, clusterId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, showDetail, cursor, next, limit, order);
+        QueryJobListResponse response = api.getClusterJobs(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order);
 
         // TODO: test validations
     }
@@ -152,18 +132,13 @@ public class ClusterApiTest {
     @Test
     public void getReservedClustersTest() throws ApiException {
         String xProjectId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         String name = null;
         String status = null;
         Long cursor = null;
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryClustersResponse response = api.getReservedClusters(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, status, cursor, next, limit, order);
+        QueryClustersResponse response = api.getReservedClusters(xProjectId, name, status, cursor, next, limit, order);
 
         // TODO: test validations
     }
@@ -180,12 +155,7 @@ public class ClusterApiTest {
     public void getUserQuotaTest() throws ApiException {
         String xProjectId = null;
         String userId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        QueryUserQuotaResponse response = api.getUserQuota(xProjectId, userId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        QueryUserQuotaResponse response = api.getUserQuota(xProjectId, userId);
 
         // TODO: test validations
     }
@@ -201,17 +171,12 @@ public class ClusterApiTest {
     @Test
     public void getUserQuotasTest() throws ApiException {
         String xProjectId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         String name = null;
         String cursor = null;
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryUserQuotasResponse response = api.getUserQuotas(xProjectId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, cursor, next, limit, order);
+        QueryUserQuotasResponse response = api.getUserQuotas(xProjectId, name, cursor, next, limit, order);
 
         // TODO: test validations
     }
@@ -229,12 +194,7 @@ public class ClusterApiTest {
         String xProjectId = null;
         Long clusterId = null;
         UpdateClusterRequest body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GlobalResponse response = api.updateReservedCluster(xProjectId, clusterId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.updateReservedCluster(xProjectId, clusterId, body);
 
         // TODO: test validations
     }
@@ -252,12 +212,7 @@ public class ClusterApiTest {
         String xProjectId = null;
         String userId = null;
         UpdateUserQuotaRequest body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GlobalResponse response = api.updateUserQuota(xProjectId, userId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.updateUserQuota(xProjectId, userId, body);
 
         // TODO: test validations
     }

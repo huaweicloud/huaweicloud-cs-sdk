@@ -31,11 +31,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.huaweicloud.cs.java.v1.model.CreateJobTemplateRequest;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateCreateResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateDeleteResponse;
 import com.huaweicloud.cs.java.v1.model.JobTemplateListResponse;
-import com.huaweicloud.cs.java.v1.model.JobTemplateRequest;
+import com.huaweicloud.cs.java.v1.model.JobTemplateUpdateResponse;
+import com.huaweicloud.cs.java.v1.model.UpdateJobTemplateRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -71,7 +73,7 @@ public class TemplateApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createJobTemplateCall(String xProjectId, JobTemplateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call createJobTemplateCall(String xProjectId, CreateJobTemplateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -114,7 +116,7 @@ public class TemplateApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createJobTemplateValidateBeforeCall(String xProjectId, JobTemplateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call createJobTemplateValidateBeforeCall(String xProjectId, CreateJobTemplateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -134,26 +136,26 @@ public class TemplateApi {
 
     /**
      * create the job template
-     * Create on job template from CloudStream Service
+     * Create job template on CloudStream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
      * @return JobTemplateCreateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobTemplateCreateResponse createJobTemplate(String xProjectId, JobTemplateRequest body) throws ApiException {
+    public JobTemplateCreateResponse createJobTemplate(String xProjectId, CreateJobTemplateRequest body) throws ApiException {
         ApiResponse<JobTemplateCreateResponse> resp = createJobTemplateWithHttpInfo(xProjectId, body);
         return resp.getData();
     }
 
     /**
      * create the job template
-     * Create on job template from CloudStream Service
+     * Create job template on CloudStream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
      * @return ApiResponse&lt;JobTemplateCreateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobTemplateCreateResponse> createJobTemplateWithHttpInfo(String xProjectId, JobTemplateRequest body) throws ApiException {
+    public ApiResponse<JobTemplateCreateResponse> createJobTemplateWithHttpInfo(String xProjectId, CreateJobTemplateRequest body) throws ApiException {
         com.squareup.okhttp.Call call = createJobTemplateValidateBeforeCall(xProjectId, body, null, null);
         Type localVarReturnType = new TypeToken<JobTemplateCreateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -161,14 +163,14 @@ public class TemplateApi {
 
     /**
      * create the job template (asynchronously)
-     * Create on job template from CloudStream Service
+     * Create job template on CloudStream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createJobTemplateAsync(String xProjectId, JobTemplateRequest body, final ApiCallback<JobTemplateCreateResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call createJobTemplateAsync(String xProjectId, CreateJobTemplateRequest body, final ApiCallback<JobTemplateCreateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -465,6 +467,138 @@ public class TemplateApi {
 
         com.squareup.okhttp.Call call = getJobTemplatesValidateBeforeCall(xProjectId, cursor, limit, order, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<JobTemplateListResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateJobTemplate
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param body 提交修改SQL作业模板请求 (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateJobTemplateCall(String xProjectId, UpdateJobTemplateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/job_template"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call updateJobTemplateValidateBeforeCall(String xProjectId, UpdateJobTemplateRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling updateJobTemplate(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling updateJobTemplate(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = updateJobTemplateCall(xProjectId, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * update the job template
+     * Update job template on CloudStream Service
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param body 提交修改SQL作业模板请求 (required)
+     * @return JobTemplateUpdateResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public JobTemplateUpdateResponse updateJobTemplate(String xProjectId, UpdateJobTemplateRequest body) throws ApiException {
+        ApiResponse<JobTemplateUpdateResponse> resp = updateJobTemplateWithHttpInfo(xProjectId, body);
+        return resp.getData();
+    }
+
+    /**
+     * update the job template
+     * Update job template on CloudStream Service
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param body 提交修改SQL作业模板请求 (required)
+     * @return ApiResponse&lt;JobTemplateUpdateResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<JobTemplateUpdateResponse> updateJobTemplateWithHttpInfo(String xProjectId, UpdateJobTemplateRequest body) throws ApiException {
+        com.squareup.okhttp.Call call = updateJobTemplateValidateBeforeCall(xProjectId, body, null, null);
+        Type localVarReturnType = new TypeToken<JobTemplateUpdateResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * update the job template (asynchronously)
+     * Update job template on CloudStream Service
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param body 提交修改SQL作业模板请求 (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateJobTemplateAsync(String xProjectId, UpdateJobTemplateRequest body, final ApiCallback<JobTemplateUpdateResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateJobTemplateValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<JobTemplateUpdateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

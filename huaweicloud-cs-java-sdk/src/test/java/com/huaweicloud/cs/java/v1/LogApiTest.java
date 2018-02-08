@@ -49,16 +49,11 @@ public class LogApiTest {
     public void getJobAuditLogsTest() throws ApiException {
         String xProjectId = null;
         String resourceType = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         String cursor = null;
         String resourceId = null;
         Integer pageNumber = null;
         Integer limit = null;
-        JobAuditLogResponse response = api.getJobAuditLogs(xProjectId, resourceType, xSdkDate, authorization, host, xProjectId2, xAuthToken, cursor, resourceId, pageNumber, limit);
+        JobAuditLogResponse response = api.getJobAuditLogs(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
 
         // TODO: test validations
     }

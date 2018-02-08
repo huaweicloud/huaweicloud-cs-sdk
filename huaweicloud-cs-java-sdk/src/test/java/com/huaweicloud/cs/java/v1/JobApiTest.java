@@ -57,12 +57,7 @@ public class JobApiTest {
     public void deleteJobTest() throws ApiException {
         String xProjectId = null;
         List<Long> body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GlobalResponse response = api.deleteJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.deleteJob(xProjectId, body);
 
         // TODO: test validations
     }
@@ -79,12 +74,7 @@ public class JobApiTest {
     public void getJobDetailTest() throws ApiException {
         String xProjectId = null;
         Long jobId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GetJobDetailResponse response = api.getJobDetail(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GetJobDetailResponse response = api.getJobDetail(xProjectId, jobId);
 
         // TODO: test validations
     }
@@ -101,12 +91,7 @@ public class JobApiTest {
     public void getJobExecuteGraphTest() throws ApiException {
         String xProjectId = null;
         Long jobId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        JobExecutePlanResponse response = api.getJobExecuteGraph(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        JobExecutePlanResponse response = api.getJobExecuteGraph(xProjectId, jobId);
 
         // TODO: test validations
     }
@@ -147,12 +132,7 @@ public class JobApiTest {
     public void runJobTest() throws ApiException {
         String xProjectId = null;
         List<Long> body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GlobalResponse response = api.runJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.runJob(xProjectId, body);
 
         // TODO: test validations
     }
@@ -169,12 +149,7 @@ public class JobApiTest {
     public void stopJobTest() throws ApiException {
         String xProjectId = null;
         List<Long> body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        GlobalResponse response = api.stopJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        GlobalResponse response = api.stopJob(xProjectId, body);
 
         // TODO: test validations
     }
@@ -196,18 +171,13 @@ public class JobApiTest {
         Integer spuNumber = null;
         Integer parallelNumber = null;
         String jobType = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         Boolean logEnabled = null;
         String obsBucket = null;
         File jar = null;
         File jarUrl = null;
         String mainClass = null;
         String args = null;
-        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, xSdkDate, authorization, host, xProjectId2, xAuthToken, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
 
         // TODO: test validations
     }
@@ -224,12 +194,7 @@ public class JobApiTest {
     public void submitSqlJobTest() throws ApiException {
         String xProjectId = null;
         SubmitSqlJobRequest body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        JobStatusResponse response = api.submitSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        JobStatusResponse response = api.submitSqlJob(xProjectId, body);
 
         // TODO: test validations
     }
@@ -246,11 +211,6 @@ public class JobApiTest {
     public void updateJarJobTest() throws ApiException {
         String xProjectId = null;
         String jobId = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
         String name = null;
         String desc = null;
         Long clusterId = null;
@@ -262,7 +222,7 @@ public class JobApiTest {
         File jarUrl = null;
         String mainClass = null;
         String args = null;
-        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, xSdkDate, authorization, host, xProjectId2, xAuthToken, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
 
         // TODO: test validations
     }
@@ -279,12 +239,7 @@ public class JobApiTest {
     public void updateSqlJobTest() throws ApiException {
         String xProjectId = null;
         UpdateSqlJobRequest body = null;
-        String xSdkDate = null;
-        String authorization = null;
-        String host = null;
-        String xProjectId2 = null;
-        String xAuthToken = null;
-        JobUpdateResponse response = api.updateSqlJob(xProjectId, body, xSdkDate, authorization, host, xProjectId2, xAuthToken);
+        JobUpdateResponse response = api.updateSqlJob(xProjectId, body);
 
         // TODO: test validations
     }
