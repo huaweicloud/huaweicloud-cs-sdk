@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **jobId** | **Long** | 作业ID | 
 **name** | **String** | 作业名称 |  [optional]
 **desc** | **String** | 作业描述 |  [optional]
-**clusterId** | **Long** | 预留的集群资源ID, 当前用户有该预留资源的使用权限 |  [optional]
+**clusterId** | **Integer** | 独享集群资源ID, 当前用户有该独享资源的使用权限 |  [optional]
 **sqlBody** | **String** | Stream SQL语句, 至少包含source, query, sink三个部分 |  [optional]
 **runMode** | [**RunModeEnum**](#RunModeEnum) | 作业运行模式，共享或者独享 |  [optional]
 **spuNumber** | **Integer** | 用户为作业选择的SPU数量 |  [optional]

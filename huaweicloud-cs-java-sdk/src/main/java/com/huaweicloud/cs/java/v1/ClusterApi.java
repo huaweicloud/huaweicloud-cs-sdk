@@ -71,7 +71,7 @@ public class ClusterApi {
     /**
      * Build call for createReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -139,10 +139,10 @@ public class ClusterApi {
     }
 
     /**
-     * 创建一个为具有cs_adm角色的CloudStream用户预留一个计算集群, 预留的集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
      * @return CreateClusterResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -152,10 +152,10 @@ public class ClusterApi {
     }
 
     /**
-     * 创建一个为具有cs_adm角色的CloudStream用户预留一个计算集群, 预留的集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
      * @return ApiResponse&lt;CreateClusterResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -166,10 +166,10 @@ public class ClusterApi {
     }
 
     /**
-     * 创建一个为具有cs_adm角色的CloudStream用户预留一个计算集群, 预留的集群会折算成SPU, 按需计费 (asynchronously)
+     * 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 创建一个新的预留集群, 请求参数为json格式 (required)
+     * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -203,13 +203,13 @@ public class ClusterApi {
     /**
      * Build call for deleteReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteReservedClusterCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call deleteReservedClusterCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -253,7 +253,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteReservedClusterValidateBeforeCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -272,42 +272,42 @@ public class ClusterApi {
     }
 
     /**
-     * 删除预留的集群, 如果集群中有运行的作业会自动立即停止
+     * 删除独享集群, 如果集群中有运行的作业会自动立即停止
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse deleteReservedCluster(String xProjectId, Long clusterId) throws ApiException {
+    public GlobalResponse deleteReservedCluster(String xProjectId, Integer clusterId) throws ApiException {
         ApiResponse<GlobalResponse> resp = deleteReservedClusterWithHttpInfo(xProjectId, clusterId);
         return resp.getData();
     }
 
     /**
-     * 删除预留的集群, 如果集群中有运行的作业会自动立即停止
+     * 删除独享集群, 如果集群中有运行的作业会自动立即停止
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> deleteReservedClusterWithHttpInfo(String xProjectId, Long clusterId) throws ApiException {
+    public ApiResponse<GlobalResponse> deleteReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
         com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * 删除预留的集群, 如果集群中有运行的作业会自动立即停止 (asynchronously)
+     * 删除独享集群, 如果集群中有运行的作业会自动立即停止 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteReservedClusterAsync(String xProjectId, Long clusterId, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteReservedClusterAsync(String xProjectId, Integer clusterId, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -336,13 +336,13 @@ public class ClusterApi {
     /**
      * Build call for describeReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID. (required)
+     * @param clusterId 独享集群ID. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call describeReservedClusterCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call describeReservedClusterCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -386,7 +386,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call describeReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call describeReservedClusterValidateBeforeCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -405,42 +405,42 @@ public class ClusterApi {
     }
 
     /**
-     * 查询用户创建的预留集群信息
+     * 查询用户创建的独享集群信息
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID. (required)
+     * @param clusterId 独享集群ID. (required)
      * @return QueryClusterResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryClusterResponse describeReservedCluster(String xProjectId, Long clusterId) throws ApiException {
+    public QueryClusterResponse describeReservedCluster(String xProjectId, Integer clusterId) throws ApiException {
         ApiResponse<QueryClusterResponse> resp = describeReservedClusterWithHttpInfo(xProjectId, clusterId);
         return resp.getData();
     }
 
     /**
-     * 查询用户创建的预留集群信息
+     * 查询用户创建的独享集群信息
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID. (required)
+     * @param clusterId 独享集群ID. (required)
      * @return ApiResponse&lt;QueryClusterResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryClusterResponse> describeReservedClusterWithHttpInfo(String xProjectId, Long clusterId) throws ApiException {
+    public ApiResponse<QueryClusterResponse> describeReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
         com.squareup.okhttp.Call call = describeReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
         Type localVarReturnType = new TypeToken<QueryClusterResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * 查询用户创建的预留集群信息 (asynchronously)
+     * 查询用户创建的独享集群信息 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID. (required)
+     * @param clusterId 独享集群ID. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call describeReservedClusterAsync(String xProjectId, Long clusterId, final ApiCallback<QueryClusterResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call describeReservedClusterAsync(String xProjectId, Integer clusterId, final ApiCallback<QueryClusterResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -469,7 +469,7 @@ public class ClusterApi {
     /**
      * Build call for getClusterJobs
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -482,7 +482,7 @@ public class ClusterApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getClusterJobsCall(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getClusterJobsCall(String xProjectId, Integer clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -540,7 +540,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getClusterJobsValidateBeforeCall(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getClusterJobsValidateBeforeCall(String xProjectId, Integer clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -559,10 +559,10 @@ public class ClusterApi {
     }
 
     /**
-     * 查询预留集群下的作业列表
-     * 预留集群作业列表查询
+     * 查询独享集群下的作业列表
+     * 独享集群作业列表查询
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -573,16 +573,16 @@ public class ClusterApi {
      * @return QueryJobListResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryJobListResponse getClusterJobs(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+    public QueryJobListResponse getClusterJobs(String xProjectId, Integer clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
         ApiResponse<QueryJobListResponse> resp = getClusterJobsWithHttpInfo(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order);
         return resp.getData();
     }
 
     /**
-     * 查询预留集群下的作业列表
-     * 预留集群作业列表查询
+     * 查询独享集群下的作业列表
+     * 独享集群作业列表查询
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -593,17 +593,17 @@ public class ClusterApi {
      * @return ApiResponse&lt;QueryJobListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryJobListResponse> getClusterJobsWithHttpInfo(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+    public ApiResponse<QueryJobListResponse> getClusterJobsWithHttpInfo(String xProjectId, Integer clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
         com.squareup.okhttp.Call call = getClusterJobsValidateBeforeCall(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order, null, null);
         Type localVarReturnType = new TypeToken<QueryJobListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * 查询预留集群下的作业列表 (asynchronously)
-     * 预留集群作业列表查询
+     * 查询独享集群下的作业列表 (asynchronously)
+     * 独享集群作业列表查询
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
      * @param status 作业状态码, 请参考CloudStream文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
@@ -615,7 +615,7 @@ public class ClusterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getClusterJobsAsync(String xProjectId, Long clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryJobListResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getClusterJobsAsync(String xProjectId, Integer clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryJobListResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1089,14 +1089,14 @@ public class ClusterApi {
     /**
      * Build call for updateReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param body 提交修改集群请求 (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateReservedClusterCall(String xProjectId, Long clusterId, UpdateClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateReservedClusterCall(String xProjectId, Integer clusterId, UpdateClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1140,7 +1140,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateReservedClusterValidateBeforeCall(String xProjectId, Long clusterId, UpdateClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateReservedClusterValidateBeforeCall(String xProjectId, Integer clusterId, UpdateClusterRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1164,45 +1164,45 @@ public class ClusterApi {
     }
 
     /**
-     * 更新预留的集群
+     * 更新独享集群
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param body 提交修改集群请求 (required)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse updateReservedCluster(String xProjectId, Long clusterId, UpdateClusterRequest body) throws ApiException {
+    public GlobalResponse updateReservedCluster(String xProjectId, Integer clusterId, UpdateClusterRequest body) throws ApiException {
         ApiResponse<GlobalResponse> resp = updateReservedClusterWithHttpInfo(xProjectId, clusterId, body);
         return resp.getData();
     }
 
     /**
-     * 更新预留的集群
+     * 更新独享集群
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param body 提交修改集群请求 (required)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> updateReservedClusterWithHttpInfo(String xProjectId, Long clusterId, UpdateClusterRequest body) throws ApiException {
+    public ApiResponse<GlobalResponse> updateReservedClusterWithHttpInfo(String xProjectId, Integer clusterId, UpdateClusterRequest body) throws ApiException {
         com.squareup.okhttp.Call call = updateReservedClusterValidateBeforeCall(xProjectId, clusterId, body, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * 更新预留的集群 (asynchronously)
+     * 更新独享集群 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 预留集群ID (required)
+     * @param clusterId 独享集群ID (required)
      * @param body 提交修改集群请求 (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateReservedClusterAsync(String xProjectId, Long clusterId, UpdateClusterRequest body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateReservedClusterAsync(String xProjectId, Integer clusterId, UpdateClusterRequest body, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

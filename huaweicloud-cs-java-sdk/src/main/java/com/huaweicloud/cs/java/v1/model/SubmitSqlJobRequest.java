@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * SubmitSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-08T17:28:20.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-11T16:27:09.587+08:00")
 public class SubmitSqlJobRequest {
   @SerializedName("name")
   private String name = null;
@@ -225,10 +225,10 @@ public class SubmitSqlJobRequest {
   }
 
    /**
-   * 预留的集群资源ID, 前提是当前用户有该预留资源的使用权限
+   * 独享集群资源ID, 前提是当前用户有该独享资源的使用权限
    * @return clusterId
   **/
-  @ApiModelProperty(example = "100000", value = "预留的集群资源ID, 前提是当前用户有该预留资源的使用权限")
+  @ApiModelProperty(example = "100000", value = "独享集群资源ID, 前提是当前用户有该独享资源的使用权限")
   public Integer getClusterId() {
     return clusterId;
   }

@@ -4,14 +4,14 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createReservedCluster**](ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 创建一个为具有cs_adm角色的CloudStream用户预留一个计算集群, 预留的集群会折算成SPU, 按需计费
-[**deleteReservedCluster**](ClusterApi.md#deleteReservedCluster) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id} | 删除预留的集群, 如果集群中有运行的作业会自动立即停止
-[**describeReservedCluster**](ClusterApi.md#describeReservedCluster) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id} | 查询用户创建的预留集群信息
-[**getClusterJobs**](ClusterApi.md#getClusterJobs) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/jobs | 查询预留集群下的作业列表
+[**createReservedCluster**](ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+[**deleteReservedCluster**](ClusterApi.md#deleteReservedCluster) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id} | 删除独享集群, 如果集群中有运行的作业会自动立即停止
+[**describeReservedCluster**](ClusterApi.md#describeReservedCluster) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id} | 查询用户创建的独享集群信息
+[**getClusterJobs**](ClusterApi.md#getClusterJobs) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/jobs | 查询独享集群下的作业列表
 [**getReservedClusters**](ClusterApi.md#getReservedClusters) | **GET** /{X-Project-Id}/reserved_clusters | 查询租户下的集群列表
 [**getUserQuota**](ClusterApi.md#getUserQuota) | **GET** /{X-Project-Id}/user_quota/{user_id} | 查询指定用户配额信息
 [**getUserQuotas**](ClusterApi.md#getUserQuotas) | **GET** /{X-Project-Id}/user_quotas | 获取租户下的用户配额信息
-[**updateReservedCluster**](ClusterApi.md#updateReservedCluster) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id} | 更新预留的集群
+[**updateReservedCluster**](ClusterApi.md#updateReservedCluster) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id} | 更新独享集群
 [**updateUserQuota**](ClusterApi.md#updateUserQuota) | **PATCH** /{X-Project-Id}/user_quota/{user_id} | 更新指定用户配额信息
 
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 # **createReservedCluster**
 > CreateClusterResponse createReservedCluster(xProjectId, body)
 
-创建一个为具有cs_adm角色的CloudStream用户预留一个计算集群, 预留的集群会折算成SPU, 按需计费
+为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
 
 
 
@@ -32,7 +32,7 @@ Method | HTTP request | Description
 
 ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-NewReservedClusterRequest body = new NewReservedClusterRequest(); // NewReservedClusterRequest | 创建一个新的预留集群, 请求参数为json格式
+NewReservedClusterRequest body = new NewReservedClusterRequest(); // NewReservedClusterRequest | 创建一个新的独享集群, 请求参数为json格式
 try {
     CreateClusterResponse result = apiInstance.createReservedCluster(xProjectId, body);
     System.out.println(result);
@@ -47,7 +47,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **body** | [**NewReservedClusterRequest**](NewReservedClusterRequest.md)| 创建一个新的预留集群, 请求参数为json格式 |
+ **body** | [**NewReservedClusterRequest**](NewReservedClusterRequest.md)| 创建一个新的独享集群, 请求参数为json格式 |
 
 ### Return type
 
@@ -66,7 +66,7 @@ No authorization required
 # **deleteReservedCluster**
 > GlobalResponse deleteReservedCluster(xProjectId, clusterId)
 
-删除预留的集群, 如果集群中有运行的作业会自动立即停止
+删除独享集群, 如果集群中有运行的作业会自动立即停止
 
 
 
@@ -79,7 +79,7 @@ No authorization required
 
 ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-Long clusterId = 789L; // Long | 预留集群ID
+Integer clusterId = 56; // Integer | 独享集群ID
 try {
     GlobalResponse result = apiInstance.deleteReservedCluster(xProjectId, clusterId);
     System.out.println(result);
@@ -94,7 +94,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **clusterId** | **Long**| 预留集群ID |
+ **clusterId** | **Integer**| 独享集群ID |
 
 ### Return type
 
@@ -113,7 +113,7 @@ No authorization required
 # **describeReservedCluster**
 > QueryClusterResponse describeReservedCluster(xProjectId, clusterId)
 
-查询用户创建的预留集群信息
+查询用户创建的独享集群信息
 
 
 
@@ -126,7 +126,7 @@ No authorization required
 
 ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-Long clusterId = 789L; // Long | 预留集群ID.
+Integer clusterId = 56; // Integer | 独享集群ID.
 try {
     QueryClusterResponse result = apiInstance.describeReservedCluster(xProjectId, clusterId);
     System.out.println(result);
@@ -141,7 +141,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **clusterId** | **Long**| 预留集群ID. |
+ **clusterId** | **Integer**| 独享集群ID. |
 
 ### Return type
 
@@ -160,9 +160,9 @@ No authorization required
 # **getClusterJobs**
 > QueryJobListResponse getClusterJobs(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order)
 
-查询预留集群下的作业列表
+查询独享集群下的作业列表
 
-预留集群作业列表查询
+独享集群作业列表查询
 
 ### Example
 ```java
@@ -173,7 +173,7 @@ No authorization required
 
 ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-Long clusterId = 789L; // Long | 预留集群ID
+Integer clusterId = 56; // Integer | 独享集群ID
 String name = "name_example"; // String | 作业名
 String status = "status_example"; // String | 作业状态码, 请参考CloudStream文档
 Boolean showDetail = false; // Boolean | 是否返回作业详情信息
@@ -195,9 +195,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **clusterId** | **Long**| 预留集群ID |
+ **clusterId** | **Integer**| 独享集群ID |
  **name** | **String**| 作业名 | [optional]
- **status** | **String**| 作业状态码, 请参考CloudStream文档 | [optional] [enum: job_init, job_submiting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
+ **status** | **String**| 作业状态码, 请参考CloudStream文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
  **showDetail** | **Boolean**| 是否返回作业详情信息 | [optional] [default to false]
  **cursor** | **Long**| 作业ID游标 | [optional]
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
@@ -380,7 +380,7 @@ No authorization required
 # **updateReservedCluster**
 > GlobalResponse updateReservedCluster(xProjectId, clusterId, body)
 
-更新预留的集群
+更新独享集群
 
 
 
@@ -393,7 +393,7 @@ No authorization required
 
 ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-Long clusterId = 789L; // Long | 预留集群ID
+Integer clusterId = 56; // Integer | 独享集群ID
 UpdateClusterRequest body = new UpdateClusterRequest(); // UpdateClusterRequest | 提交修改集群请求
 try {
     GlobalResponse result = apiInstance.updateReservedCluster(xProjectId, clusterId, body);
@@ -409,7 +409,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **clusterId** | **Long**| 预留集群ID |
+ **clusterId** | **Integer**| 独享集群ID |
  **body** | [**UpdateClusterRequest**](UpdateClusterRequest.md)| 提交修改集群请求 |
 
 ### Return type

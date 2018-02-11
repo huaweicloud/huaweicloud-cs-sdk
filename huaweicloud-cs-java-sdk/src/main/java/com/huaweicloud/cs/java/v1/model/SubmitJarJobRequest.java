@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * SubmitJarJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-08T17:28:20.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-11T16:27:09.587+08:00")
 public class SubmitJarJobRequest {
   @SerializedName("name")
   private String name = null;
@@ -39,7 +39,7 @@ public class SubmitJarJobRequest {
   private String desc = null;
 
   @SerializedName("cluster_id")
-  private Long clusterId = null;
+  private Integer clusterId = null;
 
   @SerializedName("spu_number")
   private Integer spuNumber = null;
@@ -86,21 +86,21 @@ public class SubmitJarJobRequest {
     this.desc = desc;
   }
 
-  public SubmitJarJobRequest clusterId(Long clusterId) {
+  public SubmitJarJobRequest clusterId(Integer clusterId) {
     this.clusterId = clusterId;
     return this;
   }
 
    /**
-   * 预留的集群资源ID, 当前用户有该预留资源的使用权限
+   * 独享集群资源ID, 当前用户有该独享资源的使用权限
    * @return clusterId
   **/
-  @ApiModelProperty(example = "100000", required = true, value = "预留的集群资源ID, 当前用户有该预留资源的使用权限")
-  public Long getClusterId() {
+  @ApiModelProperty(example = "100000", required = true, value = "独享集群资源ID, 当前用户有该独享资源的使用权限")
+  public Integer getClusterId() {
     return clusterId;
   }
 
-  public void setClusterId(Long clusterId) {
+  public void setClusterId(Integer clusterId) {
     this.clusterId = clusterId;
   }
 

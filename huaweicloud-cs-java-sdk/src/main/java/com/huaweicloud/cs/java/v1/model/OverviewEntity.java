@@ -33,10 +33,10 @@ import java.io.IOException;
  * 概要统计信息实体
  */
 @ApiModel(description = "概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-08T17:28:20.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-11T16:27:09.587+08:00")
 public class OverviewEntity {
   @SerializedName("total_price")
-  private Integer totalPrice = null;
+  private Double totalPrice = null;
 
   @SerializedName("job_overview")
   private JobOverviewEntity jobOverview = null;
@@ -44,7 +44,7 @@ public class OverviewEntity {
   @SerializedName("cluster_overview")
   private ClusterOverviewEntity clusterOverview = null;
 
-  public OverviewEntity totalPrice(Integer totalPrice) {
+  public OverviewEntity totalPrice(Double totalPrice) {
     this.totalPrice = totalPrice;
     return this;
   }
@@ -53,12 +53,12 @@ public class OverviewEntity {
    * 总费用
    * @return totalPrice
   **/
-  @ApiModelProperty(example = "100", value = "总费用")
-  public Integer getTotalPrice() {
+  @ApiModelProperty(example = "100.0", value = "总费用")
+  public Double getTotalPrice() {
     return totalPrice;
   }
 
-  public void setTotalPrice(Integer totalPrice) {
+  public void setTotalPrice(Double totalPrice) {
     this.totalPrice = totalPrice;
   }
 

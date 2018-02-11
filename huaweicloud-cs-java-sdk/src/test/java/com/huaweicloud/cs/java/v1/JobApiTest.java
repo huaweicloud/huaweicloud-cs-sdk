@@ -157,7 +157,7 @@ public class JobApiTest {
     /**
      * 创建一个用户自定义作业
      *
-     * 用户自定义作业目前支持jar格式, 运行在预留集群中
+     * 用户自定义作业目前支持jar格式, 运行在独享集群中
      *
      * @throws ApiException
      *          if the Api call fails
@@ -167,7 +167,7 @@ public class JobApiTest {
         String xProjectId = null;
         String name = null;
         String desc = null;
-        Long clusterId = null;
+        Integer clusterId = null;
         Integer spuNumber = null;
         Integer parallelNumber = null;
         String jobType = null;
@@ -202,7 +202,7 @@ public class JobApiTest {
     /**
      * 更新用户自定义作业
      *
-     * 目前仅支持Jar格式, 运行在预留集群中
+     * 目前仅支持Jar格式, 运行在独享集群中
      *
      * @throws ApiException
      *          if the Api call fails
@@ -213,7 +213,7 @@ public class JobApiTest {
         String jobId = null;
         String name = null;
         String desc = null;
-        Long clusterId = null;
+        Integer clusterId = null;
         Integer spuNumber = null;
         Integer parallelNumber = null;
         Boolean logEnabled = null;

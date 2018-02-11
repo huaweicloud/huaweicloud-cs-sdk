@@ -28,13 +28,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * 预留集群信息
+ * 独享集群信息
  */
-@ApiModel(description = "预留集群信息")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-08T17:28:20.453+08:00")
+@ApiModel(description = "独享集群信息")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-11T16:27:09.587+08:00")
 public class ClusterInfo {
   @SerializedName("cluster_id")
-  private Long clusterId = null;
+  private Integer clusterId = null;
 
   @SerializedName("name")
   private String name = null;
@@ -66,7 +66,7 @@ public class ClusterInfo {
   @SerializedName("created_at")
   private Long createdAt = null;
 
-  public ClusterInfo clusterId(Long clusterId) {
+  public ClusterInfo clusterId(Integer clusterId) {
     this.clusterId = clusterId;
     return this;
   }
@@ -76,11 +76,11 @@ public class ClusterInfo {
    * @return clusterId
   **/
   @ApiModelProperty(example = "100000", value = "集群ID")
-  public Long getClusterId() {
+  public Integer getClusterId() {
     return clusterId;
   }
 
-  public void setClusterId(Long clusterId) {
+  public void setClusterId(Integer clusterId) {
     this.clusterId = clusterId;
   }
 

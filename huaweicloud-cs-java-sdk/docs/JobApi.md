@@ -176,7 +176,7 @@ JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 String name = "name_example"; // String | 作业名
 String status = "status_example"; // String | 作业状态码, 请参考CloudStream文档
-Integer clusterId = 56; // Integer | 用户预留集群ID
+Integer clusterId = 56; // Integer | 用户独享集群ID
 Boolean showDetail = false; // Boolean | 是否返回作业详情信息
 Long cursor = 789L; // Long | 作业ID游标
 Boolean next = true; // Boolean | 是否向下翻页
@@ -197,8 +197,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **name** | **String**| 作业名 | [optional]
- **status** | **String**| 作业状态码, 请参考CloudStream文档 | [optional] [enum: job_init, job_submiting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
- **clusterId** | **Integer**| 用户预留集群ID | [optional]
+ **status** | **String**| 作业状态码, 请参考CloudStream文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
+ **clusterId** | **Integer**| 用户独享集群ID | [optional]
  **showDetail** | **Boolean**| 是否返回作业详情信息 | [optional] [default to false]
  **cursor** | **Long**| 作业ID游标 | [optional]
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
@@ -316,7 +316,7 @@ No authorization required
 
 创建一个用户自定义作业
 
-用户自定义作业目前支持jar格式, 运行在预留集群中
+用户自定义作业目前支持jar格式, 运行在独享集群中
 
 ### Example
 ```java
@@ -329,7 +329,7 @@ JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
-Long clusterId = 789L; // Long | 预留的集群资源ID, 当前用户有该预留资源的使用权限
+Integer clusterId = 56; // Integer | 独享集群资源ID, 当前用户有该独享资源的使用权限
 Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量
 Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
 String jobType = "jobType_example"; // String | 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **name** | **String**| 作业名称 |
  **desc** | **String**| 作业描述 |
- **clusterId** | **Long**| 预留的集群资源ID, 当前用户有该预留资源的使用权限 |
+ **clusterId** | **Integer**| 独享集群资源ID, 当前用户有该独享资源的使用权限 |
  **spuNumber** | **Integer**| 用户为作业选择的SPU数量 |
  **parallelNumber** | **Integer**| 用户为作业选择的并发量 |
  **jobType** | **String**| 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 |
@@ -432,7 +432,7 @@ No authorization required
 
 更新用户自定义作业
 
-目前仅支持Jar格式, 运行在预留集群中
+目前仅支持Jar格式, 运行在独享集群中
 
 ### Example
 ```java
@@ -446,7 +446,7 @@ String xProjectId = "xProjectId_example"; // String | project id, 用于不同pr
 String jobId = "jobId_example"; // String | 作业ID
 String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
-Long clusterId = 789L; // Long | 预留的集群资源ID, 当前用户有该预留资源的使用权限
+Integer clusterId = 56; // Integer | 独享集群资源ID, 当前用户有该独享资源的使用权限
 Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量
 Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
 Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
@@ -472,7 +472,7 @@ Name | Type | Description  | Notes
  **jobId** | **String**| 作业ID |
  **name** | **String**| 作业名称 | [optional]
  **desc** | **String**| 作业描述 | [optional]
- **clusterId** | **Long**| 预留的集群资源ID, 当前用户有该预留资源的使用权限 | [optional]
+ **clusterId** | **Integer**| 独享集群资源ID, 当前用户有该独享资源的使用权限 | [optional]
  **spuNumber** | **Integer**| 用户为作业选择的SPU数量 | [optional]
  **parallelNumber** | **Integer**| 用户为作业选择的并发量 | [optional]
  **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]

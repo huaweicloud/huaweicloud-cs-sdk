@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * JobEntity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-08T17:28:20.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-11T16:27:09.587+08:00")
 public class JobEntity {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -67,7 +67,7 @@ public class JobEntity {
   private String userId = null;
 
   @SerializedName("cluster_id")
-  private Long clusterId = null;
+  private Integer clusterId = null;
 
   @SerializedName("project_id")
   private String projectId = null;
@@ -347,21 +347,21 @@ public class JobEntity {
     this.userId = userId;
   }
 
-  public JobEntity clusterId(Long clusterId) {
+  public JobEntity clusterId(Integer clusterId) {
     this.clusterId = clusterId;
     return this;
   }
 
    /**
-   * 预留的集群资源ID, 当前用户有该预留资源的使用权限, show_detail为true时独有
+   * 独享集群资源ID, 当前用户有该独享资源的使用权限, show_detail为true时独有
    * @return clusterId
   **/
-  @ApiModelProperty(value = "预留的集群资源ID, 当前用户有该预留资源的使用权限, show_detail为true时独有")
-  public Long getClusterId() {
+  @ApiModelProperty(value = "独享集群资源ID, 当前用户有该独享资源的使用权限, show_detail为true时独有")
+  public Integer getClusterId() {
     return clusterId;
   }
 
-  public void setClusterId(Long clusterId) {
+  public void setClusterId(Integer clusterId) {
     this.clusterId = clusterId;
   }
 

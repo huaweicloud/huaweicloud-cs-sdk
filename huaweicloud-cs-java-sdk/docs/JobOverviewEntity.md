@@ -8,10 +8,11 @@ Name | Type | Description | Notes
 **runningJobsCount** | **Integer** | 运行的作业总数 |  [optional]
 **finishedJobCount** | **Integer** | 已完成的作业总数 |  [optional]
 **exceptionJobCount** | **Integer** | 运行异常的作业总数 |  [optional]
+**otherJobCount** | **Integer** | 其他状态的作业总数 |  [optional]
 **runningJobCharge** | **Integer** | 正在运行的作业总费用 |  [optional]
 **runningJobPrice** | **Integer** | 正在运行的作业单价合计 |  [optional]
 **runningJobTotalSpu** | **Integer** | 正在运行的作业消耗SPU总数 |  [optional]
-**runningJobTotalTime** | **Integer** | 正在运行的作业总时长 |  [optional]
+**runningJobTotalTime** | **Double** | 正在运行的作业总时长 |  [optional]
 **billingUnit** | [**BillingUnitEnum**](#BillingUnitEnum) | 结算币种 |  [optional]
 **timeUnit** | [**TimeUnitEnum**](#TimeUnitEnum) | 时间单位 |  [optional]
 

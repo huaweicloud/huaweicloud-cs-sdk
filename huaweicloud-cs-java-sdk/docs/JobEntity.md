@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **startTime** | **Long** | 作业启动时间, 0尚未启动 |  [optional]
 **duration** | **Long** | 作业运行时长, 单位ms, show_detail为false时独有 |  [optional]
 **userId** | **String** | 作业所属用户标识, show_detail为true时独有 |  [optional]
-**clusterId** | **Long** | 预留的集群资源ID, 当前用户有该预留资源的使用权限, show_detail为true时独有 |  [optional]
+**clusterId** | **Integer** | 独享集群资源ID, 当前用户有该独享资源的使用权限, show_detail为true时独有 |  [optional]
 **projectId** | **String** | 作业所属项目标识, show_detail为true时独有 |  [optional]
 **sqlBody** | **String** | Stream SQL语句, show_detail为true时独有 |  [optional]
 **runMode** | [**RunModeEnum**](#RunModeEnum) | 作业运行模式，共享或者独享模式, show_detail为true时独有 |  [optional]

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **name** | **String** | 作业名称 | 
 **desc** | **String** | 作业描述 |  [optional]
 **templateId** | **Long** | 作业模板ID, 如果template_id和sql_body都不为空, 优先sql_body; 如果template_id不空, sql_body为空, 以template_id内容填充sql_body |  [optional]
-**clusterId** | **Integer** | 预留的集群资源ID, 前提是当前用户有该预留资源的使用权限 |  [optional]
+**clusterId** | **Integer** | 独享集群资源ID, 前提是当前用户有该独享资源的使用权限 |  [optional]
 **sqlBody** | **String** | Stream SQL语句, 至少包含source, query, sink三个部分 |  [optional]
 **runMode** | [**RunModeEnum**](#RunModeEnum) | 作业运行模式，共享或者独享 | 
 **spuNumber** | **Integer** | 用户为作业选择的SPU数量 |  [optional]

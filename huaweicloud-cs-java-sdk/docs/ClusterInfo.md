@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**clusterId** | **Long** | 集群ID |  [optional]
+**clusterId** | **Integer** | 集群ID |  [optional]
 **name** | **String** | 集群名称 |  [optional]
 **desc** | **String** | 集群描述 |  [optional]
 **statusCode** | **Integer** | 集群当前状态码 |  [optional]

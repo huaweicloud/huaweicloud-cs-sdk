@@ -47,7 +47,7 @@ public class ClusterApiTest {
 
     
     /**
-     * 创建一个为具有cs_adm角色的CloudStream用户预留一个计算集群, 预留的集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
      *
      * 
      *
@@ -64,7 +64,7 @@ public class ClusterApiTest {
     }
     
     /**
-     * 删除预留的集群, 如果集群中有运行的作业会自动立即停止
+     * 删除独享集群, 如果集群中有运行的作业会自动立即停止
      *
      * 
      *
@@ -74,14 +74,14 @@ public class ClusterApiTest {
     @Test
     public void deleteReservedClusterTest() throws ApiException {
         String xProjectId = null;
-        Long clusterId = null;
+        Integer clusterId = null;
         GlobalResponse response = api.deleteReservedCluster(xProjectId, clusterId);
 
         // TODO: test validations
     }
     
     /**
-     * 查询用户创建的预留集群信息
+     * 查询用户创建的独享集群信息
      *
      * 
      *
@@ -91,16 +91,16 @@ public class ClusterApiTest {
     @Test
     public void describeReservedClusterTest() throws ApiException {
         String xProjectId = null;
-        Long clusterId = null;
+        Integer clusterId = null;
         QueryClusterResponse response = api.describeReservedCluster(xProjectId, clusterId);
 
         // TODO: test validations
     }
     
     /**
-     * 查询预留集群下的作业列表
+     * 查询独享集群下的作业列表
      *
-     * 预留集群作业列表查询
+     * 独享集群作业列表查询
      *
      * @throws ApiException
      *          if the Api call fails
@@ -108,7 +108,7 @@ public class ClusterApiTest {
     @Test
     public void getClusterJobsTest() throws ApiException {
         String xProjectId = null;
-        Long clusterId = null;
+        Integer clusterId = null;
         String name = null;
         String status = null;
         Boolean showDetail = null;
@@ -182,7 +182,7 @@ public class ClusterApiTest {
     }
     
     /**
-     * 更新预留的集群
+     * 更新独享集群
      *
      * 
      *
@@ -192,7 +192,7 @@ public class ClusterApiTest {
     @Test
     public void updateReservedClusterTest() throws ApiException {
         String xProjectId = null;
-        Long clusterId = null;
+        Integer clusterId = null;
         UpdateClusterRequest body = null;
         GlobalResponse response = api.updateReservedCluster(xProjectId, clusterId, body);
 
