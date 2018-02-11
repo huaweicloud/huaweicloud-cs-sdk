@@ -44,22 +44,28 @@ For example:
 ```java
 ...
 import com.huaweicloud.cs.utils.UserAuthUtil;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 ...
-JSONObject authObject = userAuthUtil.getUserAuth(
-                csConfig.get("DomainName", null), // domain name for Logging console
-                csConfig.get("UserName", null),   // user name for Logging console
-                csConfig.get("Password", null),   // password for Logging console
-                csConfig.get("ProjectId", null)); // project ID getting from project list in user credential
-                
-String token = authObject.getString("token");
+//get token and AK/SK
+JsonObject authObject = userAuthUtil.getUserAuth(
+                csConfig.get("DomainName", null),
+                csConfig.get("UserName", null),
+                csConfig.get("Password", null),
+                csConfig.get("ProjectId", null));
+String xAuthToken = authObject.get("token").getAsString();
+String ak = authObject.get("ak").getAsString();
+String sk = authObject.get("sk").getAsString();
 
+//create API client
 ApiClient client = new ApiClient();
-client.setVerifyingSsl(false);
-client.setBasePath("https://cs.cn-north-1.myhuaweicloud.com/v1.0");
-//client.setToken("token");
-client.setAksk("southchina", "SKZEZMYRC28NC9LY9UIY", "V1zmJzG5LuxGwNvGMqqKTF0bWTD3AEXc3Fkrab8w");
 JobApi jobapi = new JobApi(client);
+
+//disable SSL verify
+client.setVerifyingSsl(false);
+
+//set token or AK/SK authentication method
+apiClient.setToken(xAuthToken);
+//apiClient.setAksk(region, ak, sk);
 ...
 ```
 
