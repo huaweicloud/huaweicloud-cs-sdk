@@ -336,7 +336,7 @@ String jobType = "jobType_example"; // String | 作业类型，flink_jar_job表�
 Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
 String obsBucket = "obsBucket_example"; // String | log_enabled==true是, 用户授权保存日志的OBS路径
 File jar = new File("/path/to/file.txt"); // File | 用户上传的jar文件, 优先级高于jar_url参数
-File jarUrl = new File("/path/to/file.txt"); // File | 用户上传的jar包OBS路径
+String jarUrl = "jarUrl_example"; // String | 用户上传的jar包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
@@ -362,7 +362,7 @@ Name | Type | Description  | Notes
  **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]
  **obsBucket** | **String**| log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 | [optional]
  **jar** | **File**| 用户上传的jar文件, 优先级高于jar_url参数 | [optional]
- **jarUrl** | **File**| 用户上传的jar包OBS路径 | [optional]
+ **jarUrl** | **String**| 用户上传的jar包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
 
@@ -452,7 +452,7 @@ Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
 Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
 String obsBucket = "obsBucket_example"; // String | log_enabled==true是, 用户授权保存日志的OBS路径
 File jar = new File("/path/to/file.txt"); // File | 用户上传的jar文件, 优先级高于jar_url参数
-File jarUrl = new File("/path/to/file.txt"); // File | 用户上传的jar包OBS路径
+String jarUrl = "jarUrl_example"; // String | 用户上传的jar包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
@@ -478,7 +478,7 @@ Name | Type | Description  | Notes
  **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]
  **obsBucket** | **String**| log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 | [optional]
  **jar** | **File**| 用户上传的jar文件, 优先级高于jar_url参数 | [optional]
- **jarUrl** | **File**| 用户上传的jar包OBS路径 | [optional]
+ **jarUrl** | **String**| 用户上传的jar包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
 

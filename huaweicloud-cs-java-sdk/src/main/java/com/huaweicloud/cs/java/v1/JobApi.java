@@ -920,7 +920,7 @@ public class JobApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobCall(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobCall(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -987,7 +987,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1049,7 +1049,7 @@ public class JobApi {
      * @return JobStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobStatusResponse submitJarJob(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+    public JobStatusResponse submitJarJob(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args) throws ApiException {
         ApiResponse<JobStatusResponse> resp = submitJarJobWithHttpInfo(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
         return resp.getData();
     }
@@ -1073,7 +1073,7 @@ public class JobApi {
      * @return ApiResponse&lt;JobStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args) throws ApiException {
         com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args, null, null);
         Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1099,7 +1099,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobAsync(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ApiCallback<JobStatusResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobAsync(String xProjectId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, String jobType, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args, final ApiCallback<JobStatusResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1277,7 +1277,7 @@ public class JobApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateJarJobCall(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateJarJobCall(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1344,7 +1344,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateJarJobValidateBeforeCall(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateJarJobValidateBeforeCall(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1381,7 +1381,7 @@ public class JobApi {
      * @return JobUpdateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobUpdateResponse updateJarJob(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+    public JobUpdateResponse updateJarJob(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args) throws ApiException {
         ApiResponse<JobUpdateResponse> resp = updateJarJobWithHttpInfo(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
         return resp.getData();
     }
@@ -1405,7 +1405,7 @@ public class JobApi {
      * @return ApiResponse&lt;JobUpdateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobUpdateResponse> updateJarJobWithHttpInfo(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args) throws ApiException {
+    public ApiResponse<JobUpdateResponse> updateJarJobWithHttpInfo(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args) throws ApiException {
         com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args, null, null);
         Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1431,7 +1431,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateJarJobAsync(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, File jarUrl, String mainClass, String args, final ApiCallback<JobUpdateResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateJarJobAsync(String xProjectId, String jobId, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Boolean logEnabled, String obsBucket, File jar, String jarUrl, String mainClass, String args, final ApiCallback<JobUpdateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

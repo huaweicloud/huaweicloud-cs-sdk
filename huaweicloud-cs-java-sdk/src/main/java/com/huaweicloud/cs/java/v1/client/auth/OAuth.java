@@ -22,7 +22,7 @@ import com.huaweicloud.cs.java.v1.client.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-11T16:27:09.587+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-12T17:04:04.086+08:00")
 public class OAuth implements Authentication {
   private String accessToken;
 

@@ -174,7 +174,7 @@ public class JobApiTest {
         Boolean logEnabled = null;
         String obsBucket = null;
         File jar = null;
-        File jarUrl = null;
+        String jarUrl = null;
         String mainClass = null;
         String args = null;
         JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
@@ -219,7 +219,7 @@ public class JobApiTest {
         Boolean logEnabled = null;
         String obsBucket = null;
         File jar = null;
-        File jarUrl = null;
+        String jarUrl = null;
         String mainClass = null;
         String args = null;
         JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
