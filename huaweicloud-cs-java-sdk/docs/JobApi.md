@@ -4,12 +4,11 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job | 删除作业
-[**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | get job detail
+[**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
 [**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | get job execution graph
 [**getJobs**](JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
-[**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/run | 运行作业
-[**stopJob**](JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/stop | Trigger to stop the running job
+[**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job-id}/run | 运行作业
+[**stopJob**](JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | Trigger to stop the running job
 [**submitJarJob**](JobApi.md#submitJarJob) | **POST** /{X-Project-Id}/jar_job | 创建一个用户自定义作业
 [**submitSqlJob**](JobApi.md#submitSqlJob) | **POST** /{X-Project-Id}/sql_job | 提交流式SQL作业到CloudStream服务
 [**updateJarJob**](JobApi.md#updateJarJob) | **PATCH** /{X-Project-Id}/jar_job | 更新用户自定义作业
@@ -18,7 +17,7 @@ Method | HTTP request | Description
 
 <a name="deleteJob"></a>
 # **deleteJob**
-> GlobalResponse deleteJob(xProjectId, body)
+> GlobalResponse deleteJob(xProjectId, jobId)
 
 删除作业
 
@@ -33,59 +32,12 @@ Method | HTTP request | Description
 
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-List<Long> body = Arrays.asList(new List<Long>()); // List<Long> | 删除作业, JSON数组中为一到多个作业ID
+Long jobId = 789L; // Long | 作业ID
 try {
-    GlobalResponse result = apiInstance.deleteJob(xProjectId, body);
+    GlobalResponse result = apiInstance.deleteJob(xProjectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#deleteJob");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
- **body** | **List&lt;Long&gt;**| 删除作业, JSON数组中为一到多个作业ID |
-
-### Return type
-
-[**GlobalResponse**](GlobalResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getJobDetail"></a>
-# **getJobDetail**
-> GetJobDetailResponse getJobDetail(xProjectId, jobId)
-
-get job detail
-
-Get job detail information.
-
-### Example
-```java
-// Import classes:
-//import com.huaweicloud.cs.java.v1.client.ApiException;
-//import com.huaweicloud.cs.java.v1.JobApi;
-
-
-JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-Long jobId = 789L; // Long | 作业ID
-try {
-    GetJobDetailResponse result = apiInstance.getJobDetail(xProjectId, jobId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling JobApi#getJobDetail");
     e.printStackTrace();
 }
 ```
@@ -99,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetJobDetailResponse**](GetJobDetailResponse.md)
+[**GlobalResponse**](GlobalResponse.md)
 
 ### Authorization
 
@@ -220,7 +172,7 @@ No authorization required
 
 <a name="runJob"></a>
 # **runJob**
-> GlobalResponse runJob(xProjectId, body)
+> GlobalResponse runJob(xProjectId, jobId)
 
 运行作业
 
@@ -235,9 +187,9 @@ No authorization required
 
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-List<Long> body = Arrays.asList(new List<Long>()); // List<Long> | 运行作业, JSON数组中为一到多个作业ID
+Long jobId = 789L; // Long | 作业ID
 try {
-    GlobalResponse result = apiInstance.runJob(xProjectId, body);
+    GlobalResponse result = apiInstance.runJob(xProjectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#runJob");
@@ -250,7 +202,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **body** | **List&lt;Long&gt;**| 运行作业, JSON数组中为一到多个作业ID |
+ **jobId** | **Long**| 作业ID |
 
 ### Return type
 
@@ -267,7 +219,7 @@ No authorization required
 
 <a name="stopJob"></a>
 # **stopJob**
-> GlobalResponse stopJob(xProjectId, body)
+> GlobalResponse stopJob(xProjectId, jobId)
 
 Trigger to stop the running job
 
@@ -280,9 +232,9 @@ Trigger to stop the running job
 
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-List<Long> body = Arrays.asList(new List<Long>()); // List<Long> | 停止作业, JSON数组中为一到多个作业ID
+Long jobId = 789L; // Long | 作业ID
 try {
-    GlobalResponse result = apiInstance.stopJob(xProjectId, body);
+    GlobalResponse result = apiInstance.stopJob(xProjectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#stopJob");
@@ -295,7 +247,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **body** | **List&lt;Long&gt;**| 停止作业, JSON数组中为一到多个作业ID |
+ **jobId** | **Long**| 作业ID |
 
 ### Return type
 

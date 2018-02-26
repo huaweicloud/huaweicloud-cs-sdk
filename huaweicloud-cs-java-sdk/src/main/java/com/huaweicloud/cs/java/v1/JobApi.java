@@ -32,7 +32,6 @@ import java.io.IOException;
 
 
 import java.io.File;
-import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
@@ -70,145 +69,13 @@ public class JobApi {
     /**
      * Build call for deleteJob
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 删除作业, JSON数组中为一到多个作业ID (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call deleteJobCall(String xProjectId, List<Long> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
-
-        // create path and map variables
-        String localVarPath = "/{X-Project-Id}/job"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteJobValidateBeforeCall(String xProjectId, List<Long> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'xProjectId' is set
-        if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling deleteJob(Async)");
-        }
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling deleteJob(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = deleteJobCall(xProjectId, body, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 删除作业
-     * 删除任何状态的作业
-     * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 删除作业, JSON数组中为一到多个作业ID (required)
-     * @return GlobalResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public GlobalResponse deleteJob(String xProjectId, List<Long> body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = deleteJobWithHttpInfo(xProjectId, body);
-        return resp.getData();
-    }
-
-    /**
-     * 删除作业
-     * 删除任何状态的作业
-     * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 删除作业, JSON数组中为一到多个作业ID (required)
-     * @return ApiResponse&lt;GlobalResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<GlobalResponse> deleteJobWithHttpInfo(String xProjectId, List<Long> body) throws ApiException {
-        com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, body, null, null);
-        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * 删除作业 (asynchronously)
-     * 删除任何状态的作业
-     * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 删除作业, JSON数组中为一到多个作业ID (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call deleteJobAsync(String xProjectId, List<Long> body, final ApiCallback<GlobalResponse> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for getJobDetail
-     * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getJobDetailCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call deleteJobCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -248,65 +115,65 @@ public class JobApi {
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getJobDetailValidateBeforeCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteJobValidateBeforeCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling getJobDetail(Async)");
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling deleteJob(Async)");
         }
         
         // verify the required parameter 'jobId' is set
         if (jobId == null) {
-            throw new ApiException("Missing the required parameter 'jobId' when calling getJobDetail(Async)");
+            throw new ApiException("Missing the required parameter 'jobId' when calling deleteJob(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getJobDetailCall(xProjectId, jobId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteJobCall(xProjectId, jobId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * get job detail
-     * Get job detail information.
+     * 删除作业
+     * 删除任何状态的作业
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
-     * @return GetJobDetailResponse
+     * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GetJobDetailResponse getJobDetail(String xProjectId, Long jobId) throws ApiException {
-        ApiResponse<GetJobDetailResponse> resp = getJobDetailWithHttpInfo(xProjectId, jobId);
+    public GlobalResponse deleteJob(String xProjectId, Long jobId) throws ApiException {
+        ApiResponse<GlobalResponse> resp = deleteJobWithHttpInfo(xProjectId, jobId);
         return resp.getData();
     }
 
     /**
-     * get job detail
-     * Get job detail information.
+     * 删除作业
+     * 删除任何状态的作业
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
-     * @return ApiResponse&lt;GetJobDetailResponse&gt;
+     * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GetJobDetailResponse> getJobDetailWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
-        com.squareup.okhttp.Call call = getJobDetailValidateBeforeCall(xProjectId, jobId, null, null);
-        Type localVarReturnType = new TypeToken<GetJobDetailResponse>(){}.getType();
+    public ApiResponse<GlobalResponse> deleteJobWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, jobId, null, null);
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * get job detail (asynchronously)
-     * Get job detail information.
+     * 删除作业 (asynchronously)
+     * 删除任何状态的作业
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJobDetailAsync(String xProjectId, Long jobId, final ApiCallback<GetJobDetailResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteJobAsync(String xProjectId, Long jobId, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -327,8 +194,8 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getJobDetailValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetJobDetailResponse>(){}.getType();
+        com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -639,18 +506,19 @@ public class JobApi {
     /**
      * Build call for runJob
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 运行作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call runJobCall(String xProjectId, List<Long> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
+    public com.squareup.okhttp.Call runJobCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/job/run"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+        String localVarPath = "/{X-Project-Id}/job/{job-id}/run"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "job_id" + "\\}", apiClient.escapeString(jobId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -688,20 +556,20 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call runJobValidateBeforeCall(String xProjectId, List<Long> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call runJobValidateBeforeCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
             throw new ApiException("Missing the required parameter 'xProjectId' when calling runJob(Async)");
         }
         
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling runJob(Async)");
+        // verify the required parameter 'jobId' is set
+        if (jobId == null) {
+            throw new ApiException("Missing the required parameter 'jobId' when calling runJob(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = runJobCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = runJobCall(xProjectId, jobId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -710,12 +578,12 @@ public class JobApi {
      * 运行作业
      * 触发运行作业
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 运行作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse runJob(String xProjectId, List<Long> body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = runJobWithHttpInfo(xProjectId, body);
+    public GlobalResponse runJob(String xProjectId, Long jobId) throws ApiException {
+        ApiResponse<GlobalResponse> resp = runJobWithHttpInfo(xProjectId, jobId);
         return resp.getData();
     }
 
@@ -723,12 +591,12 @@ public class JobApi {
      * 运行作业
      * 触发运行作业
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 运行作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> runJobWithHttpInfo(String xProjectId, List<Long> body) throws ApiException {
-        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, body, null, null);
+    public ApiResponse<GlobalResponse> runJobWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
+        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -737,12 +605,12 @@ public class JobApi {
      * 运行作业 (asynchronously)
      * 触发运行作业
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 运行作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call runJobAsync(String xProjectId, List<Long> body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call runJobAsync(String xProjectId, Long jobId, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -763,7 +631,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -771,18 +639,19 @@ public class JobApi {
     /**
      * Build call for stopJob
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 停止作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call stopJobCall(String xProjectId, List<Long> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
+    public com.squareup.okhttp.Call stopJobCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/job/stop"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+        String localVarPath = "/{X-Project-Id}/job/{job_id}/stop"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "job_id" + "\\}", apiClient.escapeString(jobId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -820,20 +689,20 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call stopJobValidateBeforeCall(String xProjectId, List<Long> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call stopJobValidateBeforeCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
             throw new ApiException("Missing the required parameter 'xProjectId' when calling stopJob(Async)");
         }
         
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling stopJob(Async)");
+        // verify the required parameter 'jobId' is set
+        if (jobId == null) {
+            throw new ApiException("Missing the required parameter 'jobId' when calling stopJob(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = stopJobCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = stopJobCall(xProjectId, jobId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -842,12 +711,12 @@ public class JobApi {
      * Trigger to stop the running job
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 停止作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse stopJob(String xProjectId, List<Long> body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = stopJobWithHttpInfo(xProjectId, body);
+    public GlobalResponse stopJob(String xProjectId, Long jobId) throws ApiException {
+        ApiResponse<GlobalResponse> resp = stopJobWithHttpInfo(xProjectId, jobId);
         return resp.getData();
     }
 
@@ -855,12 +724,12 @@ public class JobApi {
      * Trigger to stop the running job
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 停止作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> stopJobWithHttpInfo(String xProjectId, List<Long> body) throws ApiException {
-        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, body, null, null);
+    public ApiResponse<GlobalResponse> stopJobWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
+        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -869,12 +738,12 @@ public class JobApi {
      * Trigger to stop the running job (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
-     * @param body 停止作业, JSON数组中为一到多个作业ID (required)
+     * @param jobId 作业ID (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call stopJobAsync(String xProjectId, List<Long> body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call stopJobAsync(String xProjectId, Long jobId, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -895,7 +764,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

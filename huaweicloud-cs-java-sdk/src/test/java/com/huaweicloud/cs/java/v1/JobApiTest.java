@@ -19,7 +19,6 @@ package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
 import java.io.File;
-import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
@@ -56,25 +55,8 @@ public class JobApiTest {
     @Test
     public void deleteJobTest() throws ApiException {
         String xProjectId = null;
-        List<Long> body = null;
-        GlobalResponse response = api.deleteJob(xProjectId, body);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * get job detail
-     *
-     * Get job detail information.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getJobDetailTest() throws ApiException {
-        String xProjectId = null;
         Long jobId = null;
-        GetJobDetailResponse response = api.getJobDetail(xProjectId, jobId);
+        GlobalResponse response = api.deleteJob(xProjectId, jobId);
 
         // TODO: test validations
     }
@@ -131,8 +113,8 @@ public class JobApiTest {
     @Test
     public void runJobTest() throws ApiException {
         String xProjectId = null;
-        List<Long> body = null;
-        GlobalResponse response = api.runJob(xProjectId, body);
+        Long jobId = null;
+        GlobalResponse response = api.runJob(xProjectId, jobId);
 
         // TODO: test validations
     }
@@ -148,8 +130,8 @@ public class JobApiTest {
     @Test
     public void stopJobTest() throws ApiException {
         String xProjectId = null;
-        List<Long> body = null;
-        GlobalResponse response = api.stopJob(xProjectId, body);
+        Long jobId = null;
+        GlobalResponse response = api.stopJob(xProjectId, jobId);
 
         // TODO: test validations
     }
