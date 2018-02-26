@@ -57,11 +57,10 @@ String ak = authObject.get("ak").getAsString();
 String sk = authObject.get("sk").getAsString();
 
 //create API client
-ApiClient client = new ApiClient();
-JobApi jobapi = new JobApi(client);
+ApiClient apiClient = new ApiClient();
 
 //disable SSL verify
-client.setVerifyingSsl(false);
+apiClient.setVerifyingSsl(false);
 
 //set token or AK/SK authentication method
 apiClient.setToken(xAuthToken);
