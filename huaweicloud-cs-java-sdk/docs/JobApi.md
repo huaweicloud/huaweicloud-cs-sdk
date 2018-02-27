@@ -395,7 +395,7 @@ No authorization required
 
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
-String jobId = "jobId_example"; // String | 作业ID
+Long jobId = 789L; // Long | 作业ID
 String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
 Integer clusterId = 56; // Integer | 独享集群资源ID, 当前用户有该独享资源的使用权限
@@ -421,7 +421,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
- **jobId** | **String**| 作业ID |
+ **jobId** | **Long**| 作业ID |
  **name** | **String**| 作业名称 | [optional]
  **desc** | **String**| 作业描述 | [optional]
  **clusterId** | **Integer**| 独享集群资源ID, 当前用户有该独享资源的使用权限 | [optional]

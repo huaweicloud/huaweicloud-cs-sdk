@@ -192,7 +192,7 @@ public class JobApiTest {
     @Test
     public void updateJarJobTest() throws ApiException {
         String xProjectId = null;
-        String jobId = null;
+        Long jobId = null;
         String name = null;
         String desc = null;
         Integer clusterId = null;
