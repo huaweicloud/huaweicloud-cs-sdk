@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
 [**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | get job execution graph
 [**getJobs**](JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
-[**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job-id}/run | 运行作业
+[**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job_id}/run | 运行作业
 [**stopJob**](JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | Trigger to stop the running job
 [**submitJarJob**](JobApi.md#submitJarJob) | **POST** /{X-Project-Id}/jar_job | 创建一个用户自定义作业
 [**submitSqlJob**](JobApi.md#submitSqlJob) | **POST** /{X-Project-Id}/sql_job | 提交流式SQL作业到CloudStream服务

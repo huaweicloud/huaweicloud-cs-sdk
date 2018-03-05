@@ -38,7 +38,7 @@ public class LogApiTest {
 
     
     /**
-     * query CloudStream Service job audit logs
+     * query CloudStream Service audit logs
      *
      * 
      *
@@ -46,14 +46,14 @@ public class LogApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getJobAuditLogsTest() throws ApiException {
+    public void getAuditLogsTest() throws ApiException {
         String xProjectId = null;
         String resourceType = null;
         String cursor = null;
         String resourceId = null;
         Integer pageNumber = null;
         Integer limit = null;
-        JobAuditLogResponse response = api.getJobAuditLogs(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
+        JobAuditLogResponse response = api.getAuditLogs(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
 
         // TODO: test validations
     }

@@ -30,12 +30,12 @@ import java.io.IOException;
 /**
  * CreateClusterResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-27T14:34:21.045+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-05T10:16:55.667+08:00")
 public class CreateClusterResponsePayload {
   @SerializedName("cluster_id")
-  private String clusterId = null;
+  private Integer clusterId = null;
 
-  public CreateClusterResponsePayload clusterId(String clusterId) {
+  public CreateClusterResponsePayload clusterId(Integer clusterId) {
     this.clusterId = clusterId;
     return this;
   }
@@ -45,11 +45,11 @@ public class CreateClusterResponsePayload {
    * @return clusterId
   **/
   @ApiModelProperty(example = "533", value = "集群标识")
-  public String getClusterId() {
+  public Integer getClusterId() {
     return clusterId;
   }
 
-  public void setClusterId(String clusterId) {
+  public void setClusterId(Integer clusterId) {
     this.clusterId = clusterId;
   }
 

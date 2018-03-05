@@ -516,7 +516,7 @@ public class JobApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/job/{job-id}/run"
+        String localVarPath = "/{X-Project-Id}/job/{job_id}/run"
             .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
             .replaceAll("\\{" + "job_id" + "\\}", apiClient.escapeString(jobId.toString()));
 

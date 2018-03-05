@@ -31,7 +31,7 @@ import java.io.IOException;
  * 集群概要统计信息实体
  */
 @ApiModel(description = "集群概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-27T14:34:21.045+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-05T10:16:55.667+08:00")
 public class ClusterOverviewEntity {
   @SerializedName("total_clusters")
   private Integer totalClusters = null;
