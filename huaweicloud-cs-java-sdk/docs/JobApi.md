@@ -5,6 +5,7 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
+[**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | get job detail
 [**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | get job execution graph
 [**getJobs**](JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
 [**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job_id}/run | 运行作业
@@ -52,6 +53,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GlobalResponse**](GlobalResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getJobDetail"></a>
+# **getJobDetail**
+> GetJobDetailResponse getJobDetail(xProjectId, jobId)
+
+get job detail
+
+Get job detail information.
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.JobApi;
+
+
+JobApi apiInstance = new JobApi();
+String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+Long jobId = 789L; // Long | 作业ID
+try {
+    GetJobDetailResponse result = apiInstance.getJobDetail(xProjectId, jobId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling JobApi#getJobDetail");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xProjectId** | **String**| project id, 用于不同project取token. |
+ **jobId** | **Long**| 作业ID |
+
+### Return type
+
+[**GetJobDetailResponse**](GetJobDetailResponse.md)
 
 ### Authorization
 

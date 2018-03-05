@@ -19,6 +19,7 @@ package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
 import java.io.File;
+import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
@@ -57,6 +58,23 @@ public class JobApiTest {
         String xProjectId = null;
         Long jobId = null;
         GlobalResponse response = api.deleteJob(xProjectId, jobId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * get job detail
+     *
+     * Get job detail information.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getJobDetailTest() throws ApiException {
+        String xProjectId = null;
+        Long jobId = null;
+        GetJobDetailResponse response = api.getJobDetail(xProjectId, jobId);
 
         // TODO: test validations
     }
