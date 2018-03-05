@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createJobTemplate**](TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | create the job template
 [**deleteJobTemplate**](TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板
-[**getJobTemplates**](TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | query CloudStream Service job templates
+[**getJobTemplates**](TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | query Cloud Stream Service job templates
 [**updateJobTemplate**](TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | update the job template
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 create the job template
 
-Create job template on CloudStream Service
+Create job template on Cloud Stream Service
 
 ### Example
 ```java
@@ -108,7 +108,7 @@ No authorization required
 # **getJobTemplates**
 > JobTemplateListResponse getJobTemplates(xProjectId, cursor, limit, order)
 
-query CloudStream Service job templates
+query Cloud Stream Service job templates
 
 ### Example
 ```java
@@ -159,7 +159,7 @@ No authorization required
 
 update the job template
 
-Update job template on CloudStream Service
+Update job template on Cloud Stream Service
 
 ### Example
 ```java

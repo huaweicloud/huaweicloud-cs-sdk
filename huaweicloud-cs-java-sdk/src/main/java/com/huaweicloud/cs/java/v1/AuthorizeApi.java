@@ -130,7 +130,7 @@ public class AuthorizeApi {
     }
 
     /**
-     * 用户主动授权起OBS桶的操作权限给CloudStream服务, 用于保存用户作业的checkpoint、作业的运行日志等
+     * 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
@@ -143,7 +143,7 @@ public class AuthorizeApi {
     }
 
     /**
-     * 用户主动授权起OBS桶的操作权限给CloudStream服务, 用于保存用户作业的checkpoint、作业的运行日志等
+     * 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
@@ -157,7 +157,7 @@ public class AuthorizeApi {
     }
 
     /**
-     * 用户主动授权起OBS桶的操作权限给CloudStream服务, 用于保存用户作业的checkpoint、作业的运行日志等 (asynchronously)
+     * 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)

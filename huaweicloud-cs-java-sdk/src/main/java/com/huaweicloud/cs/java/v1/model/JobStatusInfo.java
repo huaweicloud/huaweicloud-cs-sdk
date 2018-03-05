@@ -31,7 +31,7 @@ import java.io.IOException;
  * 作业状态信息
  */
 @ApiModel(description = "作业状态信息")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-05T15:38:54.344+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-05T19:32:22.642+08:00")
 public class JobStatusInfo {
   @SerializedName("job_id")
   private Long jobId = null;

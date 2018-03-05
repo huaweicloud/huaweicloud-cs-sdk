@@ -63,10 +63,10 @@ public class LogApi {
      * Build call for getAuditLogs
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业/模板/集群ID游标 (optional)
+     * @param cursor 作业ID或模板ID或集群ID (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
-     * @param limit 查询条数限制 (optional)
+     * @param limit 查询条数限制 (optional, default to 10)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -144,14 +144,14 @@ public class LogApi {
     }
 
     /**
-     * query CloudStream Service audit logs
+     * query Cloud Stream Service audit logs
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业/模板/集群ID游标 (optional)
+     * @param cursor 作业ID或模板ID或集群ID (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
-     * @param limit 查询条数限制 (optional)
+     * @param limit 查询条数限制 (optional, default to 10)
      * @return JobAuditLogResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -161,14 +161,14 @@ public class LogApi {
     }
 
     /**
-     * query CloudStream Service audit logs
+     * query Cloud Stream Service audit logs
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业/模板/集群ID游标 (optional)
+     * @param cursor 作业ID或模板ID或集群ID (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
-     * @param limit 查询条数限制 (optional)
+     * @param limit 查询条数限制 (optional, default to 10)
      * @return ApiResponse&lt;JobAuditLogResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -179,14 +179,14 @@ public class LogApi {
     }
 
     /**
-     * query CloudStream Service audit logs (asynchronously)
+     * query Cloud Stream Service audit logs (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业/模板/集群ID游标 (optional)
+     * @param cursor 作业ID或模板ID或集群ID (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
-     * @param limit 查询条数限制 (optional)
+     * @param limit 查询条数限制 (optional, default to 10)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

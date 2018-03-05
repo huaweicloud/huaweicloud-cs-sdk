@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job_id}/run | 运行作业
 [**stopJob**](JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | Trigger to stop the running job
 [**submitJarJob**](JobApi.md#submitJarJob) | **POST** /{X-Project-Id}/jar_job | 创建一个用户自定义作业
-[**submitSqlJob**](JobApi.md#submitSqlJob) | **POST** /{X-Project-Id}/sql_job | 提交流式SQL作业到CloudStream服务
+[**submitSqlJob**](JobApi.md#submitSqlJob) | **POST** /{X-Project-Id}/sql_job | 提交流式SQL作业到CS服务
 [**updateJarJob**](JobApi.md#updateJarJob) | **PATCH** /{X-Project-Id}/jar_job | 更新用户自定义作业
 [**updateSqlJob**](JobApi.md#updateSqlJob) | **PATCH** /{X-Project-Id}/sql_job | 更新流式SQL作业
 
@@ -175,10 +175,10 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 String name = "name_example"; // String | 作业名
-String status = "status_example"; // String | 作业状态码, 请参考CloudStream文档
+String status = "status_example"; // String | 作业状态码, 请参考CS文档
 Integer clusterId = 56; // Integer | 用户独享集群ID
 Boolean showDetail = false; // Boolean | 是否返回作业详情信息
-Long cursor = 789L; // Long | 作业ID游标
+Long cursor = 789L; // Long | 作业ID
 Boolean next = true; // Boolean | 是否向下翻页
 Integer limit = 20; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
@@ -197,10 +197,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **name** | **String**| 作业名 | [optional]
- **status** | **String**| 作业状态码, 请参考CloudStream文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
+ **status** | **String**| 作业状态码, 请参考CS文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
  **clusterId** | **Integer**| 用户独享集群ID | [optional]
  **showDetail** | **Boolean**| 是否返回作业详情信息 | [optional] [default to false]
- **cursor** | **Long**| 作业ID游标 | [optional]
+ **cursor** | **Long**| 作业ID | [optional]
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
  **limit** | **Integer**| 返回的数据条数 | [optional] [default to 20]
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]
@@ -383,7 +383,7 @@ No authorization required
 # **submitSqlJob**
 > JobStatusResponse submitSqlJob(xProjectId, body)
 
-提交流式SQL作业到CloudStream服务
+提交流式SQL作业到CS服务
 
 通过POST方式, 提交流式SQL作业, 请求体为JSON格式
 
@@ -501,7 +501,7 @@ No authorization required
 
 更新流式SQL作业
 
-流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CloudStream官方文档
+流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CS官方文档
 
 ### Example
 ```java

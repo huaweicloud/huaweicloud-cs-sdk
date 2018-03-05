@@ -136,7 +136,7 @@ public class TemplateApi {
 
     /**
      * create the job template
-     * Create job template on CloudStream Service
+     * Create job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
      * @return JobTemplateCreateResponse
@@ -149,7 +149,7 @@ public class TemplateApi {
 
     /**
      * create the job template
-     * Create job template on CloudStream Service
+     * Create job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
      * @return ApiResponse&lt;JobTemplateCreateResponse&gt;
@@ -163,7 +163,7 @@ public class TemplateApi {
 
     /**
      * create the job template (asynchronously)
-     * Create job template on CloudStream Service
+     * Create job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
      * @param callback The callback to be executed when the API call finishes
@@ -403,7 +403,7 @@ public class TemplateApi {
     }
 
     /**
-     * query CloudStream Service job templates
+     * query Cloud Stream Service job templates
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param cursor 作业模板ID (optional)
@@ -418,7 +418,7 @@ public class TemplateApi {
     }
 
     /**
-     * query CloudStream Service job templates
+     * query Cloud Stream Service job templates
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param cursor 作业模板ID (optional)
@@ -434,7 +434,7 @@ public class TemplateApi {
     }
 
     /**
-     * query CloudStream Service job templates (asynchronously)
+     * query Cloud Stream Service job templates (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param cursor 作业模板ID (optional)
@@ -542,7 +542,7 @@ public class TemplateApi {
 
     /**
      * update the job template
-     * Update job template on CloudStream Service
+     * Update job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业模板请求 (required)
      * @return JobTemplateUpdateResponse
@@ -555,7 +555,7 @@ public class TemplateApi {
 
     /**
      * update the job template
-     * Update job template on CloudStream Service
+     * Update job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业模板请求 (required)
      * @return ApiResponse&lt;JobTemplateUpdateResponse&gt;
@@ -569,7 +569,7 @@ public class TemplateApi {
 
     /**
      * update the job template (asynchronously)
-     * Update job template on CloudStream Service
+     * Update job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业模板请求 (required)
      * @param callback The callback to be executed when the API call finishes

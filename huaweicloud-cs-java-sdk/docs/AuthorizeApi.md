@@ -4,14 +4,14 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authorizeBucket**](AuthorizeApi.md#authorizeBucket) | **POST** /{X-Project-Id}/obs_authorize | 用户主动授权起OBS桶的操作权限给CloudStream服务, 用于保存用户作业的checkpoint、作业的运行日志等
+[**authorizeBucket**](AuthorizeApi.md#authorizeBucket) | **POST** /{X-Project-Id}/obs_authorize | 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
 
 
 <a name="authorizeBucket"></a>
 # **authorizeBucket**
 > GlobalResponse authorizeBucket(xProjectId, body)
 
-用户主动授权起OBS桶的操作权限给CloudStream服务, 用于保存用户作业的checkpoint、作业的运行日志等
+用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
 
 
 

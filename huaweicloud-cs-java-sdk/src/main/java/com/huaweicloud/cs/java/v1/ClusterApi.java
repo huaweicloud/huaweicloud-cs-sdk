@@ -139,7 +139,7 @@ public class ClusterApi {
     }
 
     /**
-     * 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
@@ -152,7 +152,7 @@ public class ClusterApi {
     }
 
     /**
-     * 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
@@ -166,7 +166,7 @@ public class ClusterApi {
     }
 
     /**
-     * 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费 (asynchronously)
+     * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
@@ -471,9 +471,9 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -564,9 +564,9 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -584,9 +584,9 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -605,9 +605,9 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -645,8 +645,8 @@ public class ClusterApi {
      * Build call for getReservedClusters
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 集群名 (optional)
-     * @param status 集群状态码, 请参考CloudStream文档 (optional)
-     * @param cursor 集群ID游标 (optional)
+     * @param status 集群状态码, 请参考CS文档 (optional)
+     * @param cursor 集群ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 10)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -728,8 +728,8 @@ public class ClusterApi {
      * 租户集群列表查询, 支持以下参数: name, status, cursor, next, limit, order. The cursor here is cluster id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 集群名 (optional)
-     * @param status 集群状态码, 请参考CloudStream文档 (optional)
-     * @param cursor 集群ID游标 (optional)
+     * @param status 集群状态码, 请参考CS文档 (optional)
+     * @param cursor 集群ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 10)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -746,8 +746,8 @@ public class ClusterApi {
      * 租户集群列表查询, 支持以下参数: name, status, cursor, next, limit, order. The cursor here is cluster id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 集群名 (optional)
-     * @param status 集群状态码, 请参考CloudStream文档 (optional)
-     * @param cursor 集群ID游标 (optional)
+     * @param status 集群状态码, 请参考CS文档 (optional)
+     * @param cursor 集群ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 10)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -765,8 +765,8 @@ public class ClusterApi {
      * 租户集群列表查询, 支持以下参数: name, status, cursor, next, limit, order. The cursor here is cluster id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 集群名 (optional)
-     * @param status 集群状态码, 请参考CloudStream文档 (optional)
-     * @param cursor 集群ID游标 (optional)
+     * @param status 集群状态码, 请参考CS文档 (optional)
+     * @param cursor 集群ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 10)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -937,7 +937,7 @@ public class ClusterApi {
      * Build call for getUserQuotas
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 用户名 (optional)
-     * @param cursor 用户ID游标 (optional)
+     * @param cursor 用户ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -1017,7 +1017,7 @@ public class ClusterApi {
      * 租户下用户配额信息列表查询, 支持以下参数: name, order, cursor, next, limit. The cursor here is user id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 用户名 (optional)
-     * @param cursor 用户ID游标 (optional)
+     * @param cursor 用户ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -1034,7 +1034,7 @@ public class ClusterApi {
      * 租户下用户配额信息列表查询, 支持以下参数: name, order, cursor, next, limit. The cursor here is user id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 用户名 (optional)
-     * @param cursor 用户ID游标 (optional)
+     * @param cursor 用户ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -1052,7 +1052,7 @@ public class ClusterApi {
      * 租户下用户配额信息列表查询, 支持以下参数: name, order, cursor, next, limit. The cursor here is user id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 用户名 (optional)
-     * @param cursor 用户ID游标 (optional)
+     * @param cursor 用户ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)

@@ -38,7 +38,7 @@ public class LogApiTest {
 
     
     /**
-     * query CloudStream Service audit logs
+     * query Cloud Stream Service audit logs
      *
      * 
      *

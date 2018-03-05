@@ -4,7 +4,7 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createReservedCluster**](ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+[**createReservedCluster**](ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
 [**deleteReservedCluster**](ClusterApi.md#deleteReservedCluster) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id} | 删除独享集群, 如果集群中有运行的作业会自动立即停止
 [**describeReservedCluster**](ClusterApi.md#describeReservedCluster) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id} | 查询用户创建的独享集群信息
 [**getClusterJobs**](ClusterApi.md#getClusterJobs) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/jobs | 查询独享集群下的作业列表
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 # **createReservedCluster**
 > CreateClusterResponse createReservedCluster(xProjectId, body)
 
-为具有cs_adm角色的CloudStream用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
 
 
 
@@ -175,9 +175,9 @@ ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 Integer clusterId = 56; // Integer | 独享集群ID
 String name = "name_example"; // String | 作业名
-String status = "status_example"; // String | 作业状态码, 请参考CloudStream文档
+String status = "status_example"; // String | 作业状态码, 请参考CS文档
 Boolean showDetail = false; // Boolean | 是否返回作业详情信息
-Long cursor = 789L; // Long | 作业ID游标
+Long cursor = 789L; // Long | 作业ID
 Boolean next = true; // Boolean | 是否向下翻页
 Integer limit = 20; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
@@ -197,9 +197,9 @@ Name | Type | Description  | Notes
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **clusterId** | **Integer**| 独享集群ID |
  **name** | **String**| 作业名 | [optional]
- **status** | **String**| 作业状态码, 请参考CloudStream文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
+ **status** | **String**| 作业状态码, 请参考CS文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
  **showDetail** | **Boolean**| 是否返回作业详情信息 | [optional] [default to false]
- **cursor** | **Long**| 作业ID游标 | [optional]
+ **cursor** | **Long**| 作业ID | [optional]
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
  **limit** | **Integer**| 返回的数据条数 | [optional] [default to 20]
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]
@@ -235,8 +235,8 @@ No authorization required
 ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 String name = "name_example"; // String | 集群名
-String status = "status_example"; // String | 集群状态码, 请参考CloudStream文档
-Long cursor = 789L; // Long | 集群ID游标
+String status = "status_example"; // String | 集群状态码, 请参考CS文档
+Long cursor = 789L; // Long | 集群ID
 Boolean next = true; // Boolean | 是否向下翻页
 Integer limit = 10; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
@@ -255,8 +255,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **name** | **String**| 集群名 | [optional]
- **status** | **String**| 集群状态码, 请参考CloudStream文档 | [optional] [enum: cluster_creating, cluster_create_fail, cluster_create_success, cluster_starting, cluster_running, cluster_deleting, cluster_delete_fail]
- **cursor** | **Long**| 集群ID游标 | [optional]
+ **status** | **String**| 集群状态码, 请参考CS文档 | [optional] [enum: cluster_creating, cluster_create_fail, cluster_create_success, cluster_starting, cluster_running, cluster_deleting, cluster_delete_fail]
+ **cursor** | **Long**| 集群ID | [optional]
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
  **limit** | **Integer**| 返回的数据条数 | [optional] [default to 10]
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]
@@ -339,7 +339,7 @@ No authorization required
 ClusterApi apiInstance = new ClusterApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 String name = "name_example"; // String | 用户名
-String cursor = "cursor_example"; // String | 用户ID游标
+String cursor = "cursor_example"; // String | 用户ID
 Boolean next = true; // Boolean | 是否向下翻页
 Integer limit = 20; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **name** | **String**| 用户名 | [optional]
- **cursor** | **String**| 用户ID游标 | [optional]
+ **cursor** | **String**| 用户ID | [optional]
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
  **limit** | **Integer**| 返回的数据条数 | [optional] [default to 20]
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]

@@ -38,7 +38,7 @@ public class AuthorizeApiTest {
 
     
     /**
-     * 用户主动授权起OBS桶的操作权限给CloudStream服务, 用于保存用户作业的checkpoint、作业的运行日志等
+     * 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
      *
      * 
      *

@@ -183,7 +183,7 @@ public class JobApiTest {
     }
     
     /**
-     * 提交流式SQL作业到CloudStream服务
+     * 提交流式SQL作业到CS服务
      *
      * 通过POST方式, 提交流式SQL作业, 请求体为JSON格式
      *
@@ -230,7 +230,7 @@ public class JobApiTest {
     /**
      * 更新流式SQL作业
      *
-     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CloudStream官方文档
+     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CS官方文档
      *
      * @throws ApiException
      *          if the Api call fails

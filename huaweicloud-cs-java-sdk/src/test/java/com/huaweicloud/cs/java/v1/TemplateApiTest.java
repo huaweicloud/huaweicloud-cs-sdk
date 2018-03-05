@@ -45,7 +45,7 @@ public class TemplateApiTest {
     /**
      * create the job template
      *
-     * Create job template on CloudStream Service
+     * Create job template on Cloud Stream Service
      *
      * @throws ApiException
      *          if the Api call fails
@@ -77,7 +77,7 @@ public class TemplateApiTest {
     }
     
     /**
-     * query CloudStream Service job templates
+     * query Cloud Stream Service job templates
      *
      * 
      *
@@ -98,7 +98,7 @@ public class TemplateApiTest {
     /**
      * update the job template
      *
-     * Update job template on CloudStream Service
+     * Update job template on Cloud Stream Service
      *
      * @throws ApiException
      *          if the Api call fails

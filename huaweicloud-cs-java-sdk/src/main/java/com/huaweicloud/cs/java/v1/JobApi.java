@@ -470,10 +470,10 @@ public class JobApi {
      * Build call for getJobs
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param clusterId 用户独享集群ID (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -559,10 +559,10 @@ public class JobApi {
      * 作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order. The cursor here is job id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param clusterId 用户独享集群ID (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -579,10 +579,10 @@ public class JobApi {
      * 作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order. The cursor here is job id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param clusterId 用户独享集群ID (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -600,10 +600,10 @@ public class JobApi {
      * 作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order. The cursor here is job id.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param name 作业名 (optional)
-     * @param status 作业状态码, 请参考CloudStream文档 (optional)
+     * @param status 作业状态码, 请参考CS文档 (optional)
      * @param clusterId 用户独享集群ID (optional)
      * @param showDetail 是否返回作业详情信息 (optional, default to false)
-     * @param cursor 作业ID游标 (optional)
+     * @param cursor 作业ID (optional)
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
@@ -1199,7 +1199,7 @@ public class JobApi {
     }
 
     /**
-     * 提交流式SQL作业到CloudStream服务
+     * 提交流式SQL作业到CS服务
      * 通过POST方式, 提交流式SQL作业, 请求体为JSON格式
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body JSON格式的请求体 (required)
@@ -1212,7 +1212,7 @@ public class JobApi {
     }
 
     /**
-     * 提交流式SQL作业到CloudStream服务
+     * 提交流式SQL作业到CS服务
      * 通过POST方式, 提交流式SQL作业, 请求体为JSON格式
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body JSON格式的请求体 (required)
@@ -1226,7 +1226,7 @@ public class JobApi {
     }
 
     /**
-     * 提交流式SQL作业到CloudStream服务 (asynchronously)
+     * 提交流式SQL作业到CS服务 (asynchronously)
      * 通过POST方式, 提交流式SQL作业, 请求体为JSON格式
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body JSON格式的请求体 (required)
@@ -1532,7 +1532,7 @@ public class JobApi {
 
     /**
      * 更新流式SQL作业
-     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CloudStream官方文档
+     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CS官方文档
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业请求 (required)
      * @return JobUpdateResponse
@@ -1545,7 +1545,7 @@ public class JobApi {
 
     /**
      * 更新流式SQL作业
-     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CloudStream官方文档
+     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CS官方文档
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业请求 (required)
      * @return ApiResponse&lt;JobUpdateResponse&gt;
@@ -1559,7 +1559,7 @@ public class JobApi {
 
     /**
      * 更新流式SQL作业 (asynchronously)
-     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CloudStream官方文档
+     * 流式SQL的语法扩展了Apache Flink SQL, 具体详情请参考CS官方文档
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业请求 (required)
      * @param callback The callback to be executed when the API call finishes
