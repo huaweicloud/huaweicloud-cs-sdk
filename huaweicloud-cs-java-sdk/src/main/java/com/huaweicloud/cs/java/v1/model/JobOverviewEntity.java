@@ -31,7 +31,7 @@ import java.io.IOException;
  * 作业概要统计信息实体
  */
 @ApiModel(description = "作业概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-05T20:14:40.792+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-06T16:50:23.453+08:00")
 public class JobOverviewEntity {
   @SerializedName("total_jobs")
   private Integer totalJobs = null;
@@ -49,7 +49,7 @@ public class JobOverviewEntity {
   private Integer otherJobCount = null;
 
   @SerializedName("running_job_charge")
-  private Integer runningJobCharge = null;
+  private Double runningJobCharge = null;
 
   @SerializedName("running_job_price")
   private Integer runningJobPrice = null;
@@ -254,7 +254,7 @@ public class JobOverviewEntity {
     this.otherJobCount = otherJobCount;
   }
 
-  public JobOverviewEntity runningJobCharge(Integer runningJobCharge) {
+  public JobOverviewEntity runningJobCharge(Double runningJobCharge) {
     this.runningJobCharge = runningJobCharge;
     return this;
   }
@@ -263,12 +263,12 @@ public class JobOverviewEntity {
    * 正在运行的作业总费用
    * @return runningJobCharge
   **/
-  @ApiModelProperty(example = "100", value = "正在运行的作业总费用")
-  public Integer getRunningJobCharge() {
+  @ApiModelProperty(example = "100.0", value = "正在运行的作业总费用")
+  public Double getRunningJobCharge() {
     return runningJobCharge;
   }
 
-  public void setRunningJobCharge(Integer runningJobCharge) {
+  public void setRunningJobCharge(Double runningJobCharge) {
     this.runningJobCharge = runningJobCharge;
   }
 

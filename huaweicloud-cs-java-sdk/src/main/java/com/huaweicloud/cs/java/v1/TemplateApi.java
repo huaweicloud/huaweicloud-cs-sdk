@@ -135,7 +135,7 @@ public class TemplateApi {
     }
 
     /**
-     * create the job template
+     * 创建作业模板
      * Create job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
@@ -148,7 +148,7 @@ public class TemplateApi {
     }
 
     /**
-     * create the job template
+     * 创建作业模板
      * Create job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
@@ -162,7 +162,7 @@ public class TemplateApi {
     }
 
     /**
-     * create the job template (asynchronously)
+     * 创建作业模板 (asynchronously)
      * Create job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body Create job template request (required)
@@ -403,7 +403,7 @@ public class TemplateApi {
     }
 
     /**
-     * query Cloud Stream Service job templates
+     * 查询作业模板列表
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param cursor 作业模板ID (optional)
@@ -418,7 +418,7 @@ public class TemplateApi {
     }
 
     /**
-     * query Cloud Stream Service job templates
+     * 查询作业模板列表
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param cursor 作业模板ID (optional)
@@ -434,7 +434,7 @@ public class TemplateApi {
     }
 
     /**
-     * query Cloud Stream Service job templates (asynchronously)
+     * 查询作业模板列表 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param cursor 作业模板ID (optional)
@@ -541,7 +541,7 @@ public class TemplateApi {
     }
 
     /**
-     * update the job template
+     * 更新作业模板
      * Update job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业模板请求 (required)
@@ -554,7 +554,7 @@ public class TemplateApi {
     }
 
     /**
-     * update the job template
+     * 更新作业模板
      * Update job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业模板请求 (required)
@@ -568,7 +568,7 @@ public class TemplateApi {
     }
 
     /**
-     * update the job template (asynchronously)
+     * 更新作业模板 (asynchronously)
      * Update job template on Cloud Stream Service
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 提交修改SQL作业模板请求 (required)

@@ -23,55 +23,66 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.huaweicloud.cs.java.v1.model.AuditLog;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * JobTemplateDeleted
+ * AuditLogResponsePayload
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-06T16:50:23.453+08:00")
-public class JobTemplateDeleted {
-  @SerializedName("template_id")
-  private Long templateId = null;
+public class AuditLogResponsePayload {
+  @SerializedName("total")
+  private Integer total = null;
 
-  @SerializedName("is_success")
-  private Boolean isSuccess = null;
+  @SerializedName("traces")
+  private List<AuditLog> traces = null;
 
-  public JobTemplateDeleted templateId(Long templateId) {
-    this.templateId = templateId;
+  public AuditLogResponsePayload total(Integer total) {
+    this.total = total;
     return this;
   }
 
    /**
-   * 模板ID
-   * @return templateId
+   * 审计日志查询结果条数
+   * @return total
   **/
-  @ApiModelProperty(example = "10000", value = "模板ID")
-  public Long getTemplateId() {
-    return templateId;
+  @ApiModelProperty(value = "审计日志查询结果条数")
+  public Integer getTotal() {
+    return total;
   }
 
-  public void setTemplateId(Long templateId) {
-    this.templateId = templateId;
+  public void setTotal(Integer total) {
+    this.total = total;
   }
 
-  public JobTemplateDeleted isSuccess(Boolean isSuccess) {
-    this.isSuccess = isSuccess;
+  public AuditLogResponsePayload traces(List<AuditLog> traces) {
+    this.traces = traces;
+    return this;
+  }
+
+  public AuditLogResponsePayload addTracesItem(AuditLog tracesItem) {
+    if (this.traces == null) {
+      this.traces = new ArrayList<AuditLog>();
+    }
+    this.traces.add(tracesItem);
     return this;
   }
 
    /**
-   * 模板删除是否成功
-   * @return isSuccess
+   * Get traces
+   * @return traces
   **/
-  @ApiModelProperty(example = "true", value = "模板删除是否成功")
-  public Boolean isIsSuccess() {
-    return isSuccess;
+  @ApiModelProperty(value = "")
+  public List<AuditLog> getTraces() {
+    return traces;
   }
 
-  public void setIsSuccess(Boolean isSuccess) {
-    this.isSuccess = isSuccess;
+  public void setTraces(List<AuditLog> traces) {
+    this.traces = traces;
   }
 
 
@@ -83,24 +94,24 @@ public class JobTemplateDeleted {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JobTemplateDeleted jobTemplateDeleted = (JobTemplateDeleted) o;
-    return Objects.equals(this.templateId, jobTemplateDeleted.templateId) &&
-        Objects.equals(this.isSuccess, jobTemplateDeleted.isSuccess);
+    AuditLogResponsePayload auditLogResponsePayload = (AuditLogResponsePayload) o;
+    return Objects.equals(this.total, auditLogResponsePayload.total) &&
+        Objects.equals(this.traces, auditLogResponsePayload.traces);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, isSuccess);
+    return Objects.hash(total, traces);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JobTemplateDeleted {\n");
+    sb.append("class AuditLogResponsePayload {\n");
     
-    sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
-    sb.append("    isSuccess: ").append(toIndentedString(isSuccess)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    traces: ").append(toIndentedString(traces)).append("\n");
     sb.append("}");
     return sb.toString();
   }

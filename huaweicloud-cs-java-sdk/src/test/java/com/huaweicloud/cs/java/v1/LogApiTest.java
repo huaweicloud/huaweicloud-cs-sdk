@@ -18,8 +18,8 @@
 package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
+import com.huaweicloud.cs.java.v1.model.AuditLogResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
-import com.huaweicloud.cs.java.v1.model.JobAuditLogResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -38,7 +38,7 @@ public class LogApiTest {
 
     
     /**
-     * query Cloud Stream Service audit logs
+     * 查询审计日志
      *
      * 
      *
@@ -53,7 +53,7 @@ public class LogApiTest {
         String resourceId = null;
         Integer pageNumber = null;
         Integer limit = null;
-        JobAuditLogResponse response = api.getAuditLogs(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
+        AuditLogResponse response = api.getAuditLogs(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
 
         // TODO: test validations
     }

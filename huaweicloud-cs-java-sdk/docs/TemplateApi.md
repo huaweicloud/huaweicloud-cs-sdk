@@ -4,17 +4,17 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createJobTemplate**](TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | create the job template
+[**createJobTemplate**](TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | 创建作业模板
 [**deleteJobTemplate**](TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板
-[**getJobTemplates**](TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | query Cloud Stream Service job templates
-[**updateJobTemplate**](TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | update the job template
+[**getJobTemplates**](TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | 查询作业模板列表
+[**updateJobTemplate**](TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | 更新作业模板
 
 
 <a name="createJobTemplate"></a>
 # **createJobTemplate**
 > JobTemplateCreateResponse createJobTemplate(xProjectId, body)
 
-create the job template
+创建作业模板
 
 Create job template on Cloud Stream Service
 
@@ -108,7 +108,7 @@ No authorization required
 # **getJobTemplates**
 > JobTemplateListResponse getJobTemplates(xProjectId, cursor, limit, order)
 
-query Cloud Stream Service job templates
+查询作业模板列表
 
 ### Example
 ```java
@@ -157,7 +157,7 @@ No authorization required
 # **updateJobTemplate**
 > JobTemplateUpdateResponse updateJobTemplate(xProjectId, body)
 
-update the job template
+更新作业模板
 
 Update job template on Cloud Stream Service
 

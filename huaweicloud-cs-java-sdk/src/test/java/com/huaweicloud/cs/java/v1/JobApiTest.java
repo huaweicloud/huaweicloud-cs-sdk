@@ -63,7 +63,7 @@ public class JobApiTest {
     }
     
     /**
-     * get job detail
+     * 查询作业详情
      *
      * Get job detail information.
      *
@@ -80,7 +80,7 @@ public class JobApiTest {
     }
     
     /**
-     * get job execution graph
+     * 查询作业执行计划图
      *
      * The execution graph is json format.
      *
@@ -138,7 +138,7 @@ public class JobApiTest {
     }
     
     /**
-     * Trigger to stop the running job
+     * 停止作业
      *
      * 
      *

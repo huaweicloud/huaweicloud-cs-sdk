@@ -272,7 +272,7 @@ public class JobApi {
     }
 
     /**
-     * get job detail
+     * 查询作业详情
      * Get job detail information.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -285,7 +285,7 @@ public class JobApi {
     }
 
     /**
-     * get job detail
+     * 查询作业详情
      * Get job detail information.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -299,7 +299,7 @@ public class JobApi {
     }
 
     /**
-     * get job detail (asynchronously)
+     * 查询作业详情 (asynchronously)
      * Get job detail information.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -405,7 +405,7 @@ public class JobApi {
     }
 
     /**
-     * get job execution graph
+     * 查询作业执行计划图
      * The execution graph is json format.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -418,7 +418,7 @@ public class JobApi {
     }
 
     /**
-     * get job execution graph
+     * 查询作业执行计划图
      * The execution graph is json format.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -432,7 +432,7 @@ public class JobApi {
     }
 
     /**
-     * get job execution graph (asynchronously)
+     * 查询作业执行计划图 (asynchronously)
      * The execution graph is json format.
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -842,7 +842,7 @@ public class JobApi {
     }
 
     /**
-     * Trigger to stop the running job
+     * 停止作业
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -855,7 +855,7 @@ public class JobApi {
     }
 
     /**
-     * Trigger to stop the running job
+     * 停止作业
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
@@ -869,7 +869,7 @@ public class JobApi {
     }
 
     /**
-     * Trigger to stop the running job (asynchronously)
+     * 停止作业 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)

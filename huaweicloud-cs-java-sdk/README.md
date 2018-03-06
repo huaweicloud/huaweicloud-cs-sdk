@@ -102,25 +102,28 @@ Class | Method | HTTP request | Description
 *ClusterApi* | [**updateReservedCluster**](docs/ClusterApi.md#updateReservedCluster) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id} | 更新独享集群
 *ClusterApi* | [**updateUserQuota**](docs/ClusterApi.md#updateUserQuota) | **PATCH** /{X-Project-Id}/user_quota/{user_id} | 更新指定用户配额信息
 *JobApi* | [**deleteJob**](docs/JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
-*JobApi* | [**getJobDetail**](docs/JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | get job detail
-*JobApi* | [**getJobExecuteGraph**](docs/JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | get job execution graph
+*JobApi* | [**getJobDetail**](docs/JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | 查询作业详情
+*JobApi* | [**getJobExecuteGraph**](docs/JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | 查询作业执行计划图
 *JobApi* | [**getJobs**](docs/JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
 *JobApi* | [**runJob**](docs/JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job_id}/run | 运行作业
-*JobApi* | [**stopJob**](docs/JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | Trigger to stop the running job
+*JobApi* | [**stopJob**](docs/JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | 停止作业
 *JobApi* | [**submitJarJob**](docs/JobApi.md#submitJarJob) | **POST** /{X-Project-Id}/jar_job | 创建一个用户自定义作业
 *JobApi* | [**submitSqlJob**](docs/JobApi.md#submitSqlJob) | **POST** /{X-Project-Id}/sql_job | 提交流式SQL作业到CS服务
 *JobApi* | [**updateJarJob**](docs/JobApi.md#updateJarJob) | **PATCH** /{X-Project-Id}/jar_job | 更新用户自定义作业
 *JobApi* | [**updateSqlJob**](docs/JobApi.md#updateSqlJob) | **PATCH** /{X-Project-Id}/sql_job | 更新流式SQL作业
-*LogApi* | [**getAuditLogs**](docs/LogApi.md#getAuditLogs) | **GET** /{X-Project-Id}/audit_logs | query Cloud Stream Service audit logs
+*LogApi* | [**getAuditLogs**](docs/LogApi.md#getAuditLogs) | **GET** /{X-Project-Id}/audit_logs | 查询审计日志
 *StatisticsApi* | [**overview**](docs/StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的作业和费用情况
-*TemplateApi* | [**createJobTemplate**](docs/TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | create the job template
+*TemplateApi* | [**createJobTemplate**](docs/TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | 创建作业模板
 *TemplateApi* | [**deleteJobTemplate**](docs/TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板
-*TemplateApi* | [**getJobTemplates**](docs/TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | query Cloud Stream Service job templates
-*TemplateApi* | [**updateJobTemplate**](docs/TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | update the job template
+*TemplateApi* | [**getJobTemplates**](docs/TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | 查询作业模板列表
+*TemplateApi* | [**updateJobTemplate**](docs/TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | 更新作业模板
 
 
 ## Documentation for Models
 
+ - [AuditLog](docs/AuditLog.md)
+ - [AuditLogResponse](docs/AuditLogResponse.md)
+ - [AuditLogResponsePayload](docs/AuditLogResponsePayload.md)
  - [ClusterInfo](docs/ClusterInfo.md)
  - [ClusterOverviewEntity](docs/ClusterOverviewEntity.md)
  - [CreateClusterResponse](docs/CreateClusterResponse.md)
@@ -129,9 +132,6 @@ Class | Method | HTTP request | Description
  - [GetJobDetailResponse](docs/GetJobDetailResponse.md)
  - [GlobalErrorResponse](docs/GlobalErrorResponse.md)
  - [GlobalResponse](docs/GlobalResponse.md)
- - [JobAuditLog](docs/JobAuditLog.md)
- - [JobAuditLogResponse](docs/JobAuditLogResponse.md)
- - [JobAuditLogResponsePayload](docs/JobAuditLogResponsePayload.md)
  - [JobConfig](docs/JobConfig.md)
  - [JobDetailEntity](docs/JobDetailEntity.md)
  - [JobEntity](docs/JobEntity.md)

@@ -23,16 +23,16 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.huaweicloud.cs.java.v1.model.QueryJobListResponsePayload;
+import com.huaweicloud.cs.java.v1.model.AuditLogResponsePayload;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * QueryJobListResponse
+ * AuditLogResponse
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-06T16:50:23.453+08:00")
-public class QueryJobListResponse {
+public class AuditLogResponse {
   @SerializedName("message_id")
   private String messageId = null;
 
@@ -43,9 +43,9 @@ public class QueryJobListResponse {
   private Long currentTime = null;
 
   @SerializedName("payload")
-  private QueryJobListResponsePayload payload = null;
+  private AuditLogResponsePayload payload = null;
 
-  public QueryJobListResponse messageId(String messageId) {
+  public AuditLogResponse messageId(String messageId) {
     this.messageId = messageId;
     return this;
   }
@@ -63,7 +63,7 @@ public class QueryJobListResponse {
     this.messageId = messageId;
   }
 
-  public QueryJobListResponse message(String message) {
+  public AuditLogResponse message(String message) {
     this.message = message;
     return this;
   }
@@ -81,7 +81,7 @@ public class QueryJobListResponse {
     this.message = message;
   }
 
-  public QueryJobListResponse currentTime(Long currentTime) {
+  public AuditLogResponse currentTime(Long currentTime) {
     this.currentTime = currentTime;
     return this;
   }
@@ -99,7 +99,7 @@ public class QueryJobListResponse {
     this.currentTime = currentTime;
   }
 
-  public QueryJobListResponse payload(QueryJobListResponsePayload payload) {
+  public AuditLogResponse payload(AuditLogResponsePayload payload) {
     this.payload = payload;
     return this;
   }
@@ -109,11 +109,11 @@ public class QueryJobListResponse {
    * @return payload
   **/
   @ApiModelProperty(value = "")
-  public QueryJobListResponsePayload getPayload() {
+  public AuditLogResponsePayload getPayload() {
     return payload;
   }
 
-  public void setPayload(QueryJobListResponsePayload payload) {
+  public void setPayload(AuditLogResponsePayload payload) {
     this.payload = payload;
   }
 
@@ -126,11 +126,11 @@ public class QueryJobListResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QueryJobListResponse queryJobListResponse = (QueryJobListResponse) o;
-    return Objects.equals(this.messageId, queryJobListResponse.messageId) &&
-        Objects.equals(this.message, queryJobListResponse.message) &&
-        Objects.equals(this.currentTime, queryJobListResponse.currentTime) &&
-        Objects.equals(this.payload, queryJobListResponse.payload);
+    AuditLogResponse auditLogResponse = (AuditLogResponse) o;
+    return Objects.equals(this.messageId, auditLogResponse.messageId) &&
+        Objects.equals(this.message, auditLogResponse.message) &&
+        Objects.equals(this.currentTime, auditLogResponse.currentTime) &&
+        Objects.equals(this.payload, auditLogResponse.payload);
   }
 
   @Override
@@ -142,7 +142,7 @@ public class QueryJobListResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QueryJobListResponse {\n");
+    sb.append("class AuditLogResponse {\n");
     
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");

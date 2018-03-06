@@ -5,11 +5,11 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
-[**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | get job detail
-[**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | get job execution graph
+[**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | 查询作业详情
+[**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | 查询作业执行计划图
 [**getJobs**](JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
 [**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job_id}/run | 运行作业
-[**stopJob**](JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | Trigger to stop the running job
+[**stopJob**](JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | 停止作业
 [**submitJarJob**](JobApi.md#submitJarJob) | **POST** /{X-Project-Id}/jar_job | 创建一个用户自定义作业
 [**submitSqlJob**](JobApi.md#submitSqlJob) | **POST** /{X-Project-Id}/sql_job | 提交流式SQL作业到CS服务
 [**updateJarJob**](JobApi.md#updateJarJob) | **PATCH** /{X-Project-Id}/jar_job | 更新用户自定义作业
@@ -67,7 +67,7 @@ No authorization required
 # **getJobDetail**
 > GetJobDetailResponse getJobDetail(xProjectId, jobId)
 
-get job detail
+查询作业详情
 
 Get job detail information.
 
@@ -114,7 +114,7 @@ No authorization required
 # **getJobExecuteGraph**
 > JobExecutePlanResponse getJobExecuteGraph(xProjectId, jobId)
 
-get job execution graph
+查询作业执行计划图
 
 The execution graph is json format.
 
@@ -269,7 +269,7 @@ No authorization required
 # **stopJob**
 > GlobalResponse stopJob(xProjectId, jobId)
 
-Trigger to stop the running job
+停止作业
 
 ### Example
 ```java

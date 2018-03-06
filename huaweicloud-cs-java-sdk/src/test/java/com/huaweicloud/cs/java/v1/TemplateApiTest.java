@@ -43,7 +43,7 @@ public class TemplateApiTest {
 
     
     /**
-     * create the job template
+     * 创建作业模板
      *
      * Create job template on Cloud Stream Service
      *
@@ -77,7 +77,7 @@ public class TemplateApiTest {
     }
     
     /**
-     * query Cloud Stream Service job templates
+     * 查询作业模板列表
      *
      * 
      *
@@ -96,7 +96,7 @@ public class TemplateApiTest {
     }
     
     /**
-     * update the job template
+     * 更新作业模板
      *
      * Update job template on Cloud Stream Service
      *

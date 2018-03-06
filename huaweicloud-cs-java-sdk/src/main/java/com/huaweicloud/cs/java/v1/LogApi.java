@@ -31,8 +31,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.huaweicloud.cs.java.v1.model.AuditLogResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
-import com.huaweicloud.cs.java.v1.model.JobAuditLogResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class LogApi {
      * Build call for getAuditLogs
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业ID或模板ID或集群ID (optional)
+     * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional, default to 10)
@@ -144,46 +144,46 @@ public class LogApi {
     }
 
     /**
-     * query Cloud Stream Service audit logs
+     * 查询审计日志
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业ID或模板ID或集群ID (optional)
+     * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional, default to 10)
-     * @return JobAuditLogResponse
+     * @return AuditLogResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobAuditLogResponse getAuditLogs(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
-        ApiResponse<JobAuditLogResponse> resp = getAuditLogsWithHttpInfo(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
+    public AuditLogResponse getAuditLogs(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+        ApiResponse<AuditLogResponse> resp = getAuditLogsWithHttpInfo(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
         return resp.getData();
     }
 
     /**
-     * query Cloud Stream Service audit logs
+     * 查询审计日志
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业ID或模板ID或集群ID (optional)
+     * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional, default to 10)
-     * @return ApiResponse&lt;JobAuditLogResponse&gt;
+     * @return ApiResponse&lt;AuditLogResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobAuditLogResponse> getAuditLogsWithHttpInfo(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+    public ApiResponse<AuditLogResponse> getAuditLogsWithHttpInfo(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
         com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, null, null);
-        Type localVarReturnType = new TypeToken<JobAuditLogResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<AuditLogResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * query Cloud Stream Service audit logs (asynchronously)
+     * 查询审计日志 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
-     * @param cursor 作业ID或模板ID或集群ID (optional)
+     * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
      * @param pageNumber 查询的页码 (optional, default to 0)
      * @param limit 查询条数限制 (optional, default to 10)
@@ -191,7 +191,7 @@ public class LogApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAuditLogsAsync(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<JobAuditLogResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getAuditLogsAsync(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<AuditLogResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -213,7 +213,7 @@ public class LogApi {
         }
 
         com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<JobAuditLogResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<AuditLogResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
