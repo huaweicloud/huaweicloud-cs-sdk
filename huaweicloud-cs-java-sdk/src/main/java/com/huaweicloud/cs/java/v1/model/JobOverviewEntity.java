@@ -31,13 +31,13 @@ import java.io.IOException;
  * 作业概要统计信息实体
  */
 @ApiModel(description = "作业概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-06T16:50:23.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
 public class JobOverviewEntity {
   @SerializedName("total_jobs")
   private Integer totalJobs = null;
 
-  @SerializedName("running_jobs_count")
-  private Integer runningJobsCount = null;
+  @SerializedName("running_job_count")
+  private Integer runningJobCount = null;
 
   @SerializedName("finished_job_count")
   private Integer finishedJobCount = null;
@@ -52,7 +52,7 @@ public class JobOverviewEntity {
   private Double runningJobCharge = null;
 
   @SerializedName("running_job_price")
-  private Integer runningJobPrice = null;
+  private Double runningJobPrice = null;
 
   @SerializedName("running_job_total_spu")
   private Integer runningJobTotalSpu = null;
@@ -182,22 +182,22 @@ public class JobOverviewEntity {
     this.totalJobs = totalJobs;
   }
 
-  public JobOverviewEntity runningJobsCount(Integer runningJobsCount) {
-    this.runningJobsCount = runningJobsCount;
+  public JobOverviewEntity runningJobCount(Integer runningJobCount) {
+    this.runningJobCount = runningJobCount;
     return this;
   }
 
    /**
    * 运行的作业总数
-   * @return runningJobsCount
+   * @return runningJobCount
   **/
   @ApiModelProperty(example = "100", value = "运行的作业总数")
-  public Integer getRunningJobsCount() {
-    return runningJobsCount;
+  public Integer getRunningJobCount() {
+    return runningJobCount;
   }
 
-  public void setRunningJobsCount(Integer runningJobsCount) {
-    this.runningJobsCount = runningJobsCount;
+  public void setRunningJobCount(Integer runningJobCount) {
+    this.runningJobCount = runningJobCount;
   }
 
   public JobOverviewEntity finishedJobCount(Integer finishedJobCount) {
@@ -272,7 +272,7 @@ public class JobOverviewEntity {
     this.runningJobCharge = runningJobCharge;
   }
 
-  public JobOverviewEntity runningJobPrice(Integer runningJobPrice) {
+  public JobOverviewEntity runningJobPrice(Double runningJobPrice) {
     this.runningJobPrice = runningJobPrice;
     return this;
   }
@@ -281,12 +281,12 @@ public class JobOverviewEntity {
    * 正在运行的作业单价合计
    * @return runningJobPrice
   **/
-  @ApiModelProperty(example = "100", value = "正在运行的作业单价合计")
-  public Integer getRunningJobPrice() {
+  @ApiModelProperty(example = "100.0", value = "正在运行的作业单价合计")
+  public Double getRunningJobPrice() {
     return runningJobPrice;
   }
 
-  public void setRunningJobPrice(Integer runningJobPrice) {
+  public void setRunningJobPrice(Double runningJobPrice) {
     this.runningJobPrice = runningJobPrice;
   }
 
@@ -373,7 +373,7 @@ public class JobOverviewEntity {
     }
     JobOverviewEntity jobOverviewEntity = (JobOverviewEntity) o;
     return Objects.equals(this.totalJobs, jobOverviewEntity.totalJobs) &&
-        Objects.equals(this.runningJobsCount, jobOverviewEntity.runningJobsCount) &&
+        Objects.equals(this.runningJobCount, jobOverviewEntity.runningJobCount) &&
         Objects.equals(this.finishedJobCount, jobOverviewEntity.finishedJobCount) &&
         Objects.equals(this.exceptionJobCount, jobOverviewEntity.exceptionJobCount) &&
         Objects.equals(this.otherJobCount, jobOverviewEntity.otherJobCount) &&
@@ -387,7 +387,7 @@ public class JobOverviewEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalJobs, runningJobsCount, finishedJobCount, exceptionJobCount, otherJobCount, runningJobCharge, runningJobPrice, runningJobTotalSpu, runningJobTotalTime, billingUnit, timeUnit);
+    return Objects.hash(totalJobs, runningJobCount, finishedJobCount, exceptionJobCount, otherJobCount, runningJobCharge, runningJobPrice, runningJobTotalSpu, runningJobTotalTime, billingUnit, timeUnit);
   }
 
 
@@ -397,7 +397,7 @@ public class JobOverviewEntity {
     sb.append("class JobOverviewEntity {\n");
     
     sb.append("    totalJobs: ").append(toIndentedString(totalJobs)).append("\n");
-    sb.append("    runningJobsCount: ").append(toIndentedString(runningJobsCount)).append("\n");
+    sb.append("    runningJobCount: ").append(toIndentedString(runningJobCount)).append("\n");
     sb.append("    finishedJobCount: ").append(toIndentedString(finishedJobCount)).append("\n");
     sb.append("    exceptionJobCount: ").append(toIndentedString(exceptionJobCount)).append("\n");
     sb.append("    otherJobCount: ").append(toIndentedString(otherJobCount)).append("\n");

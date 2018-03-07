@@ -33,7 +33,7 @@ import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Request;
 import okio.Buffer;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-06T16:50:23.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
 public class ApiKeyAuth implements Authentication {
     private String serviceName;
     private String region;

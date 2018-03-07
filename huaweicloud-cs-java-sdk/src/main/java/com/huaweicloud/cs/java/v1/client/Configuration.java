@@ -17,7 +17,7 @@
 
 package com.huaweicloud.cs.java.v1.client;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-06T16:50:23.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

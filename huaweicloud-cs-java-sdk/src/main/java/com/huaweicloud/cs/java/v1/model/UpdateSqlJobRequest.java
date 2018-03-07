@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * UpdateSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-06T16:50:23.453+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
 public class UpdateSqlJobRequest {
   @SerializedName("job_id")
   private Long jobId = null;
