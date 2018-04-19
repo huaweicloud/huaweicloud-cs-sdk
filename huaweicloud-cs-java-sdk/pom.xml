@@ -6,8 +6,8 @@
     <packaging>jar</packaging>
     <name>huaweicloud-cs-java-sdk</name>
     <version>1.0-SNAPSHOT</version>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
-    <description>Swagger Java</description>
+    <url>https://www.huaweicloud.com/product/cs.html</url>
+    <description>Huawei Cloud Stream Service Java SDK</description>
     <scm>
         <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
         <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
@@ -16,20 +16,11 @@
 
     <licenses>
         <license>
-            <name>Unlicense</name>
+            <name>Apache 2.0 License</name>
             <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <developers>
-        <developer>
-            <name>Swagger</name>
-            <email>apiteam@swagger.io</email>
-            <organization>Swagger</organization>
-            <organizationUrl>http://swagger.io</organizationUrl>
-        </developer>
-    </developers>
 
     <distributionManagement>
         <snapshotRepository>
