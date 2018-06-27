@@ -31,7 +31,7 @@ import java.io.IOException;
  * 集群概要统计信息实体
  */
 @ApiModel(description = "集群概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
 public class ClusterOverviewEntity {
   @SerializedName("total_clusters")
   private Integer totalClusters = null;
@@ -46,10 +46,10 @@ public class ClusterOverviewEntity {
   private Integer otherClusterCount = null;
 
   @SerializedName("running_cluster_charge")
-  private Integer runningClusterCharge = null;
+  private Double runningClusterCharge = null;
 
   @SerializedName("running_cluster_price")
-  private Integer runningClusterPrice = null;
+  private Double runningClusterPrice = null;
 
   @SerializedName("running_cluster_total_spu")
   private Integer runningClusterTotalSpu = null;
@@ -233,7 +233,7 @@ public class ClusterOverviewEntity {
     this.otherClusterCount = otherClusterCount;
   }
 
-  public ClusterOverviewEntity runningClusterCharge(Integer runningClusterCharge) {
+  public ClusterOverviewEntity runningClusterCharge(Double runningClusterCharge) {
     this.runningClusterCharge = runningClusterCharge;
     return this;
   }
@@ -242,16 +242,16 @@ public class ClusterOverviewEntity {
    * 正在运行的集群总费用
    * @return runningClusterCharge
   **/
-  @ApiModelProperty(example = "100", value = "正在运行的集群总费用")
-  public Integer getRunningClusterCharge() {
+  @ApiModelProperty(example = "10.2", value = "正在运行的集群总费用")
+  public Double getRunningClusterCharge() {
     return runningClusterCharge;
   }
 
-  public void setRunningClusterCharge(Integer runningClusterCharge) {
+  public void setRunningClusterCharge(Double runningClusterCharge) {
     this.runningClusterCharge = runningClusterCharge;
   }
 
-  public ClusterOverviewEntity runningClusterPrice(Integer runningClusterPrice) {
+  public ClusterOverviewEntity runningClusterPrice(Double runningClusterPrice) {
     this.runningClusterPrice = runningClusterPrice;
     return this;
   }
@@ -260,12 +260,12 @@ public class ClusterOverviewEntity {
    * 正在运行的集群单价合计
    * @return runningClusterPrice
   **/
-  @ApiModelProperty(example = "100", value = "正在运行的集群单价合计")
-  public Integer getRunningClusterPrice() {
+  @ApiModelProperty(example = "10.2", value = "正在运行的集群单价合计")
+  public Double getRunningClusterPrice() {
     return runningClusterPrice;
   }
 
-  public void setRunningClusterPrice(Integer runningClusterPrice) {
+  public void setRunningClusterPrice(Double runningClusterPrice) {
     this.runningClusterPrice = runningClusterPrice;
   }
 

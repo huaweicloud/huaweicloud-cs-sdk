@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * NewReservedClusterRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
 public class NewReservedClusterRequest {
   @SerializedName("name")
   private String name = null;
@@ -40,6 +40,15 @@ public class NewReservedClusterRequest {
 
   @SerializedName("maximum_spu_quota")
   private Integer maximumSpuQuota = null;
+
+  @SerializedName("vpc_cidr")
+  private String vpcCidr = null;
+
+  @SerializedName("subnet_cidr")
+  private String subnetCidr = null;
+
+  @SerializedName("subnet_gateway")
+  private String subnetGateway = null;
 
   public NewReservedClusterRequest name(String name) {
     this.name = name;
@@ -95,6 +104,60 @@ public class NewReservedClusterRequest {
     this.maximumSpuQuota = maximumSpuQuota;
   }
 
+  public NewReservedClusterRequest vpcCidr(String vpcCidr) {
+    this.vpcCidr = vpcCidr;
+    return this;
+  }
+
+   /**
+   * VPC网段
+   * @return vpcCidr
+  **/
+  @ApiModelProperty(example = "172.16.0.0/23", value = "VPC网段")
+  public String getVpcCidr() {
+    return vpcCidr;
+  }
+
+  public void setVpcCidr(String vpcCidr) {
+    this.vpcCidr = vpcCidr;
+  }
+
+  public NewReservedClusterRequest subnetCidr(String subnetCidr) {
+    this.subnetCidr = subnetCidr;
+    return this;
+  }
+
+   /**
+   * 子网网段
+   * @return subnetCidr
+  **/
+  @ApiModelProperty(example = "172.16.0.0/23", value = "子网网段")
+  public String getSubnetCidr() {
+    return subnetCidr;
+  }
+
+  public void setSubnetCidr(String subnetCidr) {
+    this.subnetCidr = subnetCidr;
+  }
+
+  public NewReservedClusterRequest subnetGateway(String subnetGateway) {
+    this.subnetGateway = subnetGateway;
+    return this;
+  }
+
+   /**
+   * 子网网关
+   * @return subnetGateway
+  **/
+  @ApiModelProperty(example = "172.16.0.1", value = "子网网关")
+  public String getSubnetGateway() {
+    return subnetGateway;
+  }
+
+  public void setSubnetGateway(String subnetGateway) {
+    this.subnetGateway = subnetGateway;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -107,12 +170,15 @@ public class NewReservedClusterRequest {
     NewReservedClusterRequest newReservedClusterRequest = (NewReservedClusterRequest) o;
     return Objects.equals(this.name, newReservedClusterRequest.name) &&
         Objects.equals(this.desc, newReservedClusterRequest.desc) &&
-        Objects.equals(this.maximumSpuQuota, newReservedClusterRequest.maximumSpuQuota);
+        Objects.equals(this.maximumSpuQuota, newReservedClusterRequest.maximumSpuQuota) &&
+        Objects.equals(this.vpcCidr, newReservedClusterRequest.vpcCidr) &&
+        Objects.equals(this.subnetCidr, newReservedClusterRequest.subnetCidr) &&
+        Objects.equals(this.subnetGateway, newReservedClusterRequest.subnetGateway);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, desc, maximumSpuQuota);
+    return Objects.hash(name, desc, maximumSpuQuota, vpcCidr, subnetCidr, subnetGateway);
   }
 
 
@@ -124,6 +190,9 @@ public class NewReservedClusterRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    desc: ").append(toIndentedString(desc)).append("\n");
     sb.append("    maximumSpuQuota: ").append(toIndentedString(maximumSpuQuota)).append("\n");
+    sb.append("    vpcCidr: ").append(toIndentedString(vpcCidr)).append("\n");
+    sb.append("    subnetCidr: ").append(toIndentedString(subnetCidr)).append("\n");
+    sb.append("    subnetGateway: ").append(toIndentedString(subnetGateway)).append("\n");
     sb.append("}");
     return sb.toString();
   }

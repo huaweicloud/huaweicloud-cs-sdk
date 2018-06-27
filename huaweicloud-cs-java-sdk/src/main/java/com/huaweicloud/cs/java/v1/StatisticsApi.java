@@ -124,7 +124,7 @@ public class StatisticsApi {
     }
 
     /**
-     * 概要统计用户的作业和费用情况
+     * 概要统计用户的资源使用情况(作业及费用)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @return OverviewResponse
@@ -136,7 +136,7 @@ public class StatisticsApi {
     }
 
     /**
-     * 概要统计用户的作业和费用情况
+     * 概要统计用户的资源使用情况(作业及费用)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @return ApiResponse&lt;OverviewResponse&gt;
@@ -149,7 +149,7 @@ public class StatisticsApi {
     }
 
     /**
-     * 概要统计用户的作业和费用情况 (asynchronously)
+     * 概要统计用户的资源使用情况(作业及费用) (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param callback The callback to be executed when the API call finishes

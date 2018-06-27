@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * SubmitSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
 public class SubmitSqlJobRequest {
   @SerializedName("name")
   private String name = null;
@@ -48,13 +48,15 @@ public class SubmitSqlJobRequest {
   private String sqlBody = null;
 
   /**
-   * 作业运行模式，共享或者独享
+   * 作业运行模式，共享或者独享或者边缘节点
    */
   @JsonAdapter(RunModeEnum.Adapter.class)
   public enum RunModeEnum {
     SHARED_CLUSTER("shared_cluster"),
     
-    EXCLUSIVE_CLUSTER("exclusive_cluster");
+    EXCLUSIVE_CLUSTER("exclusive_cluster"),
+    
+    EDGE_NODE("edge_node");
 
     private String value;
 
@@ -165,6 +167,59 @@ public class SubmitSqlJobRequest {
   @SerializedName("log_enabled")
   private Boolean logEnabled = false;
 
+  /**
+   * 作业类型, run_mode为edge_node时, 作业类型须为flink_sql_edge_job, run_mode为shared_cluster跟exclusive_cluster时, 作业类型须为flink_sql_job
+   */
+  @JsonAdapter(JobTypeEnum.Adapter.class)
+  public enum JobTypeEnum {
+    JOB("flink_sql_job"),
+    
+    EDGE_JOB("flink_sql_edge_job");
+
+    private String value;
+
+    JobTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static JobTypeEnum fromValue(String text) {
+      for (JobTypeEnum b : JobTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<JobTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final JobTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public JobTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return JobTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("job_type")
+  private JobTypeEnum jobType = JobTypeEnum.JOB;
+
+  @SerializedName("edge_group_ids")
+  private String edgeGroupIds = null;
+
   public SubmitSqlJobRequest name(String name) {
     this.name = name;
     return this;
@@ -261,10 +316,10 @@ public class SubmitSqlJobRequest {
   }
 
    /**
-   * 作业运行模式，共享或者独享
+   * 作业运行模式，共享或者独享或者边缘节点
    * @return runMode
   **/
-  @ApiModelProperty(example = "shared_cluster", required = true, value = "作业运行模式，共享或者独享")
+  @ApiModelProperty(example = "shared_cluster", required = true, value = "作业运行模式，共享或者独享或者边缘节点")
   public RunModeEnum getRunMode() {
     return runMode;
   }
@@ -280,11 +335,11 @@ public class SubmitSqlJobRequest {
 
    /**
    * 用户为作业选择的SPU数量
-   * minimum: 1
+   * minimum: 2
    * maximum: 400
    * @return spuNumber
   **/
-  @ApiModelProperty(example = "1", value = "用户为作业选择的SPU数量")
+  @ApiModelProperty(example = "5", value = "用户为作业选择的SPU数量")
   public Integer getSpuNumber() {
     return spuNumber;
   }
@@ -301,7 +356,7 @@ public class SubmitSqlJobRequest {
    /**
    * 用户设置的作业并行数
    * minimum: 1
-   * maximum: 50
+   * maximum: 2000
    * @return parallelNumber
   **/
   @ApiModelProperty(example = "1", value = "用户设置的作业并行数")
@@ -403,6 +458,42 @@ public class SubmitSqlJobRequest {
     this.logEnabled = logEnabled;
   }
 
+  public SubmitSqlJobRequest jobType(JobTypeEnum jobType) {
+    this.jobType = jobType;
+    return this;
+  }
+
+   /**
+   * 作业类型, run_mode为edge_node时, 作业类型须为flink_sql_edge_job, run_mode为shared_cluster跟exclusive_cluster时, 作业类型须为flink_sql_job
+   * @return jobType
+  **/
+  @ApiModelProperty(value = "作业类型, run_mode为edge_node时, 作业类型须为flink_sql_edge_job, run_mode为shared_cluster跟exclusive_cluster时, 作业类型须为flink_sql_job")
+  public JobTypeEnum getJobType() {
+    return jobType;
+  }
+
+  public void setJobType(JobTypeEnum jobType) {
+    this.jobType = jobType;
+  }
+
+  public SubmitSqlJobRequest edgeGroupIds(String edgeGroupIds) {
+    this.edgeGroupIds = edgeGroupIds;
+    return this;
+  }
+
+   /**
+   * 边缘计算组ID列表, 多个ID以逗号分隔
+   * @return edgeGroupIds
+  **/
+  @ApiModelProperty(example = "62de1e1c-066e-48a8-a79d-f461a31b2ee1,2eb00f85-99f2-4144-bcb7-d39ff47f9002", value = "边缘计算组ID列表, 多个ID以逗号分隔")
+  public String getEdgeGroupIds() {
+    return edgeGroupIds;
+  }
+
+  public void setEdgeGroupIds(String edgeGroupIds) {
+    this.edgeGroupIds = edgeGroupIds;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -425,12 +516,14 @@ public class SubmitSqlJobRequest {
         Objects.equals(this.checkpointMode, submitSqlJobRequest.checkpointMode) &&
         Objects.equals(this.checkpointInterval, submitSqlJobRequest.checkpointInterval) &&
         Objects.equals(this.obsBucket, submitSqlJobRequest.obsBucket) &&
-        Objects.equals(this.logEnabled, submitSqlJobRequest.logEnabled);
+        Objects.equals(this.logEnabled, submitSqlJobRequest.logEnabled) &&
+        Objects.equals(this.jobType, submitSqlJobRequest.jobType) &&
+        Objects.equals(this.edgeGroupIds, submitSqlJobRequest.edgeGroupIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, desc, templateId, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled);
+    return Objects.hash(name, desc, templateId, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, jobType, edgeGroupIds);
   }
 
 
@@ -452,6 +545,8 @@ public class SubmitSqlJobRequest {
     sb.append("    checkpointInterval: ").append(toIndentedString(checkpointInterval)).append("\n");
     sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
     sb.append("    logEnabled: ").append(toIndentedString(logEnabled)).append("\n");
+    sb.append("    jobType: ").append(toIndentedString(jobType)).append("\n");
+    sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

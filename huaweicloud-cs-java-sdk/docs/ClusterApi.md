@@ -4,16 +4,69 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addHostsInfo**](ClusterApi.md#addHostsInfo) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 添加IP域名映射信息
 [**createReservedCluster**](ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+[**deleteHostsInfo**](ClusterApi.md#deleteHostsInfo) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 删除IP域名映射信息
 [**deleteReservedCluster**](ClusterApi.md#deleteReservedCluster) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id} | 删除独享集群, 如果集群中有运行的作业会自动立即停止
 [**describeReservedCluster**](ClusterApi.md#describeReservedCluster) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id} | 查询用户创建的独享集群信息
 [**getClusterJobs**](ClusterApi.md#getClusterJobs) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/jobs | 查询独享集群下的作业列表
+[**getHostsInfo**](ClusterApi.md#getHostsInfo) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 查询指定集群的IP域名映射信息
 [**getReservedClusters**](ClusterApi.md#getReservedClusters) | **GET** /{X-Project-Id}/reserved_clusters | 查询租户下的集群列表
 [**getUserQuota**](ClusterApi.md#getUserQuota) | **GET** /{X-Project-Id}/user_quota/{user_id} | 查询指定用户配额信息
 [**getUserQuotas**](ClusterApi.md#getUserQuotas) | **GET** /{X-Project-Id}/user_quotas | 获取租户下的用户配额信息
+[**updateHostsInfo**](ClusterApi.md#updateHostsInfo) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts/{host_id} | 更新IP域名映射信息
 [**updateReservedCluster**](ClusterApi.md#updateReservedCluster) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id} | 更新独享集群
 [**updateUserQuota**](ClusterApi.md#updateUserQuota) | **PATCH** /{X-Project-Id}/user_quota/{user_id} | 更新指定用户配额信息
 
+
+<a name="addHostsInfo"></a>
+# **addHostsInfo**
+> AddHostsInfoResponse addHostsInfo(xProjectId, clusterId, body)
+
+添加IP域名映射信息
+
+
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.ClusterApi;
+
+
+ClusterApi apiInstance = new ClusterApi();
+String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+Integer clusterId = 56; // Integer | 独享集群ID.
+Body body = new Body(); // Body | JSON格式的请求体
+try {
+    AddHostsInfoResponse result = apiInstance.addHostsInfo(xProjectId, clusterId, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ClusterApi#addHostsInfo");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xProjectId** | **String**| project id, 用于不同project取token. |
+ **clusterId** | **Integer**| 独享集群ID. |
+ **body** | [**Body**](Body.md)| JSON格式的请求体 |
+
+### Return type
+
+[**AddHostsInfoResponse**](AddHostsInfoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="createReservedCluster"></a>
 # **createReservedCluster**
@@ -52,6 +105,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateClusterResponse**](CreateClusterResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="deleteHostsInfo"></a>
+# **deleteHostsInfo**
+> List&lt;DeleteHostsInfoResponse&gt; deleteHostsInfo(xProjectId, clusterId, body)
+
+删除IP域名映射信息
+
+
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.ClusterApi;
+
+
+ClusterApi apiInstance = new ClusterApi();
+String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+Integer clusterId = 56; // Integer | 独享集群ID.
+Body1 body = new Body1(); // Body1 | JSON格式的请求体
+try {
+    List<DeleteHostsInfoResponse> result = apiInstance.deleteHostsInfo(xProjectId, clusterId, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ClusterApi#deleteHostsInfo");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xProjectId** | **String**| project id, 用于不同project取token. |
+ **clusterId** | **Integer**| 独享集群ID. |
+ **body** | [**Body1**](Body1.md)| JSON格式的请求体 |
+
+### Return type
+
+[**List&lt;DeleteHostsInfoResponse&gt;**](DeleteHostsInfoResponse.md)
 
 ### Authorization
 
@@ -207,6 +309,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**QueryJobListResponse**](QueryJobListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getHostsInfo"></a>
+# **getHostsInfo**
+> QueryClusterHostsInfoResponse getHostsInfo(xProjectId, clusterId)
+
+查询指定集群的IP域名映射信息
+
+
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.ClusterApi;
+
+
+ClusterApi apiInstance = new ClusterApi();
+String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+Integer clusterId = 56; // Integer | 独享集群ID.
+try {
+    QueryClusterHostsInfoResponse result = apiInstance.getHostsInfo(xProjectId, clusterId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ClusterApi#getHostsInfo");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xProjectId** | **String**| project id, 用于不同project取token. |
+ **clusterId** | **Integer**| 独享集群ID. |
+
+### Return type
+
+[**QueryClusterHostsInfoResponse**](QueryClusterHostsInfoResponse.md)
 
 ### Authorization
 
@@ -374,6 +523,57 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateHostsInfo"></a>
+# **updateHostsInfo**
+> UpdateHostsInfoResponse updateHostsInfo(xProjectId, clusterId, hostId, body)
+
+更新IP域名映射信息
+
+
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.ClusterApi;
+
+
+ClusterApi apiInstance = new ClusterApi();
+String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+Integer clusterId = 56; // Integer | 独享集群ID.
+Integer hostId = 56; // Integer | 域名ID.
+Body2 body = new Body2(); // Body2 | JSON格式的请求体
+try {
+    UpdateHostsInfoResponse result = apiInstance.updateHostsInfo(xProjectId, clusterId, hostId, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ClusterApi#updateHostsInfo");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xProjectId** | **String**| project id, 用于不同project取token. |
+ **clusterId** | **Integer**| 独享集群ID. |
+ **hostId** | **Integer**| 域名ID. |
+ **body** | [**Body2**](Body2.md)| JSON格式的请求体 |
+
+### Return type
+
+[**UpdateHostsInfoResponse**](UpdateHostsInfoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="updateReservedCluster"></a>

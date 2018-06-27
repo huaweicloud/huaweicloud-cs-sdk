@@ -159,11 +159,11 @@ No authorization required
 
 <a name="getJobs"></a>
 # **getJobs**
-> QueryJobListResponse getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order)
+> QueryJobListResponse getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId)
 
 查询作业列表
 
-作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order. The cursor here is job id.
+作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order, root_job_id. The cursor here is job id.
 
 ### Example
 ```java
@@ -182,8 +182,9 @@ Long cursor = 789L; // Long | 作业ID
 Boolean next = true; // Boolean | 是否向下翻页
 Integer limit = 20; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
+Long rootJobId = 789L; // Long | 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业
 try {
-    QueryJobListResponse result = apiInstance.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order);
+    QueryJobListResponse result = apiInstance.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getJobs");
@@ -204,6 +205,7 @@ Name | Type | Description  | Notes
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
  **limit** | **Integer**| 返回的数据条数 | [optional] [default to 20]
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]
+ **rootJobId** | **Long**| 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业 | [optional]
 
 ### Return type
 
@@ -312,7 +314,7 @@ No authorization required
 
 <a name="submitJarJob"></a>
 # **submitJarJob**
-> JobStatusResponse submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
+> JobStatusResponse submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args)
 
 创建一个用户自定义作业
 
@@ -330,17 +332,22 @@ String xProjectId = "xProjectId_example"; // String | project id, 用于不同pr
 String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
 Integer clusterId = 56; // Integer | 独享集群资源ID, 当前用户有该独享资源的使用权限
-Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量
-Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
+Integer managerSpu = 56; // Integer | 用户为作业选择的管理节点SPU数量
 String jobType = "jobType_example"; // String | 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业
+Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置
+Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置
+Integer executorNumber = 56; // Integer | Spark作业使用的executor个数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置
+Integer executorSpu = 56; // Integer | Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置
 Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
 String obsBucket = "obsBucket_example"; // String | log_enabled==true是, 用户授权保存日志的OBS路径
 File jar = new File("/path/to/file.txt"); // File | 用户上传的jar文件, 优先级高于jar_url参数
 String jarUrl = "jarUrl_example"; // String | 用户上传的jar包OBS路径
+File config = new File("/path/to/file.txt"); // File | 用户上传的配置文件, 优先级高于config_url参数
+String configUrl = "configUrl_example"; // String | 用户上传的config包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
-    JobStatusResponse result = apiInstance.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+    JobStatusResponse result = apiInstance.submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitJarJob");
@@ -356,13 +363,18 @@ Name | Type | Description  | Notes
  **name** | **String**| 作业名称 |
  **desc** | **String**| 作业描述 |
  **clusterId** | **Integer**| 独享集群资源ID, 当前用户有该独享资源的使用权限 |
- **spuNumber** | **Integer**| 用户为作业选择的SPU数量 |
- **parallelNumber** | **Integer**| 用户为作业选择的并发量 |
+ **managerSpu** | **Integer**| 用户为作业选择的管理节点SPU数量 |
  **jobType** | **String**| 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 |
+ **spuNumber** | **Integer**| 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 | [optional]
+ **parallelNumber** | **Integer**| 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 | [optional]
+ **executorNumber** | **Integer**| Spark作业使用的executor个数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 | [optional]
+ **executorSpu** | **Integer**| Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 | [optional]
  **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]
  **obsBucket** | **String**| log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 | [optional]
  **jar** | **File**| 用户上传的jar文件, 优先级高于jar_url参数 | [optional]
  **jarUrl** | **String**| 用户上传的jar包OBS路径 | [optional]
+ **config** | **File**| 用户上传的配置文件, 优先级高于config_url参数 | [optional]
+ **configUrl** | **String**| 用户上传的config包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
 
@@ -428,7 +440,7 @@ No authorization required
 
 <a name="updateJarJob"></a>
 # **updateJarJob**
-> JobUpdateResponse updateJarJob(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args)
+> JobUpdateResponse updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args)
 
 更新用户自定义作业
 
@@ -444,19 +456,24 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
+Integer managerSpu = 56; // Integer | 用户为作业选择的管理节点SPU数量
 String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
 Integer clusterId = 56; // Integer | 独享集群资源ID, 当前用户有该独享资源的使用权限
-Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量
-Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量
+Integer spuNumber = 56; // Integer | 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置
+Integer parallelNumber = 56; // Integer | 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置
+Integer executorNumber = 56; // Integer | Spark作业使用的executor个数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置
+Integer executorSpu = 56; // Integer | Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置
 Boolean logEnabled = true; // Boolean | 是否开启作业日志, true开启, false关闭, 默认false
 String obsBucket = "obsBucket_example"; // String | log_enabled==true是, 用户授权保存日志的OBS路径
 File jar = new File("/path/to/file.txt"); // File | 用户上传的jar文件, 优先级高于jar_url参数
 String jarUrl = "jarUrl_example"; // String | 用户上传的jar包OBS路径
+File config = new File("/path/to/file.txt"); // File | 用户上传的配置文件, 优先级高于config_url参数
+String configUrl = "configUrl_example"; // String | 用户上传的config包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 try {
-    JobUpdateResponse result = apiInstance.updateJarJob(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+    JobUpdateResponse result = apiInstance.updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateJarJob");
@@ -470,15 +487,20 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
+ **managerSpu** | **Integer**| 用户为作业选择的管理节点SPU数量 |
  **name** | **String**| 作业名称 | [optional]
  **desc** | **String**| 作业描述 | [optional]
  **clusterId** | **Integer**| 独享集群资源ID, 当前用户有该独享资源的使用权限 | [optional]
- **spuNumber** | **Integer**| 用户为作业选择的SPU数量 | [optional]
- **parallelNumber** | **Integer**| 用户为作业选择的并发量 | [optional]
+ **spuNumber** | **Integer**| 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 | [optional]
+ **parallelNumber** | **Integer**| 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 | [optional]
+ **executorNumber** | **Integer**| Spark作业使用的executor个数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 | [optional]
+ **executorSpu** | **Integer**| Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 | [optional]
  **logEnabled** | **Boolean**| 是否开启作业日志, true开启, false关闭, 默认false | [optional]
  **obsBucket** | **String**| log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 | [optional]
  **jar** | **File**| 用户上传的jar文件, 优先级高于jar_url参数 | [optional]
  **jarUrl** | **String**| 用户上传的jar包OBS路径 | [optional]
+ **config** | **File**| 用户上传的配置文件, 优先级高于config_url参数 | [optional]
+ **configUrl** | **String**| 用户上传的config包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
 

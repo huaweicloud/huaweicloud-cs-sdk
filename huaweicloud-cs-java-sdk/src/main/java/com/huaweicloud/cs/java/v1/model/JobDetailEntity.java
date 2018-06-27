@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * JobDetailEntity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
 public class JobDetailEntity {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -70,13 +70,15 @@ public class JobDetailEntity {
   private String sqlBody = null;
 
   /**
-   * 作业运行模式，共享或者独享模式
+   * 作业运行模式，共享或者独享模式或者边缘节点
    */
   @JsonAdapter(RunModeEnum.Adapter.class)
   public enum RunModeEnum {
     SHARED_CLUSTER("shared_cluster"),
     
-    EXCLUSIVE_CLUSTER("exclusive_cluster");
+    EXCLUSIVE_CLUSTER("exclusive_cluster"),
+    
+    EDGE_NODE("edge_node");
 
     private String value;
 
@@ -365,10 +367,10 @@ public class JobDetailEntity {
   }
 
    /**
-   * 作业运行模式，共享或者独享模式
+   * 作业运行模式，共享或者独享模式或者边缘节点
    * @return runMode
   **/
-  @ApiModelProperty(example = "shared_cluster", value = "作业运行模式，共享或者独享模式")
+  @ApiModelProperty(example = "shared_cluster", value = "作业运行模式，共享或者独享模式或者边缘节点")
   public RunModeEnum getRunMode() {
     return runMode;
   }
@@ -384,7 +386,7 @@ public class JobDetailEntity {
 
    /**
    * 用户为作业选择的SPU数量
-   * minimum: 1
+   * minimum: 2
    * maximum: 400
    * @return spuNumber
   **/
@@ -405,7 +407,7 @@ public class JobDetailEntity {
    /**
    * 用户设置的作业并行数
    * minimum: 1
-   * maximum: 50
+   * maximum: 2000
    * @return parallelNumber
   **/
   @ApiModelProperty(value = "用户设置的作业并行数")

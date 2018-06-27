@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **clusterId** | **Integer** | 独享集群资源ID, 当前用户有该独享资源的使用权限 |  [optional]
 **projectId** | **String** | 作业所属项目标识 |  [optional]
 **sqlBody** | **String** | Stream SQL语句 |  [optional]
-**runMode** | [**RunModeEnum**](#RunModeEnum) | 作业运行模式，共享或者独享模式 |  [optional]
+**runMode** | [**RunModeEnum**](#RunModeEnum) | 作业运行模式，共享或者独享模式或者边缘节点 |  [optional]
 **spuNumber** | **Integer** | 用户为作业选择的SPU数量 |  [optional]
 **parallelNumber** | **Integer** | 用户设置的作业并行数 |  [optional]
 **jobConfig** | [**JobConfig**](JobConfig.md) |  |  [optional]
@@ -33,6 +33,7 @@ Name | Value
 ---- | -----
 SHARED_CLUSTER | &quot;shared_cluster&quot;
 EXCLUSIVE_CLUSTER | &quot;exclusive_cluster&quot;
+EDGE_NODE | &quot;edge_node&quot;
 
 
 

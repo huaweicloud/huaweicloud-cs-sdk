@@ -4,14 +4,14 @@ All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**overview**](StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的作业和费用情况
+[**overview**](StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况(作业及费用)
 
 
 <a name="overview"></a>
 # **overview**
 > OverviewResponse overview(xProjectId)
 
-概要统计用户的作业和费用情况
+概要统计用户的资源使用情况(作业及费用)
 
 
 

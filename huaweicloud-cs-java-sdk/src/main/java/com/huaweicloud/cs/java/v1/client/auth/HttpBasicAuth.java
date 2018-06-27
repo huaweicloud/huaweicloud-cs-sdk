@@ -25,7 +25,7 @@ import java.util.List;
 
 import com.squareup.okhttp.Request;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
 public class HttpBasicAuth implements Authentication {
     private String token;
 

@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * UpdateSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
 public class UpdateSqlJobRequest {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -48,13 +48,15 @@ public class UpdateSqlJobRequest {
   private String sqlBody = null;
 
   /**
-   * 作业运行模式，共享或者独享
+   * 作业运行模式，共享或者独享或者边缘节点
    */
   @JsonAdapter(RunModeEnum.Adapter.class)
   public enum RunModeEnum {
     SHARED_CLUSTER("shared_cluster"),
     
-    EXCLUSIVE_CLUSTER("exclusive_cluster");
+    EXCLUSIVE_CLUSTER("exclusive_cluster"),
+    
+    EDGE_NODE("edge_node");
 
     private String value;
 
@@ -165,6 +167,9 @@ public class UpdateSqlJobRequest {
   @SerializedName("log_enabled")
   private Boolean logEnabled = false;
 
+  @SerializedName("edge_group_ids")
+  private String edgeGroupIds = null;
+
   public UpdateSqlJobRequest jobId(Long jobId) {
     this.jobId = jobId;
     return this;
@@ -261,10 +266,10 @@ public class UpdateSqlJobRequest {
   }
 
    /**
-   * 作业运行模式，共享或者独享
+   * 作业运行模式，共享或者独享或者边缘节点
    * @return runMode
   **/
-  @ApiModelProperty(example = "shared_cluster", value = "作业运行模式，共享或者独享")
+  @ApiModelProperty(example = "shared_cluster", value = "作业运行模式，共享或者独享或者边缘节点")
   public RunModeEnum getRunMode() {
     return runMode;
   }
@@ -280,7 +285,7 @@ public class UpdateSqlJobRequest {
 
    /**
    * 用户为作业选择的SPU数量
-   * minimum: 1
+   * minimum: 2
    * maximum: 400
    * @return spuNumber
   **/
@@ -301,7 +306,7 @@ public class UpdateSqlJobRequest {
    /**
    * 用户设置的作业并行数
    * minimum: 1
-   * maximum: 50
+   * maximum: 2000
    * @return parallelNumber
   **/
   @ApiModelProperty(value = "用户设置的作业并行数")
@@ -403,6 +408,24 @@ public class UpdateSqlJobRequest {
     this.logEnabled = logEnabled;
   }
 
+  public UpdateSqlJobRequest edgeGroupIds(String edgeGroupIds) {
+    this.edgeGroupIds = edgeGroupIds;
+    return this;
+  }
+
+   /**
+   * 边缘计算组ID列表, 多个ID以逗号分隔
+   * @return edgeGroupIds
+  **/
+  @ApiModelProperty(example = "62de1e1c-066e-48a8-a79d-f461a31b2ee1,2eb00f85-99f2-4144-bcb7-d39ff47f9002", value = "边缘计算组ID列表, 多个ID以逗号分隔")
+  public String getEdgeGroupIds() {
+    return edgeGroupIds;
+  }
+
+  public void setEdgeGroupIds(String edgeGroupIds) {
+    this.edgeGroupIds = edgeGroupIds;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -425,12 +448,13 @@ public class UpdateSqlJobRequest {
         Objects.equals(this.checkpointMode, updateSqlJobRequest.checkpointMode) &&
         Objects.equals(this.checkpointInterval, updateSqlJobRequest.checkpointInterval) &&
         Objects.equals(this.obsBucket, updateSqlJobRequest.obsBucket) &&
-        Objects.equals(this.logEnabled, updateSqlJobRequest.logEnabled);
+        Objects.equals(this.logEnabled, updateSqlJobRequest.logEnabled) &&
+        Objects.equals(this.edgeGroupIds, updateSqlJobRequest.edgeGroupIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled);
+    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, edgeGroupIds);
   }
 
 
@@ -452,6 +476,7 @@ public class UpdateSqlJobRequest {
     sb.append("    checkpointInterval: ").append(toIndentedString(checkpointInterval)).append("\n");
     sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
     sb.append("    logEnabled: ").append(toIndentedString(logEnabled)).append("\n");
+    sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -31,7 +31,7 @@ import java.io.IOException;
  * 作业配置, show_detail为true时独有
  */
 @ApiModel(description = "作业配置, show_detail为true时独有")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-07T16:54:26.224+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
 public class JobConfig {
   @SerializedName("checkpoint_enabled")
   private Boolean checkpointEnabled = null;
@@ -94,6 +94,15 @@ public class JobConfig {
 
   @SerializedName("obs_bucket")
   private String obsBucket = null;
+
+  @SerializedName("root_id")
+  private Long rootId = null;
+
+  @SerializedName("edge_group_ids")
+  private String edgeGroupIds = null;
+
+  @SerializedName("manager_spu")
+  private Integer managerSpu = null;
 
   public JobConfig checkpointEnabled(Boolean checkpointEnabled) {
     this.checkpointEnabled = checkpointEnabled;
@@ -185,6 +194,60 @@ public class JobConfig {
     this.obsBucket = obsBucket;
   }
 
+  public JobConfig rootId(Long rootId) {
+    this.rootId = rootId;
+    return this;
+  }
+
+   /**
+   * 父作业ID
+   * @return rootId
+  **/
+  @ApiModelProperty(value = "父作业ID")
+  public Long getRootId() {
+    return rootId;
+  }
+
+  public void setRootId(Long rootId) {
+    this.rootId = rootId;
+  }
+
+  public JobConfig edgeGroupIds(String edgeGroupIds) {
+    this.edgeGroupIds = edgeGroupIds;
+    return this;
+  }
+
+   /**
+   * 边缘计算组ID列表, 多个ID以逗号分隔
+   * @return edgeGroupIds
+  **/
+  @ApiModelProperty(value = "边缘计算组ID列表, 多个ID以逗号分隔")
+  public String getEdgeGroupIds() {
+    return edgeGroupIds;
+  }
+
+  public void setEdgeGroupIds(String edgeGroupIds) {
+    this.edgeGroupIds = edgeGroupIds;
+  }
+
+  public JobConfig managerSpu(Integer managerSpu) {
+    this.managerSpu = managerSpu;
+    return this;
+  }
+
+   /**
+   * 管理单元SPU数
+   * @return managerSpu
+  **/
+  @ApiModelProperty(value = "管理单元SPU数")
+  public Integer getManagerSpu() {
+    return managerSpu;
+  }
+
+  public void setManagerSpu(Integer managerSpu) {
+    this.managerSpu = managerSpu;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -199,12 +262,15 @@ public class JobConfig {
         Objects.equals(this.checkpointMode, jobConfig.checkpointMode) &&
         Objects.equals(this.checkpointInterval, jobConfig.checkpointInterval) &&
         Objects.equals(this.logEnabled, jobConfig.logEnabled) &&
-        Objects.equals(this.obsBucket, jobConfig.obsBucket);
+        Objects.equals(this.obsBucket, jobConfig.obsBucket) &&
+        Objects.equals(this.rootId, jobConfig.rootId) &&
+        Objects.equals(this.edgeGroupIds, jobConfig.edgeGroupIds) &&
+        Objects.equals(this.managerSpu, jobConfig.managerSpu);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(checkpointEnabled, checkpointMode, checkpointInterval, logEnabled, obsBucket);
+    return Objects.hash(checkpointEnabled, checkpointMode, checkpointInterval, logEnabled, obsBucket, rootId, edgeGroupIds, managerSpu);
   }
 
 
@@ -218,6 +284,9 @@ public class JobConfig {
     sb.append("    checkpointInterval: ").append(toIndentedString(checkpointInterval)).append("\n");
     sb.append("    logEnabled: ").append(toIndentedString(logEnabled)).append("\n");
     sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
+    sb.append("    rootId: ").append(toIndentedString(rootId)).append("\n");
+    sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
+    sb.append("    managerSpu: ").append(toIndentedString(managerSpu)).append("\n");
     sb.append("}");
     return sb.toString();
   }
