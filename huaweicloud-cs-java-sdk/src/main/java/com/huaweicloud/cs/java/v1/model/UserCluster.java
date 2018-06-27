@@ -31,7 +31,7 @@ import java.io.IOException;
  * 用户集群
  */
 @ApiModel(description = "用户集群")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:00:33.512+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:44:02.666+08:00")
 public class UserCluster {
   @SerializedName("id")
   private Integer id = null;
