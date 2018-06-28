@@ -99,7 +99,7 @@ public class JobApiTest {
     /**
      * 查询作业列表
      *
-     * 作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order. The cursor here is job id.
+     * 作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order, root_job_id. The cursor here is job id.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -115,7 +115,8 @@ public class JobApiTest {
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryJobListResponse response = api.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order);
+        Long rootJobId = null;
+        QueryJobListResponse response = api.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId);
 
         // TODO: test validations
     }
@@ -168,16 +169,21 @@ public class JobApiTest {
         String name = null;
         String desc = null;
         Integer clusterId = null;
+        Integer managerSpu = null;
+        String jobType = null;
         Integer spuNumber = null;
         Integer parallelNumber = null;
-        String jobType = null;
+        Integer executorNumber = null;
+        Integer executorSpu = null;
         Boolean logEnabled = null;
         String obsBucket = null;
         File jar = null;
         String jarUrl = null;
+        File config = null;
+        String configUrl = null;
         String mainClass = null;
         String args = null;
-        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, spuNumber, parallelNumber, jobType, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
 
         // TODO: test validations
     }
@@ -211,18 +217,23 @@ public class JobApiTest {
     public void updateJarJobTest() throws ApiException {
         String xProjectId = null;
         Long jobId = null;
+        Integer managerSpu = null;
         String name = null;
         String desc = null;
         Integer clusterId = null;
         Integer spuNumber = null;
         Integer parallelNumber = null;
+        Integer executorNumber = null;
+        Integer executorSpu = null;
         Boolean logEnabled = null;
         String obsBucket = null;
         File jar = null;
         String jarUrl = null;
+        File config = null;
+        String configUrl = null;
         String mainClass = null;
         String args = null;
-        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, name, desc, clusterId, spuNumber, parallelNumber, logEnabled, obsBucket, jar, jarUrl, mainClass, args);
+        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
 
         // TODO: test validations
     }

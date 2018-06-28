@@ -31,7 +31,7 @@ import java.io.IOException;
  * IP域名映射信息
  */
 @ApiModel(description = "IP域名映射信息")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:44:02.666+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-28T14:30:55.718+08:00")
 public class HostIpInfo {
   @SerializedName("hostname")
   private String hostname = null;

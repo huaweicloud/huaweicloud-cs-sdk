@@ -38,7 +38,7 @@ public class StatisticsApiTest {
 
     
     /**
-     * 概要统计用户的作业和费用情况
+     * 概要统计用户的资源使用情况(作业及费用)
      *
      * 
      *

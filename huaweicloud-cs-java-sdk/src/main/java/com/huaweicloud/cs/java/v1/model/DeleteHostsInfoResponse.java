@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * DeleteHostsInfoResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-27T15:44:02.666+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-28T14:30:55.718+08:00")
 public class DeleteHostsInfoResponse {
   @SerializedName("message_id")
   private String messageId = null;

@@ -18,16 +18,23 @@
 package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
+import com.huaweicloud.cs.java.v1.model.AddHostsInfoResponse;
+import com.huaweicloud.cs.java.v1.model.Body;
+import com.huaweicloud.cs.java.v1.model.Body1;
+import com.huaweicloud.cs.java.v1.model.Body2;
 import com.huaweicloud.cs.java.v1.model.CreateClusterResponse;
+import com.huaweicloud.cs.java.v1.model.DeleteHostsInfoResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.NewReservedClusterRequest;
+import com.huaweicloud.cs.java.v1.model.QueryClusterHostsInfoResponse;
 import com.huaweicloud.cs.java.v1.model.QueryClusterResponse;
 import com.huaweicloud.cs.java.v1.model.QueryClustersResponse;
 import com.huaweicloud.cs.java.v1.model.QueryJobListResponse;
 import com.huaweicloud.cs.java.v1.model.QueryUserQuotaResponse;
 import com.huaweicloud.cs.java.v1.model.QueryUserQuotasResponse;
 import com.huaweicloud.cs.java.v1.model.UpdateClusterRequest;
+import com.huaweicloud.cs.java.v1.model.UpdateHostsInfoResponse;
 import com.huaweicloud.cs.java.v1.model.UpdateUserQuotaRequest;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -47,6 +54,24 @@ public class ClusterApiTest {
 
     
     /**
+     * 添加IP域名映射信息
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void addHostsInfoTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        Body body = null;
+        AddHostsInfoResponse response = api.addHostsInfo(xProjectId, clusterId, body);
+
+        // TODO: test validations
+    }
+    
+    /**
      * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
      *
      * 
@@ -59,6 +84,24 @@ public class ClusterApiTest {
         String xProjectId = null;
         NewReservedClusterRequest body = null;
         CreateClusterResponse response = api.createReservedCluster(xProjectId, body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 删除IP域名映射信息
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteHostsInfoTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        Body1 body = null;
+        List<DeleteHostsInfoResponse> response = api.deleteHostsInfo(xProjectId, clusterId, body);
 
         // TODO: test validations
     }
@@ -122,6 +165,23 @@ public class ClusterApiTest {
     }
     
     /**
+     * 查询指定集群的IP域名映射信息
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getHostsInfoTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        QueryClusterHostsInfoResponse response = api.getHostsInfo(xProjectId, clusterId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * 查询租户下的集群列表
      *
      * 租户集群列表查询, 支持以下参数: name, status, cursor, next, limit, order. The cursor here is cluster id.
@@ -177,6 +237,25 @@ public class ClusterApiTest {
         Integer limit = null;
         String order = null;
         QueryUserQuotasResponse response = api.getUserQuotas(xProjectId, name, cursor, next, limit, order);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 更新IP域名映射信息
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateHostsInfoTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        Integer hostId = null;
+        Body2 body = null;
+        UpdateHostsInfoResponse response = api.updateHostsInfo(xProjectId, clusterId, hostId, body);
 
         // TODO: test validations
     }
