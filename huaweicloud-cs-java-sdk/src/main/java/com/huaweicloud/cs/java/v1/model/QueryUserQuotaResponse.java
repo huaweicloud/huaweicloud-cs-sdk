@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * QueryUserQuotaResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-28T14:30:55.718+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
 public class QueryUserQuotaResponse {
   @SerializedName("message_id")
   private String messageId = null;
