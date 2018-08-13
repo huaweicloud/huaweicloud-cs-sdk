@@ -20,8 +20,6 @@ package com.huaweicloud.cs.utils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.squareup.okhttp.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.net.ssl.*;
 import java.io.IOException;
@@ -44,7 +42,6 @@ public class UserAuthUtil {
     private String tokenBody;
     private String akSKUrl = "https://iam.cn-north-1.myhwclouds.com/v3-huawei/auth/credential";
     private String akSKBody;
-    private Logger logger = LogManager.getLogger(getClass());
 
     /**
      * create secure HTTPS connection
@@ -71,14 +68,12 @@ public class UserAuthUtil {
         MediaType JSON = MediaType.parse("application/json; charset=utf=8");
         RequestBody requestBody = RequestBody.create(JSON, tokenBody);
         Request request = requestBuilder(tokenUrl, headerMap, requestBody).build();
-        logger.info("tokenUrl: " + tokenUrl + "\nheaderMap: " + headerMap + "\ntokenBody: " + tokenBody);
 
         String token = "";
         Response response = null;
         try {
             response = client.newCall(request).execute();
             token = response.headers().get("X-Subject-Token");
-            logger.info("token: " + token);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -88,7 +83,6 @@ public class UserAuthUtil {
         akSKBody = "{\"auth\":{\"identity\":{\"methods\":[\"token\"],\"token\":{\"id\":\"" + token + "\"}}}}";
         requestBody = RequestBody.create(JSON, akSKBody);
         request = requestBuilder(akSKUrl, headerMap, requestBody).build();
-        logger.info("akSKUrl: " + akSKUrl + "\nheaderMap: " + headerMap + "\nakSKBody: " + akSKBody);
 
         String ak = "";
         String sk = "";

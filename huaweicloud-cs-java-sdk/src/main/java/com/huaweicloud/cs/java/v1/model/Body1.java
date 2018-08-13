@@ -32,19 +32,19 @@ import java.util.List;
 /**
  * Body1
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class Body1 {
   @SerializedName("hosts_id")
-  private List<Integer> hostsId = null;
+  private List<Long> hostsId = null;
 
-  public Body1 hostsId(List<Integer> hostsId) {
+  public Body1 hostsId(List<Long> hostsId) {
     this.hostsId = hostsId;
     return this;
   }
 
-  public Body1 addHostsIdItem(Integer hostsIdItem) {
+  public Body1 addHostsIdItem(Long hostsIdItem) {
     if (this.hostsId == null) {
-      this.hostsId = new ArrayList<Integer>();
+      this.hostsId = new ArrayList<Long>();
     }
     this.hostsId.add(hostsIdItem);
     return this;
@@ -55,11 +55,11 @@ public class Body1 {
    * @return hostsId
   **/
   @ApiModelProperty(value = "域名ID列表")
-  public List<Integer> getHostsId() {
+  public List<Long> getHostsId() {
     return hostsId;
   }
 
-  public void setHostsId(List<Integer> hostsId) {
+  public void setHostsId(List<Long> hostsId) {
     this.hostsId = hostsId;
   }
 

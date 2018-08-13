@@ -27,17 +27,27 @@ import com.huaweicloud.cs.java.v1.model.HostIpInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Body
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class Body {
   @SerializedName("hosts_info")
-  private HostIpInfo hostsInfo = null;
+  private List<HostIpInfo> hostsInfo = null;
 
-  public Body hostsInfo(HostIpInfo hostsInfo) {
+  public Body hostsInfo(List<HostIpInfo> hostsInfo) {
     this.hostsInfo = hostsInfo;
+    return this;
+  }
+
+  public Body addHostsInfoItem(HostIpInfo hostsInfoItem) {
+    if (this.hostsInfo == null) {
+      this.hostsInfo = new ArrayList<HostIpInfo>();
+    }
+    this.hostsInfo.add(hostsInfoItem);
     return this;
   }
 
@@ -46,11 +56,11 @@ public class Body {
    * @return hostsInfo
   **/
   @ApiModelProperty(value = "")
-  public HostIpInfo getHostsInfo() {
+  public List<HostIpInfo> getHostsInfo() {
     return hostsInfo;
   }
 
-  public void setHostsInfo(HostIpInfo hostsInfo) {
+  public void setHostsInfo(List<HostIpInfo> hostsInfo) {
     this.hostsInfo = hostsInfo;
   }
 

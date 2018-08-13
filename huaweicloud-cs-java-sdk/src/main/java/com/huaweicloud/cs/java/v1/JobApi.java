@@ -915,7 +915,7 @@ public class JobApi {
      * @param name 作业名称 (required)
      * @param desc 作业描述 (required)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param spuNumber 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
      * @param parallelNumber 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
@@ -923,6 +923,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -934,7 +935,7 @@ public class JobApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobCall(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobCall(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -967,6 +968,8 @@ public class JobApi {
         localVarFormParams.put("log_enabled", logEnabled);
         if (obsBucket != null)
         localVarFormParams.put("obs_bucket", obsBucket);
+        if (smnTopic != null)
+        localVarFormParams.put("smn_topic", smnTopic);
         if (jar != null)
         localVarFormParams.put("jar", jar);
         if (jarUrl != null)
@@ -1011,7 +1014,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1044,7 +1047,7 @@ public class JobApi {
         }
         
 
-        com.squareup.okhttp.Call call = submitJarJobCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitJarJobCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1056,7 +1059,7 @@ public class JobApi {
      * @param name 作业名称 (required)
      * @param desc 作业描述 (required)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param spuNumber 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
      * @param parallelNumber 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
@@ -1064,6 +1067,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -1073,8 +1077,8 @@ public class JobApi {
      * @return JobStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobStatusResponse submitJarJob(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
-        ApiResponse<JobStatusResponse> resp = submitJarJobWithHttpInfo(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
+    public JobStatusResponse submitJarJob(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
+        ApiResponse<JobStatusResponse> resp = submitJarJobWithHttpInfo(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
         return resp.getData();
     }
 
@@ -1085,7 +1089,7 @@ public class JobApi {
      * @param name 作业名称 (required)
      * @param desc 作业描述 (required)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param spuNumber 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
      * @param parallelNumber 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
@@ -1093,6 +1097,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -1102,8 +1107,8 @@ public class JobApi {
      * @return ApiResponse&lt;JobStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
-        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args, null, null);
+    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
+        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, null, null);
         Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1115,7 +1120,7 @@ public class JobApi {
      * @param name 作业名称 (required)
      * @param desc 作业描述 (required)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param jobType 作业类型，flink_jar_job表示Flink自定义作业，spark_streaming_jar_job表示SparkStreaming自定义作业 (required)
      * @param spuNumber 用户为作业选择的SPU数量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
      * @param parallelNumber 用户为作业选择的并发量, 提交Flink自定义作业时需要配置，Spark自定义作业不需要配置 (optional)
@@ -1123,6 +1128,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -1133,7 +1139,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobAsync(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ApiCallback<JobStatusResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobAsync(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ApiCallback<JobStatusResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1154,7 +1160,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1295,7 +1301,7 @@ public class JobApi {
      * Build call for updateJarJob
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param name 作业名称 (optional)
      * @param desc 作业描述 (optional)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (optional)
@@ -1305,6 +1311,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -1316,7 +1323,7 @@ public class JobApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateJarJobCall(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateJarJobCall(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1351,6 +1358,8 @@ public class JobApi {
         localVarFormParams.put("log_enabled", logEnabled);
         if (obsBucket != null)
         localVarFormParams.put("obs_bucket", obsBucket);
+        if (smnTopic != null)
+        localVarFormParams.put("smn_topic", smnTopic);
         if (jar != null)
         localVarFormParams.put("jar", jar);
         if (jarUrl != null)
@@ -1393,7 +1402,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateJarJobValidateBeforeCall(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateJarJobValidateBeforeCall(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1411,7 +1420,7 @@ public class JobApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateJarJobCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateJarJobCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1421,7 +1430,7 @@ public class JobApi {
      * 目前仅支持Jar格式, 运行在独享集群中
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param name 作业名称 (optional)
      * @param desc 作业描述 (optional)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (optional)
@@ -1431,6 +1440,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -1440,8 +1450,8 @@ public class JobApi {
      * @return JobUpdateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobUpdateResponse updateJarJob(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
-        ApiResponse<JobUpdateResponse> resp = updateJarJobWithHttpInfo(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
+    public JobUpdateResponse updateJarJob(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
+        ApiResponse<JobUpdateResponse> resp = updateJarJobWithHttpInfo(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
         return resp.getData();
     }
 
@@ -1450,7 +1460,7 @@ public class JobApi {
      * 目前仅支持Jar格式, 运行在独享集群中
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param name 作业名称 (optional)
      * @param desc 作业描述 (optional)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (optional)
@@ -1460,6 +1470,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -1469,8 +1480,8 @@ public class JobApi {
      * @return ApiResponse&lt;JobUpdateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobUpdateResponse> updateJarJobWithHttpInfo(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
-        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args, null, null);
+    public ApiResponse<JobUpdateResponse> updateJarJobWithHttpInfo(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
+        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, null, null);
         Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1480,7 +1491,7 @@ public class JobApi {
      * 目前仅支持Jar格式, 运行在独享集群中
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
-     * @param managerSpu 用户为作业选择的管理节点SPU数量 (required)
+     * @param managerSpu 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 (required)
      * @param name 作业名称 (optional)
      * @param desc 作业描述 (optional)
      * @param clusterId 独享集群资源ID, 当前用户有该独享资源的使用权限 (optional)
@@ -1490,6 +1501,7 @@ public class JobApi {
      * @param executorSpu Spark作业每个executor所使用的SPU数, 提交Spark自定义作业时需要配置，Flink自定义作业不需要配置 (optional)
      * @param logEnabled 是否开启作业日志, true开启, false关闭, 默认false (optional)
      * @param obsBucket log_enabled&#x3D;&#x3D;true是, 用户授权保存日志的OBS路径 (optional)
+     * @param smnTopic 当作业异常时，向该SMN主题推送告警信息 (optional)
      * @param jar 用户上传的jar文件, 优先级高于jar_url参数 (optional)
      * @param jarUrl 用户上传的jar包OBS路径 (optional)
      * @param config 用户上传的配置文件, 优先级高于config_url参数 (optional)
@@ -1500,7 +1512,7 @@ public class JobApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateJarJobAsync(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ApiCallback<JobUpdateResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateJarJobAsync(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, final ApiCallback<JobUpdateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1521,7 +1533,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

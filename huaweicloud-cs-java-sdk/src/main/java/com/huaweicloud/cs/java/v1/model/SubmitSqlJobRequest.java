@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * SubmitSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class SubmitSqlJobRequest {
   @SerializedName("name")
   private String name = null;
@@ -166,6 +166,9 @@ public class SubmitSqlJobRequest {
 
   @SerializedName("log_enabled")
   private Boolean logEnabled = false;
+
+  @SerializedName("smn_topic")
+  private String smnTopic = null;
 
   /**
    * 作业类型, run_mode为edge_node时, 作业类型须为flink_sql_edge_job, run_mode为shared_cluster跟exclusive_cluster时, 作业类型须为flink_sql_job
@@ -458,6 +461,24 @@ public class SubmitSqlJobRequest {
     this.logEnabled = logEnabled;
   }
 
+  public SubmitSqlJobRequest smnTopic(String smnTopic) {
+    this.smnTopic = smnTopic;
+    return this;
+  }
+
+   /**
+   * 当作业异常时，向该SMN主题推送告警信息
+   * @return smnTopic
+  **/
+  @ApiModelProperty(example = "cs_job_exception", value = "当作业异常时，向该SMN主题推送告警信息")
+  public String getSmnTopic() {
+    return smnTopic;
+  }
+
+  public void setSmnTopic(String smnTopic) {
+    this.smnTopic = smnTopic;
+  }
+
   public SubmitSqlJobRequest jobType(JobTypeEnum jobType) {
     this.jobType = jobType;
     return this;
@@ -517,13 +538,14 @@ public class SubmitSqlJobRequest {
         Objects.equals(this.checkpointInterval, submitSqlJobRequest.checkpointInterval) &&
         Objects.equals(this.obsBucket, submitSqlJobRequest.obsBucket) &&
         Objects.equals(this.logEnabled, submitSqlJobRequest.logEnabled) &&
+        Objects.equals(this.smnTopic, submitSqlJobRequest.smnTopic) &&
         Objects.equals(this.jobType, submitSqlJobRequest.jobType) &&
         Objects.equals(this.edgeGroupIds, submitSqlJobRequest.edgeGroupIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, desc, templateId, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, jobType, edgeGroupIds);
+    return Objects.hash(name, desc, templateId, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, jobType, edgeGroupIds);
   }
 
 
@@ -545,6 +567,7 @@ public class SubmitSqlJobRequest {
     sb.append("    checkpointInterval: ").append(toIndentedString(checkpointInterval)).append("\n");
     sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
     sb.append("    logEnabled: ").append(toIndentedString(logEnabled)).append("\n");
+    sb.append("    smnTopic: ").append(toIndentedString(smnTopic)).append("\n");
     sb.append("    jobType: ").append(toIndentedString(jobType)).append("\n");
     sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
     sb.append("}");

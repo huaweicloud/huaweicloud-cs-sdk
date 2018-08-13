@@ -30,12 +30,12 @@ import java.io.IOException;
 /**
  * AddHostsInfoResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class AddHostsInfoResponsePayload {
   @SerializedName("host_id")
-  private Integer hostId = null;
+  private Long hostId = null;
 
-  public AddHostsInfoResponsePayload hostId(Integer hostId) {
+  public AddHostsInfoResponsePayload hostId(Long hostId) {
     this.hostId = hostId;
     return this;
   }
@@ -45,11 +45,11 @@ public class AddHostsInfoResponsePayload {
    * @return hostId
   **/
   @ApiModelProperty(example = "1", value = "域名ID")
-  public Integer getHostId() {
+  public Long getHostId() {
     return hostId;
   }
 
-  public void setHostId(Integer hostId) {
+  public void setHostId(Long hostId) {
     this.hostId = hostId;
   }
 

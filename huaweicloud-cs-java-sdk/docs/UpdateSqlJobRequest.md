@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **checkpointInterval** | **Integer** | 快照时间间隔, 单位为秒 |  [optional]
 **obsBucket** | **String** | checkpoint_enabled&#x3D;&#x3D;true是, 用户授权保存快照的OBS路径 |  [optional]
 **logEnabled** | **Boolean** | 是否开启作业的日志上传到用户的OBS功能 |  [optional]
+**smnTopic** | **String** | 当作业异常时，向该SMN主题推送告警信息 |  [optional]
 **edgeGroupIds** | **String** | 边缘计算组ID列表, 多个ID以逗号分隔 |  [optional]
 
 

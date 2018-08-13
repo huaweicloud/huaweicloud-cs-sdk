@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Integer** | 域名ID |  [optional]
+**id** | **Long** | 域名ID |  [optional]
 **info** | [**HostIpInfo**](HostIpInfo.md) |  |  [optional]
 
 

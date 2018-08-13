@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * JobEntity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class JobEntity {
   @SerializedName("job_id")
   private Long jobId = null;

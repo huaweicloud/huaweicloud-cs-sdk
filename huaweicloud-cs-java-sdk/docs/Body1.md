@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostsId** | **List&lt;Integer&gt;** | 域名ID列表 |  [optional]
+**hostsId** | **List&lt;Long&gt;** | 域名ID列表 |  [optional]
 
 
 

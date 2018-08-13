@@ -34,10 +34,13 @@ import java.util.List;
  * 集群IP域名映射信息列表
  */
 @ApiModel(description = "集群IP域名映射信息列表")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class ClusterHostsInfo {
   @SerializedName("hosts_info")
   private List<ClusterHostsInfoHostsInfo> hostsInfo = null;
+
+  @SerializedName("total")
+  private Integer total = null;
 
   public ClusterHostsInfo hostsInfo(List<ClusterHostsInfoHostsInfo> hostsInfo) {
     this.hostsInfo = hostsInfo;
@@ -65,6 +68,24 @@ public class ClusterHostsInfo {
     this.hostsInfo = hostsInfo;
   }
 
+  public ClusterHostsInfo total(Integer total) {
+    this.total = total;
+    return this;
+  }
+
+   /**
+   * IP域名总数
+   * @return total
+  **/
+  @ApiModelProperty(example = "1", value = "IP域名总数")
+  public Integer getTotal() {
+    return total;
+  }
+
+  public void setTotal(Integer total) {
+    this.total = total;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -75,12 +96,13 @@ public class ClusterHostsInfo {
       return false;
     }
     ClusterHostsInfo clusterHostsInfo = (ClusterHostsInfo) o;
-    return Objects.equals(this.hostsInfo, clusterHostsInfo.hostsInfo);
+    return Objects.equals(this.hostsInfo, clusterHostsInfo.hostsInfo) &&
+        Objects.equals(this.total, clusterHostsInfo.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hostsInfo);
+    return Objects.hash(hostsInfo, total);
   }
 
 
@@ -90,6 +112,7 @@ public class ClusterHostsInfo {
     sb.append("class ClusterHostsInfo {\n");
     
     sb.append("    hostsInfo: ").append(toIndentedString(hostsInfo)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -36,7 +36,14 @@ import com.huaweicloud.cs.java.v1.model.Body;
 import com.huaweicloud.cs.java.v1.model.Body1;
 import com.huaweicloud.cs.java.v1.model.Body2;
 import com.huaweicloud.cs.java.v1.model.CreateClusterResponse;
+import com.huaweicloud.cs.java.v1.model.CreatePeeringRequest;
+import com.huaweicloud.cs.java.v1.model.CreatePeeringResponse;
+import com.huaweicloud.cs.java.v1.model.CreateRouteRequest;
+import com.huaweicloud.cs.java.v1.model.CreateRouteResponse;
 import com.huaweicloud.cs.java.v1.model.DeleteHostsInfoResponse;
+import java.io.File;
+import com.huaweicloud.cs.java.v1.model.GetPeeringsResponse;
+import com.huaweicloud.cs.java.v1.model.GetRoutesResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.NewReservedClusterRequest;
@@ -46,6 +53,8 @@ import com.huaweicloud.cs.java.v1.model.QueryClustersResponse;
 import com.huaweicloud.cs.java.v1.model.QueryJobListResponse;
 import com.huaweicloud.cs.java.v1.model.QueryUserQuotaResponse;
 import com.huaweicloud.cs.java.v1.model.QueryUserQuotasResponse;
+import com.huaweicloud.cs.java.v1.model.RestartReservedClusterResponse;
+import com.huaweicloud.cs.java.v1.model.StopReservedClusterResponse;
 import com.huaweicloud.cs.java.v1.model.UpdateClusterRequest;
 import com.huaweicloud.cs.java.v1.model.UpdateHostsInfoResponse;
 import com.huaweicloud.cs.java.v1.model.UpdateUserQuotaRequest;
@@ -75,6 +84,150 @@ public class ClusterApi {
         this.apiClient = apiClient;
     }
 
+    /**
+     * Build call for addHostsFile
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID. (required)
+     * @param hostsFile 用户用于上传的hosts文件 (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call addHostsFileCall(String xProjectId, Integer clusterId, File hostsFile, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/hosts_file"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (hostsFile != null)
+        localVarFormParams.put("hosts_file", hostsFile);
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call addHostsFileValidateBeforeCall(String xProjectId, Integer clusterId, File hostsFile, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling addHostsFile(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling addHostsFile(Async)");
+        }
+        
+        // verify the required parameter 'hostsFile' is set
+        if (hostsFile == null) {
+            throw new ApiException("Missing the required parameter 'hostsFile' when calling addHostsFile(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = addHostsFileCall(xProjectId, clusterId, hostsFile, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 添加hosts文件
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID. (required)
+     * @param hostsFile 用户用于上传的hosts文件 (required)
+     * @return List&lt;AddHostsInfoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<AddHostsInfoResponse> addHostsFile(String xProjectId, Integer clusterId, File hostsFile) throws ApiException {
+        ApiResponse<List<AddHostsInfoResponse>> resp = addHostsFileWithHttpInfo(xProjectId, clusterId, hostsFile);
+        return resp.getData();
+    }
+
+    /**
+     * 添加hosts文件
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID. (required)
+     * @param hostsFile 用户用于上传的hosts文件 (required)
+     * @return ApiResponse&lt;List&lt;AddHostsInfoResponse&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<AddHostsInfoResponse>> addHostsFileWithHttpInfo(String xProjectId, Integer clusterId, File hostsFile) throws ApiException {
+        com.squareup.okhttp.Call call = addHostsFileValidateBeforeCall(xProjectId, clusterId, hostsFile, null, null);
+        Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 添加hosts文件 (asynchronously)
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID. (required)
+     * @param hostsFile 用户用于上传的hosts文件 (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call addHostsFileAsync(String xProjectId, Integer clusterId, File hostsFile, final ApiCallback<List<AddHostsInfoResponse>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = addHostsFileValidateBeforeCall(xProjectId, clusterId, hostsFile, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
     /**
      * Build call for addHostsInfo
      * @param xProjectId project id, 用于不同project取token. (required)
@@ -158,11 +311,11 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID. (required)
      * @param body JSON格式的请求体 (required)
-     * @return AddHostsInfoResponse
+     * @return List&lt;AddHostsInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public AddHostsInfoResponse addHostsInfo(String xProjectId, Integer clusterId, Body body) throws ApiException {
-        ApiResponse<AddHostsInfoResponse> resp = addHostsInfoWithHttpInfo(xProjectId, clusterId, body);
+    public List<AddHostsInfoResponse> addHostsInfo(String xProjectId, Integer clusterId, Body body) throws ApiException {
+        ApiResponse<List<AddHostsInfoResponse>> resp = addHostsInfoWithHttpInfo(xProjectId, clusterId, body);
         return resp.getData();
     }
 
@@ -172,12 +325,12 @@ public class ClusterApi {
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID. (required)
      * @param body JSON格式的请求体 (required)
-     * @return ApiResponse&lt;AddHostsInfoResponse&gt;
+     * @return ApiResponse&lt;List&lt;AddHostsInfoResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<AddHostsInfoResponse> addHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, Body body) throws ApiException {
+    public ApiResponse<List<AddHostsInfoResponse>> addHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, Body body) throws ApiException {
         com.squareup.okhttp.Call call = addHostsInfoValidateBeforeCall(xProjectId, clusterId, body, null, null);
-        Type localVarReturnType = new TypeToken<AddHostsInfoResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -191,7 +344,7 @@ public class ClusterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call addHostsInfoAsync(String xProjectId, Integer clusterId, Body body, final ApiCallback<AddHostsInfoResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call addHostsInfoAsync(String xProjectId, Integer clusterId, Body body, final ApiCallback<List<AddHostsInfoResponse>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -213,7 +366,149 @@ public class ClusterApi {
         }
 
         com.squareup.okhttp.Call call = addHostsInfoValidateBeforeCall(xProjectId, clusterId, body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<AddHostsInfoResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for createPeering
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param body 创建一个对等连接, 请求参数为json格式 (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createPeeringCall(String xProjectId, Integer clusterId, CreatePeeringRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/peering"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call createPeeringValidateBeforeCall(String xProjectId, Integer clusterId, CreatePeeringRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling createPeering(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling createPeering(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling createPeering(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = createPeeringCall(xProjectId, clusterId, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 创建一个对等连接
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param body 创建一个对等连接, 请求参数为json格式 (required)
+     * @return CreatePeeringResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CreatePeeringResponse createPeering(String xProjectId, Integer clusterId, CreatePeeringRequest body) throws ApiException {
+        ApiResponse<CreatePeeringResponse> resp = createPeeringWithHttpInfo(xProjectId, clusterId, body);
+        return resp.getData();
+    }
+
+    /**
+     * 创建一个对等连接
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param body 创建一个对等连接, 请求参数为json格式 (required)
+     * @return ApiResponse&lt;CreatePeeringResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CreatePeeringResponse> createPeeringWithHttpInfo(String xProjectId, Integer clusterId, CreatePeeringRequest body) throws ApiException {
+        com.squareup.okhttp.Call call = createPeeringValidateBeforeCall(xProjectId, clusterId, body, null, null);
+        Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 创建一个对等连接 (asynchronously)
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param body 创建一个对等连接, 请求参数为json格式 (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createPeeringAsync(String xProjectId, Integer clusterId, CreatePeeringRequest body, final ApiCallback<CreatePeeringResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createPeeringValidateBeforeCall(xProjectId, clusterId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -346,6 +641,158 @@ public class ClusterApi {
 
         com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CreateClusterResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for createRoute
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param body 创建一个路由, 请求参数为json格式 (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createRouteCall(String xProjectId, Integer clusterId, String peeringId, CreateRouteRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()))
+            .replaceAll("\\{" + "peering_id" + "\\}", apiClient.escapeString(peeringId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call createRouteValidateBeforeCall(String xProjectId, Integer clusterId, String peeringId, CreateRouteRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling createRoute(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling createRoute(Async)");
+        }
+        
+        // verify the required parameter 'peeringId' is set
+        if (peeringId == null) {
+            throw new ApiException("Missing the required parameter 'peeringId' when calling createRoute(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling createRoute(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = createRouteCall(xProjectId, clusterId, peeringId, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 创建路由
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param body 创建一个路由, 请求参数为json格式 (required)
+     * @return CreateRouteResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CreateRouteResponse createRoute(String xProjectId, Integer clusterId, String peeringId, CreateRouteRequest body) throws ApiException {
+        ApiResponse<CreateRouteResponse> resp = createRouteWithHttpInfo(xProjectId, clusterId, peeringId, body);
+        return resp.getData();
+    }
+
+    /**
+     * 创建路由
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param body 创建一个路由, 请求参数为json格式 (required)
+     * @return ApiResponse&lt;CreateRouteResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CreateRouteResponse> createRouteWithHttpInfo(String xProjectId, Integer clusterId, String peeringId, CreateRouteRequest body) throws ApiException {
+        com.squareup.okhttp.Call call = createRouteValidateBeforeCall(xProjectId, clusterId, peeringId, body, null, null);
+        Type localVarReturnType = new TypeToken<CreateRouteResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 创建路由 (asynchronously)
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param body 创建一个路由, 请求参数为json格式 (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createRouteAsync(String xProjectId, Integer clusterId, String peeringId, CreateRouteRequest body, final ApiCallback<CreateRouteResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createRouteValidateBeforeCall(xProjectId, clusterId, peeringId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CreateRouteResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -492,6 +939,145 @@ public class ClusterApi {
         return call;
     }
     /**
+     * Build call for deletePeering
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deletePeeringCall(String xProjectId, Integer clusterId, String peeringId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()))
+            .replaceAll("\\{" + "peering_id" + "\\}", apiClient.escapeString(peeringId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deletePeeringValidateBeforeCall(String xProjectId, Integer clusterId, String peeringId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling deletePeering(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling deletePeering(Async)");
+        }
+        
+        // verify the required parameter 'peeringId' is set
+        if (peeringId == null) {
+            throw new ApiException("Missing the required parameter 'peeringId' when calling deletePeering(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = deletePeeringCall(xProjectId, clusterId, peeringId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 删除对等连接
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void deletePeering(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
+        deletePeeringWithHttpInfo(xProjectId, clusterId, peeringId);
+    }
+
+    /**
+     * 删除对等连接
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> deletePeeringWithHttpInfo(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
+        com.squareup.okhttp.Call call = deletePeeringValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * 删除对等连接 (asynchronously)
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deletePeeringAsync(String xProjectId, Integer clusterId, String peeringId, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deletePeeringValidateBeforeCall(xProjectId, clusterId, peeringId, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for deleteReservedCluster
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID (required)
@@ -622,6 +1208,155 @@ public class ClusterApi {
         com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteRoute
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param routeId  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteRouteCall(String xProjectId, Integer clusterId, String peeringId, String routeId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route/{route_id}"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()))
+            .replaceAll("\\{" + "peering_id" + "\\}", apiClient.escapeString(peeringId.toString()))
+            .replaceAll("\\{" + "route_id" + "\\}", apiClient.escapeString(routeId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deleteRouteValidateBeforeCall(String xProjectId, Integer clusterId, String peeringId, String routeId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling deleteRoute(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling deleteRoute(Async)");
+        }
+        
+        // verify the required parameter 'peeringId' is set
+        if (peeringId == null) {
+            throw new ApiException("Missing the required parameter 'peeringId' when calling deleteRoute(Async)");
+        }
+        
+        // verify the required parameter 'routeId' is set
+        if (routeId == null) {
+            throw new ApiException("Missing the required parameter 'routeId' when calling deleteRoute(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = deleteRouteCall(xProjectId, clusterId, peeringId, routeId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 删除路由
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param routeId  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void deleteRoute(String xProjectId, Integer clusterId, String peeringId, String routeId) throws ApiException {
+        deleteRouteWithHttpInfo(xProjectId, clusterId, peeringId, routeId);
+    }
+
+    /**
+     * 删除路由
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param routeId  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> deleteRouteWithHttpInfo(String xProjectId, Integer clusterId, String peeringId, String routeId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteRouteValidateBeforeCall(xProjectId, clusterId, peeringId, routeId, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * 删除路由 (asynchronously)
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param routeId  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteRouteAsync(String xProjectId, Integer clusterId, String peeringId, String routeId, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteRouteValidateBeforeCall(xProjectId, clusterId, peeringId, routeId, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -936,16 +1671,322 @@ public class ClusterApi {
      * Build call for getHostsInfo
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID. (required)
+     * @param queryString 待查询的IP或者域名 (optional)
+     * @param cursor 域名ID (optional)
+     * @param next 是否向下翻页 (optional, default to true)
+     * @param limit 返回的数据条数 (optional, default to 10)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getHostsInfoCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getHostsInfoCall(String xProjectId, Integer clusterId, String queryString, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/hosts"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (queryString != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("query_string", queryString));
+        if (cursor != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("cursor", cursor));
+        if (next != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("next", next));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+        if (order != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("order", order));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getHostsInfoValidateBeforeCall(String xProjectId, Integer clusterId, String queryString, Long cursor, Boolean next, Integer limit, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling getHostsInfo(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling getHostsInfo(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getHostsInfoCall(xProjectId, clusterId, queryString, cursor, next, limit, order, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 查询指定集群的IP域名映射信息
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID. (required)
+     * @param queryString 待查询的IP或者域名 (optional)
+     * @param cursor 域名ID (optional)
+     * @param next 是否向下翻页 (optional, default to true)
+     * @param limit 返回的数据条数 (optional, default to 10)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
+     * @return QueryClusterHostsInfoResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public QueryClusterHostsInfoResponse getHostsInfo(String xProjectId, Integer clusterId, String queryString, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+        ApiResponse<QueryClusterHostsInfoResponse> resp = getHostsInfoWithHttpInfo(xProjectId, clusterId, queryString, cursor, next, limit, order);
+        return resp.getData();
+    }
+
+    /**
+     * 查询指定集群的IP域名映射信息
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID. (required)
+     * @param queryString 待查询的IP或者域名 (optional)
+     * @param cursor 域名ID (optional)
+     * @param next 是否向下翻页 (optional, default to true)
+     * @param limit 返回的数据条数 (optional, default to 10)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
+     * @return ApiResponse&lt;QueryClusterHostsInfoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<QueryClusterHostsInfoResponse> getHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, String queryString, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
+        com.squareup.okhttp.Call call = getHostsInfoValidateBeforeCall(xProjectId, clusterId, queryString, cursor, next, limit, order, null, null);
+        Type localVarReturnType = new TypeToken<QueryClusterHostsInfoResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 查询指定集群的IP域名映射信息 (asynchronously)
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID. (required)
+     * @param queryString 待查询的IP或者域名 (optional)
+     * @param cursor 域名ID (optional)
+     * @param next 是否向下翻页 (optional, default to true)
+     * @param limit 返回的数据条数 (optional, default to 10)
+     * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getHostsInfoAsync(String xProjectId, Integer clusterId, String queryString, Long cursor, Boolean next, Integer limit, String order, final ApiCallback<QueryClusterHostsInfoResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getHostsInfoValidateBeforeCall(xProjectId, clusterId, queryString, cursor, next, limit, order, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<QueryClusterHostsInfoResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getPeering
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getPeeringCall(String xProjectId, Integer clusterId, String peeringId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()))
+            .replaceAll("\\{" + "peering_id" + "\\}", apiClient.escapeString(peeringId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getPeeringValidateBeforeCall(String xProjectId, Integer clusterId, String peeringId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling getPeering(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling getPeering(Async)");
+        }
+        
+        // verify the required parameter 'peeringId' is set
+        if (peeringId == null) {
+            throw new ApiException("Missing the required parameter 'peeringId' when calling getPeering(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getPeeringCall(xProjectId, clusterId, peeringId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 查询对等连接
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @return CreatePeeringResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CreatePeeringResponse getPeering(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
+        ApiResponse<CreatePeeringResponse> resp = getPeeringWithHttpInfo(xProjectId, clusterId, peeringId);
+        return resp.getData();
+    }
+
+    /**
+     * 查询对等连接
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @return ApiResponse&lt;CreatePeeringResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CreatePeeringResponse> getPeeringWithHttpInfo(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
+        com.squareup.okhttp.Call call = getPeeringValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
+        Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 查询对等连接 (asynchronously)
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getPeeringAsync(String xProjectId, Integer clusterId, String peeringId, final ApiCallback<CreatePeeringResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getPeeringValidateBeforeCall(xProjectId, clusterId, peeringId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getPeerings
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getPeeringsCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/peering"
             .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
             .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()));
 
@@ -985,61 +2026,61 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getHostsInfoValidateBeforeCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getPeeringsValidateBeforeCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling getHostsInfo(Async)");
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling getPeerings(Async)");
         }
         
         // verify the required parameter 'clusterId' is set
         if (clusterId == null) {
-            throw new ApiException("Missing the required parameter 'clusterId' when calling getHostsInfo(Async)");
+            throw new ApiException("Missing the required parameter 'clusterId' when calling getPeerings(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getHostsInfoCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getPeeringsCall(xProjectId, clusterId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 查询指定集群的IP域名映射信息
+     * 查询对等连接列表
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 独享集群ID. (required)
-     * @return QueryClusterHostsInfoResponse
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @return GetPeeringsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryClusterHostsInfoResponse getHostsInfo(String xProjectId, Integer clusterId) throws ApiException {
-        ApiResponse<QueryClusterHostsInfoResponse> resp = getHostsInfoWithHttpInfo(xProjectId, clusterId);
+    public GetPeeringsResponse getPeerings(String xProjectId, Integer clusterId) throws ApiException {
+        ApiResponse<GetPeeringsResponse> resp = getPeeringsWithHttpInfo(xProjectId, clusterId);
         return resp.getData();
     }
 
     /**
-     * 查询指定集群的IP域名映射信息
+     * 查询对等连接列表
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 独享集群ID. (required)
-     * @return ApiResponse&lt;QueryClusterHostsInfoResponse&gt;
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @return ApiResponse&lt;GetPeeringsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryClusterHostsInfoResponse> getHostsInfoWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = getHostsInfoValidateBeforeCall(xProjectId, clusterId, null, null);
-        Type localVarReturnType = new TypeToken<QueryClusterHostsInfoResponse>(){}.getType();
+    public ApiResponse<GetPeeringsResponse> getPeeringsWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
+        com.squareup.okhttp.Call call = getPeeringsValidateBeforeCall(xProjectId, clusterId, null, null);
+        Type localVarReturnType = new TypeToken<GetPeeringsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * 查询指定集群的IP域名映射信息 (asynchronously)
+     * 查询对等连接列表 (asynchronously)
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
-     * @param clusterId 独享集群ID. (required)
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getHostsInfoAsync(String xProjectId, Integer clusterId, final ApiCallback<QueryClusterHostsInfoResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getPeeringsAsync(String xProjectId, Integer clusterId, final ApiCallback<GetPeeringsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1060,8 +2101,8 @@ public class ClusterApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getHostsInfoValidateBeforeCall(xProjectId, clusterId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<QueryClusterHostsInfoResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getPeeringsValidateBeforeCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetPeeringsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1221,6 +2262,149 @@ public class ClusterApi {
 
         com.squareup.okhttp.Call call = getReservedClustersValidateBeforeCall(xProjectId, name, status, cursor, next, limit, order, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<QueryClustersResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getRoutes
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getRoutesCall(String xProjectId, Integer clusterId, String peeringId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()))
+            .replaceAll("\\{" + "peering_id" + "\\}", apiClient.escapeString(peeringId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getRoutesValidateBeforeCall(String xProjectId, Integer clusterId, String peeringId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling getRoutes(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling getRoutes(Async)");
+        }
+        
+        // verify the required parameter 'peeringId' is set
+        if (peeringId == null) {
+            throw new ApiException("Missing the required parameter 'peeringId' when calling getRoutes(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getRoutesCall(xProjectId, clusterId, peeringId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 查询路由列表
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @return GetRoutesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public GetRoutesResponse getRoutes(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
+        ApiResponse<GetRoutesResponse> resp = getRoutesWithHttpInfo(xProjectId, clusterId, peeringId);
+        return resp.getData();
+    }
+
+    /**
+     * 查询路由列表
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @return ApiResponse&lt;GetRoutesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<GetRoutesResponse> getRoutesWithHttpInfo(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
+        com.squareup.okhttp.Call call = getRoutesValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
+        Type localVarReturnType = new TypeToken<GetRoutesResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 查询路由列表 (asynchronously)
+     * 
+     * @param xProjectId  (required)
+     * @param clusterId  (required)
+     * @param peeringId  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getRoutesAsync(String xProjectId, Integer clusterId, String peeringId, final ApiCallback<GetRoutesResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getRoutesValidateBeforeCall(xProjectId, clusterId, peeringId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetRoutesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1511,6 +2695,272 @@ public class ClusterApi {
         return call;
     }
     /**
+     * Build call for restartReservedCluster
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call restartReservedClusterCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/restart"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call restartReservedClusterValidateBeforeCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling restartReservedCluster(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling restartReservedCluster(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = restartReservedClusterCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 重启独享集群
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @return RestartReservedClusterResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public RestartReservedClusterResponse restartReservedCluster(String xProjectId, Integer clusterId) throws ApiException {
+        ApiResponse<RestartReservedClusterResponse> resp = restartReservedClusterWithHttpInfo(xProjectId, clusterId);
+        return resp.getData();
+    }
+
+    /**
+     * 重启独享集群
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @return ApiResponse&lt;RestartReservedClusterResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<RestartReservedClusterResponse> restartReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
+        com.squareup.okhttp.Call call = restartReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+        Type localVarReturnType = new TypeToken<RestartReservedClusterResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 重启独享集群 (asynchronously)
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call restartReservedClusterAsync(String xProjectId, Integer clusterId, final ApiCallback<RestartReservedClusterResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = restartReservedClusterValidateBeforeCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<RestartReservedClusterResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for stopReservedCluster
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call stopReservedClusterCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/reserved_cluster/{cluster_id}/stop"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "cluster_id" + "\\}", apiClient.escapeString(clusterId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call stopReservedClusterValidateBeforeCall(String xProjectId, Integer clusterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling stopReservedCluster(Async)");
+        }
+        
+        // verify the required parameter 'clusterId' is set
+        if (clusterId == null) {
+            throw new ApiException("Missing the required parameter 'clusterId' when calling stopReservedCluster(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = stopReservedClusterCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 停止独享集群
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @return StopReservedClusterResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public StopReservedClusterResponse stopReservedCluster(String xProjectId, Integer clusterId) throws ApiException {
+        ApiResponse<StopReservedClusterResponse> resp = stopReservedClusterWithHttpInfo(xProjectId, clusterId);
+        return resp.getData();
+    }
+
+    /**
+     * 停止独享集群
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @return ApiResponse&lt;StopReservedClusterResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<StopReservedClusterResponse> stopReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
+        com.squareup.okhttp.Call call = stopReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+        Type localVarReturnType = new TypeToken<StopReservedClusterResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 停止独享集群 (asynchronously)
+     * 
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param clusterId 独享集群ID (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call stopReservedClusterAsync(String xProjectId, Integer clusterId, final ApiCallback<StopReservedClusterResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = stopReservedClusterValidateBeforeCall(xProjectId, clusterId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<StopReservedClusterResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for updateHostsInfo
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param clusterId 独享集群ID. (required)
@@ -1521,7 +2971,7 @@ public class ClusterApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateHostsInfoCall(String xProjectId, Integer clusterId, Integer hostId, Body2 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateHostsInfoCall(String xProjectId, Integer clusterId, Long hostId, Body2 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1566,7 +3016,7 @@ public class ClusterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateHostsInfoValidateBeforeCall(String xProjectId, Integer clusterId, Integer hostId, Body2 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateHostsInfoValidateBeforeCall(String xProjectId, Integer clusterId, Long hostId, Body2 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -1604,7 +3054,7 @@ public class ClusterApi {
      * @return UpdateHostsInfoResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UpdateHostsInfoResponse updateHostsInfo(String xProjectId, Integer clusterId, Integer hostId, Body2 body) throws ApiException {
+    public UpdateHostsInfoResponse updateHostsInfo(String xProjectId, Integer clusterId, Long hostId, Body2 body) throws ApiException {
         ApiResponse<UpdateHostsInfoResponse> resp = updateHostsInfoWithHttpInfo(xProjectId, clusterId, hostId, body);
         return resp.getData();
     }
@@ -1619,7 +3069,7 @@ public class ClusterApi {
      * @return ApiResponse&lt;UpdateHostsInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UpdateHostsInfoResponse> updateHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, Integer hostId, Body2 body) throws ApiException {
+    public ApiResponse<UpdateHostsInfoResponse> updateHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, Long hostId, Body2 body) throws ApiException {
         com.squareup.okhttp.Call call = updateHostsInfoValidateBeforeCall(xProjectId, clusterId, hostId, body, null, null);
         Type localVarReturnType = new TypeToken<UpdateHostsInfoResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1636,7 +3086,7 @@ public class ClusterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateHostsInfoAsync(String xProjectId, Integer clusterId, Integer hostId, Body2 body, final ApiCallback<UpdateHostsInfoResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateHostsInfoAsync(String xProjectId, Integer clusterId, Long hostId, Body2 body, final ApiCallback<UpdateHostsInfoResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

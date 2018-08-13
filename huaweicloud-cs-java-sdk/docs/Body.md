@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostsInfo** | [**HostIpInfo**](HostIpInfo.md) |  |  [optional]
+**hostsInfo** | [**List&lt;HostIpInfo&gt;**](HostIpInfo.md) |  |  [optional]
 
 
 

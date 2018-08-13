@@ -31,7 +31,7 @@ import java.io.IOException;
  * 作业配置, show_detail为true时独有
  */
 @ApiModel(description = "作业配置, show_detail为true时独有")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class JobConfig {
   @SerializedName("checkpoint_enabled")
   private Boolean checkpointEnabled = null;
@@ -94,6 +94,9 @@ public class JobConfig {
 
   @SerializedName("obs_bucket")
   private String obsBucket = null;
+
+  @SerializedName("smn_topic")
+  private String smnTopic = null;
 
   @SerializedName("root_id")
   private Long rootId = null;
@@ -194,6 +197,24 @@ public class JobConfig {
     this.obsBucket = obsBucket;
   }
 
+  public JobConfig smnTopic(String smnTopic) {
+    this.smnTopic = smnTopic;
+    return this;
+  }
+
+   /**
+   * SMN主题名
+   * @return smnTopic
+  **/
+  @ApiModelProperty(value = "SMN主题名")
+  public String getSmnTopic() {
+    return smnTopic;
+  }
+
+  public void setSmnTopic(String smnTopic) {
+    this.smnTopic = smnTopic;
+  }
+
   public JobConfig rootId(Long rootId) {
     this.rootId = rootId;
     return this;
@@ -263,6 +284,7 @@ public class JobConfig {
         Objects.equals(this.checkpointInterval, jobConfig.checkpointInterval) &&
         Objects.equals(this.logEnabled, jobConfig.logEnabled) &&
         Objects.equals(this.obsBucket, jobConfig.obsBucket) &&
+        Objects.equals(this.smnTopic, jobConfig.smnTopic) &&
         Objects.equals(this.rootId, jobConfig.rootId) &&
         Objects.equals(this.edgeGroupIds, jobConfig.edgeGroupIds) &&
         Objects.equals(this.managerSpu, jobConfig.managerSpu);
@@ -270,7 +292,7 @@ public class JobConfig {
 
   @Override
   public int hashCode() {
-    return Objects.hash(checkpointEnabled, checkpointMode, checkpointInterval, logEnabled, obsBucket, rootId, edgeGroupIds, managerSpu);
+    return Objects.hash(checkpointEnabled, checkpointMode, checkpointInterval, logEnabled, obsBucket, smnTopic, rootId, edgeGroupIds, managerSpu);
   }
 
 
@@ -284,6 +306,7 @@ public class JobConfig {
     sb.append("    checkpointInterval: ").append(toIndentedString(checkpointInterval)).append("\n");
     sb.append("    logEnabled: ").append(toIndentedString(logEnabled)).append("\n");
     sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
+    sb.append("    smnTopic: ").append(toIndentedString(smnTopic)).append("\n");
     sb.append("    rootId: ").append(toIndentedString(rootId)).append("\n");
     sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
     sb.append("    managerSpu: ").append(toIndentedString(managerSpu)).append("\n");

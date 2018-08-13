@@ -31,15 +31,15 @@ import java.io.IOException;
 /**
  * ClusterHostsInfoHostsInfo
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class ClusterHostsInfoHostsInfo {
   @SerializedName("id")
-  private Integer id = null;
+  private Long id = null;
 
   @SerializedName("info")
   private HostIpInfo info = null;
 
-  public ClusterHostsInfoHostsInfo id(Integer id) {
+  public ClusterHostsInfoHostsInfo id(Long id) {
     this.id = id;
     return this;
   }
@@ -49,11 +49,11 @@ public class ClusterHostsInfoHostsInfo {
    * @return id
   **/
   @ApiModelProperty(example = "1", value = "域名ID")
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

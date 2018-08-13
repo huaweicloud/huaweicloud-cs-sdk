@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **checkpointInterval** | **Integer** | 快照时间间隔, 单位为秒 |  [optional]
 **logEnabled** | **Boolean** | 是否启用日志存储 |  [optional]
 **obsBucket** | **String** | OBS桶名 |  [optional]
+**smnTopic** | **String** | SMN主题名 |  [optional]
 **rootId** | **Long** | 父作业ID |  [optional]
 **edgeGroupIds** | **String** | 边缘计算组ID列表, 多个ID以逗号分隔 |  [optional]
 **managerSpu** | **Integer** | 管理单元SPU数 |  [optional]

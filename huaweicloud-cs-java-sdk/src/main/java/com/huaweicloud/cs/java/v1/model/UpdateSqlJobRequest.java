@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * UpdateSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-06-29T16:43:47.858+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
 public class UpdateSqlJobRequest {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -166,6 +166,9 @@ public class UpdateSqlJobRequest {
 
   @SerializedName("log_enabled")
   private Boolean logEnabled = false;
+
+  @SerializedName("smn_topic")
+  private String smnTopic = null;
 
   @SerializedName("edge_group_ids")
   private String edgeGroupIds = null;
@@ -408,6 +411,24 @@ public class UpdateSqlJobRequest {
     this.logEnabled = logEnabled;
   }
 
+  public UpdateSqlJobRequest smnTopic(String smnTopic) {
+    this.smnTopic = smnTopic;
+    return this;
+  }
+
+   /**
+   * 当作业异常时，向该SMN主题推送告警信息
+   * @return smnTopic
+  **/
+  @ApiModelProperty(example = "cs_job_exception", value = "当作业异常时，向该SMN主题推送告警信息")
+  public String getSmnTopic() {
+    return smnTopic;
+  }
+
+  public void setSmnTopic(String smnTopic) {
+    this.smnTopic = smnTopic;
+  }
+
   public UpdateSqlJobRequest edgeGroupIds(String edgeGroupIds) {
     this.edgeGroupIds = edgeGroupIds;
     return this;
@@ -449,12 +470,13 @@ public class UpdateSqlJobRequest {
         Objects.equals(this.checkpointInterval, updateSqlJobRequest.checkpointInterval) &&
         Objects.equals(this.obsBucket, updateSqlJobRequest.obsBucket) &&
         Objects.equals(this.logEnabled, updateSqlJobRequest.logEnabled) &&
+        Objects.equals(this.smnTopic, updateSqlJobRequest.smnTopic) &&
         Objects.equals(this.edgeGroupIds, updateSqlJobRequest.edgeGroupIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, edgeGroupIds);
+    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, edgeGroupIds);
   }
 
 
@@ -476,6 +498,7 @@ public class UpdateSqlJobRequest {
     sb.append("    checkpointInterval: ").append(toIndentedString(checkpointInterval)).append("\n");
     sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
     sb.append("    logEnabled: ").append(toIndentedString(logEnabled)).append("\n");
+    sb.append("    smnTopic: ").append(toIndentedString(smnTopic)).append("\n");
     sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
     sb.append("}");
     return sb.toString();
