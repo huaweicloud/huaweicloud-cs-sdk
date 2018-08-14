@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * QueryJobListResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-14T10:12:53.691+08:00")
 public class QueryJobListResponsePayload {
   @SerializedName("total")
   private Integer total = null;

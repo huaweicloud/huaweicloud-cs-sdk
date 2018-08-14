@@ -177,13 +177,14 @@ public class JobApiTest {
         Integer executorSpu = null;
         Boolean logEnabled = null;
         String obsBucket = null;
+        String smnTopic = null;
         File jar = null;
         String jarUrl = null;
         File config = null;
         String configUrl = null;
         String mainClass = null;
         String args = null;
-        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
+        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
 
         // TODO: test validations
     }
@@ -227,13 +228,14 @@ public class JobApiTest {
         Integer executorSpu = null;
         Boolean logEnabled = null;
         String obsBucket = null;
+        String smnTopic = null;
         File jar = null;
         String jarUrl = null;
         File config = null;
         String configUrl = null;
         String mainClass = null;
         String args = null;
-        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, jar, jarUrl, config, configUrl, mainClass, args);
+        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
 
         // TODO: test validations
     }

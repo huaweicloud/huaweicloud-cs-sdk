@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * Body2
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-13T12:00:00.393+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-14T10:12:53.691+08:00")
 public class Body2 {
   @SerializedName("hosts_info")
   private HostIpInfo hostsInfo = null;

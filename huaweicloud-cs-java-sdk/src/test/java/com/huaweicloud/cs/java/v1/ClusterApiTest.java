@@ -23,7 +23,14 @@ import com.huaweicloud.cs.java.v1.model.Body;
 import com.huaweicloud.cs.java.v1.model.Body1;
 import com.huaweicloud.cs.java.v1.model.Body2;
 import com.huaweicloud.cs.java.v1.model.CreateClusterResponse;
+import com.huaweicloud.cs.java.v1.model.CreatePeeringRequest;
+import com.huaweicloud.cs.java.v1.model.CreatePeeringResponse;
+import com.huaweicloud.cs.java.v1.model.CreateRouteRequest;
+import com.huaweicloud.cs.java.v1.model.CreateRouteResponse;
 import com.huaweicloud.cs.java.v1.model.DeleteHostsInfoResponse;
+import java.io.File;
+import com.huaweicloud.cs.java.v1.model.GetPeeringsResponse;
+import com.huaweicloud.cs.java.v1.model.GetRoutesResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
 import com.huaweicloud.cs.java.v1.model.NewReservedClusterRequest;
@@ -33,6 +40,8 @@ import com.huaweicloud.cs.java.v1.model.QueryClustersResponse;
 import com.huaweicloud.cs.java.v1.model.QueryJobListResponse;
 import com.huaweicloud.cs.java.v1.model.QueryUserQuotaResponse;
 import com.huaweicloud.cs.java.v1.model.QueryUserQuotasResponse;
+import com.huaweicloud.cs.java.v1.model.RestartReservedClusterResponse;
+import com.huaweicloud.cs.java.v1.model.StopReservedClusterResponse;
 import com.huaweicloud.cs.java.v1.model.UpdateClusterRequest;
 import com.huaweicloud.cs.java.v1.model.UpdateHostsInfoResponse;
 import com.huaweicloud.cs.java.v1.model.UpdateUserQuotaRequest;
@@ -54,6 +63,24 @@ public class ClusterApiTest {
 
     
     /**
+     * 添加hosts文件
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void addHostsFileTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        File hostsFile = null;
+        List<AddHostsInfoResponse> response = api.addHostsFile(xProjectId, clusterId, hostsFile);
+
+        // TODO: test validations
+    }
+    
+    /**
      * 添加IP域名映射信息
      *
      * 
@@ -66,7 +93,25 @@ public class ClusterApiTest {
         String xProjectId = null;
         Integer clusterId = null;
         Body body = null;
-        AddHostsInfoResponse response = api.addHostsInfo(xProjectId, clusterId, body);
+        List<AddHostsInfoResponse> response = api.addHostsInfo(xProjectId, clusterId, body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 创建一个对等连接
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createPeeringTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        CreatePeeringRequest body = null;
+        CreatePeeringResponse response = api.createPeering(xProjectId, clusterId, body);
 
         // TODO: test validations
     }
@@ -84,6 +129,25 @@ public class ClusterApiTest {
         String xProjectId = null;
         NewReservedClusterRequest body = null;
         CreateClusterResponse response = api.createReservedCluster(xProjectId, body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 创建路由
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createRouteTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        String peeringId = null;
+        CreateRouteRequest body = null;
+        CreateRouteResponse response = api.createRoute(xProjectId, clusterId, peeringId, body);
 
         // TODO: test validations
     }
@@ -107,6 +171,24 @@ public class ClusterApiTest {
     }
     
     /**
+     * 删除对等连接
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deletePeeringTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        String peeringId = null;
+        api.deletePeering(xProjectId, clusterId, peeringId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * 删除独享集群, 如果集群中有运行的作业会自动立即停止
      *
      * 
@@ -119,6 +201,25 @@ public class ClusterApiTest {
         String xProjectId = null;
         Integer clusterId = null;
         GlobalResponse response = api.deleteReservedCluster(xProjectId, clusterId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 删除路由
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteRouteTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        String peeringId = null;
+        String routeId = null;
+        api.deleteRoute(xProjectId, clusterId, peeringId, routeId);
 
         // TODO: test validations
     }
@@ -176,7 +277,47 @@ public class ClusterApiTest {
     public void getHostsInfoTest() throws ApiException {
         String xProjectId = null;
         Integer clusterId = null;
-        QueryClusterHostsInfoResponse response = api.getHostsInfo(xProjectId, clusterId);
+        String queryString = null;
+        Long cursor = null;
+        Boolean next = null;
+        Integer limit = null;
+        String order = null;
+        QueryClusterHostsInfoResponse response = api.getHostsInfo(xProjectId, clusterId, queryString, cursor, next, limit, order);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 查询对等连接
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPeeringTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        String peeringId = null;
+        CreatePeeringResponse response = api.getPeering(xProjectId, clusterId, peeringId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 查询对等连接列表
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getPeeringsTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        GetPeeringsResponse response = api.getPeerings(xProjectId, clusterId);
 
         // TODO: test validations
     }
@@ -199,6 +340,24 @@ public class ClusterApiTest {
         Integer limit = null;
         String order = null;
         QueryClustersResponse response = api.getReservedClusters(xProjectId, name, status, cursor, next, limit, order);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 查询路由列表
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getRoutesTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        String peeringId = null;
+        GetRoutesResponse response = api.getRoutes(xProjectId, clusterId, peeringId);
 
         // TODO: test validations
     }
@@ -242,6 +401,40 @@ public class ClusterApiTest {
     }
     
     /**
+     * 重启独享集群
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void restartReservedClusterTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        RestartReservedClusterResponse response = api.restartReservedCluster(xProjectId, clusterId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 停止独享集群
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void stopReservedClusterTest() throws ApiException {
+        String xProjectId = null;
+        Integer clusterId = null;
+        StopReservedClusterResponse response = api.stopReservedCluster(xProjectId, clusterId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * 更新IP域名映射信息
      *
      * 
@@ -253,7 +446,7 @@ public class ClusterApiTest {
     public void updateHostsInfoTest() throws ApiException {
         String xProjectId = null;
         Integer clusterId = null;
-        Integer hostId = null;
+        Long hostId = null;
         Body2 body = null;
         UpdateHostsInfoResponse response = api.updateHostsInfo(xProjectId, clusterId, hostId, body);
 
