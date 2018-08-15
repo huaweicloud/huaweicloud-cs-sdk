@@ -14,6 +14,17 @@
         <url>https://www.huaweicloud.com/product/cs.html</url>
     </scm>
 
+    <developers>
+        <developer>
+            <id>huaweicloud</id>
+            <organization>Huawei Cloud</organization>
+            <organizationUrl>https://huaweicloud.com</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <licenses>
         <license>
             <name>Apache 2.0 License</name>
