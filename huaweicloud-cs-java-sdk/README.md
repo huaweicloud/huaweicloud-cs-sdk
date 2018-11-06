@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.huaweicloud.cs</groupId>
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
-    <version>1.0</version>
+    <version>1.0.2</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.0"
+compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.0.2"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/huaweicloud-cs-java-sdk-1.0.jar
+* target/huaweicloud-cs-java-sdk-1.0.2.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -87,21 +87,31 @@ public class AuthorizeApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
+All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthorizeApi* | [**authorizeBucket**](docs/AuthorizeApi.md#authorizeBucket) | **POST** /{X-Project-Id}/obs_authorize | 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
+*ClusterApi* | [**addHostsFile**](docs/ClusterApi.md#addHostsFile) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts_file | 添加hosts文件
 *ClusterApi* | [**addHostsInfo**](docs/ClusterApi.md#addHostsInfo) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 添加IP域名映射信息
+*ClusterApi* | [**createPeering**](docs/ClusterApi.md#createPeering) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering | 创建一个对等连接
 *ClusterApi* | [**createReservedCluster**](docs/ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+*ClusterApi* | [**createRoute**](docs/ClusterApi.md#createRoute) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route | 创建路由
 *ClusterApi* | [**deleteHostsInfo**](docs/ClusterApi.md#deleteHostsInfo) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 删除IP域名映射信息
+*ClusterApi* | [**deletePeering**](docs/ClusterApi.md#deletePeering) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id} | 删除对等连接
 *ClusterApi* | [**deleteReservedCluster**](docs/ClusterApi.md#deleteReservedCluster) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id} | 删除独享集群, 如果集群中有运行的作业会自动立即停止
+*ClusterApi* | [**deleteRoute**](docs/ClusterApi.md#deleteRoute) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route/{route_id} | 删除路由
 *ClusterApi* | [**describeReservedCluster**](docs/ClusterApi.md#describeReservedCluster) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id} | 查询用户创建的独享集群信息
 *ClusterApi* | [**getClusterJobs**](docs/ClusterApi.md#getClusterJobs) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/jobs | 查询独享集群下的作业列表
 *ClusterApi* | [**getHostsInfo**](docs/ClusterApi.md#getHostsInfo) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 查询指定集群的IP域名映射信息
+*ClusterApi* | [**getPeering**](docs/ClusterApi.md#getPeering) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id} | 查询对等连接
+*ClusterApi* | [**getPeerings**](docs/ClusterApi.md#getPeerings) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering | 查询对等连接列表
 *ClusterApi* | [**getReservedClusters**](docs/ClusterApi.md#getReservedClusters) | **GET** /{X-Project-Id}/reserved_clusters | 查询租户下的集群列表
+*ClusterApi* | [**getRoutes**](docs/ClusterApi.md#getRoutes) | **GET** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route | 查询路由列表
 *ClusterApi* | [**getUserQuota**](docs/ClusterApi.md#getUserQuota) | **GET** /{X-Project-Id}/user_quota/{user_id} | 查询指定用户配额信息
 *ClusterApi* | [**getUserQuotas**](docs/ClusterApi.md#getUserQuotas) | **GET** /{X-Project-Id}/user_quotas | 获取租户下的用户配额信息
+*ClusterApi* | [**restartReservedCluster**](docs/ClusterApi.md#restartReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/restart | 重启独享集群
+*ClusterApi* | [**stopReservedCluster**](docs/ClusterApi.md#stopReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/stop | 停止独享集群
 *ClusterApi* | [**updateHostsInfo**](docs/ClusterApi.md#updateHostsInfo) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts/{host_id} | 更新IP域名映射信息
 *ClusterApi* | [**updateReservedCluster**](docs/ClusterApi.md#updateReservedCluster) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id} | 更新独享集群
 *ClusterApi* | [**updateUserQuota**](docs/ClusterApi.md#updateUserQuota) | **PATCH** /{X-Project-Id}/user_quota/{user_id} | 更新指定用户配额信息
@@ -140,8 +150,15 @@ Class | Method | HTTP request | Description
  - [CreateClusterResponse](docs/CreateClusterResponse.md)
  - [CreateClusterResponsePayload](docs/CreateClusterResponsePayload.md)
  - [CreateJobTemplateRequest](docs/CreateJobTemplateRequest.md)
+ - [CreatePeeringRequest](docs/CreatePeeringRequest.md)
+ - [CreatePeeringResponse](docs/CreatePeeringResponse.md)
+ - [CreateRouteRequest](docs/CreateRouteRequest.md)
+ - [CreateRouteResponse](docs/CreateRouteResponse.md)
  - [DeleteHostsInfoResponse](docs/DeleteHostsInfoResponse.md)
+ - [EngineVersion](docs/EngineVersion.md)
  - [GetJobDetailResponse](docs/GetJobDetailResponse.md)
+ - [GetPeeringsResponse](docs/GetPeeringsResponse.md)
+ - [GetRoutesResponse](docs/GetRoutesResponse.md)
  - [GlobalErrorResponse](docs/GlobalErrorResponse.md)
  - [GlobalResponse](docs/GlobalResponse.md)
  - [HostIpInfo](docs/HostIpInfo.md)
@@ -166,6 +183,7 @@ Class | Method | HTTP request | Description
  - [NewReservedClusterRequest](docs/NewReservedClusterRequest.md)
  - [OverviewEntity](docs/OverviewEntity.md)
  - [OverviewResponse](docs/OverviewResponse.md)
+ - [Peering](docs/Peering.md)
  - [QueryClusterHostsInfoResponse](docs/QueryClusterHostsInfoResponse.md)
  - [QueryClusterResponse](docs/QueryClusterResponse.md)
  - [QueryClustersResponse](docs/QueryClustersResponse.md)
@@ -175,6 +193,10 @@ Class | Method | HTTP request | Description
  - [QueryUserQuotaResponse](docs/QueryUserQuotaResponse.md)
  - [QueryUserQuotasResponse](docs/QueryUserQuotasResponse.md)
  - [QueryUserQuotasResponsePayload](docs/QueryUserQuotasResponsePayload.md)
+ - [ReleaseVersionResponse](docs/ReleaseVersionResponse.md)
+ - [RestartReservedClusterResponse](docs/RestartReservedClusterResponse.md)
+ - [Route](docs/Route.md)
+ - [StopReservedClusterResponse](docs/StopReservedClusterResponse.md)
  - [SubmitJarJobRequest](docs/SubmitJarJobRequest.md)
  - [SubmitSqlJobRequest](docs/SubmitSqlJobRequest.md)
  - [UpdateClusterRequest](docs/UpdateClusterRequest.md)
@@ -184,6 +206,7 @@ Class | Method | HTTP request | Description
  - [UpdateUserQuotaRequest](docs/UpdateUserQuotaRequest.md)
  - [UserCluster](docs/UserCluster.md)
  - [UserQuotaInfo](docs/UserQuotaInfo.md)
+ - [VpcInfo](docs/VpcInfo.md)
 
 
 ## Documentation for Authorization

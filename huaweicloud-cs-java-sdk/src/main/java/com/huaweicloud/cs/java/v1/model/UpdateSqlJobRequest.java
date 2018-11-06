@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * UpdateSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-14T10:12:53.691+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-05T16:45:41.401+08:00")
 public class UpdateSqlJobRequest {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -169,6 +169,12 @@ public class UpdateSqlJobRequest {
 
   @SerializedName("smn_topic")
   private String smnTopic = null;
+
+  @SerializedName("restart_when_exception")
+  private Boolean restartWhenException = false;
+
+  @SerializedName("idle_state_retention")
+  private Integer idleStateRetention = 3600;
 
   @SerializedName("edge_group_ids")
   private String edgeGroupIds = null;
@@ -429,6 +435,42 @@ public class UpdateSqlJobRequest {
     this.smnTopic = smnTopic;
   }
 
+  public UpdateSqlJobRequest restartWhenException(Boolean restartWhenException) {
+    this.restartWhenException = restartWhenException;
+    return this;
+  }
+
+   /**
+   * 是否开启异常重启功能
+   * @return restartWhenException
+  **/
+  @ApiModelProperty(value = "是否开启异常重启功能")
+  public Boolean isRestartWhenException() {
+    return restartWhenException;
+  }
+
+  public void setRestartWhenException(Boolean restartWhenException) {
+    this.restartWhenException = restartWhenException;
+  }
+
+  public UpdateSqlJobRequest idleStateRetention(Integer idleStateRetention) {
+    this.idleStateRetention = idleStateRetention;
+    return this;
+  }
+
+   /**
+   * 空闲状态最长保留时间，超过该时间没有进行更新的中间状态会被删除，单位为秒
+   * @return idleStateRetention
+  **/
+  @ApiModelProperty(value = "空闲状态最长保留时间，超过该时间没有进行更新的中间状态会被删除，单位为秒")
+  public Integer getIdleStateRetention() {
+    return idleStateRetention;
+  }
+
+  public void setIdleStateRetention(Integer idleStateRetention) {
+    this.idleStateRetention = idleStateRetention;
+  }
+
   public UpdateSqlJobRequest edgeGroupIds(String edgeGroupIds) {
     this.edgeGroupIds = edgeGroupIds;
     return this;
@@ -471,12 +513,14 @@ public class UpdateSqlJobRequest {
         Objects.equals(this.obsBucket, updateSqlJobRequest.obsBucket) &&
         Objects.equals(this.logEnabled, updateSqlJobRequest.logEnabled) &&
         Objects.equals(this.smnTopic, updateSqlJobRequest.smnTopic) &&
+        Objects.equals(this.restartWhenException, updateSqlJobRequest.restartWhenException) &&
+        Objects.equals(this.idleStateRetention, updateSqlJobRequest.idleStateRetention) &&
         Objects.equals(this.edgeGroupIds, updateSqlJobRequest.edgeGroupIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, edgeGroupIds);
+    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, restartWhenException, idleStateRetention, edgeGroupIds);
   }
 
 
@@ -499,6 +543,8 @@ public class UpdateSqlJobRequest {
     sb.append("    obsBucket: ").append(toIndentedString(obsBucket)).append("\n");
     sb.append("    logEnabled: ").append(toIndentedString(logEnabled)).append("\n");
     sb.append("    smnTopic: ").append(toIndentedString(smnTopic)).append("\n");
+    sb.append("    restartWhenException: ").append(toIndentedString(restartWhenException)).append("\n");
+    sb.append("    idleStateRetention: ").append(toIndentedString(idleStateRetention)).append("\n");
     sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
     sb.append("}");
     return sb.toString();

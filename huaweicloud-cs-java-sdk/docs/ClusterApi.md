@@ -1,6 +1,6 @@
 # ClusterApi
 
-All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
+All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

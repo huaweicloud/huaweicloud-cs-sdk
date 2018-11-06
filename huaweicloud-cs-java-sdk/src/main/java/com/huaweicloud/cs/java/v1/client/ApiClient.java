@@ -43,6 +43,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.text.DateFormat;
+import java.util.concurrent.TimeUnit;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
@@ -53,7 +54,7 @@ import com.huaweicloud.cs.java.v1.client.auth.*;
 
 public class ApiClient {
 
-    private String basePath = "https://cs.cn-north-1.myhuaweicloud.com/v1.0";
+    private String basePath = "https://cs.<region>.myhuaweicloud.com/v1.0";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
@@ -76,19 +77,27 @@ public class ApiClient {
 
     private boolean useAkSk = true;
 
+    private String region;
+
+    public ApiClient() {
+        this("cn-north-1");
+    }
+
     /*
      * Constructor for ApiClient
      */
-    public ApiClient() {
+    public ApiClient(String region) {
         httpClient = new OkHttpClient();
+        setVerifyingSsl(false);
 
+        httpClient.setConnectTimeout(5, TimeUnit.SECONDS);
+        httpClient.setReadTimeout(10, TimeUnit.SECONDS);
 
-        verifyingSsl = true;
 
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("Swagger-Codegen/1.0.1/java");
+        setUserAgent("Swagger-Codegen/1.0.2/java");
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications = new HashMap<String, Authentication>();
@@ -96,6 +105,9 @@ public class ApiClient {
         authentications.put("aksk", new ApiKeyAuth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
+
+        this.region = region;
+        basePath = basePath.replace("<region>", region);
     }
 
     /**
@@ -110,7 +122,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://cs.cn-north-1.myhuaweicloud.com/v1.0
+     * @param basePath Base path of the URL
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {
@@ -271,13 +283,16 @@ public class ApiClient {
     /**
      * Helper method to set token for huawei token authentication.
      *
-     * @param token Access token
+     * @param domainName user's domain name
+     * @param userName user name
+     * @param password password
+     * @param projectId project id
      */
-    public void setToken(String token) {
+    public void useToken(String domainName, String userName, String password, String projectId) {
         for (Authentication auth : authentications.values()) {
             if (auth instanceof HttpBasicAuth) {
                 useAkSk = false;
-                ((HttpBasicAuth) auth).setToken(token);
+                ((HttpBasicAuth) auth).useToken(httpClient, region, domainName, userName, password, projectId);
                 return;
             }
         }
@@ -287,15 +302,14 @@ public class ApiClient {
     /**
      * Helper method to set token for huawei ak/sk authentication.
      *
-     * @param region service region
      * @param accessKey account accessKey
      * @param secretKey account secretKey
      */
-    public void setAksk(String region, String accessKey, String secretKey) {
+    public void useAksk(String accessKey, String secretKey) {
         for (Authentication auth : authentications.values()) {
             if (auth instanceof ApiKeyAuth) {
                 useAkSk = true;
-                ((ApiKeyAuth) auth).setAksk("CS", region, accessKey, secretKey);
+                ((ApiKeyAuth) auth).useAksk("CS", region, accessKey, secretKey);
                 return;
             }
         }
@@ -1042,6 +1056,7 @@ public class ApiClient {
      * Update query and header parameters based on authentication settings.
      *
      * @param request The HTTP request
+     * @return updated request
      */
      public Request updateParamsForAuth(Request request) {
         String authName = useAkSk ? "aksk" : "token";

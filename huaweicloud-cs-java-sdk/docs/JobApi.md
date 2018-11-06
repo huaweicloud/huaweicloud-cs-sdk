@@ -1,6 +1,6 @@
 # JobApi
 
-All URIs are relative to *https://cs.cn-north-1.myhuaweicloud.com/v1.0*
+All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -222,7 +222,7 @@ No authorization required
 
 <a name="runJob"></a>
 # **runJob**
-> GlobalResponse runJob(xProjectId, jobId)
+> GlobalResponse runJob(xProjectId, jobId, resumeSavePoint)
 
 运行作业
 
@@ -238,8 +238,9 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
+Boolean resumeSavePoint = false; // Boolean | 
 try {
-    GlobalResponse result = apiInstance.runJob(xProjectId, jobId);
+    GlobalResponse result = apiInstance.runJob(xProjectId, jobId, resumeSavePoint);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#runJob");
@@ -253,6 +254,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
+ **resumeSavePoint** | **Boolean**|  | [optional] [default to false]
 
 ### Return type
 
@@ -269,7 +271,7 @@ No authorization required
 
 <a name="stopJob"></a>
 # **stopJob**
-> GlobalResponse stopJob(xProjectId, jobId)
+> GlobalResponse stopJob(xProjectId, jobId, triggerSavePoint)
 
 停止作业
 
@@ -283,8 +285,9 @@ No authorization required
 JobApi apiInstance = new JobApi();
 String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
+Boolean triggerSavePoint = false; // Boolean | 
 try {
-    GlobalResponse result = apiInstance.stopJob(xProjectId, jobId);
+    GlobalResponse result = apiInstance.stopJob(xProjectId, jobId, triggerSavePoint);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#stopJob");
@@ -298,6 +301,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xProjectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
+ **triggerSavePoint** | **Boolean**|  | [optional] [default to false]
 
 ### Return type
 

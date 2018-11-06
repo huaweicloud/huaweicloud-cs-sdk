@@ -28,29 +28,26 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * JobTemplateRequest
+ * EngineVersion
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-02-07T15:01:13.888+08:00")
-public class JobTemplateRequest {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-05T16:45:41.401+08:00")
+public class EngineVersion {
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("desc")
-  private String desc = null;
+  @SerializedName("version")
+  private String version = null;
 
-  @SerializedName("sql_body")
-  private String sqlBody = null;
-
-  public JobTemplateRequest name(String name) {
+  public EngineVersion name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * 模板名称
+   * engine name
    * @return name
   **/
-  @ApiModelProperty(example = "simple stream sql", required = true, value = "模板名称")
+  @ApiModelProperty(example = "flink", value = "engine name")
   public String getName() {
     return name;
   }
@@ -59,40 +56,22 @@ public class JobTemplateRequest {
     this.name = name;
   }
 
-  public JobTemplateRequest desc(String desc) {
-    this.desc = desc;
+  public EngineVersion version(String version) {
+    this.version = version;
     return this;
   }
 
    /**
-   * 模板描述
-   * @return desc
+   * engine当前版本号
+   * @return version
   **/
-  @ApiModelProperty(example = "快速上手示例", value = "模板描述")
-  public String getDesc() {
-    return desc;
+  @ApiModelProperty(example = "1.4.0", value = "engine当前版本号")
+  public String getVersion() {
+    return version;
   }
 
-  public void setDesc(String desc) {
-    this.desc = desc;
-  }
-
-  public JobTemplateRequest sqlBody(String sqlBody) {
-    this.sqlBody = sqlBody;
-    return this;
-  }
-
-   /**
-   * Stream SQL语句, 至少包含source, query, sink三个部分
-   * @return sqlBody
-  **/
-  @ApiModelProperty(example = "select * from source_table", value = "Stream SQL语句, 至少包含source, query, sink三个部分")
-  public String getSqlBody() {
-    return sqlBody;
-  }
-
-  public void setSqlBody(String sqlBody) {
-    this.sqlBody = sqlBody;
+  public void setVersion(String version) {
+    this.version = version;
   }
 
 
@@ -104,26 +83,24 @@ public class JobTemplateRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JobTemplateRequest jobTemplateRequest = (JobTemplateRequest) o;
-    return Objects.equals(this.name, jobTemplateRequest.name) &&
-        Objects.equals(this.desc, jobTemplateRequest.desc) &&
-        Objects.equals(this.sqlBody, jobTemplateRequest.sqlBody);
+    EngineVersion engineVersion = (EngineVersion) o;
+    return Objects.equals(this.name, engineVersion.name) &&
+        Objects.equals(this.version, engineVersion.version);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, desc, sqlBody);
+    return Objects.hash(name, version);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JobTemplateRequest {\n");
+    sb.append("class EngineVersion {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    desc: ").append(toIndentedString(desc)).append("\n");
-    sb.append("    sqlBody: ").append(toIndentedString(sqlBody)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -22,15 +22,46 @@ import com.huaweicloud.cs.java.v1.client.Pair;
 
 import java.util.Map;
 import java.util.List;
+import java.io.IOException;
+import java.util.HashMap;
 
-import com.squareup.okhttp.Request;
+import com.squareup.okhttp.*;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-14T10:12:53.691+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-05T16:45:41.401+08:00")
 public class HttpBasicAuth implements Authentication {
     private String token;
 
-    public void setToken(String token) {
-        this.token = token;
+    public void useToken(OkHttpClient httpClient, String region, String domainName, String userName, String password, String projectId) {
+        String iamUrl = "https://iam.<region>.myhuaweicloud.com/v3/auth/tokens";
+
+        String tokenBody = "{\"auth\":{\"identity\":{\"password\":{\"user\":{\"password\":\"" + password + "\",\"domain\":{\"name\":\""
+            + domainName + "\"},\"name\":\"" + userName + "\"}},\"methods\":[\"password\"]},\"scope\":{\"project\":{\"id\":\"" + projectId + "\"}}}}";
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf=8");
+        RequestBody requestBody = RequestBody.create(JSON, tokenBody);
+
+        Map<String, String> headerMap = new HashMap<String, String>() {
+            {
+                put("Content-Type", "application/json; charset=utf-8");
+                put("Accept", "application/json");
+            }
+        };
+
+        Request.Builder builder = new Request.Builder();
+        builder.url(iamUrl.replace("<region>", region));
+        for (String key : headerMap.keySet()) {
+            builder.addHeader(key, headerMap.get(key));
+        }
+        builder.post(requestBody);
+        Request request = builder.build();
+
+        Response response = null;
+        try {
+            response = httpClient.newCall(request).execute();
+            token = response.headers().get("X-Subject-Token");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

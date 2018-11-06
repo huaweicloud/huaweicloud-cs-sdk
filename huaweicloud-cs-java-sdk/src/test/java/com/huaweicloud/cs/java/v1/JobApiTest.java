@@ -133,7 +133,8 @@ public class JobApiTest {
     public void runJobTest() throws ApiException {
         String xProjectId = null;
         Long jobId = null;
-        GlobalResponse response = api.runJob(xProjectId, jobId);
+        Boolean resumeSavePoint = null;
+        GlobalResponse response = api.runJob(xProjectId, jobId, resumeSavePoint);
 
         // TODO: test validations
     }
@@ -150,7 +151,8 @@ public class JobApiTest {
     public void stopJobTest() throws ApiException {
         String xProjectId = null;
         Long jobId = null;
-        GlobalResponse response = api.stopJob(xProjectId, jobId);
+        Boolean triggerSavePoint = null;
+        GlobalResponse response = api.stopJob(xProjectId, jobId, triggerSavePoint);
 
         // TODO: test validations
     }

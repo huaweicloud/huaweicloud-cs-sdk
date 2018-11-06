@@ -647,12 +647,13 @@ public class JobApi {
      * Build call for runJob
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param resumeSavePoint  (optional, default to false)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call runJobCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call runJobCall(String xProjectId, Long jobId, Boolean resumeSavePoint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -662,6 +663,8 @@ public class JobApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (resumeSavePoint != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("resumeSavePoint", resumeSavePoint));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -696,7 +699,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call runJobValidateBeforeCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call runJobValidateBeforeCall(String xProjectId, Long jobId, Boolean resumeSavePoint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -709,7 +712,7 @@ public class JobApi {
         }
         
 
-        com.squareup.okhttp.Call call = runJobCall(xProjectId, jobId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = runJobCall(xProjectId, jobId, resumeSavePoint, progressListener, progressRequestListener);
         return call;
 
     }
@@ -719,11 +722,12 @@ public class JobApi {
      * 触发运行作业
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param resumeSavePoint  (optional, default to false)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse runJob(String xProjectId, Long jobId) throws ApiException {
-        ApiResponse<GlobalResponse> resp = runJobWithHttpInfo(xProjectId, jobId);
+    public GlobalResponse runJob(String xProjectId, Long jobId, Boolean resumeSavePoint) throws ApiException {
+        ApiResponse<GlobalResponse> resp = runJobWithHttpInfo(xProjectId, jobId, resumeSavePoint);
         return resp.getData();
     }
 
@@ -732,11 +736,12 @@ public class JobApi {
      * 触发运行作业
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param resumeSavePoint  (optional, default to false)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> runJobWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
-        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, null, null);
+    public ApiResponse<GlobalResponse> runJobWithHttpInfo(String xProjectId, Long jobId, Boolean resumeSavePoint) throws ApiException {
+        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, resumeSavePoint, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -746,11 +751,12 @@ public class JobApi {
      * 触发运行作业
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param resumeSavePoint  (optional, default to false)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call runJobAsync(String xProjectId, Long jobId, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call runJobAsync(String xProjectId, Long jobId, Boolean resumeSavePoint, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -771,7 +777,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, resumeSavePoint, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -780,12 +786,13 @@ public class JobApi {
      * Build call for stopJob
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param triggerSavePoint  (optional, default to false)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call stopJobCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call stopJobCall(String xProjectId, Long jobId, Boolean triggerSavePoint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -795,6 +802,8 @@ public class JobApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (triggerSavePoint != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("triggerSavePoint", triggerSavePoint));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -829,7 +838,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call stopJobValidateBeforeCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call stopJobValidateBeforeCall(String xProjectId, Long jobId, Boolean triggerSavePoint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xProjectId' is set
         if (xProjectId == null) {
@@ -842,7 +851,7 @@ public class JobApi {
         }
         
 
-        com.squareup.okhttp.Call call = stopJobCall(xProjectId, jobId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = stopJobCall(xProjectId, jobId, triggerSavePoint, progressListener, progressRequestListener);
         return call;
 
     }
@@ -852,11 +861,12 @@ public class JobApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param triggerSavePoint  (optional, default to false)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse stopJob(String xProjectId, Long jobId) throws ApiException {
-        ApiResponse<GlobalResponse> resp = stopJobWithHttpInfo(xProjectId, jobId);
+    public GlobalResponse stopJob(String xProjectId, Long jobId, Boolean triggerSavePoint) throws ApiException {
+        ApiResponse<GlobalResponse> resp = stopJobWithHttpInfo(xProjectId, jobId, triggerSavePoint);
         return resp.getData();
     }
 
@@ -865,11 +875,12 @@ public class JobApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param triggerSavePoint  (optional, default to false)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> stopJobWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
-        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, null, null);
+    public ApiResponse<GlobalResponse> stopJobWithHttpInfo(String xProjectId, Long jobId, Boolean triggerSavePoint) throws ApiException {
+        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, triggerSavePoint, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -879,11 +890,12 @@ public class JobApi {
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param jobId 作业ID (required)
+     * @param triggerSavePoint  (optional, default to false)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call stopJobAsync(String xProjectId, Long jobId, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call stopJobAsync(String xProjectId, Long jobId, Boolean triggerSavePoint, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -904,7 +916,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, triggerSavePoint, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

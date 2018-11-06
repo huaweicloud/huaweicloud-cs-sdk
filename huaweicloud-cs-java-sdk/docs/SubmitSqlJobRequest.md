@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **obsBucket** | **String** | checkpoint_enabled&#x3D;&#x3D;true是, 用户授权保存快照的OBS路径 |  [optional]
 **logEnabled** | **Boolean** | 是否开启作业的日志上传到用户的OBS功能 |  [optional]
 **smnTopic** | **String** | 当作业异常时，向该SMN主题推送告警信息 |  [optional]
+**restartWhenException** | **Boolean** | 是否开启异常重启功能 |  [optional]
+**idleStateRetention** | **Integer** | 空闲状态最长保留时间，超过该时间没有进行更新的中间状态会被删除，单位为秒 |  [optional]
 **jobType** | [**JobTypeEnum**](#JobTypeEnum) | 作业类型, run_mode为edge_node时, 作业类型须为flink_sql_edge_job, run_mode为shared_cluster跟exclusive_cluster时, 作业类型须为flink_sql_job |  [optional]
 **edgeGroupIds** | **String** | 边缘计算组ID列表, 多个ID以逗号分隔 |  [optional]
 

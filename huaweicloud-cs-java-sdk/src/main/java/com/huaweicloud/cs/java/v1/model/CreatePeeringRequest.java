@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * CreatePeeringRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-14T10:12:53.691+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-05T16:45:41.401+08:00")
 public class CreatePeeringRequest {
   @SerializedName("vpc_id")
   private String vpcId = null;
@@ -68,7 +68,7 @@ public class CreatePeeringRequest {
    * vpc名称
    * @return name
   **/
-  @ApiModelProperty(example = "myVpc", value = "vpc名称")
+  @ApiModelProperty(example = "myVpc", required = true, value = "vpc名称")
   public String getName() {
     return name;
   }

@@ -11,7 +11,6 @@ Quick links:
 ##  SDK
 
 - **huaweicloud-cs-java-sdk** is for Java 
-- **huaweicloud-cs-scala-sdk** is for Scala
 
 ##  Deploy to OSS
 
@@ -36,35 +35,19 @@ add the `distributionManagement` to the pom. # todo add deploy script
 
 ## User authorization
 
-Before invoking CS SDK, you need to use `\src\main\java\com\huaweicloud\cs\utils` to get user token or ak/sk authorization info.
-
-- get user authorization to a JSON object which includes token and ak/sk
-
-For example:
 ```java
 ...
-import com.huaweicloud.cs.utils.UserAuthUtil;
-import com.google.gson.JsonObject;
-...
-//get token and AK/SK
-JsonObject authObject = userAuthUtil.getUserAuth(
-                csConfig.get("DomainName", null),
-                csConfig.get("UserName", null),
-                csConfig.get("Password", null),
-                csConfig.get("ProjectId", null));
-String xAuthToken = authObject.get("token").getAsString();
-String ak = authObject.get("ak").getAsString();
-String sk = authObject.get("sk").getAsString();
 
 //create API client
-ApiClient apiClient = new ApiClient();
+ApiClient apiClient = new ApiClient("regionName");
 
-//disable SSL verify
-apiClient.setVerifyingSsl(false);
+//use token authentication method
+apiClient.useToken("domainName", "userName", "password", "projectId");
 
-//set token or AK/SK authentication method
-apiClient.setToken(xAuthToken);
-//apiClient.setAksk(region, ak, sk);
+//Ak sk authentication method is not supported yet
+//apiClient.useAksk(ak, sk);
+
+JobApi jobApi = new JobApi(apiClient);
 ...
 ```
 
