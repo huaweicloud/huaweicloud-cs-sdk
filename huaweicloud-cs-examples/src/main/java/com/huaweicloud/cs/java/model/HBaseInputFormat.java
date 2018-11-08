@@ -11,7 +11,7 @@ import org.apache.hadoop.hbase.util.Bytes;
  */
 public class HBaseInputFormat extends TableInputFormat<Tuple2<String, String>> {
 
-    private Tuple2<String, String> reuse = new Tuple2<>();
+    private Tuple2<String, String> reuse = new Tuple2<String, String>();
 
     @Override
     public String getTableName() {
