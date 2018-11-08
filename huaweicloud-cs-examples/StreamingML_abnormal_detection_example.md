@@ -1,13 +1,16 @@
-#  快速入门：车辆超速告警
+#  实时AI-StreamingML示例：实时异常检测
 
 [TOC]
 
 ##  任务介绍
 
-在本示例中，从DIS数据源读数据，实时分析出超速车辆，向SMN输出源写数据。SMN一旦收到数据会向其订阅者发送短信或邮件。本示例中你会学习到：
-- 创建并运行Flink SQL应用
-- 完成“车辆超速告警”示例场景
-- 完成车辆连续超速时，对用户实时邮件告警
+在本示例中，从DIS数据源读数据，使用StreamingML的流式随即森林算法，实时检测异常数据。检测结果输出到SMN，SMN一旦收到数据会向其订阅者发送短信或邮件；同时输出结果输出到可视化监控大盘。
+
+本示例中你会学习到：
+
+- 创建并运行Flink SQL（StreamingML流式随即森林）
+- 完成“异常数据检测”
+- 完成“异常数据”实时告警和可视化展示
 
 本示例的github地址：[huaweicloud-cs-examples](https://github.com/huaweicloud/huaweicloud-cs-sdk/tree/master/huaweicloud-cs-examples)
 
@@ -22,12 +25,11 @@
 - [华为云官网](http://www.huaweicloud.com) -> 产品 -> [EI企业智能](https://www.huaweicloud.com/ei/) -> [实时流计算服务](https://www.huaweicloud.com/product/cs.html)，进入实时流计算的首页后，点击`立即使用`
 
 
-
 ![](doc/quick_start_1.png)
 
 ####  2. 新建Flink SQL作业
-`作业管理 -> 新建`：选择模版 `[IoT]车辆超速告警样例模板`
-![](doc/quick_start_2.png)
+`作业管理 -> 新建`：选择模版 `[StreamingML]流式随机森林异常检测模板`
+![](doc/StreamingML_SRF_Demo_1.png)
 
 - 编辑器：Flink SQL作业支持**SQL编辑器**和**SQL可视化编辑器**，这里选择`SQL编辑器`
 - 模版：目前提供了19个缺省模版，也支持用户自定义模版
@@ -36,7 +38,7 @@
 
 ####  3. SQL编辑器
 
-![](doc/quick_start_3.png)
+![](doc/StreamingML_SRF_Demo_2.png)
 
 **SQL编辑器中包含三部分内容：**
 
@@ -44,17 +46,50 @@
 
    - type = "dis"     # 类型选择DIS
    - region = "cn-north-1"   # Region名称为当前所在的区域，名称见：[这里](https://developer.huaweicloud.com/endpoint?CS)
-   - channel = "csinput"      # 在DIS中新建的通道名称，**[新建DIS通道见这里](https://console.huaweicloud.com/dis/?region=cn-north-1#/manage/instanceList)**
+   - channel = "csinput"      # 在DIS中新建的通道名称，**如果csinput已经存在，则创建一个新的通道**，**[新建DIS通道见这里](https://console.huaweicloud.com/dis/?region=cn-north-1#/manage/instanceList)**
    - partition_count = "1",   # 在DIS中通道的分区数
    - encode = "csv",            #  数据格式，CSV
    - field_delimiter = ","       #  行数据风格符，默认逗号分隔
-2. sink输出源：
-   - type = "smn"                # SMN为简单消息服务，步骤：1. [新建SMN通道](https://console.huaweicloud.com/smn/?region=cn-north-1#/smn/manager/topic)，得到URN（下面的topic_urn）和主题名（下面的message_subject）; 2. [添加订阅](https://console.huaweicloud.com/smn/?region=cn-north-1#/smn/manager/subscription)
+
+2. sink输出流1：发送到SMN
+   - type = "smn"                # SMN为简单消息服务
    - region = "cn-north-1"   # 分区，默认华北区
-   - topic_urn = "urn:smn:cn-north-1:ac538675aa074ff18d5f3224abeec213:cs-test"    # 见SMN中主题的URN列
-   - message_subject = "cs-test"                      # SMN主题名
-   - message_column = "MessageContent"     #  Sink中的哪一列作为消息体输出，这里选择的是`MessageContent`
-3. SQL query：形如`SELECT DeviceID, MAX(Velocity) AS Velocity, COUNT(Velocity) AS overspeed_count `
+   - topic_urn = "urn:smn:cn-north-1:ac538675aa074ff18d5f3224abeec213:cs-test"    # 步骤：1. [新建SMN通道](https://console.huaweicloud.com/smn/?region=cn-north-1#/smn/manager/topic)，得到URN（下面的topic_urn）和主题名（下面的message_subject）; 2. [添加订阅](https://console.huaweicloud.com/smn/?region=cn-north-1#/smn/manager/subscription)
+   - message_subject = "cs-test"                        # SMN主题名
+   - message_column = "MessageContent"     #  对应选择Sink table中的一列，这里选择的是`MessageContent`
+
+3. sink输出流2：实时流可视化-实时绘图
+
+   - app_id: API 网关ID，进入: [API网关](https://console.huaweicloud.com/apig/?region=cn-north-1&locale=zh-cn#/apig/manager/useapi/applymanager) `->` 调用API `->` 应用管理，点击“创建应用”，`应用ID`拷贝过来作为`app_id`的value值
+   - 其余字段默认即可
+
+    ```sql
+    /** 创建输出流，结果输出到APIG中，用户可通过配置APP id访问。
+    *
+    * 根据实际情况修改以下选项：
+    * app_id：用户APIG服务中调用API的APP id
+    * encode： 结果编码方式，可以为csv或者json
+    * field_delimiter: 当编码格式为csv时，属性之间的分隔符
+    * enable_output_null：当编码格式为json时，是否输出null数据
+    **/
+    CREATE SINK STREAM sine_wave_with_anomaly_score (
+    sinx DOUBLE,
+    score DOUBLE
+    )
+    WITH (
+    type = "apig",
+    region = "cn-north-1",
+    encode = "json",
+    enable_output_null = "false",
+    app_id = "your_app_id"
+    );
+    ```
+
+4. 流式查询SQL如下：
+
+   >SELECT sinx, 10*SRF_UNSUP(ARRAY[sinx]) OVER (ORDER BY proctime RANGE BETWEEN INTERVAL '5' SECOND PRECEDING AND CURRENT ROW) AS score FROM sine_wave;`
+
+SRF_UNSUP就是流式随机森林函数。
 
 ####  4. 运行参数设置
 
@@ -69,6 +104,8 @@
 ###  第二步：创建DIS通道和SMN主题订阅
 
 DIS数据摄入服务，其类似kafka的topic概念。SMN简单消息服务，用于短信或邮件通知。
+
+> 如果前面已经创建成功，则忽略这一步
 
 ####  1. 创建DIS通道
 
@@ -131,7 +168,7 @@ endpoint: https://dis.cn-north-1.myhwclouds.com:20004
 # config each flow to monitor file.
 flows:
   # DIS stream
-  - DISStream: csinput
+  - DISStream: cs-test
     # only support specified directory, filename can use * to match some files. eg. * means match all file, test*.log means match test1.log or test-12.log and so on.
     filePattern: /Users/admin/h/dis-agent-1.0.4/data/*.log
     # from where to start: 'START_OF_FILE' or 'END_OF_FILE'
