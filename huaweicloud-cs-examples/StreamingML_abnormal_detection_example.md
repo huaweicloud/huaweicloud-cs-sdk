@@ -4,11 +4,11 @@
 
 ##  任务介绍
 
-在本示例中，从DIS数据源读数据，使用StreamingML的流式随即森林算法，实时检测异常数据。检测结果输出到SMN，SMN一旦收到数据会向其订阅者发送短信或邮件；同时输出结果输出到可视化监控大盘。
+在本示例中，从DIS数据源读数据，使用StreamingML的Holt-Winters算法和流式随机森林算法，实时检测异常数据, 结果输出到可视化监控大盘。
 
 本示例中你会学习到：
 
-- 创建并运行Flink SQL（StreamingML流式随即森林）
+- 创建并运行Flink SQL（Holt-Winters算法和流式随机森林算法）
 - 完成“异常数据检测”
 - 完成“异常数据”实时告警和可视化展示
 
@@ -51,45 +51,74 @@
    - encode = "csv",            #  数据格式，CSV
    - field_delimiter = ","       #  行数据风格符，默认逗号分隔
 
-2. sink输出流1：发送到SMN
-   - type = "smn"                # SMN为简单消息服务
-   - region = "cn-north-1"   # 分区，默认华北区
-   - topic_urn = "urn:smn:cn-north-1:ac538675aa074ff18d5f3224abeec213:cs-test"    # 步骤：1. [新建SMN通道](https://console.huaweicloud.com/smn/?region=cn-north-1#/smn/manager/topic)，得到URN（下面的topic_urn）和主题名（下面的message_subject）; 2. [添加订阅](https://console.huaweicloud.com/smn/?region=cn-north-1#/smn/manager/subscription)
-   - message_subject = "cs-test"                        # SMN主题名
-   - message_column = "MessageContent"     #  对应选择Sink table中的一列，这里选择的是`MessageContent`
+   ```sql
+   /** 创建输入流，从DIS的csinput通道获取数据。
+     *
+     * 根据实际情况修改以下选项：
+     * channel：数据所在通道名
+     * partition_count：该通道分区数
+     * encode: 数据编码方式，可以是csv或json
+     * field_delimiter：当编码格式为csv时，属性之间的分隔符
+     **/
+   CREATE SOURCE STREAM orders (
+       order_count DOUBLE
+   )
+   WITH (
+     type = "dis",
+     region = "cn-north-1",
+     channel = "csinput",
+     partition_count = "1",
+     encode = "csv",
+     field_delimiter = ","
+   ) TIMESTAMP BY proctime.proctime;
+   ```
 
-3. sink输出流2：实时流可视化-实时绘图
+2. sink输出流：实时流可视化-实时绘图
 
    - app_id: API 网关ID，进入: [API网关](https://console.huaweicloud.com/apig/?region=cn-north-1&locale=zh-cn#/apig/manager/useapi/applymanager) `->` 调用API `->` 应用管理，点击“创建应用”，`应用ID`拷贝过来作为`app_id`的value值
    - 其余字段默认即可
 
     ```sql
-    /** 创建输出流，结果输出到APIG中，用户可通过配置APP id访问。
-    *
-    * 根据实际情况修改以下选项：
-    * app_id：用户APIG服务中调用API的APP id
-    * encode： 结果编码方式，可以为csv或者json
-    * field_delimiter: 当编码格式为csv时，属性之间的分隔符
-    * enable_output_null：当编码格式为json时，是否输出null数据
-    **/
-    CREATE SINK STREAM sine_wave_with_anomaly_score (
-    sinx DOUBLE,
-    score DOUBLE
-    )
-    WITH (
-    type = "apig",
-    region = "cn-north-1",
-    encode = "json",
-    enable_output_null = "false",
-    app_id = "your_app_id"
-    );
+   /** 创建输出流，结果输出到APIG中，用户可通过配置APP id访问。
+     *
+     * 根据实际情况修改以下选项：
+     * app_id：用户APIG服务中调用API的APP id
+     * encode： 结果编码方式，可以为csv或者json
+     * field_delimiter: 当编码格式为csv时，属性之间的分隔符
+     * enable_output_null：当编码格式为json时，是否输出null数据
+     **/
+   CREATE SINK STREAM orders_with_anomaly_score (
+     order_count DOUBLE,
+     score DOUBLE
+   )
+   WITH (
+     type = "apig",
+     region = "cn-north-1",
+     encode = "json",
+     enable_output_null = "false",
+     app_id = "your_app_id"
+   );
     ```
 
-4. 流式查询SQL如下：
+3. 流式查询SQL如下：
 
-   >SELECT sinx, 10*SRF_UNSUP(ARRAY[sinx]) OVER (ORDER BY proctime RANGE BETWEEN INTERVAL '5' SECOND PRECEDING AND CURRENT ROW) AS score FROM sine_wave;`
+   ```sql
+   CREATE TEMP STREAM orders_with_prediction(order_count double, pred double) TIMESTAMP BY proctime.proctime;
+   
+   INSERT INTO orders_with_prediction
+   SELECT order_count, 
+   	CONSERVATIVE_HOLT_WINTERS(order_count, 360, 0.2) 
+   		OVER (ORDER BY proctime ROWS BETWEEN 360 PRECEDING AND CURRENT ROW) AS pred, localtimestamp
+   FROM orders;
+   
+   INSERT INTO orders_with_anomaly_score
+   SELECT order_count,
+   	SRF_UNSUP(ARRAY[POWER(ABS(order_count - pred), 2)]) 
+   		OVER (ORDER BY proctime ROWS BETWEEN 360 PRECEDING AND CURRENT ROW) as score FROM orders_with_prediction;
+   		
+   ```
 
-SRF_UNSUP就是流式随机森林函数。
+   由于非季节性的ARIMA模型和基于随机森林的异常检测都不能很好的处理具有季节性的数据，所以我们在此采用一种方法：首先使用Holt-Winters算法预测数据流未来的值，然后对于预测值和实际值的差值运行异常检测算法。
 
 ####  4. 运行参数设置
 
@@ -101,7 +130,7 @@ SRF_UNSUP就是流式随机森林函数。
 - 保存作业日志：作业日志是否保存，会保存到您个人的OBS桶中。非必选
 - 开启作业异常告警：作业异常后可推送SMN消息（邮件和短线）。非必选
 
-###  第二步：创建DIS通道和SMN主题订阅
+###  第二步：创建DIS通道
 
 DIS数据摄入服务，其类似kafka的topic概念。SMN简单消息服务，用于短信或邮件通知。
 
@@ -109,115 +138,181 @@ DIS数据摄入服务，其类似kafka的topic概念。SMN简单消息服务，�
 
 ####  1. 创建DIS通道
 
-进入[DIS控制台](https://console.huaweicloud.com/dis/?region=cn-north-1#/manage/instanceList)，点击右侧`购买接入通道`，创建两个DIS通道：`csinput`为数据源通道，`csoutput`为结果输出通道。
+进入[DIS控制台](https://console.huaweicloud.com/dis/?region=cn-north-1#/manage/instanceList)，点击右侧`购买接入通道`，创建DIS通道：`csinput`。
 
 ![](doc/quick_start_4.png)
 
 源数据类型选为`CSV`
 
-####  2. 创建SMN主题
-
-进入[SMN控制台  -> 主题管理](https://console.huaweicloud.com/smn/?region=cn-north-1#/smn/manager/dashboard)， 点击右侧`创建主题`
-
-![](doc/quick_start_5.png)
-
-####  3. 添加邮件订阅
-
-![](doc/quick_start_6.png)
-
-#### 4. 得到SMN URN和主题
-
-进入：主题管理 -> 主题，鼠标放到`URN`列，会提示完整的URN，如`urn:smn:cn-north-1:ac538675aa074ff18d5f3224abeec211:cs-test`。
-在第三步使用。
-
 ###  第三步：提交运行Flink SQL作业
 
 进入：[CS控制台](https://console.huaweicloud.com/cs/?region=cn-north-1#/jobs/list) -> 作业管理  -> 选定已创建的作业，点击“编辑”
 
-- 补充DIS信息和SMN信息。在`第二步`得到的DIS通道、SMN URN、SMN主题名
+- 补充在`第二步`得到的DIS通道信息
+- 点击“语义校验”检查SQL语句
 - 点击“提交”
 
-![](doc/quick_start_7.png)
+![](doc/StreamingML_SRF_Demo_3.png)
 
 ###  第四步：发送DIS数据，测试结果
 
-至此，实时流计算方面的工作完成了，下面就要接入数据，查看实时计算结果。
+至此，实时流计算方面的工作完成了，下面就要接入数据，查看实时计算结果。这里提供两种方法发送数据，第一种使用DIS Agent，详细步骤可参考Day2中的教程，第二种为创建Maven工程。
 
-####  启动DIS Agent
-这里使用DIS agent向云上DIS通道发送CSV结构的数据，DIS Agent是一个本地运行的代理，监控本地文件变化，一旦文件中有新的数据追加，即时把新增的数据发送到DIS通道中，类似flume。
+####  创建Maven工程
+这里使用DIS的java包来为DIS发送数据，在Eclipse或Idea中创建maven工程，并加入DIS和Log4j的依赖：
 
-DIS Agent使用方法：
-1. [DIS Agent](https://support.huaweicloud.com/usermanual-dis/dis_01_0020.html)
-2. [下载DIS Agent](https://dis-publish.obs-website.cn-north-1.myhwclouds.com/dis-agent-1.1.0.zip)
-3. 本地解压
-4. 修改`conf/agent.yml`
-5. 启动`DIS Agent`: `bin/start-dis-agent.sh`
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.huaweicloud.dis</groupId>
+        <artifactId>huaweicloud-sdk-java-dis</artifactId>
+        <version>1.3.0</version>
+    </dependency>
 
-```yaml
----
-# 不变。
-region: cn-north-1
-# user ak (get from 'My Credential')
-ak: 填写你的AK
-# user sk (get from 'My Credential')
-sk: 填写你的SK
-# user project id (get from 'My Credential')
-projectId: 填写region所在的project id。进入console控制台->右上角 我的账号 选择"我的凭证"-> "项目列表中"选择"cn-north-1"对应的"项目ID"，类似"340a49ba009a489388216edxx245389e"
-# 不变。
-endpoint: https://dis.cn-north-1.myhwclouds.com:20004
-# config each flow to monitor file.
-flows:
-  # DIS stream
-  - DISStream: cs-test
-    # only support specified directory, filename can use * to match some files. eg. * means match all file, test*.log means match test1.log or test-12.log and so on.
-    filePattern: /Users/admin/h/dis-agent-1.0.4/data/*.log
-    # from where to start: 'START_OF_FILE' or 'END_OF_FILE'
-    initialPosition: START_OF_FILE
-    # upload max interval(ms)
-    maxBufferAgeMillis: 5000
+    <!-- log4j2 -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.8.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.8.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>2.8.2</version>
+    </dependency>
+</dependencies>
 ```
-
-
 
 ####  发送DIS数据
 
-本地用写个小程序，向文件中追加数据，这里使用的guava的files库。
+在Maven工程中添加如下Java文件，并完成代码片段编写：
 
-```scala
-import java.io.File
-import com.google.common.base.Charsets
-import com.google.common.io.Files
+1. 填入认证信息：AK/SK, projectID, 通道名称
+2. 模拟周期性数据发送
+3. 运行代码
 
-object DISTest {
-  def main(args: Array[String]): Unit = {
+```java
+import com.huaweicloud.dis.DIS;
+import com.huaweicloud.dis.DISClientBuilder;
+import com.huaweicloud.dis.core.util.StringUtils;
+import com.huaweicloud.dis.exception.DISClientException;
+import com.huaweicloud.dis.iface.data.request.PutRecordsRequest;
+import com.huaweicloud.dis.iface.data.request.PutRecordsRequestEntry;
+import com.huaweicloud.dis.iface.data.response.PutRecordsResult;
+import com.huaweicloud.dis.iface.data.response.PutRecordsResultEntry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class SRFProducer {
+  private static final Logger LOGGER = LoggerFactory.getLogger(SRFProducer.class);
+
+  public static void main(String args[]) {
+    runProduceDemo();
+  }
+
+  private static void runProduceDemo() {
+    // TODO: 创建DIS客户端实例
+    DIS client = DISClientBuilder.standard()
+        .withEndpoint("https://dis.cn-north-1.myhuaweicloud.com:20004")
+        .withAk("your_ak")
+        .withSk("your_sk")
+        .withProjectId("your_project_id")
+        .withRegion("cn-north-1")
+        .build();
+    String streamName = "csinput";
+
+    // TODO: 模拟周期性数据发送， 可添加异常数据监测算法有效性。如下为发送周期性正弦函数样例
+    int x = 0;
     while (true) {
-      val sample = Array(
-        "0001,20171202081202,20171202081203,true,23.1234532,35.3321232,91.23,east,200,20321",
-        "0001,20171202081203,20171202081204,true,23.1234535,35.3321231,95.43,east,201,20321",
-        "0001,20171202081205,20171202081206,true,23.1234537,35.3321236,102.01,east,200,20321",
-        "0002,20171202081206,20171202081207,true,23.1234533,35.3321231,105.04,north,232,12342"
-      )
-
-      val f = new File("/Users/admin/h/dis-agent-1.0.4/data/test.log")
-      (0 until 300).foreach(i => {
-        val line = sample(i % sample.length) + "\n"
-        println(line)
-        Files.append(line, f, Charsets.UTF_8)
-        Thread.sleep(1)
-      })
+      try {
+        String msg = Double.toString(Math.sin(Math.toRadians(x)));
+        sendMessage(client, streamName, msg);
+        x++;
+        Thread.sleep(100);
+      } catch (InterruptedException e) {}
     }
   }
+
+  /**
+   * @param disClient  DIS客户端实例
+   * @param streamName 流名称
+   * @param message    上传的数据
+   */
+  private static void sendMessage(DIS disClient, String streamName, String message) {
+    PutRecordsRequest putRecordsRequest = new PutRecordsRequest();
+    putRecordsRequest.setStreamName(streamName);
+    List<PutRecordsRequestEntry> putRecordsRequestEntryList = new ArrayList<PutRecordsRequestEntry>();
+    ByteBuffer buffer = ByteBuffer.wrap(message.getBytes());
+    PutRecordsRequestEntry entry = new PutRecordsRequestEntry();
+    entry.setData(buffer);
+    entry.setPartitionKey(String.valueOf(ThreadLocalRandom.current().nextInt(1000000)));
+    putRecordsRequestEntryList.add(entry);
+    putRecordsRequest.setRecords(putRecordsRequestEntryList);
+
+    LOGGER.info("========== BEGIN PUT ============");
+
+    PutRecordsResult putRecordsResult = null;
+    try {
+      putRecordsResult = disClient.putRecords(putRecordsRequest);
+    } catch (DISClientException e) {
+      LOGGER.error("Failed to get a normal response, please check params and retry. Error message [{}]",
+          e.getMessage(),
+          e);
+    } catch (Exception e) {
+      LOGGER.error(e.getMessage(), e);
+    }
+
+    if (putRecordsResult != null) {
+      LOGGER.info("Put {} records[{} successful / {} failed].",
+          putRecordsResult.getRecords().size(),
+          putRecordsResult.getRecords().size() - putRecordsResult.getFailedRecordCount().get(),
+          putRecordsResult.getFailedRecordCount());
+
+      for (int j = 0; j < putRecordsResult.getRecords().size(); j++) {
+        PutRecordsResultEntry putRecordsRequestEntry = putRecordsResult.getRecords().get(j);
+        if (!StringUtils.isNullOrEmpty(putRecordsRequestEntry.getErrorCode())) {
+          // 上传失败
+          LOGGER.error("[{}] put failed, errorCode [{}], errorMessage [{}]",
+              new String(putRecordsRequestEntryList.get(j).getData().array()),
+              putRecordsRequestEntry.getErrorCode(),
+              putRecordsRequestEntry.getErrorMessage());
+        } else {
+          // 上传成功
+          LOGGER.info("[{}] put success, partitionId [{}], partitionKey [{}], sequenceNumber [{}]",
+              new String(putRecordsRequestEntryList.get(j).getData().array()),
+              putRecordsRequestEntry.getPartitionId(),
+              putRecordsRequestEntryList.get(j).getPartitionKey(),
+              putRecordsRequestEntry.getSequenceNumber());
+        }
+      }
+    }
+    LOGGER.info("========== END PUT ============");
+  }
+
 }
+
 ```
+
+####  查看结果
+
+![](doc/StreamingML_SRF_Demo_5.png)
+
+点击SInk可视化查看实时数据，算法在稳定运行一段时间后可见Score分值稳定在较低水平（Score分值为0-1,分值越高，异常行为越剧烈）。
 
 ##  任务打卡
 
-**1. 截图1：超速邮件通知或短信 **
-![](doc/quick_start_8.png)
+**截图：运行时数据流实时展示**
 
-**2. 截图2：运行时作业中流数据统计**
-![](doc/quick_start_10.png)
-
-!(doc/quick_start_9.png)
+![](doc/StreamingML_SRF_Demo_4.png)
 
 ------------EOF--------------
