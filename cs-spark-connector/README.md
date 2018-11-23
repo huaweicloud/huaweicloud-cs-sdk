@@ -14,7 +14,7 @@ There are three types of Connectors:
 
 Will Support:
 1. DIS: Spark inside
-2. DCS: Redic inside
+2. DCS: Redis inside
 3. CloudTable: HBase inside
 
 If you have any connector need, please send us a issue [here](https://github.com/huaweicloud/huaweicloud-cs-sdk/issues).
