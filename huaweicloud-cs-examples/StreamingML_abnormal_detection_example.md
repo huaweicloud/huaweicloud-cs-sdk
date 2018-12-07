@@ -6,11 +6,13 @@
 
 在本示例中，从DIS数据源读数据，使用StreamingML的Holt-Winters算法和流式随机森林算法，实时检测异常数据, 结果输出到可视化监控大盘。
 
+任务采用的数据为正弦曲线，模拟电商订单成交量的周期性变化。同学可以在数据生成时混入异常数据，验证算法是否能识别出这些异常数据。
+
 本示例中你会学习到：
 
 - 创建并运行Flink SQL（Holt-Winters算法和流式随机森林算法）
 - 完成“异常数据检测”
-- 完成“异常数据”实时告警和可视化展示
+- 完成可视化展示
 
 本示例的github地址：[huaweicloud-cs-examples](https://github.com/huaweicloud/huaweicloud-cs-sdk/tree/master/huaweicloud-cs-examples)
 
@@ -132,7 +134,7 @@
 
 ###  第二步：创建DIS通道
 
-DIS数据摄入服务，其类似kafka的topic概念。SMN简单消息服务，用于短信或邮件通知。
+DIS数据摄入服务，其类似kafka的topic概念。
 
 > 如果前面已经创建成功，则忽略这一步
 
@@ -156,152 +158,167 @@ DIS数据摄入服务，其类似kafka的topic概念。SMN简单消息服务，�
 
 ###  第四步：发送DIS数据，测试结果
 
-至此，实时流计算方面的工作完成了，下面就要接入数据，查看实时计算结果。这里提供两种方法发送数据，第一种使用DIS Agent，详细步骤可参考Day2中的教程，第二种为创建Maven工程。
+至此，实时流计算方面的工作完成了，下面就要接入数据，查看实时计算结果。这里提供两种方法发送数据:
 
-####  创建Maven工程
-这里使用DIS的java包来为DIS发送数据，在Eclipse或Idea中创建maven工程，并加入DIS和Log4j的依赖：
+1. 第一种使用DIS Agent，详细步骤可参考前一天的教程。这里提供python脚本生成正弦曲线。
 
-```xml
-<dependencies>
-    <dependency>
-        <groupId>com.huaweicloud.dis</groupId>
-        <artifactId>huaweicloud-sdk-java-dis</artifactId>
-        <version>1.3.0</version>
-    </dependency>
+```python
+import time
+import math
 
-    <!-- log4j2 -->
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-api</artifactId>
-        <version>2.8.2</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>2.8.2</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-slf4j-impl</artifactId>
-        <version>2.8.2</version>
-    </dependency>
-</dependencies>
+with open("sin.txt", mode="a+") as f:
+    for idx in range(10000):
+        f.write(str(math.sin(math.radians(idx)))+"\n")
+        time.sleep(0.1)
 ```
 
-####  发送DIS数据
+2. 第二种为创建Maven工程
 
-在Maven工程中添加如下Java文件，并完成代码片段编写：
+   ####  创建Maven工程
 
-1. 填入认证信息：AK/SK, projectID, 通道名称
-2. 模拟周期性数据发送
-3. 运行代码
+   这里使用DIS的java包来为DIS发送数据，在Eclipse或Idea中创建maven工程，并加入DIS和Log4j的依赖：
 
-```java
-import com.huaweicloud.dis.DIS;
-import com.huaweicloud.dis.DISClientBuilder;
-import com.huaweicloud.dis.core.util.StringUtils;
-import com.huaweicloud.dis.exception.DISClientException;
-import com.huaweicloud.dis.iface.data.request.PutRecordsRequest;
-import com.huaweicloud.dis.iface.data.request.PutRecordsRequestEntry;
-import com.huaweicloud.dis.iface.data.response.PutRecordsResult;
-import com.huaweicloud.dis.iface.data.response.PutRecordsResultEntry;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+   ```xml
+   <dependencies>
+       <dependency>
+           <groupId>com.huaweicloud.dis</groupId>
+           <artifactId>huaweicloud-sdk-java-dis</artifactId>
+           <version>1.3.0</version>
+       </dependency>
+   
+       <!-- log4j2 -->
+       <dependency>
+           <groupId>org.apache.logging.log4j</groupId>
+           <artifactId>log4j-api</artifactId>
+           <version>2.8.2</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.logging.log4j</groupId>
+           <artifactId>log4j-core</artifactId>
+           <version>2.8.2</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.logging.log4j</groupId>
+           <artifactId>log4j-slf4j-impl</artifactId>
+           <version>2.8.2</version>
+       </dependency>
+   </dependencies>
+   ```
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+   ####  发送DIS数据
 
-public class SRFProducer {
-  private static final Logger LOGGER = LoggerFactory.getLogger(SRFProducer.class);
+   在Maven工程中添加如下Java文件，并完成代码片段编写：
 
-  public static void main(String args[]) {
-    runProduceDemo();
-  }
+   1. 填入认证信息：AK/SK, projectID, 通道名称
+   2. 模拟周期性数据发送
+   3. 运行代码
 
-  private static void runProduceDemo() {
-    // TODO: 创建DIS客户端实例
-    DIS client = DISClientBuilder.standard()
-        .withEndpoint("https://dis.cn-north-1.myhuaweicloud.com:20004")
-        .withAk("your_ak")
-        .withSk("your_sk")
-        .withProjectId("your_project_id")
-        .withRegion("cn-north-1")
-        .build();
-    String streamName = "csinput";
-
-    // TODO: 模拟周期性数据发送， 可添加异常数据监测算法有效性。如下为发送周期性正弦函数样例
-    int x = 0;
-    while (true) {
-      try {
-        String msg = Double.toString(Math.sin(Math.toRadians(x)));
-        sendMessage(client, streamName, msg);
-        x++;
-        Thread.sleep(100);
-      } catch (InterruptedException e) {}
-    }
-  }
-
-  /**
-   * @param disClient  DIS客户端实例
-   * @param streamName 流名称
-   * @param message    上传的数据
-   */
-  private static void sendMessage(DIS disClient, String streamName, String message) {
-    PutRecordsRequest putRecordsRequest = new PutRecordsRequest();
-    putRecordsRequest.setStreamName(streamName);
-    List<PutRecordsRequestEntry> putRecordsRequestEntryList = new ArrayList<PutRecordsRequestEntry>();
-    ByteBuffer buffer = ByteBuffer.wrap(message.getBytes());
-    PutRecordsRequestEntry entry = new PutRecordsRequestEntry();
-    entry.setData(buffer);
-    entry.setPartitionKey(String.valueOf(ThreadLocalRandom.current().nextInt(1000000)));
-    putRecordsRequestEntryList.add(entry);
-    putRecordsRequest.setRecords(putRecordsRequestEntryList);
-
-    LOGGER.info("========== BEGIN PUT ============");
-
-    PutRecordsResult putRecordsResult = null;
-    try {
-      putRecordsResult = disClient.putRecords(putRecordsRequest);
-    } catch (DISClientException e) {
-      LOGGER.error("Failed to get a normal response, please check params and retry. Error message [{}]",
-          e.getMessage(),
-          e);
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage(), e);
-    }
-
-    if (putRecordsResult != null) {
-      LOGGER.info("Put {} records[{} successful / {} failed].",
-          putRecordsResult.getRecords().size(),
-          putRecordsResult.getRecords().size() - putRecordsResult.getFailedRecordCount().get(),
-          putRecordsResult.getFailedRecordCount());
-
-      for (int j = 0; j < putRecordsResult.getRecords().size(); j++) {
-        PutRecordsResultEntry putRecordsRequestEntry = putRecordsResult.getRecords().get(j);
-        if (!StringUtils.isNullOrEmpty(putRecordsRequestEntry.getErrorCode())) {
-          // 上传失败
-          LOGGER.error("[{}] put failed, errorCode [{}], errorMessage [{}]",
-              new String(putRecordsRequestEntryList.get(j).getData().array()),
-              putRecordsRequestEntry.getErrorCode(),
-              putRecordsRequestEntry.getErrorMessage());
-        } else {
-          // 上传成功
-          LOGGER.info("[{}] put success, partitionId [{}], partitionKey [{}], sequenceNumber [{}]",
-              new String(putRecordsRequestEntryList.get(j).getData().array()),
-              putRecordsRequestEntry.getPartitionId(),
-              putRecordsRequestEntryList.get(j).getPartitionKey(),
-              putRecordsRequestEntry.getSequenceNumber());
-        }
-      }
-    }
-    LOGGER.info("========== END PUT ============");
-  }
-
-}
-
-```
+   ```java
+   import com.huaweicloud.dis.DIS;
+   import com.huaweicloud.dis.DISClientBuilder;
+   import com.huaweicloud.dis.core.util.StringUtils;
+   import com.huaweicloud.dis.exception.DISClientException;
+   import com.huaweicloud.dis.iface.data.request.PutRecordsRequest;
+   import com.huaweicloud.dis.iface.data.request.PutRecordsRequestEntry;
+   import com.huaweicloud.dis.iface.data.response.PutRecordsResult;
+   import com.huaweicloud.dis.iface.data.response.PutRecordsResultEntry;
+   import org.slf4j.Logger;
+   import org.slf4j.LoggerFactory;
+   
+   import java.nio.ByteBuffer;
+   import java.util.ArrayList;
+   import java.util.List;
+   import java.util.concurrent.ThreadLocalRandom;
+   
+   public class SRFProducer {
+     private static final Logger LOGGER = LoggerFactory.getLogger(SRFProducer.class);
+   
+     public static void main(String args[]) {
+       runProduceDemo();
+     }
+   
+     private static void runProduceDemo() {
+       // TODO: 创建DIS客户端实例
+       DIS client = DISClientBuilder.standard()
+           .withEndpoint("https://dis.cn-north-1.myhuaweicloud.com:20004")
+           .withAk("your_ak")
+           .withSk("your_sk")
+           .withProjectId("your_project_id")
+           .withRegion("cn-north-1")
+           .build();
+       String streamName = "csinput";
+   
+       // TODO: 模拟周期性数据发送， 可添加异常数据监测算法有效性。如下为发送周期性正弦函数样例
+       int x = 0;
+       while (true) {
+         try {
+           String msg = Double.toString(Math.sin(Math.toRadians(x)));
+           sendMessage(client, streamName, msg);
+           x++;
+           Thread.sleep(100);
+         } catch (InterruptedException e) {}
+       }
+     }
+   
+     /**
+      * @param disClient  DIS客户端实例
+      * @param streamName 流名称
+      * @param message    上传的数据
+      */
+     private static void sendMessage(DIS disClient, String streamName, String message) {
+       PutRecordsRequest putRecordsRequest = new PutRecordsRequest();
+       putRecordsRequest.setStreamName(streamName);
+       List<PutRecordsRequestEntry> putRecordsRequestEntryList = new ArrayList<PutRecordsRequestEntry>();
+       ByteBuffer buffer = ByteBuffer.wrap(message.getBytes());
+       PutRecordsRequestEntry entry = new PutRecordsRequestEntry();
+       entry.setData(buffer);
+       entry.setPartitionKey(String.valueOf(ThreadLocalRandom.current().nextInt(1000000)));
+       putRecordsRequestEntryList.add(entry);
+       putRecordsRequest.setRecords(putRecordsRequestEntryList);
+   
+       LOGGER.info("========== BEGIN PUT ============");
+   
+       PutRecordsResult putRecordsResult = null;
+       try {
+         putRecordsResult = disClient.putRecords(putRecordsRequest);
+       } catch (DISClientException e) {
+         LOGGER.error("Failed to get a normal response, please check params and retry. Error message [{}]",
+             e.getMessage(),
+             e);
+       } catch (Exception e) {
+         LOGGER.error(e.getMessage(), e);
+       }
+   
+       if (putRecordsResult != null) {
+         LOGGER.info("Put {} records[{} successful / {} failed].",
+             putRecordsResult.getRecords().size(),
+             putRecordsResult.getRecords().size() - putRecordsResult.getFailedRecordCount().get(),
+             putRecordsResult.getFailedRecordCount());
+   
+         for (int j = 0; j < putRecordsResult.getRecords().size(); j++) {
+           PutRecordsResultEntry putRecordsRequestEntry = putRecordsResult.getRecords().get(j);
+           if (!StringUtils.isNullOrEmpty(putRecordsRequestEntry.getErrorCode())) {
+             // 上传失败
+             LOGGER.error("[{}] put failed, errorCode [{}], errorMessage [{}]",
+                 new String(putRecordsRequestEntryList.get(j).getData().array()),
+                 putRecordsRequestEntry.getErrorCode(),
+                 putRecordsRequestEntry.getErrorMessage());
+           } else {
+             // 上传成功
+             LOGGER.info("[{}] put success, partitionId [{}], partitionKey [{}], sequenceNumber [{}]",
+                 new String(putRecordsRequestEntryList.get(j).getData().array()),
+                 putRecordsRequestEntry.getPartitionId(),
+                 putRecordsRequestEntryList.get(j).getPartitionKey(),
+                 putRecordsRequestEntry.getSequenceNumber());
+           }
+         }
+       }
+       LOGGER.info("========== END PUT ============");
+     }
+   
+   }
+   
+   ```
 
 ####  查看结果
 
