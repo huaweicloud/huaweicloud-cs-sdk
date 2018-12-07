@@ -165,12 +165,14 @@ DIS数据摄入服务，其类似kafka的topic概念。
     ```python
     import time
     import math
-
+    
     for idx in range(100000):
       with open("sin.txt", mode="a+") as f:
           f.write(str(math.sin(math.radians(idx)))+"\n")
       time.sleep(0.1)
     ```
+
+    为了使DIS Agent能够及时检测到文件的变化，需要修改Dis Agent中conf/agent.yml文件中的配置项：` maxBufferAgeMillis: 1000`
 
 2. 第二种为创建Maven工程
 
