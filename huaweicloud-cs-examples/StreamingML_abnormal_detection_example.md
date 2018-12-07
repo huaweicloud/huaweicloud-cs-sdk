@@ -166,10 +166,10 @@ DIS数据摄入服务，其类似kafka的topic概念。
     import time
     import math
 
-    with open("sin.txt", mode="a+") as f:
-        for idx in range(10000):
-            f.write(str(math.sin(math.radians(idx)))+"\n")
-            time.sleep(0.1)
+    for idx in range(100000):
+      with open("sin.txt", mode="a+") as f:
+          f.write(str(math.sin(math.radians(idx)))+"\n")
+      time.sleep(0.1)
     ```
 
 2. 第二种为创建Maven工程
