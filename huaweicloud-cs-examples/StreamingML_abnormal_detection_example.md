@@ -162,15 +162,15 @@ DIS数据摄入服务，其类似kafka的topic概念。
 
 1. 第一种使用DIS Agent，详细步骤可参考前一天的教程。这里提供python脚本生成正弦曲线。
 
-```python
-import time
-import math
+    ```python
+    import time
+    import math
 
-with open("sin.txt", mode="a+") as f:
-    for idx in range(10000):
-        f.write(str(math.sin(math.radians(idx)))+"\n")
-        time.sleep(0.1)
-```
+    with open("sin.txt", mode="a+") as f:
+        for idx in range(10000):
+            f.write(str(math.sin(math.radians(idx)))+"\n")
+            time.sleep(0.1)
+    ```
 
 2. 第二种为创建Maven工程
 
