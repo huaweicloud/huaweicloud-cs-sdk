@@ -42,7 +42,7 @@ add the `distributionManagement` to the pom. # todo add deploy script
 ApiClient apiClient = new ApiClient("regionName");
 
 //use token authentication method
-apiClient.useToken("domainName", "userName", "password", "projectId");
+apiClient.useToken("accountName", "userName", "password", "projectId");
 
 //Ak sk authentication method is not supported yet
 //apiClient.useAksk(ak, sk);

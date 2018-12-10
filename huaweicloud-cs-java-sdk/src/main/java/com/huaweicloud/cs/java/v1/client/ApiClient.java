@@ -91,13 +91,13 @@ public class ApiClient {
         setVerifyingSsl(false);
 
         httpClient.setConnectTimeout(5, TimeUnit.SECONDS);
-        httpClient.setReadTimeout(10, TimeUnit.SECONDS);
+        httpClient.setReadTimeout(100, TimeUnit.SECONDS);
 
 
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("Swagger-Codegen/1.0.2/java");
+        setUserAgent("Swagger-Codegen/1.0.3/java");
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications = new HashMap<String, Authentication>();
@@ -283,16 +283,16 @@ public class ApiClient {
     /**
      * Helper method to set token for huawei token authentication.
      *
-     * @param domainName user's domain name
+     * @param accountName user's account name
      * @param userName user name
      * @param password password
      * @param projectId project id
      */
-    public void useToken(String domainName, String userName, String password, String projectId) {
+    public void useToken(String accountName, String userName, String password, String projectId) {
         for (Authentication auth : authentications.values()) {
             if (auth instanceof HttpBasicAuth) {
                 useAkSk = false;
-                ((HttpBasicAuth) auth).useToken(httpClient, region, domainName, userName, password, projectId);
+                ((HttpBasicAuth) auth).useToken(httpClient, region, accountName, userName, password, projectId);
                 return;
             }
         }
