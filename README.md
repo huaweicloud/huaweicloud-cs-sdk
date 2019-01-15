@@ -44,8 +44,8 @@ ApiClient apiClient = new ApiClient("regionName");
 //use token authentication method
 apiClient.useToken("accountName", "userName", "password", "projectId");
 
-//Ak sk authentication method is not supported yet
-//apiClient.useAksk(ak, sk);
+//or use authentication method with aksk
+apiClient.useAksk("ak", "sk");
 
 JobApi jobApi = new JobApi(apiClient);
 ...
