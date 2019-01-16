@@ -10,7 +10,7 @@
             <outputDirectory>/</outputDirectory>
             <useProjectArtifact>true</useProjectArtifact>
             <unpack>true</unpack>
-            <scope>system</scope>
+            <scope>provided</scope>
         </dependencySet>
     </dependencySets>
 </assembly>
