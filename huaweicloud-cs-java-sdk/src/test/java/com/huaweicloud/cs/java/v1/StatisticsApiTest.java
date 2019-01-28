@@ -20,6 +20,7 @@ package com.huaweicloud.cs.java.v1;
 import com.huaweicloud.cs.java.v1.client.ApiException;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.OverviewResponse;
+import com.huaweicloud.cs.java.v1.model.ReleaseVersionResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -36,6 +37,21 @@ public class StatisticsApiTest {
 
     private final StatisticsApi api = new StatisticsApi();
 
+    
+    /**
+     * 查询CS当前发行版本信息
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getReleaseVersionTest() throws ApiException {
+        ReleaseVersionResponse response = api.getReleaseVersion();
+
+        // TODO: test validations
+    }
     
     /**
      * 概要统计用户的资源使用情况(作业及费用)

@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * JobEntity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-15T14:44:27.764+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
 public class JobEntity {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -132,12 +132,6 @@ public class JobEntity {
 
   @SerializedName("run_mode")
   private RunModeEnum runMode = null;
-
-  @SerializedName("spu_number")
-  private Integer spuNumber = null;
-
-  @SerializedName("parallel_number")
-  private Integer parallelNumber = null;
 
   @SerializedName("job_config")
   private JobConfig jobConfig = null;
@@ -463,46 +457,6 @@ public class JobEntity {
     this.runMode = runMode;
   }
 
-  public JobEntity spuNumber(Integer spuNumber) {
-    this.spuNumber = spuNumber;
-    return this;
-  }
-
-   /**
-   * 用户为作业选择的SPU数量, show_detail为true时独有
-   * minimum: 2
-   * maximum: 400
-   * @return spuNumber
-  **/
-  @ApiModelProperty(value = "用户为作业选择的SPU数量, show_detail为true时独有")
-  public Integer getSpuNumber() {
-    return spuNumber;
-  }
-
-  public void setSpuNumber(Integer spuNumber) {
-    this.spuNumber = spuNumber;
-  }
-
-  public JobEntity parallelNumber(Integer parallelNumber) {
-    this.parallelNumber = parallelNumber;
-    return this;
-  }
-
-   /**
-   * 用户设置的作业并行数, show_detail为true时独有
-   * minimum: 1
-   * maximum: 2000
-   * @return parallelNumber
-  **/
-  @ApiModelProperty(value = "用户设置的作业并行数, show_detail为true时独有")
-  public Integer getParallelNumber() {
-    return parallelNumber;
-  }
-
-  public void setParallelNumber(Integer parallelNumber) {
-    this.parallelNumber = parallelNumber;
-  }
-
   public JobEntity jobConfig(JobConfig jobConfig) {
     this.jobConfig = jobConfig;
     return this;
@@ -638,8 +592,6 @@ public class JobEntity {
         Objects.equals(this.projectId, jobEntity.projectId) &&
         Objects.equals(this.sqlBody, jobEntity.sqlBody) &&
         Objects.equals(this.runMode, jobEntity.runMode) &&
-        Objects.equals(this.spuNumber, jobEntity.spuNumber) &&
-        Objects.equals(this.parallelNumber, jobEntity.parallelNumber) &&
         Objects.equals(this.jobConfig, jobEntity.jobConfig) &&
         Objects.equals(this.jarUrl, jobEntity.jarUrl) &&
         Objects.equals(this.mainClass, jobEntity.mainClass) &&
@@ -650,7 +602,7 @@ public class JobEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobId, name, desc, username, jobType, status, statusDesc, createTime, startTime, duration, rootId, edgeGroupIds, userId, clusterId, projectId, sqlBody, runMode, spuNumber, parallelNumber, jobConfig, jarUrl, mainClass, args, executionGraph, updateTime);
+    return Objects.hash(jobId, name, desc, username, jobType, status, statusDesc, createTime, startTime, duration, rootId, edgeGroupIds, userId, clusterId, projectId, sqlBody, runMode, jobConfig, jarUrl, mainClass, args, executionGraph, updateTime);
   }
 
 
@@ -676,8 +628,6 @@ public class JobEntity {
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    sqlBody: ").append(toIndentedString(sqlBody)).append("\n");
     sb.append("    runMode: ").append(toIndentedString(runMode)).append("\n");
-    sb.append("    spuNumber: ").append(toIndentedString(spuNumber)).append("\n");
-    sb.append("    parallelNumber: ").append(toIndentedString(parallelNumber)).append("\n");
     sb.append("    jobConfig: ").append(toIndentedString(jobConfig)).append("\n");
     sb.append("    jarUrl: ").append(toIndentedString(jarUrl)).append("\n");
     sb.append("    mainClass: ").append(toIndentedString(mainClass)).append("\n");

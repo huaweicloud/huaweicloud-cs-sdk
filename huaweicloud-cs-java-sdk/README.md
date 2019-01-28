@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.huaweicloud.cs</groupId>
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
-    <version>1.0.2</version>
+    <version>1.1.2</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.0.2"
+compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.1.2"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/huaweicloud-cs-java-sdk-1.0.2.jar
+* target/huaweicloud-cs-java-sdk-1.1.2.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -126,6 +126,7 @@ Class | Method | HTTP request | Description
 *JobApi* | [**updateJarJob**](docs/JobApi.md#updateJarJob) | **PATCH** /{X-Project-Id}/jar_job | 更新用户自定义作业
 *JobApi* | [**updateSqlJob**](docs/JobApi.md#updateSqlJob) | **PATCH** /{X-Project-Id}/sql_job | 更新流式SQL作业
 *LogApi* | [**getAuditLogs**](docs/LogApi.md#getAuditLogs) | **GET** /{X-Project-Id}/audit_logs | 查询审计日志
+*StatisticsApi* | [**getReleaseVersion**](docs/StatisticsApi.md#getReleaseVersion) | **GET** /versions | 查询CS当前发行版本信息
 *StatisticsApi* | [**overview**](docs/StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况(作业及费用)
 *TemplateApi* | [**createJobTemplate**](docs/TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | 创建作业模板
 *TemplateApi* | [**deleteJobTemplate**](docs/TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板

@@ -31,7 +31,7 @@ import java.io.IOException;
  * 作业配置, show_detail为true时独有
  */
 @ApiModel(description = "作业配置, show_detail为true时独有")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-15T14:44:27.764+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
 public class JobConfig {
   @SerializedName("checkpoint_enabled")
   private Boolean checkpointEnabled = null;
@@ -106,6 +106,12 @@ public class JobConfig {
 
   @SerializedName("manager_spu")
   private Integer managerSpu = null;
+
+  @SerializedName("spu_number")
+  private Integer spuNumber = null;
+
+  @SerializedName("parallel_number")
+  private Integer parallelNumber = null;
 
   public JobConfig checkpointEnabled(Boolean checkpointEnabled) {
     this.checkpointEnabled = checkpointEnabled;
@@ -269,6 +275,46 @@ public class JobConfig {
     this.managerSpu = managerSpu;
   }
 
+  public JobConfig spuNumber(Integer spuNumber) {
+    this.spuNumber = spuNumber;
+    return this;
+  }
+
+   /**
+   * 用户为作业选择的SPU数量, show_detail为true时独有
+   * minimum: 2
+   * maximum: 400
+   * @return spuNumber
+  **/
+  @ApiModelProperty(value = "用户为作业选择的SPU数量, show_detail为true时独有")
+  public Integer getSpuNumber() {
+    return spuNumber;
+  }
+
+  public void setSpuNumber(Integer spuNumber) {
+    this.spuNumber = spuNumber;
+  }
+
+  public JobConfig parallelNumber(Integer parallelNumber) {
+    this.parallelNumber = parallelNumber;
+    return this;
+  }
+
+   /**
+   * 用户设置的作业并行数, show_detail为true时独有
+   * minimum: 1
+   * maximum: 2000
+   * @return parallelNumber
+  **/
+  @ApiModelProperty(value = "用户设置的作业并行数, show_detail为true时独有")
+  public Integer getParallelNumber() {
+    return parallelNumber;
+  }
+
+  public void setParallelNumber(Integer parallelNumber) {
+    this.parallelNumber = parallelNumber;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -287,12 +333,14 @@ public class JobConfig {
         Objects.equals(this.smnTopic, jobConfig.smnTopic) &&
         Objects.equals(this.rootId, jobConfig.rootId) &&
         Objects.equals(this.edgeGroupIds, jobConfig.edgeGroupIds) &&
-        Objects.equals(this.managerSpu, jobConfig.managerSpu);
+        Objects.equals(this.managerSpu, jobConfig.managerSpu) &&
+        Objects.equals(this.spuNumber, jobConfig.spuNumber) &&
+        Objects.equals(this.parallelNumber, jobConfig.parallelNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(checkpointEnabled, checkpointMode, checkpointInterval, logEnabled, obsBucket, smnTopic, rootId, edgeGroupIds, managerSpu);
+    return Objects.hash(checkpointEnabled, checkpointMode, checkpointInterval, logEnabled, obsBucket, smnTopic, rootId, edgeGroupIds, managerSpu, spuNumber, parallelNumber);
   }
 
 
@@ -310,6 +358,8 @@ public class JobConfig {
     sb.append("    rootId: ").append(toIndentedString(rootId)).append("\n");
     sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
     sb.append("    managerSpu: ").append(toIndentedString(managerSpu)).append("\n");
+    sb.append("    spuNumber: ").append(toIndentedString(spuNumber)).append("\n");
+    sb.append("    parallelNumber: ").append(toIndentedString(parallelNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }

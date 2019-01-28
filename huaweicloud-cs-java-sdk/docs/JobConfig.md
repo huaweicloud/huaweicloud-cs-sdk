@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **rootId** | **Long** | 父作业ID |  [optional]
 **edgeGroupIds** | **String** | 边缘计算组ID列表, 多个ID以逗号分隔 |  [optional]
 **managerSpu** | **Integer** | 管理单元SPU数 |  [optional]
+**spuNumber** | **Integer** | 用户为作业选择的SPU数量, show_detail为true时独有 |  [optional]
+**parallelNumber** | **Integer** | 用户设置的作业并行数, show_detail为true时独有 |  [optional]
 
 
 <a name="CheckpointModeEnum"></a>

@@ -21,8 +21,6 @@ Name | Type | Description | Notes
 **projectId** | **String** | 作业所属项目标识, show_detail为true时独有 |  [optional]
 **sqlBody** | **String** | Stream SQL语句, show_detail为true时独有 |  [optional]
 **runMode** | [**RunModeEnum**](#RunModeEnum) | 作业运行模式，共享或者独享模式或者边缘节点, show_detail为true时独有 |  [optional]
-**spuNumber** | **Integer** | 用户为作业选择的SPU数量, show_detail为true时独有 |  [optional]
-**parallelNumber** | **Integer** | 用户设置的作业并行数, show_detail为true时独有 |  [optional]
 **jobConfig** | [**JobConfig**](JobConfig.md) |  |  [optional]
 **jarUrl** | **String** | jar包的OBS路径, show_detail为true时独有 |  [optional]
 **mainClass** | **String** | checkpoint_enabled&#x3D;&#x3D;true是, 用户授权保存快照的OBS路径, show_detail为true时独有 |  [optional]
