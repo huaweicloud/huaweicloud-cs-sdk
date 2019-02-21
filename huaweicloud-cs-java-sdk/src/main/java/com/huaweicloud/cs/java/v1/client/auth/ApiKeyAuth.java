@@ -20,6 +20,7 @@ package com.huaweicloud.cs.java.v1.client.auth;
 import com.huaweicloud.cs.java.v1.client.Pair;
 
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -88,7 +89,7 @@ public class ApiKeyAuth implements Authentication {
                 Request copy = request.newBuilder().build();
                 Buffer buffer = new Buffer();
                 copy.body().writeTo(buffer);
-                reqForSigner.setContent(buffer.inputStream());
+		reqForSigner.setContent(new ByteArrayInputStream(buffer.readByteArray()));
             }
 
             Signer signer = SignerFactory.getSigner(serviceName, region);
