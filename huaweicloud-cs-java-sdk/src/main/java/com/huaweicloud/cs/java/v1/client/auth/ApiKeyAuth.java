@@ -78,11 +78,11 @@ public class ApiKeyAuth implements Authentication {
             }
 
             // add headers
-            Map<String, String> headersMap = new HashMap<>();
-            for (Map.Entry<String, List<String>> header: request.headers().toMultimap().entrySet()) {
-                headersMap.putIfAbsent(header.getKey(), header.getValue().get(0));
-            }
-            reqForSigner.setHeaders(headersMap);
+//            Map<String, String> headersMap = new HashMap<>();
+//            for (Map.Entry<String, List<String>> header: request.headers().toMultimap().entrySet()) {
+//                headersMap.putIfAbsent(header.getKey(), header.getValue().get(0));
+//            }
+//            reqForSigner.setHeaders(headersMap);
 
             // add body
             if (request.body() != null) {
