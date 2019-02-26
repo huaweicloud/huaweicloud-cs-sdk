@@ -40,12 +40,22 @@ public class ApiKeyAuth implements Authentication {
     private String region;
     private String accessKey;
     private String secretKey;
+    private String projectId;
 
     public void useAksk(String serviceName, String region, String accessKey, String secretKey) {
         this.serviceName = serviceName;
         this.region = region;
         this.accessKey = accessKey;
         this.secretKey = secretKey;
+        this.projectId = "";
+    }
+
+    public void useAksk(String serviceName, String region, String accessKey, String secretKey, String projectId) {
+        this.serviceName = serviceName;
+        this.region = region;
+        this.accessKey = accessKey;
+        this.secretKey = secretKey;
+        this.projectId = projectId;
     }
 
     @Override
@@ -60,6 +70,10 @@ public class ApiKeyAuth implements Authentication {
             reqForSigner.setEndpoint(request.uri());
 
             reqForSigner.setHttpMethod(HttpMethodName.valueOf(request.method()));
+
+            if(!projectId.isEmpty()) {
+                reqForSigner.addHeader("X-Project-Id", projectId);
+            }
 
             // add query string
             String urlString = request.urlString();
@@ -89,7 +103,7 @@ public class ApiKeyAuth implements Authentication {
                 Request copy = request.newBuilder().build();
                 Buffer buffer = new Buffer();
                 copy.body().writeTo(buffer);
-		reqForSigner.setContent(new ByteArrayInputStream(buffer.readByteArray()));
+		        reqForSigner.setContent(new ByteArrayInputStream(buffer.readByteArray()));
             }
 
             Signer signer = SignerFactory.getSigner(serviceName, region);

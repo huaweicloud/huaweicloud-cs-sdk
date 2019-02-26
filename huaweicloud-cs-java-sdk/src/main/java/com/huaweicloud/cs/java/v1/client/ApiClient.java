@@ -107,7 +107,7 @@ public class ApiClient {
         authentications = Collections.unmodifiableMap(authentications);
 
         this.region = region;
-        basePath = basePath.replace("<region>", region);
+        basePath = basePath.replace("<region>", "cn-north-1");
     }
 
     /**
@@ -310,6 +310,25 @@ public class ApiClient {
             if (auth instanceof ApiKeyAuth) {
                 useAkSk = true;
                 ((ApiKeyAuth) auth).useAksk("CS", region, accessKey, secretKey);
+                return;
+            }
+        }
+        throw new RuntimeException("No Huawei ak/sk authentication configured!");
+    }
+
+    /**
+     * Helper method to set token for huawei ak/sk authentication.
+     * When using a custom project id, you need to specify the projectId
+     *
+     * @param accessKey account accessKey
+     * @param secretKey account secretKey
+     * @param projectId account projectId
+     */
+    public void useAksk(String accessKey, String secretKey, String projectId) {
+        for (Authentication auth : authentications.values()) {
+            if (auth instanceof ApiKeyAuth) {
+                useAkSk = true;
+                ((ApiKeyAuth) auth).useAksk("CS", region, accessKey, secretKey, projectId);
                 return;
             }
         }
