@@ -107,7 +107,7 @@ public class ApiClient {
         authentications = Collections.unmodifiableMap(authentications);
 
         this.region = region;
-        basePath = basePath.replace("<region>", "cn-north-1");
+        basePath = basePath.replace("<region>", region);
     }
 
     /**
