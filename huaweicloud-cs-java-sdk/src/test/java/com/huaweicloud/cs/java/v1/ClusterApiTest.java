@@ -117,7 +117,7 @@ public class ClusterApiTest {
     }
     
     /**
-     * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CS用户创建一个独享计算集群
      *
      * 
      *

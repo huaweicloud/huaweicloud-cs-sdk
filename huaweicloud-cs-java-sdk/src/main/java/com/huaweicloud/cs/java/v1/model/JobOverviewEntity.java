@@ -31,7 +31,7 @@ import java.io.IOException;
  * 作业概要统计信息实体
  */
 @ApiModel(description = "作业概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-07T19:47:23.803+08:00")
 public class JobOverviewEntity {
   @SerializedName("total_jobs")
   private Integer totalJobs = null;
@@ -48,73 +48,11 @@ public class JobOverviewEntity {
   @SerializedName("other_job_count")
   private Integer otherJobCount = null;
 
-  @SerializedName("running_job_charge")
-  private Double runningJobCharge = null;
-
-  @SerializedName("running_job_price")
-  private Double runningJobPrice = null;
-
   @SerializedName("running_job_total_spu")
   private Integer runningJobTotalSpu = null;
 
   @SerializedName("running_job_total_time")
   private Double runningJobTotalTime = null;
-
-  /**
-   * 结算币种
-   */
-  @JsonAdapter(BillingUnitEnum.Adapter.class)
-  public enum BillingUnitEnum {
-    CNY("CNY"),
-    
-    HKD("HKD"),
-    
-    EUR("EUR"),
-    
-    DEM("DEM"),
-    
-    USD("USD");
-
-    private String value;
-
-    BillingUnitEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static BillingUnitEnum fromValue(String text) {
-      for (BillingUnitEnum b : BillingUnitEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<BillingUnitEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final BillingUnitEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public BillingUnitEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return BillingUnitEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("billing_unit")
-  private BillingUnitEnum billingUnit = null;
 
   /**
    * 时间单位
@@ -254,42 +192,6 @@ public class JobOverviewEntity {
     this.otherJobCount = otherJobCount;
   }
 
-  public JobOverviewEntity runningJobCharge(Double runningJobCharge) {
-    this.runningJobCharge = runningJobCharge;
-    return this;
-  }
-
-   /**
-   * 正在运行的作业总费用
-   * @return runningJobCharge
-  **/
-  @ApiModelProperty(example = "100.0", value = "正在运行的作业总费用")
-  public Double getRunningJobCharge() {
-    return runningJobCharge;
-  }
-
-  public void setRunningJobCharge(Double runningJobCharge) {
-    this.runningJobCharge = runningJobCharge;
-  }
-
-  public JobOverviewEntity runningJobPrice(Double runningJobPrice) {
-    this.runningJobPrice = runningJobPrice;
-    return this;
-  }
-
-   /**
-   * 正在运行的作业单价合计
-   * @return runningJobPrice
-  **/
-  @ApiModelProperty(example = "100.0", value = "正在运行的作业单价合计")
-  public Double getRunningJobPrice() {
-    return runningJobPrice;
-  }
-
-  public void setRunningJobPrice(Double runningJobPrice) {
-    this.runningJobPrice = runningJobPrice;
-  }
-
   public JobOverviewEntity runningJobTotalSpu(Integer runningJobTotalSpu) {
     this.runningJobTotalSpu = runningJobTotalSpu;
     return this;
@@ -326,24 +228,6 @@ public class JobOverviewEntity {
     this.runningJobTotalTime = runningJobTotalTime;
   }
 
-  public JobOverviewEntity billingUnit(BillingUnitEnum billingUnit) {
-    this.billingUnit = billingUnit;
-    return this;
-  }
-
-   /**
-   * 结算币种
-   * @return billingUnit
-  **/
-  @ApiModelProperty(example = "CNY", value = "结算币种")
-  public BillingUnitEnum getBillingUnit() {
-    return billingUnit;
-  }
-
-  public void setBillingUnit(BillingUnitEnum billingUnit) {
-    this.billingUnit = billingUnit;
-  }
-
   public JobOverviewEntity timeUnit(TimeUnitEnum timeUnit) {
     this.timeUnit = timeUnit;
     return this;
@@ -377,17 +261,14 @@ public class JobOverviewEntity {
         Objects.equals(this.finishedJobCount, jobOverviewEntity.finishedJobCount) &&
         Objects.equals(this.exceptionJobCount, jobOverviewEntity.exceptionJobCount) &&
         Objects.equals(this.otherJobCount, jobOverviewEntity.otherJobCount) &&
-        Objects.equals(this.runningJobCharge, jobOverviewEntity.runningJobCharge) &&
-        Objects.equals(this.runningJobPrice, jobOverviewEntity.runningJobPrice) &&
         Objects.equals(this.runningJobTotalSpu, jobOverviewEntity.runningJobTotalSpu) &&
         Objects.equals(this.runningJobTotalTime, jobOverviewEntity.runningJobTotalTime) &&
-        Objects.equals(this.billingUnit, jobOverviewEntity.billingUnit) &&
         Objects.equals(this.timeUnit, jobOverviewEntity.timeUnit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalJobs, runningJobCount, finishedJobCount, exceptionJobCount, otherJobCount, runningJobCharge, runningJobPrice, runningJobTotalSpu, runningJobTotalTime, billingUnit, timeUnit);
+    return Objects.hash(totalJobs, runningJobCount, finishedJobCount, exceptionJobCount, otherJobCount, runningJobTotalSpu, runningJobTotalTime, timeUnit);
   }
 
 
@@ -401,11 +282,8 @@ public class JobOverviewEntity {
     sb.append("    finishedJobCount: ").append(toIndentedString(finishedJobCount)).append("\n");
     sb.append("    exceptionJobCount: ").append(toIndentedString(exceptionJobCount)).append("\n");
     sb.append("    otherJobCount: ").append(toIndentedString(otherJobCount)).append("\n");
-    sb.append("    runningJobCharge: ").append(toIndentedString(runningJobCharge)).append("\n");
-    sb.append("    runningJobPrice: ").append(toIndentedString(runningJobPrice)).append("\n");
     sb.append("    runningJobTotalSpu: ").append(toIndentedString(runningJobTotalSpu)).append("\n");
     sb.append("    runningJobTotalTime: ").append(toIndentedString(runningJobTotalTime)).append("\n");
-    sb.append("    billingUnit: ").append(toIndentedString(billingUnit)).append("\n");
     sb.append("    timeUnit: ").append(toIndentedString(timeUnit)).append("\n");
     sb.append("}");
     return sb.toString();

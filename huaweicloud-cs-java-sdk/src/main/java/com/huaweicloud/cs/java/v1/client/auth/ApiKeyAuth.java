@@ -34,7 +34,7 @@ import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Request;
 import okio.Buffer;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-07T19:47:23.803+08:00")
 public class ApiKeyAuth implements Authentication {
     private String serviceName;
     private String region;
@@ -91,19 +91,12 @@ public class ApiKeyAuth implements Authentication {
                 }
             }
 
-            // add headers
-//            Map<String, String> headersMap = new HashMap<>();
-//            for (Map.Entry<String, List<String>> header: request.headers().toMultimap().entrySet()) {
-//                headersMap.putIfAbsent(header.getKey(), header.getValue().get(0));
-//            }
-//            reqForSigner.setHeaders(headersMap);
-
             // add body
             if (request.body() != null) {
                 Request copy = request.newBuilder().build();
                 Buffer buffer = new Buffer();
                 copy.body().writeTo(buffer);
-		        reqForSigner.setContent(new ByteArrayInputStream(buffer.readByteArray()));
+                reqForSigner.setContent(new ByteArrayInputStream(buffer.readByteArray()));
             }
 
             Signer signer = SignerFactory.getSigner(serviceName, region);

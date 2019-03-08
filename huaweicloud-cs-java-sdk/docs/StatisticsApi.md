@@ -5,7 +5,7 @@ All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getReleaseVersion**](StatisticsApi.md#getReleaseVersion) | **GET** /versions | 查询CS当前发行版本信息
-[**overview**](StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况(作业及费用)
+[**overview**](StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况
 
 
 <a name="getReleaseVersion"></a>
@@ -53,7 +53,7 @@ No authorization required
 # **overview**
 > OverviewResponse overview(xProjectId)
 
-概要统计用户的资源使用情况(作业及费用)
+概要统计用户的资源使用情况
 
 
 

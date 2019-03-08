@@ -31,7 +31,7 @@ import java.io.IOException;
  * 集群概要统计信息实体
  */
 @ApiModel(description = "集群概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-07T19:47:23.803+08:00")
 public class ClusterOverviewEntity {
   @SerializedName("total_clusters")
   private Integer totalClusters = null;
@@ -45,73 +45,11 @@ public class ClusterOverviewEntity {
   @SerializedName("other_cluster_count")
   private Integer otherClusterCount = null;
 
-  @SerializedName("running_cluster_charge")
-  private Double runningClusterCharge = null;
-
-  @SerializedName("running_cluster_price")
-  private Double runningClusterPrice = null;
-
   @SerializedName("running_cluster_total_spu")
   private Integer runningClusterTotalSpu = null;
 
   @SerializedName("running_cluster_total_time")
-  private Integer runningClusterTotalTime = null;
-
-  /**
-   * 结算币种
-   */
-  @JsonAdapter(BillingUnitEnum.Adapter.class)
-  public enum BillingUnitEnum {
-    CNY("CNY"),
-    
-    HKD("HKD"),
-    
-    EUR("EUR"),
-    
-    DEM("DEM"),
-    
-    USD("USD");
-
-    private String value;
-
-    BillingUnitEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static BillingUnitEnum fromValue(String text) {
-      for (BillingUnitEnum b : BillingUnitEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<BillingUnitEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final BillingUnitEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public BillingUnitEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return BillingUnitEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("billing_unit")
-  private BillingUnitEnum billingUnit = null;
+  private Double runningClusterTotalTime = null;
 
   /**
    * 时间单位
@@ -233,42 +171,6 @@ public class ClusterOverviewEntity {
     this.otherClusterCount = otherClusterCount;
   }
 
-  public ClusterOverviewEntity runningClusterCharge(Double runningClusterCharge) {
-    this.runningClusterCharge = runningClusterCharge;
-    return this;
-  }
-
-   /**
-   * 正在运行的集群总费用
-   * @return runningClusterCharge
-  **/
-  @ApiModelProperty(example = "10.2", value = "正在运行的集群总费用")
-  public Double getRunningClusterCharge() {
-    return runningClusterCharge;
-  }
-
-  public void setRunningClusterCharge(Double runningClusterCharge) {
-    this.runningClusterCharge = runningClusterCharge;
-  }
-
-  public ClusterOverviewEntity runningClusterPrice(Double runningClusterPrice) {
-    this.runningClusterPrice = runningClusterPrice;
-    return this;
-  }
-
-   /**
-   * 正在运行的集群单价合计
-   * @return runningClusterPrice
-  **/
-  @ApiModelProperty(example = "10.2", value = "正在运行的集群单价合计")
-  public Double getRunningClusterPrice() {
-    return runningClusterPrice;
-  }
-
-  public void setRunningClusterPrice(Double runningClusterPrice) {
-    this.runningClusterPrice = runningClusterPrice;
-  }
-
   public ClusterOverviewEntity runningClusterTotalSpu(Integer runningClusterTotalSpu) {
     this.runningClusterTotalSpu = runningClusterTotalSpu;
     return this;
@@ -287,7 +189,7 @@ public class ClusterOverviewEntity {
     this.runningClusterTotalSpu = runningClusterTotalSpu;
   }
 
-  public ClusterOverviewEntity runningClusterTotalTime(Integer runningClusterTotalTime) {
+  public ClusterOverviewEntity runningClusterTotalTime(Double runningClusterTotalTime) {
     this.runningClusterTotalTime = runningClusterTotalTime;
     return this;
   }
@@ -296,31 +198,13 @@ public class ClusterOverviewEntity {
    * 正在运行的集群总时长
    * @return runningClusterTotalTime
   **/
-  @ApiModelProperty(example = "100", value = "正在运行的集群总时长")
-  public Integer getRunningClusterTotalTime() {
+  @ApiModelProperty(example = "100.0", value = "正在运行的集群总时长")
+  public Double getRunningClusterTotalTime() {
     return runningClusterTotalTime;
   }
 
-  public void setRunningClusterTotalTime(Integer runningClusterTotalTime) {
+  public void setRunningClusterTotalTime(Double runningClusterTotalTime) {
     this.runningClusterTotalTime = runningClusterTotalTime;
-  }
-
-  public ClusterOverviewEntity billingUnit(BillingUnitEnum billingUnit) {
-    this.billingUnit = billingUnit;
-    return this;
-  }
-
-   /**
-   * 结算币种
-   * @return billingUnit
-  **/
-  @ApiModelProperty(example = "CNY", value = "结算币种")
-  public BillingUnitEnum getBillingUnit() {
-    return billingUnit;
-  }
-
-  public void setBillingUnit(BillingUnitEnum billingUnit) {
-    this.billingUnit = billingUnit;
   }
 
   public ClusterOverviewEntity timeUnit(TimeUnitEnum timeUnit) {
@@ -355,17 +239,14 @@ public class ClusterOverviewEntity {
         Objects.equals(this.runningClusterCount, clusterOverviewEntity.runningClusterCount) &&
         Objects.equals(this.exceptionClusterCount, clusterOverviewEntity.exceptionClusterCount) &&
         Objects.equals(this.otherClusterCount, clusterOverviewEntity.otherClusterCount) &&
-        Objects.equals(this.runningClusterCharge, clusterOverviewEntity.runningClusterCharge) &&
-        Objects.equals(this.runningClusterPrice, clusterOverviewEntity.runningClusterPrice) &&
         Objects.equals(this.runningClusterTotalSpu, clusterOverviewEntity.runningClusterTotalSpu) &&
         Objects.equals(this.runningClusterTotalTime, clusterOverviewEntity.runningClusterTotalTime) &&
-        Objects.equals(this.billingUnit, clusterOverviewEntity.billingUnit) &&
         Objects.equals(this.timeUnit, clusterOverviewEntity.timeUnit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalClusters, runningClusterCount, exceptionClusterCount, otherClusterCount, runningClusterCharge, runningClusterPrice, runningClusterTotalSpu, runningClusterTotalTime, billingUnit, timeUnit);
+    return Objects.hash(totalClusters, runningClusterCount, exceptionClusterCount, otherClusterCount, runningClusterTotalSpu, runningClusterTotalTime, timeUnit);
   }
 
 
@@ -378,11 +259,8 @@ public class ClusterOverviewEntity {
     sb.append("    runningClusterCount: ").append(toIndentedString(runningClusterCount)).append("\n");
     sb.append("    exceptionClusterCount: ").append(toIndentedString(exceptionClusterCount)).append("\n");
     sb.append("    otherClusterCount: ").append(toIndentedString(otherClusterCount)).append("\n");
-    sb.append("    runningClusterCharge: ").append(toIndentedString(runningClusterCharge)).append("\n");
-    sb.append("    runningClusterPrice: ").append(toIndentedString(runningClusterPrice)).append("\n");
     sb.append("    runningClusterTotalSpu: ").append(toIndentedString(runningClusterTotalSpu)).append("\n");
     sb.append("    runningClusterTotalTime: ").append(toIndentedString(runningClusterTotalTime)).append("\n");
-    sb.append("    billingUnit: ").append(toIndentedString(billingUnit)).append("\n");
     sb.append("    timeUnit: ").append(toIndentedString(timeUnit)).append("\n");
     sb.append("}");
     return sb.toString();

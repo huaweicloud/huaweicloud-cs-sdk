@@ -33,34 +33,13 @@ import java.io.IOException;
  * 概要统计信息实体
  */
 @ApiModel(description = "概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-07T19:47:23.803+08:00")
 public class OverviewEntity {
-  @SerializedName("total_price")
-  private Double totalPrice = null;
-
   @SerializedName("job_overview")
   private JobOverviewEntity jobOverview = null;
 
   @SerializedName("cluster_overview")
   private ClusterOverviewEntity clusterOverview = null;
-
-  public OverviewEntity totalPrice(Double totalPrice) {
-    this.totalPrice = totalPrice;
-    return this;
-  }
-
-   /**
-   * 总费用
-   * @return totalPrice
-  **/
-  @ApiModelProperty(example = "100.0", value = "总费用")
-  public Double getTotalPrice() {
-    return totalPrice;
-  }
-
-  public void setTotalPrice(Double totalPrice) {
-    this.totalPrice = totalPrice;
-  }
 
   public OverviewEntity jobOverview(JobOverviewEntity jobOverview) {
     this.jobOverview = jobOverview;
@@ -108,14 +87,13 @@ public class OverviewEntity {
       return false;
     }
     OverviewEntity overviewEntity = (OverviewEntity) o;
-    return Objects.equals(this.totalPrice, overviewEntity.totalPrice) &&
-        Objects.equals(this.jobOverview, overviewEntity.jobOverview) &&
+    return Objects.equals(this.jobOverview, overviewEntity.jobOverview) &&
         Objects.equals(this.clusterOverview, overviewEntity.clusterOverview);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalPrice, jobOverview, clusterOverview);
+    return Objects.hash(jobOverview, clusterOverview);
   }
 
 
@@ -124,7 +102,6 @@ public class OverviewEntity {
     StringBuilder sb = new StringBuilder();
     sb.append("class OverviewEntity {\n");
     
-    sb.append("    totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
     sb.append("    jobOverview: ").append(toIndentedString(jobOverview)).append("\n");
     sb.append("    clusterOverview: ").append(toIndentedString(clusterOverview)).append("\n");
     sb.append("}");

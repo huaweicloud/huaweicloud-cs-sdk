@@ -583,7 +583,7 @@ public class ClusterApi {
     }
 
     /**
-     * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CS用户创建一个独享计算集群
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
@@ -596,7 +596,7 @@ public class ClusterApi {
     }
 
     /**
-     * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+     * 为具有cs_adm角色的CS用户创建一个独享计算集群
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的独享集群, 请求参数为json格式 (required)
@@ -610,7 +610,7 @@ public class ClusterApi {
     }
 
     /**
-     * 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费 (asynchronously)
+     * 为具有cs_adm角色的CS用户创建一个独享计算集群 (asynchronously)
      * 
      * @param xProjectId project id, 用于不同project取token. (required)
      * @param body 创建一个新的独享集群, 请求参数为json格式 (required)

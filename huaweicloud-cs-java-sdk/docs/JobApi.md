@@ -182,7 +182,7 @@ Long cursor = 789L; // Long | 作业ID
 Boolean next = true; // Boolean | 是否向下翻页
 Integer limit = 20; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
-Long rootJobId = 789L; // Long | 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业
+Long rootJobId = 789L; // Long | 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业
 try {
     QueryJobListResponse result = apiInstance.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId);
     System.out.println(result);
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
  **next** | **Boolean**| 是否向下翻页 | [optional] [default to true]
  **limit** | **Integer**| 返回的数据条数 | [optional] [default to 20]
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]
- **rootJobId** | **Long**| 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业 | [optional]
+ **rootJobId** | **Long**| 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业 | [optional]
 
 ### Return type
 

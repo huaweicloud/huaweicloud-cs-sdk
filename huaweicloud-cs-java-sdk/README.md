@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.huaweicloud.cs</groupId>
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.5-p</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.1.5"
+compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.1.5-p"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/huaweicloud-cs-java-sdk-1.1.5.jar
+* target/huaweicloud-cs-java-sdk-1.1.5-p.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -95,7 +95,7 @@ Class | Method | HTTP request | Description
 *ClusterApi* | [**addHostsFile**](docs/ClusterApi.md#addHostsFile) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts_file | 添加hosts文件
 *ClusterApi* | [**addHostsInfo**](docs/ClusterApi.md#addHostsInfo) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 添加IP域名映射信息
 *ClusterApi* | [**createPeering**](docs/ClusterApi.md#createPeering) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering | 创建一个对等连接
-*ClusterApi* | [**createReservedCluster**](docs/ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+*ClusterApi* | [**createReservedCluster**](docs/ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CS用户创建一个独享计算集群
 *ClusterApi* | [**createRoute**](docs/ClusterApi.md#createRoute) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route | 创建路由
 *ClusterApi* | [**deleteHostsInfo**](docs/ClusterApi.md#deleteHostsInfo) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 删除IP域名映射信息
 *ClusterApi* | [**deletePeering**](docs/ClusterApi.md#deletePeering) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id} | 删除对等连接
@@ -127,7 +127,7 @@ Class | Method | HTTP request | Description
 *JobApi* | [**updateSqlJob**](docs/JobApi.md#updateSqlJob) | **PATCH** /{X-Project-Id}/sql_job | 更新流式SQL作业
 *LogApi* | [**getAuditLogs**](docs/LogApi.md#getAuditLogs) | **GET** /{X-Project-Id}/audit_logs | 查询审计日志
 *StatisticsApi* | [**getReleaseVersion**](docs/StatisticsApi.md#getReleaseVersion) | **GET** /versions | 查询CS当前发行版本信息
-*StatisticsApi* | [**overview**](docs/StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况(作业及费用)
+*StatisticsApi* | [**overview**](docs/StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况
 *TemplateApi* | [**createJobTemplate**](docs/TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | 创建作业模板
 *TemplateApi* | [**deleteJobTemplate**](docs/TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板
 *TemplateApi* | [**getJobTemplates**](docs/TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | 查询作业模板列表

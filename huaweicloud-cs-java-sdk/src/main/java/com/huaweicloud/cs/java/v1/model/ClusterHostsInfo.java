@@ -34,7 +34,7 @@ import java.util.List;
  * 集群IP域名映射信息列表
  */
 @ApiModel(description = "集群IP域名映射信息列表")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-07T19:47:23.803+08:00")
 public class ClusterHostsInfo {
   @SerializedName("hosts_info")
   private List<ClusterHostsInfoHostsInfo> hostsInfo = null;
@@ -74,10 +74,10 @@ public class ClusterHostsInfo {
   }
 
    /**
-   * IP域名总数
+   * IP域名映射总数
    * @return total
   **/
-  @ApiModelProperty(example = "1", value = "IP域名总数")
+  @ApiModelProperty(example = "1", value = "IP域名映射总数")
   public Integer getTotal() {
     return total;
   }

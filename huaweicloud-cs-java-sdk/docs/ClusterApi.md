@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**addHostsFile**](ClusterApi.md#addHostsFile) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts_file | 添加hosts文件
 [**addHostsInfo**](ClusterApi.md#addHostsInfo) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 添加IP域名映射信息
 [**createPeering**](ClusterApi.md#createPeering) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering | 创建一个对等连接
-[**createReservedCluster**](ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+[**createReservedCluster**](ClusterApi.md#createReservedCluster) | **POST** /{X-Project-Id}/reserved_cluster | 为具有cs_adm角色的CS用户创建一个独享计算集群
 [**createRoute**](ClusterApi.md#createRoute) | **POST** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id}/route | 创建路由
 [**deleteHostsInfo**](ClusterApi.md#deleteHostsInfo) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/hosts | 删除IP域名映射信息
 [**deletePeering**](ClusterApi.md#deletePeering) | **DELETE** /{X-Project-Id}/reserved_cluster/{cluster_id}/peering/{peering_id} | 删除对等连接
@@ -180,7 +180,7 @@ No authorization required
 # **createReservedCluster**
 > CreateClusterResponse createReservedCluster(xProjectId, body)
 
-为具有cs_adm角色的CS用户创建一个独享计算集群, 独享集群会折算成SPU, 按需计费
+为具有cs_adm角色的CS用户创建一个独享计算集群
 
 
 
