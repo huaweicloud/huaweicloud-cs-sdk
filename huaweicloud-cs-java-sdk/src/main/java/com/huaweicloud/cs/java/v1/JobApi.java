@@ -477,7 +477,7 @@ public class JobApi {
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
-     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业 (optional)
+     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业 (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -569,7 +569,7 @@ public class JobApi {
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
-     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业 (optional)
+     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业 (optional)
      * @return QueryJobListResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -590,7 +590,7 @@ public class JobApi {
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
-     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业 (optional)
+     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业 (optional)
      * @return ApiResponse&lt;QueryJobListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -612,7 +612,7 @@ public class JobApi {
      * @param next 是否向下翻页 (optional, default to true)
      * @param limit 返回的数据条数 (optional, default to 20)
      * @param order 查询结果排序, 升序和降序两种可选 (optional, default to desc)
-     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业即边缘父作业, 不包括边缘子作业 (optional)
+     * @param rootJobId 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业 (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

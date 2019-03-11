@@ -31,7 +31,7 @@ import java.io.IOException;
  * 集群概要统计信息实体
  */
 @ApiModel(description = "集群概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-11T19:15:11.891+08:00")
 public class ClusterOverviewEntity {
   @SerializedName("total_clusters")
   private Integer totalClusters = null;
@@ -55,7 +55,7 @@ public class ClusterOverviewEntity {
   private Integer runningClusterTotalSpu = null;
 
   @SerializedName("running_cluster_total_time")
-  private Integer runningClusterTotalTime = null;
+  private Double runningClusterTotalTime = null;
 
   /**
    * 结算币种
@@ -287,7 +287,7 @@ public class ClusterOverviewEntity {
     this.runningClusterTotalSpu = runningClusterTotalSpu;
   }
 
-  public ClusterOverviewEntity runningClusterTotalTime(Integer runningClusterTotalTime) {
+  public ClusterOverviewEntity runningClusterTotalTime(Double runningClusterTotalTime) {
     this.runningClusterTotalTime = runningClusterTotalTime;
     return this;
   }
@@ -296,12 +296,12 @@ public class ClusterOverviewEntity {
    * 正在运行的集群总时长
    * @return runningClusterTotalTime
   **/
-  @ApiModelProperty(example = "100", value = "正在运行的集群总时长")
-  public Integer getRunningClusterTotalTime() {
+  @ApiModelProperty(example = "100.0", value = "正在运行的集群总时长")
+  public Double getRunningClusterTotalTime() {
     return runningClusterTotalTime;
   }
 
-  public void setRunningClusterTotalTime(Integer runningClusterTotalTime) {
+  public void setRunningClusterTotalTime(Double runningClusterTotalTime) {
     this.runningClusterTotalTime = runningClusterTotalTime;
   }
 

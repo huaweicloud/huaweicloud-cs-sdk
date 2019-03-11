@@ -33,10 +33,10 @@ import java.io.IOException;
  * 概要统计信息实体
  */
 @ApiModel(description = "概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-11T19:15:11.891+08:00")
 public class OverviewEntity {
-  @SerializedName("total_price")
-  private Double totalPrice = null;
+  @SerializedName("total_cost")
+  private Double totalCost = null;
 
   @SerializedName("job_overview")
   private JobOverviewEntity jobOverview = null;
@@ -44,22 +44,22 @@ public class OverviewEntity {
   @SerializedName("cluster_overview")
   private ClusterOverviewEntity clusterOverview = null;
 
-  public OverviewEntity totalPrice(Double totalPrice) {
-    this.totalPrice = totalPrice;
+  public OverviewEntity totalCost(Double totalCost) {
+    this.totalCost = totalCost;
     return this;
   }
 
    /**
    * 总费用
-   * @return totalPrice
+   * @return totalCost
   **/
   @ApiModelProperty(example = "100.0", value = "总费用")
-  public Double getTotalPrice() {
-    return totalPrice;
+  public Double getTotalCost() {
+    return totalCost;
   }
 
-  public void setTotalPrice(Double totalPrice) {
-    this.totalPrice = totalPrice;
+  public void setTotalCost(Double totalCost) {
+    this.totalCost = totalCost;
   }
 
   public OverviewEntity jobOverview(JobOverviewEntity jobOverview) {
@@ -108,14 +108,14 @@ public class OverviewEntity {
       return false;
     }
     OverviewEntity overviewEntity = (OverviewEntity) o;
-    return Objects.equals(this.totalPrice, overviewEntity.totalPrice) &&
+    return Objects.equals(this.totalCost, overviewEntity.totalCost) &&
         Objects.equals(this.jobOverview, overviewEntity.jobOverview) &&
         Objects.equals(this.clusterOverview, overviewEntity.clusterOverview);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalPrice, jobOverview, clusterOverview);
+    return Objects.hash(totalCost, jobOverview, clusterOverview);
   }
 
 
@@ -124,7 +124,7 @@ public class OverviewEntity {
     StringBuilder sb = new StringBuilder();
     sb.append("class OverviewEntity {\n");
     
-    sb.append("    totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
+    sb.append("    totalCost: ").append(toIndentedString(totalCost)).append("\n");
     sb.append("    jobOverview: ").append(toIndentedString(jobOverview)).append("\n");
     sb.append("    clusterOverview: ").append(toIndentedString(clusterOverview)).append("\n");
     sb.append("}");

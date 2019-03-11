@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * QueryClustersResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-11T19:15:11.891+08:00")
 public class QueryClustersResponsePayload {
   @SerializedName("total")
   private Integer total = null;

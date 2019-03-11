@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **runningClusterCharge** | **Double** | 正在运行的集群总费用 |  [optional]
 **runningClusterPrice** | **Double** | 正在运行的集群单价合计 |  [optional]
 **runningClusterTotalSpu** | **Integer** | 正在运行的集群消耗SPU总数 |  [optional]
-**runningClusterTotalTime** | **Integer** | 正在运行的集群总时长 |  [optional]
+**runningClusterTotalTime** | **Double** | 正在运行的集群总时长 |  [optional]
 **billingUnit** | [**BillingUnitEnum**](#BillingUnitEnum) | 结算币种 |  [optional]
 **timeUnit** | [**TimeUnitEnum**](#TimeUnitEnum) | 时间单位 |  [optional]
 

@@ -20,11 +20,10 @@ package com.huaweicloud.cs.java.v1.client.auth;
 import com.huaweicloud.cs.java.v1.client.Pair;
 
 
-import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-
+import java.io.ByteArrayInputStream;
 import com.cloud.sdk.DefaultRequest;
 import com.cloud.sdk.auth.credentials.BasicCredentials;
 import com.cloud.sdk.auth.signer.Signer;
@@ -34,7 +33,7 @@ import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Request;
 import okio.Buffer;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-28T15:37:25.807+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-03-11T19:15:11.891+08:00")
 public class ApiKeyAuth implements Authentication {
     private String serviceName;
     private String region;
@@ -91,19 +90,12 @@ public class ApiKeyAuth implements Authentication {
                 }
             }
 
-            // add headers
-//            Map<String, String> headersMap = new HashMap<>();
-//            for (Map.Entry<String, List<String>> header: request.headers().toMultimap().entrySet()) {
-//                headersMap.putIfAbsent(header.getKey(), header.getValue().get(0));
-//            }
-//            reqForSigner.setHeaders(headersMap);
-
             // add body
             if (request.body() != null) {
                 Request copy = request.newBuilder().build();
                 Buffer buffer = new Buffer();
                 copy.body().writeTo(buffer);
-		        reqForSigner.setContent(new ByteArrayInputStream(buffer.readByteArray()));
+                reqForSigner.setContent(new ByteArrayInputStream(buffer.readByteArray()));
             }
 
             Signer signer = SignerFactory.getSigner(serviceName, region);
