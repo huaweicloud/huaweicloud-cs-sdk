@@ -833,13 +833,22 @@ public class ApiClient {
      * @throws ApiException If fail to execute the call
      */
     public <T> ApiResponse<T> execute(Call call, Type returnType) throws ApiException {
-        try {
-            Response response = call.execute();
-            T data = handleResponse(response, returnType);
-            return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
-        } catch (IOException e) {
-            throw new ApiException(e);
+        ApiResponse<T> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                Response response = call.execute();
+                T data = handleResponse(response, returnType);
+                retryCnt = 0;
+                apiResponse = new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
+            } catch (IOException e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+            }
         }
+        return apiResponse;
     }
 
     /**
