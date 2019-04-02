@@ -97,7 +97,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("Swagger-Codegen/1.1.6/java");
+        setUserAgent("Swagger-Codegen/1.1.7/java");
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications = new HashMap<String, Authentication>();
@@ -833,22 +833,13 @@ public class ApiClient {
      * @throws ApiException If fail to execute the call
      */
     public <T> ApiResponse<T> execute(Call call, Type returnType) throws ApiException {
-        ApiResponse<T> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                Response response = call.execute();
-                T data = handleResponse(response, returnType);
-                retryCnt = 0;
-                apiResponse = new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
-            } catch (IOException e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-            }
+        try {
+            Response response = call.execute();
+            T data = handleResponse(response, returnType);
+            return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
+        } catch (IOException e) {
+            throw new ApiException(e);
         }
-        return apiResponse;
     }
 
     /**

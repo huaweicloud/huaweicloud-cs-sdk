@@ -173,9 +173,23 @@ public class LogApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<AuditLogResponse> getAuditLogsWithHttpInfo(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
-        com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, null, null);
-        Type localVarReturnType = new TypeToken<AuditLogResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<AuditLogResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, null, null);
+                Type localVarReturnType = new TypeToken<AuditLogResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**

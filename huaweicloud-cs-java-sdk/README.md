@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.huaweicloud.cs</groupId>
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.1.6"
+compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.1.7"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/huaweicloud-cs-java-sdk-1.1.6.jar
+* target/huaweicloud-cs-java-sdk-1.1.7.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -163,6 +163,7 @@ Class | Method | HTTP request | Description
  - [GlobalErrorResponse](docs/GlobalErrorResponse.md)
  - [GlobalResponse](docs/GlobalResponse.md)
  - [HostIpInfo](docs/HostIpInfo.md)
+ - [InputsEntity](docs/InputsEntity.md)
  - [JobConfig](docs/JobConfig.md)
  - [JobDetailEntity](docs/JobDetailEntity.md)
  - [JobEntity](docs/JobEntity.md)
@@ -181,10 +182,13 @@ Class | Method | HTTP request | Description
  - [JobTemplateUpdateResponse](docs/JobTemplateUpdateResponse.md)
  - [JobUpdateResponse](docs/JobUpdateResponse.md)
  - [JobUpdateTime](docs/JobUpdateTime.md)
+ - [MetricsEntity](docs/MetricsEntity.md)
  - [NewReservedClusterRequest](docs/NewReservedClusterRequest.md)
+ - [NodesEntity](docs/NodesEntity.md)
  - [OverviewEntity](docs/OverviewEntity.md)
  - [OverviewResponse](docs/OverviewResponse.md)
  - [Peering](docs/Peering.md)
+ - [PlanEntity](docs/PlanEntity.md)
  - [QueryClusterHostsInfoResponse](docs/QueryClusterHostsInfoResponse.md)
  - [QueryClusterResponse](docs/QueryClusterResponse.md)
  - [QueryClustersResponse](docs/QueryClustersResponse.md)
@@ -197,9 +201,11 @@ Class | Method | HTTP request | Description
  - [ReleaseVersionResponse](docs/ReleaseVersionResponse.md)
  - [RestartReservedClusterResponse](docs/RestartReservedClusterResponse.md)
  - [Route](docs/Route.md)
+ - [StatusCountsEntity](docs/StatusCountsEntity.md)
  - [StopReservedClusterResponse](docs/StopReservedClusterResponse.md)
  - [SubmitJarJobRequest](docs/SubmitJarJobRequest.md)
  - [SubmitSqlJobRequest](docs/SubmitSqlJobRequest.md)
+ - [TimestampsEntity](docs/TimestampsEntity.md)
  - [UpdateClusterRequest](docs/UpdateClusterRequest.md)
  - [UpdateHostsInfoResponse](docs/UpdateHostsInfoResponse.md)
  - [UpdateJobTemplateRequest](docs/UpdateJobTemplateRequest.md)
@@ -207,6 +213,7 @@ Class | Method | HTTP request | Description
  - [UpdateUserQuotaRequest](docs/UpdateUserQuotaRequest.md)
  - [UserCluster](docs/UserCluster.md)
  - [UserQuotaInfo](docs/UserQuotaInfo.md)
+ - [VerticesEntity](docs/VerticesEntity.md)
  - [VpcInfo](docs/VpcInfo.md)
 
 

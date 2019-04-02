@@ -187,9 +187,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<List<AddHostsInfoResponse>> addHostsFileWithHttpInfo(String xProjectId, Integer clusterId, File hostsFile) throws ApiException {
-        com.squareup.okhttp.Call call = addHostsFileValidateBeforeCall(xProjectId, clusterId, hostsFile, null, null);
-        Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<List<AddHostsInfoResponse>> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = addHostsFileValidateBeforeCall(xProjectId, clusterId, hostsFile, null, null);
+                Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -329,9 +343,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<List<AddHostsInfoResponse>> addHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, Body body) throws ApiException {
-        com.squareup.okhttp.Call call = addHostsInfoValidateBeforeCall(xProjectId, clusterId, body, null, null);
-        Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<List<AddHostsInfoResponse>> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = addHostsInfoValidateBeforeCall(xProjectId, clusterId, body, null, null);
+                Type localVarReturnType = new TypeToken<List<AddHostsInfoResponse>>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -471,9 +499,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreatePeeringResponse> createPeeringWithHttpInfo(String xProjectId, Integer clusterId, CreatePeeringRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = createPeeringValidateBeforeCall(xProjectId, clusterId, body, null, null);
-        Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<CreatePeeringResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = createPeeringValidateBeforeCall(xProjectId, clusterId, body, null, null);
+                Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -604,9 +646,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreateClusterResponse> createReservedClusterWithHttpInfo(String xProjectId, NewReservedClusterRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, null, null);
-        Type localVarReturnType = new TypeToken<CreateClusterResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<CreateClusterResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = createReservedClusterValidateBeforeCall(xProjectId, body, null, null);
+                Type localVarReturnType = new TypeToken<CreateClusterResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -754,9 +810,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreateRouteResponse> createRouteWithHttpInfo(String xProjectId, Integer clusterId, String peeringId, CreateRouteRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = createRouteValidateBeforeCall(xProjectId, clusterId, peeringId, body, null, null);
-        Type localVarReturnType = new TypeToken<CreateRouteResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<CreateRouteResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = createRouteValidateBeforeCall(xProjectId, clusterId, peeringId, body, null, null);
+                Type localVarReturnType = new TypeToken<CreateRouteResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -897,9 +967,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<List<DeleteHostsInfoResponse>> deleteHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, Body1 body) throws ApiException {
-        com.squareup.okhttp.Call call = deleteHostsInfoValidateBeforeCall(xProjectId, clusterId, body, null, null);
-        Type localVarReturnType = new TypeToken<List<DeleteHostsInfoResponse>>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<List<DeleteHostsInfoResponse>> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = deleteHostsInfoValidateBeforeCall(xProjectId, clusterId, body, null, null);
+                Type localVarReturnType = new TypeToken<List<DeleteHostsInfoResponse>>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -1038,8 +1122,22 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deletePeeringWithHttpInfo(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
-        com.squareup.okhttp.Call call = deletePeeringValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
-        return apiClient.execute(call);
+        ApiResponse<Void> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = deletePeeringValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
+                apiResponse = apiClient.execute(call);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -1170,9 +1268,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GlobalResponse> deleteReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
-        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<GlobalResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = deleteReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+                Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -1319,8 +1431,22 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteRouteWithHttpInfo(String xProjectId, Integer clusterId, String peeringId, String routeId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteRouteValidateBeforeCall(xProjectId, clusterId, peeringId, routeId, null, null);
-        return apiClient.execute(call);
+        ApiResponse<Void> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = deleteRouteValidateBeforeCall(xProjectId, clusterId, peeringId, routeId, null, null);
+                apiResponse = apiClient.execute(call);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -1452,9 +1578,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<QueryClusterResponse> describeReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = describeReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
-        Type localVarReturnType = new TypeToken<QueryClusterResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<QueryClusterResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = describeReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+                Type localVarReturnType = new TypeToken<QueryClusterResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -1620,9 +1760,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<QueryJobListResponse> getClusterJobsWithHttpInfo(String xProjectId, Integer clusterId, String name, String status, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
-        com.squareup.okhttp.Call call = getClusterJobsValidateBeforeCall(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order, null, null);
-        Type localVarReturnType = new TypeToken<QueryJobListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<QueryJobListResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getClusterJobsValidateBeforeCall(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order, null, null);
+                Type localVarReturnType = new TypeToken<QueryJobListResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -1785,9 +1939,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<QueryClusterHostsInfoResponse> getHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, String queryString, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
-        com.squareup.okhttp.Call call = getHostsInfoValidateBeforeCall(xProjectId, clusterId, queryString, cursor, next, limit, order, null, null);
-        Type localVarReturnType = new TypeToken<QueryClusterHostsInfoResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<QueryClusterHostsInfoResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getHostsInfoValidateBeforeCall(xProjectId, clusterId, queryString, cursor, next, limit, order, null, null);
+                Type localVarReturnType = new TypeToken<QueryClusterHostsInfoResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -1932,9 +2100,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CreatePeeringResponse> getPeeringWithHttpInfo(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
-        com.squareup.okhttp.Call call = getPeeringValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
-        Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<CreatePeeringResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getPeeringValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
+                Type localVarReturnType = new TypeToken<CreatePeeringResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -2066,9 +2248,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetPeeringsResponse> getPeeringsWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = getPeeringsValidateBeforeCall(xProjectId, clusterId, null, null);
-        Type localVarReturnType = new TypeToken<GetPeeringsResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<GetPeeringsResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getPeeringsValidateBeforeCall(xProjectId, clusterId, null, null);
+                Type localVarReturnType = new TypeToken<GetPeeringsResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -2220,9 +2416,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<QueryClustersResponse> getReservedClustersWithHttpInfo(String xProjectId, String name, String status, Long cursor, Boolean next, Integer limit, String order) throws ApiException {
-        com.squareup.okhttp.Call call = getReservedClustersValidateBeforeCall(xProjectId, name, status, cursor, next, limit, order, null, null);
-        Type localVarReturnType = new TypeToken<QueryClustersResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<QueryClustersResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getReservedClustersValidateBeforeCall(xProjectId, name, status, cursor, next, limit, order, null, null);
+                Type localVarReturnType = new TypeToken<QueryClustersResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -2367,9 +2577,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetRoutesResponse> getRoutesWithHttpInfo(String xProjectId, Integer clusterId, String peeringId) throws ApiException {
-        com.squareup.okhttp.Call call = getRoutesValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
-        Type localVarReturnType = new TypeToken<GetRoutesResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<GetRoutesResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getRoutesValidateBeforeCall(xProjectId, clusterId, peeringId, null, null);
+                Type localVarReturnType = new TypeToken<GetRoutesResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -2501,9 +2725,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<QueryUserQuotaResponse> getUserQuotaWithHttpInfo(String xProjectId, String userId) throws ApiException {
-        com.squareup.okhttp.Call call = getUserQuotaValidateBeforeCall(xProjectId, userId, null, null);
-        Type localVarReturnType = new TypeToken<QueryUserQuotaResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<QueryUserQuotaResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getUserQuotaValidateBeforeCall(xProjectId, userId, null, null);
+                Type localVarReturnType = new TypeToken<QueryUserQuotaResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -2650,9 +2888,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<QueryUserQuotasResponse> getUserQuotasWithHttpInfo(String xProjectId, String name, String cursor, Boolean next, Integer limit, String order) throws ApiException {
-        com.squareup.okhttp.Call call = getUserQuotasValidateBeforeCall(xProjectId, name, cursor, next, limit, order, null, null);
-        Type localVarReturnType = new TypeToken<QueryUserQuotasResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<QueryUserQuotasResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = getUserQuotasValidateBeforeCall(xProjectId, name, cursor, next, limit, order, null, null);
+                Type localVarReturnType = new TypeToken<QueryUserQuotasResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -2787,9 +3039,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<RestartReservedClusterResponse> restartReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = restartReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
-        Type localVarReturnType = new TypeToken<RestartReservedClusterResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<RestartReservedClusterResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = restartReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+                Type localVarReturnType = new TypeToken<RestartReservedClusterResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -2920,9 +3186,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StopReservedClusterResponse> stopReservedClusterWithHttpInfo(String xProjectId, Integer clusterId) throws ApiException {
-        com.squareup.okhttp.Call call = stopReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
-        Type localVarReturnType = new TypeToken<StopReservedClusterResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<StopReservedClusterResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = stopReservedClusterValidateBeforeCall(xProjectId, clusterId, null, null);
+                Type localVarReturnType = new TypeToken<StopReservedClusterResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -3070,9 +3350,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UpdateHostsInfoResponse> updateHostsInfoWithHttpInfo(String xProjectId, Integer clusterId, Long hostId, Body2 body) throws ApiException {
-        com.squareup.okhttp.Call call = updateHostsInfoValidateBeforeCall(xProjectId, clusterId, hostId, body, null, null);
-        Type localVarReturnType = new TypeToken<UpdateHostsInfoResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<UpdateHostsInfoResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = updateHostsInfoValidateBeforeCall(xProjectId, clusterId, hostId, body, null, null);
+                Type localVarReturnType = new TypeToken<UpdateHostsInfoResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -3213,9 +3507,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GlobalResponse> updateReservedClusterWithHttpInfo(String xProjectId, Integer clusterId, UpdateClusterRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = updateReservedClusterValidateBeforeCall(xProjectId, clusterId, body, null, null);
-        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<GlobalResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = updateReservedClusterValidateBeforeCall(xProjectId, clusterId, body, null, null);
+                Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
@@ -3355,9 +3663,23 @@ public class ClusterApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GlobalResponse> updateUserQuotaWithHttpInfo(String xProjectId, String userId, UpdateUserQuotaRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(xProjectId, userId, body, null, null);
-        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        ApiResponse<GlobalResponse> apiResponse = null;
+        int retryCnt = 3;
+        while (retryCnt > 0) {
+            try {
+                com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(xProjectId, userId, body, null, null);
+                Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+                apiResponse = apiClient.execute(call, localVarReturnType);
+                retryCnt = 0;
+            } catch (Exception e) {
+                retryCnt -= 1;
+                if (retryCnt == 0) {
+                    throw new ApiException(e);
+                }
+                System.out.println("api execute failed, retry");
+            }
+        }
+        return apiResponse;
     }
 
     /**
