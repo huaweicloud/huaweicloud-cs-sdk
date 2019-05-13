@@ -22,6 +22,7 @@ import java.io.File;
 import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
+import com.huaweicloud.cs.java.v1.model.JobApigSinksResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
 import com.huaweicloud.cs.java.v1.model.JobStatusResponse;
 import com.huaweicloud.cs.java.v1.model.JobUpdateResponse;
@@ -58,6 +59,23 @@ public class JobApiTest {
         String xProjectId = null;
         Long jobId = null;
         GlobalResponse response = api.deleteJob(xProjectId, jobId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 查询作业apig网关服务访问地址
+     *
+     * The apig sinks is json format.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getApigSinksTest() throws ApiException {
+        String xProjectId = null;
+        Long jobId = null;
+        JobApigSinksResponse response = api.getApigSinks(xProjectId, jobId);
 
         // TODO: test validations
     }

@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * CreateClusterResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-04-02T09:59:30.710+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
 public class CreateClusterResponsePayload {
   @SerializedName("cluster_id")
   private Integer clusterId = null;

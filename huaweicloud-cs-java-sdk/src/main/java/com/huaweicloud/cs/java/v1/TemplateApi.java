@@ -156,23 +156,9 @@ public class TemplateApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobTemplateCreateResponse> createJobTemplateWithHttpInfo(String xProjectId, CreateJobTemplateRequest body) throws ApiException {
-        ApiResponse<JobTemplateCreateResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = createJobTemplateValidateBeforeCall(xProjectId, body, null, null);
-                Type localVarReturnType = new TypeToken<JobTemplateCreateResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = createJobTemplateValidateBeforeCall(xProjectId, body, null, null);
+        Type localVarReturnType = new TypeToken<JobTemplateCreateResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -303,23 +289,9 @@ public class TemplateApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobTemplateDeleteResponse> deleteJobTemplateWithHttpInfo(String xProjectId, Long templateId) throws ApiException {
-        ApiResponse<JobTemplateDeleteResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = deleteJobTemplateValidateBeforeCall(xProjectId, templateId, null, null);
-                Type localVarReturnType = new TypeToken<JobTemplateDeleteResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = deleteJobTemplateValidateBeforeCall(xProjectId, templateId, null, null);
+        Type localVarReturnType = new TypeToken<JobTemplateDeleteResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -456,23 +428,9 @@ public class TemplateApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobTemplateListResponse> getJobTemplatesWithHttpInfo(String xProjectId, Long cursor, Integer limit, String order) throws ApiException {
-        ApiResponse<JobTemplateListResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = getJobTemplatesValidateBeforeCall(xProjectId, cursor, limit, order, null, null);
-                Type localVarReturnType = new TypeToken<JobTemplateListResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = getJobTemplatesValidateBeforeCall(xProjectId, cursor, limit, order, null, null);
+        Type localVarReturnType = new TypeToken<JobTemplateListResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -604,23 +562,9 @@ public class TemplateApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobTemplateUpdateResponse> updateJobTemplateWithHttpInfo(String xProjectId, UpdateJobTemplateRequest body) throws ApiException {
-        ApiResponse<JobTemplateUpdateResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = updateJobTemplateValidateBeforeCall(xProjectId, body, null, null);
-                Type localVarReturnType = new TypeToken<JobTemplateUpdateResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = updateJobTemplateValidateBeforeCall(xProjectId, body, null, null);
+        Type localVarReturnType = new TypeToken<JobTemplateUpdateResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**

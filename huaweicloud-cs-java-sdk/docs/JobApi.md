@@ -5,6 +5,7 @@ All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
+[**getApigSinks**](JobApi.md#getApigSinks) | **GET** /{X-Project-Id}/job/{job_id}/apig_sinks | 查询作业apig网关服务访问地址
 [**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | 查询作业详情
 [**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | 查询作业执行计划图
 [**getJobs**](JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
@@ -53,6 +54,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GlobalResponse**](GlobalResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getApigSinks"></a>
+# **getApigSinks**
+> JobApigSinksResponse getApigSinks(xProjectId, jobId)
+
+查询作业apig网关服务访问地址
+
+The apig sinks is json format.
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.JobApi;
+
+
+JobApi apiInstance = new JobApi();
+String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+Long jobId = 789L; // Long | 作业ID
+try {
+    JobApigSinksResponse result = apiInstance.getApigSinks(xProjectId, jobId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling JobApi#getApigSinks");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xProjectId** | **String**| project id, 用于不同project取token. |
+ **jobId** | **Long**| 作业ID |
+
+### Return type
+
+[**JobApigSinksResponse**](JobApigSinksResponse.md)
 
 ### Authorization
 

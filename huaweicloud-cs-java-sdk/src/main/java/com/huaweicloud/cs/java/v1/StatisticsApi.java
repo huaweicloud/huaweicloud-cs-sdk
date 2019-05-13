@@ -135,23 +135,9 @@ public class StatisticsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ReleaseVersionResponse> getReleaseVersionWithHttpInfo() throws ApiException {
-        ApiResponse<ReleaseVersionResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = getReleaseVersionValidateBeforeCall(null, null);
-                Type localVarReturnType = new TypeToken<ReleaseVersionResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = getReleaseVersionValidateBeforeCall(null, null);
+        Type localVarReturnType = new TypeToken<ReleaseVersionResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -271,23 +257,9 @@ public class StatisticsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OverviewResponse> overviewWithHttpInfo(String xProjectId) throws ApiException {
-        ApiResponse<OverviewResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = overviewValidateBeforeCall(xProjectId, null, null);
-                Type localVarReturnType = new TypeToken<OverviewResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = overviewValidateBeforeCall(xProjectId, null, null);
+        Type localVarReturnType = new TypeToken<OverviewResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**

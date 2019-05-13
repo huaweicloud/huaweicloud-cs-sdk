@@ -35,6 +35,7 @@ import java.io.File;
 import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
+import com.huaweicloud.cs.java.v1.model.JobApigSinksResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
 import com.huaweicloud.cs.java.v1.model.JobStatusResponse;
 import com.huaweicloud.cs.java.v1.model.JobUpdateResponse;
@@ -160,23 +161,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GlobalResponse> deleteJobWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
-        ApiResponse<GlobalResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, jobId, null, null);
-                Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, jobId, null, null);
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -211,6 +198,139 @@ public class JobApi {
 
         com.squareup.okhttp.Call call = deleteJobValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getApigSinks
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param jobId 作业ID (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getApigSinksCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/{X-Project-Id}/job/{job_id}/apig_sinks"
+            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()))
+            .replaceAll("\\{" + "job_id" + "\\}", apiClient.escapeString(jobId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getApigSinksValidateBeforeCall(String xProjectId, Long jobId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xProjectId' is set
+        if (xProjectId == null) {
+            throw new ApiException("Missing the required parameter 'xProjectId' when calling getApigSinks(Async)");
+        }
+        
+        // verify the required parameter 'jobId' is set
+        if (jobId == null) {
+            throw new ApiException("Missing the required parameter 'jobId' when calling getApigSinks(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getApigSinksCall(xProjectId, jobId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 查询作业apig网关服务访问地址
+     * The apig sinks is json format.
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param jobId 作业ID (required)
+     * @return JobApigSinksResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public JobApigSinksResponse getApigSinks(String xProjectId, Long jobId) throws ApiException {
+        ApiResponse<JobApigSinksResponse> resp = getApigSinksWithHttpInfo(xProjectId, jobId);
+        return resp.getData();
+    }
+
+    /**
+     * 查询作业apig网关服务访问地址
+     * The apig sinks is json format.
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param jobId 作业ID (required)
+     * @return ApiResponse&lt;JobApigSinksResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<JobApigSinksResponse> getApigSinksWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
+        com.squareup.okhttp.Call call = getApigSinksValidateBeforeCall(xProjectId, jobId, null, null);
+        Type localVarReturnType = new TypeToken<JobApigSinksResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 查询作业apig网关服务访问地址 (asynchronously)
+     * The apig sinks is json format.
+     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param jobId 作业ID (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getApigSinksAsync(String xProjectId, Long jobId, final ApiCallback<JobApigSinksResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getApigSinksValidateBeforeCall(xProjectId, jobId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<JobApigSinksResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -307,23 +427,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GetJobDetailResponse> getJobDetailWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
-        ApiResponse<GetJobDetailResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = getJobDetailValidateBeforeCall(xProjectId, jobId, null, null);
-                Type localVarReturnType = new TypeToken<GetJobDetailResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = getJobDetailValidateBeforeCall(xProjectId, jobId, null, null);
+        Type localVarReturnType = new TypeToken<GetJobDetailResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -454,23 +560,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobExecutePlanResponse> getJobExecuteGraphWithHttpInfo(String xProjectId, Long jobId) throws ApiException {
-        ApiResponse<JobExecutePlanResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = getJobExecuteGraphValidateBeforeCall(xProjectId, jobId, null, null);
-                Type localVarReturnType = new TypeToken<JobExecutePlanResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = getJobExecuteGraphValidateBeforeCall(xProjectId, jobId, null, null);
+        Type localVarReturnType = new TypeToken<JobExecutePlanResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -637,23 +729,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<QueryJobListResponse> getJobsWithHttpInfo(String xProjectId, String name, String status, Integer clusterId, Boolean showDetail, Long cursor, Boolean next, Integer limit, String order, Long rootJobId) throws ApiException {
-        ApiResponse<QueryJobListResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = getJobsValidateBeforeCall(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId, null, null);
-                Type localVarReturnType = new TypeToken<QueryJobListResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = getJobsValidateBeforeCall(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId, null, null);
+        Type localVarReturnType = new TypeToken<QueryJobListResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -797,23 +875,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GlobalResponse> runJobWithHttpInfo(String xProjectId, Long jobId, Boolean resumeSavePoint) throws ApiException {
-        ApiResponse<GlobalResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, resumeSavePoint, null, null);
-                Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = runJobValidateBeforeCall(xProjectId, jobId, resumeSavePoint, null, null);
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -950,23 +1014,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<GlobalResponse> stopJobWithHttpInfo(String xProjectId, Long jobId, Boolean triggerSavePoint) throws ApiException {
-        ApiResponse<GlobalResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, triggerSavePoint, null, null);
-                Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = stopJobValidateBeforeCall(xProjectId, jobId, triggerSavePoint, null, null);
+        Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -1204,23 +1254,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String xProjectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
-        ApiResponse<JobStatusResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, null, null);
-                Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, null, null);
+        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -1367,23 +1403,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobStatusResponse> submitSqlJobWithHttpInfo(String xProjectId, SubmitSqlJobRequest body) throws ApiException {
-        ApiResponse<JobStatusResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = submitSqlJobValidateBeforeCall(xProjectId, body, null, null);
-                Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = submitSqlJobValidateBeforeCall(xProjectId, body, null, null);
+        Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -1605,23 +1627,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobUpdateResponse> updateJarJobWithHttpInfo(String xProjectId, Long jobId, Integer managerSpu, String name, String desc, Integer clusterId, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args) throws ApiException {
-        ApiResponse<JobUpdateResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, null, null);
-                Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = updateJarJobValidateBeforeCall(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, null, null);
+        Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -1768,23 +1776,9 @@ public class JobApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<JobUpdateResponse> updateSqlJobWithHttpInfo(String xProjectId, UpdateSqlJobRequest body) throws ApiException {
-        ApiResponse<JobUpdateResponse> apiResponse = null;
-        int retryCnt = 3;
-        while (retryCnt > 0) {
-            try {
-                com.squareup.okhttp.Call call = updateSqlJobValidateBeforeCall(xProjectId, body, null, null);
-                Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
-                apiResponse = apiClient.execute(call, localVarReturnType);
-                retryCnt = 0;
-            } catch (Exception e) {
-                retryCnt -= 1;
-                if (retryCnt == 0) {
-                    throw new ApiException(e);
-                }
-                System.out.println("api execute failed, retry");
-            }
-        }
-        return apiResponse;
+        com.squareup.okhttp.Call call = updateSqlJobValidateBeforeCall(xProjectId, body, null, null);
+        Type localVarReturnType = new TypeToken<JobUpdateResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**

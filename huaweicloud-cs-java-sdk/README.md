@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.huaweicloud.cs</groupId>
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
-    <version>1.1.7</version>
+    <version>1.1.8</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.1.7"
+compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.1.8"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/huaweicloud-cs-java-sdk-1.1.7.jar
+* target/huaweicloud-cs-java-sdk-1.1.8.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
 *ClusterApi* | [**updateReservedCluster**](docs/ClusterApi.md#updateReservedCluster) | **PATCH** /{X-Project-Id}/reserved_cluster/{cluster_id} | 更新独享集群
 *ClusterApi* | [**updateUserQuota**](docs/ClusterApi.md#updateUserQuota) | **PATCH** /{X-Project-Id}/user_quota/{user_id} | 更新指定用户配额信息
 *JobApi* | [**deleteJob**](docs/JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
+*JobApi* | [**getApigSinks**](docs/JobApi.md#getApigSinks) | **GET** /{X-Project-Id}/job/{job_id}/apig_sinks | 查询作业apig网关服务访问地址
 *JobApi* | [**getJobDetail**](docs/JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | 查询作业详情
 *JobApi* | [**getJobExecuteGraph**](docs/JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | 查询作业执行计划图
 *JobApi* | [**getJobs**](docs/JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
@@ -126,12 +127,14 @@ Class | Method | HTTP request | Description
 *JobApi* | [**updateJarJob**](docs/JobApi.md#updateJarJob) | **PATCH** /{X-Project-Id}/jar_job | 更新用户自定义作业
 *JobApi* | [**updateSqlJob**](docs/JobApi.md#updateSqlJob) | **PATCH** /{X-Project-Id}/sql_job | 更新流式SQL作业
 *LogApi* | [**getAuditLogs**](docs/LogApi.md#getAuditLogs) | **GET** /{X-Project-Id}/audit_logs | 查询审计日志
+*MetricApi* | [**getJobsMetrics**](docs/MetricApi.md#getJobsMetrics) | **POST** /{X-Project-Id}/jobs/metrics | 查询作业监控信息
 *StatisticsApi* | [**getReleaseVersion**](docs/StatisticsApi.md#getReleaseVersion) | **GET** /versions | 查询CS当前发行版本信息
 *StatisticsApi* | [**overview**](docs/StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况(作业及费用)
 *TemplateApi* | [**createJobTemplate**](docs/TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | 创建作业模板
 *TemplateApi* | [**deleteJobTemplate**](docs/TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板
 *TemplateApi* | [**getJobTemplates**](docs/TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | 查询作业模板列表
 *TemplateApi* | [**updateJobTemplate**](docs/TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | 更新作业模板
+*UserApi* | [**userRegister**](docs/UserApi.md#userRegister) | **POST** /{X-Project-Id}/user_register | 用户注册使用CS服务
 
 
 ## Documentation for Models
@@ -144,6 +147,7 @@ Class | Method | HTTP request | Description
  - [Body](docs/Body.md)
  - [Body1](docs/Body1.md)
  - [Body2](docs/Body2.md)
+ - [Body3](docs/Body3.md)
  - [ClusterHostsInfo](docs/ClusterHostsInfo.md)
  - [ClusterHostsInfoHostsInfo](docs/ClusterHostsInfoHostsInfo.md)
  - [ClusterInfo](docs/ClusterInfo.md)
@@ -163,12 +167,18 @@ Class | Method | HTTP request | Description
  - [GlobalErrorResponse](docs/GlobalErrorResponse.md)
  - [GlobalResponse](docs/GlobalResponse.md)
  - [HostIpInfo](docs/HostIpInfo.md)
- - [InputsEntity](docs/InputsEntity.md)
+ - [JobApigSinkEntity](docs/JobApigSinkEntity.md)
+ - [JobApigSinks](docs/JobApigSinks.md)
+ - [JobApigSinksResponse](docs/JobApigSinksResponse.md)
  - [JobConfig](docs/JobConfig.md)
  - [JobDetailEntity](docs/JobDetailEntity.md)
  - [JobEntity](docs/JobEntity.md)
  - [JobExecutePlan](docs/JobExecutePlan.md)
  - [JobExecutePlanResponse](docs/JobExecutePlanResponse.md)
+ - [JobMetaDataAttrEntity](docs/JobMetaDataAttrEntity.md)
+ - [JobMetaDataEntity](docs/JobMetaDataEntity.md)
+ - [JobMetric](docs/JobMetric.md)
+ - [JobMetricDetail](docs/JobMetricDetail.md)
  - [JobOverviewEntity](docs/JobOverviewEntity.md)
  - [JobStatusInfo](docs/JobStatusInfo.md)
  - [JobStatusResponse](docs/JobStatusResponse.md)
@@ -182,30 +192,28 @@ Class | Method | HTTP request | Description
  - [JobTemplateUpdateResponse](docs/JobTemplateUpdateResponse.md)
  - [JobUpdateResponse](docs/JobUpdateResponse.md)
  - [JobUpdateTime](docs/JobUpdateTime.md)
- - [MetricsEntity](docs/MetricsEntity.md)
  - [NewReservedClusterRequest](docs/NewReservedClusterRequest.md)
- - [NodesEntity](docs/NodesEntity.md)
+ - [OperatorMetric](docs/OperatorMetric.md)
  - [OverviewEntity](docs/OverviewEntity.md)
  - [OverviewResponse](docs/OverviewResponse.md)
  - [Peering](docs/Peering.md)
- - [PlanEntity](docs/PlanEntity.md)
  - [QueryClusterHostsInfoResponse](docs/QueryClusterHostsInfoResponse.md)
  - [QueryClusterResponse](docs/QueryClusterResponse.md)
  - [QueryClustersResponse](docs/QueryClustersResponse.md)
  - [QueryClustersResponsePayload](docs/QueryClustersResponsePayload.md)
  - [QueryJobListResponse](docs/QueryJobListResponse.md)
  - [QueryJobListResponsePayload](docs/QueryJobListResponsePayload.md)
+ - [QueryJobMetricsResponse](docs/QueryJobMetricsResponse.md)
+ - [QueryJobMetricsResponsePayload](docs/QueryJobMetricsResponsePayload.md)
  - [QueryUserQuotaResponse](docs/QueryUserQuotaResponse.md)
  - [QueryUserQuotasResponse](docs/QueryUserQuotasResponse.md)
  - [QueryUserQuotasResponsePayload](docs/QueryUserQuotasResponsePayload.md)
  - [ReleaseVersionResponse](docs/ReleaseVersionResponse.md)
  - [RestartReservedClusterResponse](docs/RestartReservedClusterResponse.md)
  - [Route](docs/Route.md)
- - [StatusCountsEntity](docs/StatusCountsEntity.md)
  - [StopReservedClusterResponse](docs/StopReservedClusterResponse.md)
  - [SubmitJarJobRequest](docs/SubmitJarJobRequest.md)
  - [SubmitSqlJobRequest](docs/SubmitSqlJobRequest.md)
- - [TimestampsEntity](docs/TimestampsEntity.md)
  - [UpdateClusterRequest](docs/UpdateClusterRequest.md)
  - [UpdateHostsInfoResponse](docs/UpdateHostsInfoResponse.md)
  - [UpdateJobTemplateRequest](docs/UpdateJobTemplateRequest.md)
@@ -213,7 +221,6 @@ Class | Method | HTTP request | Description
  - [UpdateUserQuotaRequest](docs/UpdateUserQuotaRequest.md)
  - [UserCluster](docs/UserCluster.md)
  - [UserQuotaInfo](docs/UserQuotaInfo.md)
- - [VerticesEntity](docs/VerticesEntity.md)
  - [VpcInfo](docs/VpcInfo.md)
 
 

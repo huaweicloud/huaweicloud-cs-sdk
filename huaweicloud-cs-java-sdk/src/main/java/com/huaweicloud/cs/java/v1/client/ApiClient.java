@@ -97,7 +97,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("Swagger-Codegen/1.1.7/java");
+        setUserAgent("Swagger-Codegen/1.1.8/java");
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications = new HashMap<String, Authentication>();
@@ -107,7 +107,14 @@ public class ApiClient {
         authentications = Collections.unmodifiableMap(authentications);
 
         this.region = region;
-        basePath = basePath.replace("<region>", region);
+        switch(region) {
+            case "cn-north-5":  basePath = "https://cs-api.cn-north-5.myhuaweicloud.com/v1.0"; break;
+            case "eu-west-0":  basePath = "https://cs.eu-west-0.prod-cloud-ocb.orange-business.com/v1.0"; break;
+            case "cn-cmcc1":  basePath = "https://cs.cn-cmcc1.huaweitest.ocbclouds/v1.0"; break;
+            case "eu-de":  basePath = "https://cs.eu-de.otc.t-systems.com/v1.0"; break;
+            case "ae-ad-dc2":  basePath = "https://cs.ae-ad-dc2.fcs.eoscloud.ai/v1.0"; break;
+            default: basePath = basePath.replace("<region>", region); break;
+        }
     }
 
     /**

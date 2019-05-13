@@ -23,56 +23,34 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.huaweicloud.cs.java.v1.model.NodesEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * 
+ * OperatorMetric
  */
-@ApiModel(description = "")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-04-02T09:59:30.710+08:00")
-public class PlanEntity {
-  @SerializedName("jid")
-  private String jid = null;
-
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
+public class OperatorMetric {
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("nodes")
-  private List<NodesEntity> nodes = null;
+  @SerializedName("records")
+  private Long records = null;
 
-  public PlanEntity jid(String jid) {
-    this.jid = jid;
-    return this;
-  }
+  @SerializedName("corrupted_records")
+  private Long corruptedRecords = null;
 
-   /**
-   * 
-   * @return jid
-  **/
-  @ApiModelProperty(value = "")
-  public String getJid() {
-    return jid;
-  }
-
-  public void setJid(String jid) {
-    this.jid = jid;
-  }
-
-  public PlanEntity name(String name) {
+  public OperatorMetric name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * 
+   * 算子名称
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "Source: KafKa_6070_KAFKA_SOURCE", value = "算子名称")
   public String getName() {
     return name;
   }
@@ -81,30 +59,40 @@ public class PlanEntity {
     this.name = name;
   }
 
-  public PlanEntity nodes(List<NodesEntity> nodes) {
-    this.nodes = nodes;
-    return this;
-  }
-
-  public PlanEntity addNodesItem(NodesEntity nodesItem) {
-    if (this.nodes == null) {
-      this.nodes = new ArrayList<NodesEntity>();
-    }
-    this.nodes.add(nodesItem);
+  public OperatorMetric records(Long records) {
+    this.records = records;
     return this;
   }
 
    /**
-   * Get nodes
-   * @return nodes
+   * 记录数
+   * @return records
   **/
-  @ApiModelProperty(value = "")
-  public List<NodesEntity> getNodes() {
-    return nodes;
+  @ApiModelProperty(value = "记录数")
+  public Long getRecords() {
+    return records;
   }
 
-  public void setNodes(List<NodesEntity> nodes) {
-    this.nodes = nodes;
+  public void setRecords(Long records) {
+    this.records = records;
+  }
+
+  public OperatorMetric corruptedRecords(Long corruptedRecords) {
+    this.corruptedRecords = corruptedRecords;
+    return this;
+  }
+
+   /**
+   * 脏数据记录数
+   * @return corruptedRecords
+  **/
+  @ApiModelProperty(value = "脏数据记录数")
+  public Long getCorruptedRecords() {
+    return corruptedRecords;
+  }
+
+  public void setCorruptedRecords(Long corruptedRecords) {
+    this.corruptedRecords = corruptedRecords;
   }
 
 
@@ -116,26 +104,26 @@ public class PlanEntity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PlanEntity planEntity = (PlanEntity) o;
-    return Objects.equals(this.jid, planEntity.jid) &&
-        Objects.equals(this.name, planEntity.name) &&
-        Objects.equals(this.nodes, planEntity.nodes);
+    OperatorMetric operatorMetric = (OperatorMetric) o;
+    return Objects.equals(this.name, operatorMetric.name) &&
+        Objects.equals(this.records, operatorMetric.records) &&
+        Objects.equals(this.corruptedRecords, operatorMetric.corruptedRecords);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jid, name, nodes);
+    return Objects.hash(name, records, corruptedRecords);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PlanEntity {\n");
+    sb.append("class OperatorMetric {\n");
     
-    sb.append("    jid: ").append(toIndentedString(jid)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    nodes: ").append(toIndentedString(nodes)).append("\n");
+    sb.append("    records: ").append(toIndentedString(records)).append("\n");
+    sb.append("    corruptedRecords: ").append(toIndentedString(corruptedRecords)).append("\n");
     sb.append("}");
     return sb.toString();
   }
