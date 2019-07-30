@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Body3
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T09:32:56.282+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T10:07:58.610+08:00")
 public class Body3 {
   @SerializedName("job_ids")
   private List<Integer> jobIds = null;
