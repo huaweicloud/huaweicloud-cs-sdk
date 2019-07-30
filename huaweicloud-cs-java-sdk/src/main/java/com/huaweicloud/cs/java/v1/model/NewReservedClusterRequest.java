@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * NewReservedClusterRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T09:32:56.282+08:00")
 public class NewReservedClusterRequest {
   @SerializedName("name")
   private String name = null;
@@ -49,6 +49,15 @@ public class NewReservedClusterRequest {
 
   @SerializedName("subnet_gateway")
   private String subnetGateway = null;
+
+  @SerializedName("tags")
+  private String tags = null;
+
+  @SerializedName("sys_enterprise_project_id")
+  private String sysEnterpriseProjectId = null;
+
+  @SerializedName("manager_node_spu")
+  private String managerNodeSpu = null;
 
   public NewReservedClusterRequest name(String name) {
     this.name = name;
@@ -158,6 +167,60 @@ public class NewReservedClusterRequest {
     this.subnetGateway = subnetGateway;
   }
 
+  public NewReservedClusterRequest tags(String tags) {
+    this.tags = tags;
+    return this;
+  }
+
+   /**
+   * 集群标签
+   * @return tags
+  **/
+  @ApiModelProperty(value = "集群标签")
+  public String getTags() {
+    return tags;
+  }
+
+  public void setTags(String tags) {
+    this.tags = tags;
+  }
+
+  public NewReservedClusterRequest sysEnterpriseProjectId(String sysEnterpriseProjectId) {
+    this.sysEnterpriseProjectId = sysEnterpriseProjectId;
+    return this;
+  }
+
+   /**
+   * 集群所属的企业项目id
+   * @return sysEnterpriseProjectId
+  **/
+  @ApiModelProperty(value = "集群所属的企业项目id")
+  public String getSysEnterpriseProjectId() {
+    return sysEnterpriseProjectId;
+  }
+
+  public void setSysEnterpriseProjectId(String sysEnterpriseProjectId) {
+    this.sysEnterpriseProjectId = sysEnterpriseProjectId;
+  }
+
+  public NewReservedClusterRequest managerNodeSpu(String managerNodeSpu) {
+    this.managerNodeSpu = managerNodeSpu;
+    return this;
+  }
+
+   /**
+   * 集群管理节点规格
+   * @return managerNodeSpu
+  **/
+  @ApiModelProperty(value = "集群管理节点规格")
+  public String getManagerNodeSpu() {
+    return managerNodeSpu;
+  }
+
+  public void setManagerNodeSpu(String managerNodeSpu) {
+    this.managerNodeSpu = managerNodeSpu;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -173,12 +236,15 @@ public class NewReservedClusterRequest {
         Objects.equals(this.maximumSpuQuota, newReservedClusterRequest.maximumSpuQuota) &&
         Objects.equals(this.vpcCidr, newReservedClusterRequest.vpcCidr) &&
         Objects.equals(this.subnetCidr, newReservedClusterRequest.subnetCidr) &&
-        Objects.equals(this.subnetGateway, newReservedClusterRequest.subnetGateway);
+        Objects.equals(this.subnetGateway, newReservedClusterRequest.subnetGateway) &&
+        Objects.equals(this.tags, newReservedClusterRequest.tags) &&
+        Objects.equals(this.sysEnterpriseProjectId, newReservedClusterRequest.sysEnterpriseProjectId) &&
+        Objects.equals(this.managerNodeSpu, newReservedClusterRequest.managerNodeSpu);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, desc, maximumSpuQuota, vpcCidr, subnetCidr, subnetGateway);
+    return Objects.hash(name, desc, maximumSpuQuota, vpcCidr, subnetCidr, subnetGateway, tags, sysEnterpriseProjectId, managerNodeSpu);
   }
 
 
@@ -193,6 +259,9 @@ public class NewReservedClusterRequest {
     sb.append("    vpcCidr: ").append(toIndentedString(vpcCidr)).append("\n");
     sb.append("    subnetCidr: ").append(toIndentedString(subnetCidr)).append("\n");
     sb.append("    subnetGateway: ").append(toIndentedString(subnetGateway)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    sysEnterpriseProjectId: ").append(toIndentedString(sysEnterpriseProjectId)).append("\n");
+    sb.append("    managerNodeSpu: ").append(toIndentedString(managerNodeSpu)).append("\n");
     sb.append("}");
     return sb.toString();
   }

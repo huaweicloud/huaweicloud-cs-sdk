@@ -47,13 +47,13 @@ public class LogApiTest {
      */
     @Test
     public void getAuditLogsTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         String resourceType = null;
         String cursor = null;
         String resourceId = null;
         Integer pageNumber = null;
         Integer limit = null;
-        AuditLogResponse response = api.getAuditLogs(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
+        AuditLogResponse response = api.getAuditLogs(projectId, resourceType, cursor, resourceId, pageNumber, limit);
 
         // TODO: test validations
     }

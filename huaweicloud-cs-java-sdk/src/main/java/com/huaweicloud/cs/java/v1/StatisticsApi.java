@@ -175,18 +175,18 @@ public class StatisticsApi {
     }
     /**
      * Build call for overview
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call overviewCall(String xProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call overviewCall(String projectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/overview"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+        String localVarPath = "/{project_id}/overview"
+            .replaceAll("\\{" + "project_id" + "\\}", apiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -224,15 +224,15 @@ public class StatisticsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call overviewValidateBeforeCall(String xProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call overviewValidateBeforeCall(String projectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'xProjectId' is set
-        if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling overview(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling overview(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = overviewCall(xProjectId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = overviewCall(projectId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -240,24 +240,24 @@ public class StatisticsApi {
     /**
      * 概要统计用户的资源使用情况(作业及费用)
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @return OverviewResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public OverviewResponse overview(String xProjectId) throws ApiException {
-        ApiResponse<OverviewResponse> resp = overviewWithHttpInfo(xProjectId);
+    public OverviewResponse overview(String projectId) throws ApiException {
+        ApiResponse<OverviewResponse> resp = overviewWithHttpInfo(projectId);
         return resp.getData();
     }
 
     /**
      * 概要统计用户的资源使用情况(作业及费用)
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @return ApiResponse&lt;OverviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<OverviewResponse> overviewWithHttpInfo(String xProjectId) throws ApiException {
-        com.squareup.okhttp.Call call = overviewValidateBeforeCall(xProjectId, null, null);
+    public ApiResponse<OverviewResponse> overviewWithHttpInfo(String projectId) throws ApiException {
+        com.squareup.okhttp.Call call = overviewValidateBeforeCall(projectId, null, null);
         Type localVarReturnType = new TypeToken<OverviewResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -265,12 +265,12 @@ public class StatisticsApi {
     /**
      * 概要统计用户的资源使用情况(作业及费用) (asynchronously)
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call overviewAsync(String xProjectId, final ApiCallback<OverviewResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call overviewAsync(String projectId, final ApiCallback<OverviewResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -291,7 +291,7 @@ public class StatisticsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = overviewValidateBeforeCall(xProjectId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = overviewValidateBeforeCall(projectId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OverviewResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

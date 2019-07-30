@@ -56,9 +56,9 @@ public class JobApiTest {
      */
     @Test
     public void deleteJobTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long jobId = null;
-        GlobalResponse response = api.deleteJob(xProjectId, jobId);
+        GlobalResponse response = api.deleteJob(projectId, jobId);
 
         // TODO: test validations
     }
@@ -73,9 +73,9 @@ public class JobApiTest {
      */
     @Test
     public void getApigSinksTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long jobId = null;
-        JobApigSinksResponse response = api.getApigSinks(xProjectId, jobId);
+        JobApigSinksResponse response = api.getApigSinks(projectId, jobId);
 
         // TODO: test validations
     }
@@ -90,9 +90,9 @@ public class JobApiTest {
      */
     @Test
     public void getJobDetailTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long jobId = null;
-        GetJobDetailResponse response = api.getJobDetail(xProjectId, jobId);
+        GetJobDetailResponse response = api.getJobDetail(projectId, jobId);
 
         // TODO: test validations
     }
@@ -107,9 +107,9 @@ public class JobApiTest {
      */
     @Test
     public void getJobExecuteGraphTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long jobId = null;
-        JobExecutePlanResponse response = api.getJobExecuteGraph(xProjectId, jobId);
+        JobExecutePlanResponse response = api.getJobExecuteGraph(projectId, jobId);
 
         // TODO: test validations
     }
@@ -124,7 +124,7 @@ public class JobApiTest {
      */
     @Test
     public void getJobsTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         String name = null;
         String status = null;
         Integer clusterId = null;
@@ -134,7 +134,7 @@ public class JobApiTest {
         Integer limit = null;
         String order = null;
         Long rootJobId = null;
-        QueryJobListResponse response = api.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId);
+        QueryJobListResponse response = api.getJobs(projectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId);
 
         // TODO: test validations
     }
@@ -149,10 +149,10 @@ public class JobApiTest {
      */
     @Test
     public void runJobTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long jobId = null;
         Boolean resumeSavePoint = null;
-        GlobalResponse response = api.runJob(xProjectId, jobId, resumeSavePoint);
+        GlobalResponse response = api.runJob(projectId, jobId, resumeSavePoint);
 
         // TODO: test validations
     }
@@ -167,10 +167,10 @@ public class JobApiTest {
      */
     @Test
     public void stopJobTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long jobId = null;
         Boolean triggerSavePoint = null;
-        GlobalResponse response = api.stopJob(xProjectId, jobId, triggerSavePoint);
+        GlobalResponse response = api.stopJob(projectId, jobId, triggerSavePoint);
 
         // TODO: test validations
     }
@@ -185,7 +185,7 @@ public class JobApiTest {
      */
     @Test
     public void submitJarJobTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         String name = null;
         String desc = null;
         Integer clusterId = null;
@@ -204,7 +204,10 @@ public class JobApiTest {
         String configUrl = null;
         String mainClass = null;
         String args = null;
-        JobStatusResponse response = api.submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
+        Boolean restartWhenException = null;
+        String tags = null;
+        String sysEnterpriseProjectId = null;
+        JobStatusResponse response = api.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
 
         // TODO: test validations
     }
@@ -219,9 +222,9 @@ public class JobApiTest {
      */
     @Test
     public void submitSqlJobTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         SubmitSqlJobRequest body = null;
-        JobStatusResponse response = api.submitSqlJob(xProjectId, body);
+        JobStatusResponse response = api.submitSqlJob(projectId, body);
 
         // TODO: test validations
     }
@@ -236,7 +239,7 @@ public class JobApiTest {
      */
     @Test
     public void updateJarJobTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long jobId = null;
         Integer managerSpu = null;
         String name = null;
@@ -255,7 +258,10 @@ public class JobApiTest {
         String configUrl = null;
         String mainClass = null;
         String args = null;
-        JobUpdateResponse response = api.updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
+        Boolean restartWhenException = null;
+        String tags = null;
+        String sysEnterpriseProjectId = null;
+        JobUpdateResponse response = api.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
 
         // TODO: test validations
     }
@@ -270,9 +276,9 @@ public class JobApiTest {
      */
     @Test
     public void updateSqlJobTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         UpdateSqlJobRequest body = null;
-        JobUpdateResponse response = api.updateSqlJob(xProjectId, body);
+        JobUpdateResponse response = api.updateSqlJob(projectId, body);
 
         // TODO: test validations
     }

@@ -17,7 +17,7 @@
 
 package com.huaweicloud.cs.java.v1.client;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T09:32:56.282+08:00")
 public class Pair {
     private String name = "";
     private String value = "";

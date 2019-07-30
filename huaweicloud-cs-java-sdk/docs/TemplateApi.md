@@ -4,15 +4,15 @@ All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createJobTemplate**](TemplateApi.md#createJobTemplate) | **POST** /{X-Project-Id}/job_template | 创建作业模板
-[**deleteJobTemplate**](TemplateApi.md#deleteJobTemplate) | **DELETE** /{X-Project-Id}/job_template/{template_id} | 删除作业模板
-[**getJobTemplates**](TemplateApi.md#getJobTemplates) | **GET** /{X-Project-Id}/job_templates | 查询作业模板列表
-[**updateJobTemplate**](TemplateApi.md#updateJobTemplate) | **PATCH** /{X-Project-Id}/job_template | 更新作业模板
+[**createJobTemplate**](TemplateApi.md#createJobTemplate) | **POST** /{project_id}/job_template | 创建作业模板
+[**deleteJobTemplate**](TemplateApi.md#deleteJobTemplate) | **DELETE** /{project_id}/job_template/{template_id} | 删除作业模板
+[**getJobTemplates**](TemplateApi.md#getJobTemplates) | **GET** /{project_id}/job_templates | 查询作业模板列表
+[**updateJobTemplate**](TemplateApi.md#updateJobTemplate) | **PATCH** /{project_id}/job_template | 更新作业模板
 
 
 <a name="createJobTemplate"></a>
 # **createJobTemplate**
-> JobTemplateCreateResponse createJobTemplate(xProjectId, body)
+> JobTemplateCreateResponse createJobTemplate(projectId, body)
 
 创建作业模板
 
@@ -26,10 +26,10 @@ Create job template on Cloud Stream Service
 
 
 TemplateApi apiInstance = new TemplateApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 CreateJobTemplateRequest body = new CreateJobTemplateRequest(); // CreateJobTemplateRequest | Create job template request
 try {
-    JobTemplateCreateResponse result = apiInstance.createJobTemplate(xProjectId, body);
+    JobTemplateCreateResponse result = apiInstance.createJobTemplate(projectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TemplateApi#createJobTemplate");
@@ -41,7 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **body** | [**CreateJobTemplateRequest**](CreateJobTemplateRequest.md)| Create job template request |
 
 ### Return type
@@ -59,7 +59,7 @@ No authorization required
 
 <a name="deleteJobTemplate"></a>
 # **deleteJobTemplate**
-> JobTemplateDeleteResponse deleteJobTemplate(xProjectId, templateId)
+> JobTemplateDeleteResponse deleteJobTemplate(projectId, templateId)
 
 删除作业模板
 
@@ -73,10 +73,10 @@ No authorization required
 
 
 TemplateApi apiInstance = new TemplateApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long templateId = 789L; // Long | 
 try {
-    JobTemplateDeleteResponse result = apiInstance.deleteJobTemplate(xProjectId, templateId);
+    JobTemplateDeleteResponse result = apiInstance.deleteJobTemplate(projectId, templateId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TemplateApi#deleteJobTemplate");
@@ -88,7 +88,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **templateId** | **Long**|  |
 
 ### Return type
@@ -106,7 +106,7 @@ No authorization required
 
 <a name="getJobTemplates"></a>
 # **getJobTemplates**
-> JobTemplateListResponse getJobTemplates(xProjectId, cursor, limit, order)
+> JobTemplateListResponse getJobTemplates(projectId, cursor, limit, order)
 
 查询作业模板列表
 
@@ -118,12 +118,12 @@ No authorization required
 
 
 TemplateApi apiInstance = new TemplateApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long cursor = 789L; // Long | 作业模板ID
 Integer limit = 56; // Integer | 查询条数限制
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
 try {
-    JobTemplateListResponse result = apiInstance.getJobTemplates(xProjectId, cursor, limit, order);
+    JobTemplateListResponse result = apiInstance.getJobTemplates(projectId, cursor, limit, order);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TemplateApi#getJobTemplates");
@@ -135,7 +135,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **cursor** | **Long**| 作业模板ID | [optional]
  **limit** | **Integer**| 查询条数限制 | [optional]
  **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]
@@ -155,7 +155,7 @@ No authorization required
 
 <a name="updateJobTemplate"></a>
 # **updateJobTemplate**
-> JobTemplateUpdateResponse updateJobTemplate(xProjectId, body)
+> JobTemplateUpdateResponse updateJobTemplate(projectId, body)
 
 更新作业模板
 
@@ -169,10 +169,10 @@ Update job template on Cloud Stream Service
 
 
 TemplateApi apiInstance = new TemplateApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 UpdateJobTemplateRequest body = new UpdateJobTemplateRequest(); // UpdateJobTemplateRequest | 提交修改SQL作业模板请求
 try {
-    JobTemplateUpdateResponse result = apiInstance.updateJobTemplate(xProjectId, body);
+    JobTemplateUpdateResponse result = apiInstance.updateJobTemplate(projectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TemplateApi#updateJobTemplate");
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **body** | [**UpdateJobTemplateRequest**](UpdateJobTemplateRequest.md)| 提交修改SQL作业模板请求 |
 
 ### Return type

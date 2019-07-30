@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * SubmitSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T09:32:56.282+08:00")
 public class SubmitSqlJobRequest {
   @SerializedName("name")
   private String name = null;
@@ -228,6 +228,18 @@ public class SubmitSqlJobRequest {
 
   @SerializedName("edge_group_ids")
   private String edgeGroupIds = null;
+
+  @SerializedName("tags")
+  private String tags = null;
+
+  @SerializedName("sys_enterprise_project_id")
+  private String sysEnterpriseProjectId = null;
+
+  @SerializedName("udf_jar_url")
+  private String udfJarUrl = null;
+
+  @SerializedName("dirty_data_strategy")
+  private String dirtyDataStrategy = null;
 
   public SubmitSqlJobRequest name(String name) {
     this.name = name;
@@ -557,6 +569,78 @@ public class SubmitSqlJobRequest {
     this.edgeGroupIds = edgeGroupIds;
   }
 
+  public SubmitSqlJobRequest tags(String tags) {
+    this.tags = tags;
+    return this;
+  }
+
+   /**
+   * 作业标签
+   * @return tags
+  **/
+  @ApiModelProperty(value = "作业标签")
+  public String getTags() {
+    return tags;
+  }
+
+  public void setTags(String tags) {
+    this.tags = tags;
+  }
+
+  public SubmitSqlJobRequest sysEnterpriseProjectId(String sysEnterpriseProjectId) {
+    this.sysEnterpriseProjectId = sysEnterpriseProjectId;
+    return this;
+  }
+
+   /**
+   * 作业所属的企业项目id
+   * @return sysEnterpriseProjectId
+  **/
+  @ApiModelProperty(value = "作业所属的企业项目id")
+  public String getSysEnterpriseProjectId() {
+    return sysEnterpriseProjectId;
+  }
+
+  public void setSysEnterpriseProjectId(String sysEnterpriseProjectId) {
+    this.sysEnterpriseProjectId = sysEnterpriseProjectId;
+  }
+
+  public SubmitSqlJobRequest udfJarUrl(String udfJarUrl) {
+    this.udfJarUrl = udfJarUrl;
+    return this;
+  }
+
+   /**
+   * sql作业udf jar所在的obs地址
+   * @return udfJarUrl
+  **/
+  @ApiModelProperty(value = "sql作业udf jar所在的obs地址")
+  public String getUdfJarUrl() {
+    return udfJarUrl;
+  }
+
+  public void setUdfJarUrl(String udfJarUrl) {
+    this.udfJarUrl = udfJarUrl;
+  }
+
+  public SubmitSqlJobRequest dirtyDataStrategy(String dirtyDataStrategy) {
+    this.dirtyDataStrategy = dirtyDataStrategy;
+    return this;
+  }
+
+   /**
+   * 作业脏数据策略
+   * @return dirtyDataStrategy
+  **/
+  @ApiModelProperty(value = "作业脏数据策略")
+  public String getDirtyDataStrategy() {
+    return dirtyDataStrategy;
+  }
+
+  public void setDirtyDataStrategy(String dirtyDataStrategy) {
+    this.dirtyDataStrategy = dirtyDataStrategy;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -584,12 +668,16 @@ public class SubmitSqlJobRequest {
         Objects.equals(this.restartWhenException, submitSqlJobRequest.restartWhenException) &&
         Objects.equals(this.idleStateRetention, submitSqlJobRequest.idleStateRetention) &&
         Objects.equals(this.jobType, submitSqlJobRequest.jobType) &&
-        Objects.equals(this.edgeGroupIds, submitSqlJobRequest.edgeGroupIds);
+        Objects.equals(this.edgeGroupIds, submitSqlJobRequest.edgeGroupIds) &&
+        Objects.equals(this.tags, submitSqlJobRequest.tags) &&
+        Objects.equals(this.sysEnterpriseProjectId, submitSqlJobRequest.sysEnterpriseProjectId) &&
+        Objects.equals(this.udfJarUrl, submitSqlJobRequest.udfJarUrl) &&
+        Objects.equals(this.dirtyDataStrategy, submitSqlJobRequest.dirtyDataStrategy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, desc, templateId, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, restartWhenException, idleStateRetention, jobType, edgeGroupIds);
+    return Objects.hash(name, desc, templateId, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, restartWhenException, idleStateRetention, jobType, edgeGroupIds, tags, sysEnterpriseProjectId, udfJarUrl, dirtyDataStrategy);
   }
 
 
@@ -616,6 +704,10 @@ public class SubmitSqlJobRequest {
     sb.append("    idleStateRetention: ").append(toIndentedString(idleStateRetention)).append("\n");
     sb.append("    jobType: ").append(toIndentedString(jobType)).append("\n");
     sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    sysEnterpriseProjectId: ").append(toIndentedString(sysEnterpriseProjectId)).append("\n");
+    sb.append("    udfJarUrl: ").append(toIndentedString(udfJarUrl)).append("\n");
+    sb.append("    dirtyDataStrategy: ").append(toIndentedString(dirtyDataStrategy)).append("\n");
     sb.append("}");
     return sb.toString();
   }

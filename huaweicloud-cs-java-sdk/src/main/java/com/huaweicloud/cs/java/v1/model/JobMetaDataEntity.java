@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * JobMetaDataEntity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T09:32:56.282+08:00")
 public class JobMetaDataEntity {
   @SerializedName("name")
   private String name = null;
@@ -74,7 +74,7 @@ public class JobMetaDataEntity {
    * 定义的Sink数据输出的格式
    * @return encode
   **/
-  @ApiModelProperty(example = "json或者csv", value = "定义的Sink数据输出的格式")
+  @ApiModelProperty(example = "csv", value = "定义的Sink数据输出的格式")
   public String getEncode() {
     return encode;
   }

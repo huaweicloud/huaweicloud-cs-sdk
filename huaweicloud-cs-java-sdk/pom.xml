@@ -5,7 +5,7 @@
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
     <packaging>jar</packaging>
     <name>huaweicloud-cs-java-sdk</name>
-    <version>1.1.8</version>
+    <version>1.2.0</version>
     <url>https://www.huaweicloud.com/product/cs.html</url>
     <description>Huawei Cloud Stream Service Java SDK</description>
     <scm>

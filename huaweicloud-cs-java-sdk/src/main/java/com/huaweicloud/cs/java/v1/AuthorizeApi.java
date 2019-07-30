@@ -61,19 +61,19 @@ public class AuthorizeApi {
 
     /**
      * Build call for authorizeBucket
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call authorizeBucketCall(String xProjectId, List<String> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call authorizeBucketCall(String projectId, List<String> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/obs_authorize"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+        String localVarPath = "/{project_id}/obs_authorize"
+            .replaceAll("\\{" + "project_id" + "\\}", apiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -111,11 +111,11 @@ public class AuthorizeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call authorizeBucketValidateBeforeCall(String xProjectId, List<String> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call authorizeBucketValidateBeforeCall(String projectId, List<String> body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'xProjectId' is set
-        if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling authorizeBucket(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling authorizeBucket(Async)");
         }
         
         // verify the required parameter 'body' is set
@@ -124,7 +124,7 @@ public class AuthorizeApi {
         }
         
 
-        com.squareup.okhttp.Call call = authorizeBucketCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = authorizeBucketCall(projectId, body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -132,26 +132,26 @@ public class AuthorizeApi {
     /**
      * 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse authorizeBucket(String xProjectId, List<String> body) throws ApiException {
-        ApiResponse<GlobalResponse> resp = authorizeBucketWithHttpInfo(xProjectId, body);
+    public GlobalResponse authorizeBucket(String projectId, List<String> body) throws ApiException {
+        ApiResponse<GlobalResponse> resp = authorizeBucketWithHttpInfo(projectId, body);
         return resp.getData();
     }
 
     /**
      * 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> authorizeBucketWithHttpInfo(String xProjectId, List<String> body) throws ApiException {
-        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(xProjectId, body, null, null);
+    public ApiResponse<GlobalResponse> authorizeBucketWithHttpInfo(String projectId, List<String> body) throws ApiException {
+        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(projectId, body, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -159,13 +159,13 @@ public class AuthorizeApi {
     /**
      * 用户主动授权起OBS桶的操作权限给CS服务, 用于保存用户作业的checkpoint、作业的运行日志等 (asynchronously)
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 授权一个或多个OBS bucket权限给Cloud Stream Service, 请求参数为json格式 (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call authorizeBucketAsync(String xProjectId, List<String> body, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call authorizeBucketAsync(String projectId, List<String> body, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -186,7 +186,7 @@ public class AuthorizeApi {
             };
         }
 
-        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = authorizeBucketValidateBeforeCall(projectId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

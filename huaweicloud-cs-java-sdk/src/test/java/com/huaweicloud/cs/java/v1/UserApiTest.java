@@ -47,8 +47,8 @@ public class UserApiTest {
      */
     @Test
     public void userRegisterTest() throws ApiException {
-        String xProjectId = null;
-        GlobalResponse response = api.userRegister(xProjectId);
+        String projectId = null;
+        GlobalResponse response = api.userRegister(projectId);
 
         // TODO: test validations
     }

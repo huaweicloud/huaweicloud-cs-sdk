@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **vpcCidr** | **String** | VPC网段 |  [optional]
 **subnetCidr** | **String** | 子网网段 |  [optional]
 **subnetGateway** | **String** | 子网网关 |  [optional]
+**tags** | **String** | 集群标签 |  [optional]
+**sysEnterpriseProjectId** | **String** | 集群所属的企业项目id |  [optional]
+**managerNodeSpu** | **String** | 集群管理节点规格 |  [optional]
 
 
 

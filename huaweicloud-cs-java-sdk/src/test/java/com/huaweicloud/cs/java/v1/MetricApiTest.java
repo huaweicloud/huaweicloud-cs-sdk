@@ -48,9 +48,9 @@ public class MetricApiTest {
      */
     @Test
     public void getJobsMetricsTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Body3 body = null;
-        QueryJobMetricsResponse response = api.getJobsMetrics(xProjectId, body);
+        QueryJobMetricsResponse response = api.getJobsMetrics(projectId, body);
 
         // TODO: test validations
     }

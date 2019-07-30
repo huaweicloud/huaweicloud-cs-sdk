@@ -4,12 +4,12 @@ All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**userRegister**](UserApi.md#userRegister) | **POST** /{X-Project-Id}/user_register | 用户注册使用CS服务
+[**userRegister**](UserApi.md#userRegister) | **POST** /{project_id}/user_register | 用户注册使用CS服务
 
 
 <a name="userRegister"></a>
 # **userRegister**
-> GlobalResponse userRegister(xProjectId)
+> GlobalResponse userRegister(projectId)
 
 用户注册使用CS服务
 
@@ -23,9 +23,9 @@ Method | HTTP request | Description
 
 
 UserApi apiInstance = new UserApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 try {
-    GlobalResponse result = apiInstance.userRegister(xProjectId);
+    GlobalResponse result = apiInstance.userRegister(projectId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userRegister");
@@ -37,7 +37,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
 
 ### Return type
 

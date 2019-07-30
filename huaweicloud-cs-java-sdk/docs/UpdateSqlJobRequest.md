@@ -21,6 +21,10 @@ Name | Type | Description | Notes
 **restartWhenException** | **Boolean** | 是否开启异常重启功能 |  [optional]
 **idleStateRetention** | **Integer** | 空闲状态最长保留时间，超过该时间没有进行更新的中间状态会被删除，单位为秒 |  [optional]
 **edgeGroupIds** | **String** | 边缘计算组ID列表, 多个ID以逗号分隔 |  [optional]
+**tags** | **String** | 作业标签 |  [optional]
+**sysEnterpriseProjectId** | **String** | 作业所属的企业项目id |  [optional]
+**udfJarUrl** | **String** | sql作业udf jar所在的obs地址 |  [optional]
+**dirtyDataStrategy** | **String** | 作业脏数据策略 |  [optional]
 
 
 <a name="RunModeEnum"></a>

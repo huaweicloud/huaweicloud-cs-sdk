@@ -61,7 +61,7 @@ public class LogApi {
 
     /**
      * Build call for getAuditLogs
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
      * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
@@ -72,12 +72,12 @@ public class LogApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getAuditLogsCall(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getAuditLogsCall(String projectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/audit_logs"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+        String localVarPath = "/{project_id}/audit_logs"
+            .replaceAll("\\{" + "project_id" + "\\}", apiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -125,11 +125,11 @@ public class LogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAuditLogsValidateBeforeCall(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getAuditLogsValidateBeforeCall(String projectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'xProjectId' is set
-        if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling getAuditLogs(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getAuditLogs(Async)");
         }
         
         // verify the required parameter 'resourceType' is set
@@ -138,7 +138,7 @@ public class LogApi {
         }
         
 
-        com.squareup.okhttp.Call call = getAuditLogsCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAuditLogsCall(projectId, resourceType, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -146,7 +146,7 @@ public class LogApi {
     /**
      * 查询审计日志
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
      * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
@@ -155,15 +155,15 @@ public class LogApi {
      * @return AuditLogResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public AuditLogResponse getAuditLogs(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
-        ApiResponse<AuditLogResponse> resp = getAuditLogsWithHttpInfo(xProjectId, resourceType, cursor, resourceId, pageNumber, limit);
+    public AuditLogResponse getAuditLogs(String projectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+        ApiResponse<AuditLogResponse> resp = getAuditLogsWithHttpInfo(projectId, resourceType, cursor, resourceId, pageNumber, limit);
         return resp.getData();
     }
 
     /**
      * 查询审计日志
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
      * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
@@ -172,8 +172,8 @@ public class LogApi {
      * @return ApiResponse&lt;AuditLogResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<AuditLogResponse> getAuditLogsWithHttpInfo(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
-        com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, null, null);
+    public ApiResponse<AuditLogResponse> getAuditLogsWithHttpInfo(String projectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(projectId, resourceType, cursor, resourceId, pageNumber, limit, null, null);
         Type localVarReturnType = new TypeToken<AuditLogResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -181,7 +181,7 @@ public class LogApi {
     /**
      * 查询审计日志 (asynchronously)
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param resourceType 资源类型，包括job、template和cluster (required)
      * @param cursor 事件ID，若填写cursor，则page_number请求参数无效 (optional)
      * @param resourceId 资源ID (optional)
@@ -191,7 +191,7 @@ public class LogApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAuditLogsAsync(String xProjectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<AuditLogResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getAuditLogsAsync(String projectId, String resourceType, String cursor, String resourceId, Integer pageNumber, Integer limit, final ApiCallback<AuditLogResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -212,7 +212,7 @@ public class LogApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(xProjectId, resourceType, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAuditLogsValidateBeforeCall(projectId, resourceType, cursor, resourceId, pageNumber, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<AuditLogResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

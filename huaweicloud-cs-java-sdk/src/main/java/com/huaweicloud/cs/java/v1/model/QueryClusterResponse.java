@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * QueryClusterResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T09:32:56.282+08:00")
 public class QueryClusterResponse {
   @SerializedName("message_id")
   private String messageId = null;

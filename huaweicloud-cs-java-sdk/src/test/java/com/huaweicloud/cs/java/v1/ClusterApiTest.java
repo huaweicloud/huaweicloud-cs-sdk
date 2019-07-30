@@ -72,10 +72,10 @@ public class ClusterApiTest {
      */
     @Test
     public void addHostsFileTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         File hostsFile = null;
-        List<AddHostsInfoResponse> response = api.addHostsFile(xProjectId, clusterId, hostsFile);
+        List<AddHostsInfoResponse> response = api.addHostsFile(projectId, clusterId, hostsFile);
 
         // TODO: test validations
     }
@@ -90,10 +90,10 @@ public class ClusterApiTest {
      */
     @Test
     public void addHostsInfoTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         Body body = null;
-        List<AddHostsInfoResponse> response = api.addHostsInfo(xProjectId, clusterId, body);
+        List<AddHostsInfoResponse> response = api.addHostsInfo(projectId, clusterId, body);
 
         // TODO: test validations
     }
@@ -108,10 +108,10 @@ public class ClusterApiTest {
      */
     @Test
     public void createPeeringTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         CreatePeeringRequest body = null;
-        CreatePeeringResponse response = api.createPeering(xProjectId, clusterId, body);
+        CreatePeeringResponse response = api.createPeering(projectId, clusterId, body);
 
         // TODO: test validations
     }
@@ -126,9 +126,9 @@ public class ClusterApiTest {
      */
     @Test
     public void createReservedClusterTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         NewReservedClusterRequest body = null;
-        CreateClusterResponse response = api.createReservedCluster(xProjectId, body);
+        CreateClusterResponse response = api.createReservedCluster(projectId, body);
 
         // TODO: test validations
     }
@@ -143,11 +143,11 @@ public class ClusterApiTest {
      */
     @Test
     public void createRouteTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         String peeringId = null;
         CreateRouteRequest body = null;
-        CreateRouteResponse response = api.createRoute(xProjectId, clusterId, peeringId, body);
+        CreateRouteResponse response = api.createRoute(projectId, clusterId, peeringId, body);
 
         // TODO: test validations
     }
@@ -162,10 +162,10 @@ public class ClusterApiTest {
      */
     @Test
     public void deleteHostsInfoTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         Body1 body = null;
-        List<DeleteHostsInfoResponse> response = api.deleteHostsInfo(xProjectId, clusterId, body);
+        List<DeleteHostsInfoResponse> response = api.deleteHostsInfo(projectId, clusterId, body);
 
         // TODO: test validations
     }
@@ -180,10 +180,10 @@ public class ClusterApiTest {
      */
     @Test
     public void deletePeeringTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         String peeringId = null;
-        api.deletePeering(xProjectId, clusterId, peeringId);
+        api.deletePeering(projectId, clusterId, peeringId);
 
         // TODO: test validations
     }
@@ -198,9 +198,9 @@ public class ClusterApiTest {
      */
     @Test
     public void deleteReservedClusterTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
-        GlobalResponse response = api.deleteReservedCluster(xProjectId, clusterId);
+        GlobalResponse response = api.deleteReservedCluster(projectId, clusterId);
 
         // TODO: test validations
     }
@@ -215,11 +215,11 @@ public class ClusterApiTest {
      */
     @Test
     public void deleteRouteTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         String peeringId = null;
         String routeId = null;
-        api.deleteRoute(xProjectId, clusterId, peeringId, routeId);
+        api.deleteRoute(projectId, clusterId, peeringId, routeId);
 
         // TODO: test validations
     }
@@ -234,9 +234,9 @@ public class ClusterApiTest {
      */
     @Test
     public void describeReservedClusterTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
-        QueryClusterResponse response = api.describeReservedCluster(xProjectId, clusterId);
+        QueryClusterResponse response = api.describeReservedCluster(projectId, clusterId);
 
         // TODO: test validations
     }
@@ -251,7 +251,7 @@ public class ClusterApiTest {
      */
     @Test
     public void getClusterJobsTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         String name = null;
         String status = null;
@@ -260,7 +260,7 @@ public class ClusterApiTest {
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryJobListResponse response = api.getClusterJobs(xProjectId, clusterId, name, status, showDetail, cursor, next, limit, order);
+        QueryJobListResponse response = api.getClusterJobs(projectId, clusterId, name, status, showDetail, cursor, next, limit, order);
 
         // TODO: test validations
     }
@@ -275,14 +275,14 @@ public class ClusterApiTest {
      */
     @Test
     public void getHostsInfoTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         String queryString = null;
         Long cursor = null;
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryClusterHostsInfoResponse response = api.getHostsInfo(xProjectId, clusterId, queryString, cursor, next, limit, order);
+        QueryClusterHostsInfoResponse response = api.getHostsInfo(projectId, clusterId, queryString, cursor, next, limit, order);
 
         // TODO: test validations
     }
@@ -297,10 +297,10 @@ public class ClusterApiTest {
      */
     @Test
     public void getPeeringTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         String peeringId = null;
-        CreatePeeringResponse response = api.getPeering(xProjectId, clusterId, peeringId);
+        CreatePeeringResponse response = api.getPeering(projectId, clusterId, peeringId);
 
         // TODO: test validations
     }
@@ -315,9 +315,9 @@ public class ClusterApiTest {
      */
     @Test
     public void getPeeringsTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
-        GetPeeringsResponse response = api.getPeerings(xProjectId, clusterId);
+        GetPeeringsResponse response = api.getPeerings(projectId, clusterId);
 
         // TODO: test validations
     }
@@ -332,14 +332,14 @@ public class ClusterApiTest {
      */
     @Test
     public void getReservedClustersTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         String name = null;
         String status = null;
         Long cursor = null;
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryClustersResponse response = api.getReservedClusters(xProjectId, name, status, cursor, next, limit, order);
+        QueryClustersResponse response = api.getReservedClusters(projectId, name, status, cursor, next, limit, order);
 
         // TODO: test validations
     }
@@ -354,10 +354,10 @@ public class ClusterApiTest {
      */
     @Test
     public void getRoutesTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         String peeringId = null;
-        GetRoutesResponse response = api.getRoutes(xProjectId, clusterId, peeringId);
+        GetRoutesResponse response = api.getRoutes(projectId, clusterId, peeringId);
 
         // TODO: test validations
     }
@@ -372,9 +372,9 @@ public class ClusterApiTest {
      */
     @Test
     public void getUserQuotaTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         String userId = null;
-        QueryUserQuotaResponse response = api.getUserQuota(xProjectId, userId);
+        QueryUserQuotaResponse response = api.getUserQuota(projectId, userId);
 
         // TODO: test validations
     }
@@ -389,13 +389,13 @@ public class ClusterApiTest {
      */
     @Test
     public void getUserQuotasTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         String name = null;
         String cursor = null;
         Boolean next = null;
         Integer limit = null;
         String order = null;
-        QueryUserQuotasResponse response = api.getUserQuotas(xProjectId, name, cursor, next, limit, order);
+        QueryUserQuotasResponse response = api.getUserQuotas(projectId, name, cursor, next, limit, order);
 
         // TODO: test validations
     }
@@ -410,9 +410,9 @@ public class ClusterApiTest {
      */
     @Test
     public void restartReservedClusterTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
-        RestartReservedClusterResponse response = api.restartReservedCluster(xProjectId, clusterId);
+        RestartReservedClusterResponse response = api.restartReservedCluster(projectId, clusterId);
 
         // TODO: test validations
     }
@@ -427,9 +427,9 @@ public class ClusterApiTest {
      */
     @Test
     public void stopReservedClusterTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
-        StopReservedClusterResponse response = api.stopReservedCluster(xProjectId, clusterId);
+        StopReservedClusterResponse response = api.stopReservedCluster(projectId, clusterId);
 
         // TODO: test validations
     }
@@ -444,11 +444,11 @@ public class ClusterApiTest {
      */
     @Test
     public void updateHostsInfoTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         Long hostId = null;
         Body2 body = null;
-        UpdateHostsInfoResponse response = api.updateHostsInfo(xProjectId, clusterId, hostId, body);
+        UpdateHostsInfoResponse response = api.updateHostsInfo(projectId, clusterId, hostId, body);
 
         // TODO: test validations
     }
@@ -463,10 +463,10 @@ public class ClusterApiTest {
      */
     @Test
     public void updateReservedClusterTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Integer clusterId = null;
         UpdateClusterRequest body = null;
-        GlobalResponse response = api.updateReservedCluster(xProjectId, clusterId, body);
+        GlobalResponse response = api.updateReservedCluster(projectId, clusterId, body);
 
         // TODO: test validations
     }
@@ -481,10 +481,10 @@ public class ClusterApiTest {
      */
     @Test
     public void updateUserQuotaTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         String userId = null;
         UpdateUserQuotaRequest body = null;
-        GlobalResponse response = api.updateUserQuota(xProjectId, userId, body);
+        GlobalResponse response = api.updateUserQuota(projectId, userId, body);
 
         // TODO: test validations
     }

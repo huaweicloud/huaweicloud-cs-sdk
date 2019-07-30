@@ -61,18 +61,18 @@ public class UserApi {
 
     /**
      * Build call for userRegister
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userRegisterCall(String xProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userRegisterCall(String projectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/user_register"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+        String localVarPath = "/{project_id}/user_register"
+            .replaceAll("\\{" + "project_id" + "\\}", apiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -110,15 +110,15 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userRegisterValidateBeforeCall(String xProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userRegisterValidateBeforeCall(String projectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'xProjectId' is set
-        if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling userRegister(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling userRegister(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = userRegisterCall(xProjectId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userRegisterCall(projectId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -126,24 +126,24 @@ public class UserApi {
     /**
      * 用户注册使用CS服务
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @return GlobalResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalResponse userRegister(String xProjectId) throws ApiException {
-        ApiResponse<GlobalResponse> resp = userRegisterWithHttpInfo(xProjectId);
+    public GlobalResponse userRegister(String projectId) throws ApiException {
+        ApiResponse<GlobalResponse> resp = userRegisterWithHttpInfo(projectId);
         return resp.getData();
     }
 
     /**
      * 用户注册使用CS服务
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @return ApiResponse&lt;GlobalResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalResponse> userRegisterWithHttpInfo(String xProjectId) throws ApiException {
-        com.squareup.okhttp.Call call = userRegisterValidateBeforeCall(xProjectId, null, null);
+    public ApiResponse<GlobalResponse> userRegisterWithHttpInfo(String projectId) throws ApiException {
+        com.squareup.okhttp.Call call = userRegisterValidateBeforeCall(projectId, null, null);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -151,12 +151,12 @@ public class UserApi {
     /**
      * 用户注册使用CS服务 (asynchronously)
      * 
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userRegisterAsync(String xProjectId, final ApiCallback<GlobalResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call userRegisterAsync(String projectId, final ApiCallback<GlobalResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -177,7 +177,7 @@ public class UserApi {
             };
         }
 
-        com.squareup.okhttp.Call call = userRegisterValidateBeforeCall(xProjectId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userRegisterValidateBeforeCall(projectId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

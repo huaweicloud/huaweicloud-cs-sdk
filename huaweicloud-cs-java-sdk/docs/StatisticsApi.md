@@ -5,7 +5,7 @@ All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getReleaseVersion**](StatisticsApi.md#getReleaseVersion) | **GET** /versions | 查询CS当前发行版本信息
-[**overview**](StatisticsApi.md#overview) | **GET** /{X-Project-Id}/overview | 概要统计用户的资源使用情况(作业及费用)
+[**overview**](StatisticsApi.md#overview) | **GET** /{project_id}/overview | 概要统计用户的资源使用情况(作业及费用)
 
 
 <a name="getReleaseVersion"></a>
@@ -51,7 +51,7 @@ No authorization required
 
 <a name="overview"></a>
 # **overview**
-> OverviewResponse overview(xProjectId)
+> OverviewResponse overview(projectId)
 
 概要统计用户的资源使用情况(作业及费用)
 
@@ -65,9 +65,9 @@ No authorization required
 
 
 StatisticsApi apiInstance = new StatisticsApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 try {
-    OverviewResponse result = apiInstance.overview(xProjectId);
+    OverviewResponse result = apiInstance.overview(projectId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling StatisticsApi#overview");
@@ -79,7 +79,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
 
 ### Return type
 

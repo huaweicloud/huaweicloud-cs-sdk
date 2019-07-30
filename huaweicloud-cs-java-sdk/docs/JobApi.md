@@ -4,22 +4,22 @@ All URIs are relative to *https://cs.&lt;region&gt;.myhuaweicloud.com/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{X-Project-Id}/job/{job_id} | 删除作业
-[**getApigSinks**](JobApi.md#getApigSinks) | **GET** /{X-Project-Id}/job/{job_id}/apig_sinks | 查询作业apig网关服务访问地址
-[**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{X-Project-Id}/job/{job_id} | 查询作业详情
-[**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{X-Project-Id}/job/{job_id}/execute_graph | 查询作业执行计划图
-[**getJobs**](JobApi.md#getJobs) | **GET** /{X-Project-Id}/jobs | 查询作业列表
-[**runJob**](JobApi.md#runJob) | **POST** /{X-Project-Id}/job/{job_id}/run | 运行作业
-[**stopJob**](JobApi.md#stopJob) | **POST** /{X-Project-Id}/job/{job_id}/stop | 停止作业
-[**submitJarJob**](JobApi.md#submitJarJob) | **POST** /{X-Project-Id}/jar_job | 创建一个用户自定义作业
-[**submitSqlJob**](JobApi.md#submitSqlJob) | **POST** /{X-Project-Id}/sql_job | 提交流式SQL作业到CS服务
-[**updateJarJob**](JobApi.md#updateJarJob) | **PATCH** /{X-Project-Id}/jar_job | 更新用户自定义作业
-[**updateSqlJob**](JobApi.md#updateSqlJob) | **PATCH** /{X-Project-Id}/sql_job | 更新流式SQL作业
+[**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{project_id}/job/{job_id} | 删除作业
+[**getApigSinks**](JobApi.md#getApigSinks) | **GET** /{project_id}/job/{job_id}/apig_sinks | 查询作业apig网关服务访问地址
+[**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{project_id}/job/{job_id} | 查询作业详情
+[**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{project_id}/job/{job_id}/execute_graph | 查询作业执行计划图
+[**getJobs**](JobApi.md#getJobs) | **GET** /{project_id}/jobs | 查询作业列表
+[**runJob**](JobApi.md#runJob) | **POST** /{project_id}/job/{job_id}/run | 运行作业
+[**stopJob**](JobApi.md#stopJob) | **POST** /{project_id}/job/{job_id}/stop | 停止作业
+[**submitJarJob**](JobApi.md#submitJarJob) | **POST** /{project_id}/jar_job | 创建一个用户自定义作业
+[**submitSqlJob**](JobApi.md#submitSqlJob) | **POST** /{project_id}/sql_job | 提交流式SQL作业到CS服务
+[**updateJarJob**](JobApi.md#updateJarJob) | **PATCH** /{project_id}/jar_job | 更新用户自定义作业
+[**updateSqlJob**](JobApi.md#updateSqlJob) | **PATCH** /{project_id}/sql_job | 更新流式SQL作业
 
 
 <a name="deleteJob"></a>
 # **deleteJob**
-> GlobalResponse deleteJob(xProjectId, jobId)
+> GlobalResponse deleteJob(projectId, jobId)
 
 删除作业
 
@@ -33,10 +33,10 @@ Method | HTTP request | Description
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
 try {
-    GlobalResponse result = apiInstance.deleteJob(xProjectId, jobId);
+    GlobalResponse result = apiInstance.deleteJob(projectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#deleteJob");
@@ -48,7 +48,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
 
 ### Return type
@@ -66,7 +66,7 @@ No authorization required
 
 <a name="getApigSinks"></a>
 # **getApigSinks**
-> JobApigSinksResponse getApigSinks(xProjectId, jobId)
+> JobApigSinksResponse getApigSinks(projectId, jobId)
 
 查询作业apig网关服务访问地址
 
@@ -80,10 +80,10 @@ The apig sinks is json format.
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
 try {
-    JobApigSinksResponse result = apiInstance.getApigSinks(xProjectId, jobId);
+    JobApigSinksResponse result = apiInstance.getApigSinks(projectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getApigSinks");
@@ -95,7 +95,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
 
 ### Return type
@@ -113,7 +113,7 @@ No authorization required
 
 <a name="getJobDetail"></a>
 # **getJobDetail**
-> GetJobDetailResponse getJobDetail(xProjectId, jobId)
+> GetJobDetailResponse getJobDetail(projectId, jobId)
 
 查询作业详情
 
@@ -127,10 +127,10 @@ Get job detail information.
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
 try {
-    GetJobDetailResponse result = apiInstance.getJobDetail(xProjectId, jobId);
+    GetJobDetailResponse result = apiInstance.getJobDetail(projectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getJobDetail");
@@ -142,7 +142,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
 
 ### Return type
@@ -160,7 +160,7 @@ No authorization required
 
 <a name="getJobExecuteGraph"></a>
 # **getJobExecuteGraph**
-> JobExecutePlanResponse getJobExecuteGraph(xProjectId, jobId)
+> JobExecutePlanResponse getJobExecuteGraph(projectId, jobId)
 
 查询作业执行计划图
 
@@ -174,10 +174,10 @@ The execution graph is json format.
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
 try {
-    JobExecutePlanResponse result = apiInstance.getJobExecuteGraph(xProjectId, jobId);
+    JobExecutePlanResponse result = apiInstance.getJobExecuteGraph(projectId, jobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getJobExecuteGraph");
@@ -189,7 +189,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
 
 ### Return type
@@ -207,7 +207,7 @@ No authorization required
 
 <a name="getJobs"></a>
 # **getJobs**
-> QueryJobListResponse getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId)
+> QueryJobListResponse getJobs(projectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId)
 
 查询作业列表
 
@@ -221,7 +221,7 @@ No authorization required
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 String name = "name_example"; // String | 作业名
 String status = "status_example"; // String | 作业状态码, 请参考CS文档
 Integer clusterId = 56; // Integer | 用户独享集群ID
@@ -232,7 +232,7 @@ Integer limit = 20; // Integer | 返回的数据条数
 String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
 Long rootJobId = 789L; // Long | 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业
 try {
-    QueryJobListResponse result = apiInstance.getJobs(xProjectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId);
+    QueryJobListResponse result = apiInstance.getJobs(projectId, name, status, clusterId, showDetail, cursor, next, limit, order, rootJobId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#getJobs");
@@ -244,7 +244,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **name** | **String**| 作业名 | [optional]
  **status** | **String**| 作业状态码, 请参考CS文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
  **clusterId** | **Integer**| 用户独享集群ID | [optional]
@@ -270,7 +270,7 @@ No authorization required
 
 <a name="runJob"></a>
 # **runJob**
-> GlobalResponse runJob(xProjectId, jobId, resumeSavePoint)
+> GlobalResponse runJob(projectId, jobId, resumeSavePoint)
 
 运行作业
 
@@ -284,11 +284,11 @@ No authorization required
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
 Boolean resumeSavePoint = false; // Boolean | 
 try {
-    GlobalResponse result = apiInstance.runJob(xProjectId, jobId, resumeSavePoint);
+    GlobalResponse result = apiInstance.runJob(projectId, jobId, resumeSavePoint);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#runJob");
@@ -300,7 +300,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
  **resumeSavePoint** | **Boolean**|  | [optional] [default to false]
 
@@ -319,7 +319,7 @@ No authorization required
 
 <a name="stopJob"></a>
 # **stopJob**
-> GlobalResponse stopJob(xProjectId, jobId, triggerSavePoint)
+> GlobalResponse stopJob(projectId, jobId, triggerSavePoint)
 
 停止作业
 
@@ -331,11 +331,11 @@ No authorization required
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
 Boolean triggerSavePoint = false; // Boolean | 
 try {
-    GlobalResponse result = apiInstance.stopJob(xProjectId, jobId, triggerSavePoint);
+    GlobalResponse result = apiInstance.stopJob(projectId, jobId, triggerSavePoint);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#stopJob");
@@ -347,7 +347,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
  **triggerSavePoint** | **Boolean**|  | [optional] [default to false]
 
@@ -366,7 +366,7 @@ No authorization required
 
 <a name="submitJarJob"></a>
 # **submitJarJob**
-> JobStatusResponse submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args)
+> JobStatusResponse submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId)
 
 创建一个用户自定义作业
 
@@ -380,7 +380,7 @@ No authorization required
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 String name = "name_example"; // String | 作业名称
 String desc = "desc_example"; // String | 作业描述
 Integer clusterId = 56; // Integer | 独享集群资源ID, 当前用户有该独享资源的使用权限
@@ -399,8 +399,11 @@ File config = new File("/path/to/file.txt"); // File | 用户上传的配置文�
 String configUrl = "configUrl_example"; // String | 用户上传的config包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
+Boolean restartWhenException = false; // Boolean | 是否开启异常重启功能
+String tags = "tags_example"; // String | 作业标签
+String sysEnterpriseProjectId = "sysEnterpriseProjectId_example"; // String | 作业所属的企业项目id
 try {
-    JobStatusResponse result = apiInstance.submitJarJob(xProjectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
+    JobStatusResponse result = apiInstance.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitJarJob");
@@ -412,7 +415,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **name** | **String**| 作业名称 |
  **desc** | **String**| 作业描述 |
  **clusterId** | **Integer**| 独享集群资源ID, 当前用户有该独享资源的使用权限 |
@@ -431,6 +434,9 @@ Name | Type | Description  | Notes
  **configUrl** | **String**| 用户上传的config包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
+ **restartWhenException** | **Boolean**| 是否开启异常重启功能 | [optional] [default to false]
+ **tags** | **String**| 作业标签 | [optional]
+ **sysEnterpriseProjectId** | **String**| 作业所属的企业项目id | [optional]
 
 ### Return type
 
@@ -447,7 +453,7 @@ No authorization required
 
 <a name="submitSqlJob"></a>
 # **submitSqlJob**
-> JobStatusResponse submitSqlJob(xProjectId, body)
+> JobStatusResponse submitSqlJob(projectId, body)
 
 提交流式SQL作业到CS服务
 
@@ -461,10 +467,10 @@ No authorization required
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 SubmitSqlJobRequest body = new SubmitSqlJobRequest(); // SubmitSqlJobRequest | JSON格式的请求体
 try {
-    JobStatusResponse result = apiInstance.submitSqlJob(xProjectId, body);
+    JobStatusResponse result = apiInstance.submitSqlJob(projectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitSqlJob");
@@ -476,7 +482,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **body** | [**SubmitSqlJobRequest**](SubmitSqlJobRequest.md)| JSON格式的请求体 |
 
 ### Return type
@@ -494,7 +500,7 @@ No authorization required
 
 <a name="updateJarJob"></a>
 # **updateJarJob**
-> JobUpdateResponse updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args)
+> JobUpdateResponse updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId)
 
 更新用户自定义作业
 
@@ -508,7 +514,7 @@ No authorization required
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 Long jobId = 789L; // Long | 作业ID
 Integer managerSpu = 56; // Integer | 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。
 String name = "name_example"; // String | 作业名称
@@ -527,8 +533,11 @@ File config = new File("/path/to/file.txt"); // File | 用户上传的配置文�
 String configUrl = "configUrl_example"; // String | 用户上传的config包OBS路径
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
+Boolean restartWhenException = false; // Boolean | 是否开启异常重启功能
+String tags = "tags_example"; // String | 作业标签
+String sysEnterpriseProjectId = "sysEnterpriseProjectId_example"; // String | 作业所属的企业项目id
 try {
-    JobUpdateResponse result = apiInstance.updateJarJob(xProjectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args);
+    JobUpdateResponse result = apiInstance.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateJarJob");
@@ -540,7 +549,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **jobId** | **Long**| 作业ID |
  **managerSpu** | **Integer**| 用户为作业选择的管理节点SPU数量，Flink自定义作业对应为flink jobmanager数量，Spark自定义作业对应为spark driver数量。 |
  **name** | **String**| 作业名称 | [optional]
@@ -559,6 +568,9 @@ Name | Type | Description  | Notes
  **configUrl** | **String**| 用户上传的config包OBS路径 | [optional]
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
+ **restartWhenException** | **Boolean**| 是否开启异常重启功能 | [optional] [default to false]
+ **tags** | **String**| 作业标签 | [optional]
+ **sysEnterpriseProjectId** | **String**| 作业所属的企业项目id | [optional]
 
 ### Return type
 
@@ -575,7 +587,7 @@ No authorization required
 
 <a name="updateSqlJob"></a>
 # **updateSqlJob**
-> JobUpdateResponse updateSqlJob(xProjectId, body)
+> JobUpdateResponse updateSqlJob(projectId, body)
 
 更新流式SQL作业
 
@@ -589,10 +601,10 @@ No authorization required
 
 
 JobApi apiInstance = new JobApi();
-String xProjectId = "xProjectId_example"; // String | project id, 用于不同project取token.
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
 UpdateSqlJobRequest body = new UpdateSqlJobRequest(); // UpdateSqlJobRequest | 提交修改SQL作业请求
 try {
-    JobUpdateResponse result = apiInstance.updateSqlJob(xProjectId, body);
+    JobUpdateResponse result = apiInstance.updateSqlJob(projectId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateSqlJob");
@@ -604,7 +616,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xProjectId** | **String**| project id, 用于不同project取token. |
+ **projectId** | **String**| project id, 用于不同project取token. |
  **body** | [**UpdateSqlJobRequest**](UpdateSqlJobRequest.md)| 提交修改SQL作业请求 |
 
 ### Return type

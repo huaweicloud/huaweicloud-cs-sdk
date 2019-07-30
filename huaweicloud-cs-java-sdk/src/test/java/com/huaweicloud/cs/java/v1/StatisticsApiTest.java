@@ -63,8 +63,8 @@ public class StatisticsApiTest {
      */
     @Test
     public void overviewTest() throws ApiException {
-        String xProjectId = null;
-        OverviewResponse response = api.overview(xProjectId);
+        String projectId = null;
+        OverviewResponse response = api.overview(projectId);
 
         // TODO: test validations
     }

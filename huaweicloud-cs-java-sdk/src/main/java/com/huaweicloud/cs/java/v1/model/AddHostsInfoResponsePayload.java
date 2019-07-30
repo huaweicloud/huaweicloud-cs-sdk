@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * AddHostsInfoResponsePayload
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-05-13T17:15:11.676+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T09:32:56.282+08:00")
 public class AddHostsInfoResponsePayload {
   @SerializedName("host_id")
   private Long hostId = null;

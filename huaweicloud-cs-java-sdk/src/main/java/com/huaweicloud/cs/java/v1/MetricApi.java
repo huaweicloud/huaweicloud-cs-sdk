@@ -62,19 +62,19 @@ public class MetricApi {
 
     /**
      * Build call for getJobsMetrics
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 查询作业监控信息, 支持同时查询多个作业监控, 请求参数为json格式 (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getJobsMetricsCall(String xProjectId, Body3 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getJobsMetricsCall(String projectId, Body3 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
-        String localVarPath = "/{X-Project-Id}/jobs/metrics"
-            .replaceAll("\\{" + "X-Project-Id" + "\\}", apiClient.escapeString(xProjectId.toString()));
+        String localVarPath = "/{project_id}/jobs/metrics"
+            .replaceAll("\\{" + "project_id" + "\\}", apiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -112,11 +112,11 @@ public class MetricApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getJobsMetricsValidateBeforeCall(String xProjectId, Body3 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getJobsMetricsValidateBeforeCall(String projectId, Body3 body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'xProjectId' is set
-        if (xProjectId == null) {
-            throw new ApiException("Missing the required parameter 'xProjectId' when calling getJobsMetrics(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getJobsMetrics(Async)");
         }
         
         // verify the required parameter 'body' is set
@@ -125,7 +125,7 @@ public class MetricApi {
         }
         
 
-        com.squareup.okhttp.Call call = getJobsMetricsCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getJobsMetricsCall(projectId, body, progressListener, progressRequestListener);
         return call;
 
     }
@@ -133,26 +133,26 @@ public class MetricApi {
     /**
      * 查询作业监控信息
      * 查询作业监控信息, 支持同时查询多个作业监控信息
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 查询作业监控信息, 支持同时查询多个作业监控, 请求参数为json格式 (required)
      * @return QueryJobMetricsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QueryJobMetricsResponse getJobsMetrics(String xProjectId, Body3 body) throws ApiException {
-        ApiResponse<QueryJobMetricsResponse> resp = getJobsMetricsWithHttpInfo(xProjectId, body);
+    public QueryJobMetricsResponse getJobsMetrics(String projectId, Body3 body) throws ApiException {
+        ApiResponse<QueryJobMetricsResponse> resp = getJobsMetricsWithHttpInfo(projectId, body);
         return resp.getData();
     }
 
     /**
      * 查询作业监控信息
      * 查询作业监控信息, 支持同时查询多个作业监控信息
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 查询作业监控信息, 支持同时查询多个作业监控, 请求参数为json格式 (required)
      * @return ApiResponse&lt;QueryJobMetricsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QueryJobMetricsResponse> getJobsMetricsWithHttpInfo(String xProjectId, Body3 body) throws ApiException {
-        com.squareup.okhttp.Call call = getJobsMetricsValidateBeforeCall(xProjectId, body, null, null);
+    public ApiResponse<QueryJobMetricsResponse> getJobsMetricsWithHttpInfo(String projectId, Body3 body) throws ApiException {
+        com.squareup.okhttp.Call call = getJobsMetricsValidateBeforeCall(projectId, body, null, null);
         Type localVarReturnType = new TypeToken<QueryJobMetricsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -160,13 +160,13 @@ public class MetricApi {
     /**
      * 查询作业监控信息 (asynchronously)
      * 查询作业监控信息, 支持同时查询多个作业监控信息
-     * @param xProjectId project id, 用于不同project取token. (required)
+     * @param projectId project id, 用于不同project取token. (required)
      * @param body 查询作业监控信息, 支持同时查询多个作业监控, 请求参数为json格式 (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getJobsMetricsAsync(String xProjectId, Body3 body, final ApiCallback<QueryJobMetricsResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJobsMetricsAsync(String projectId, Body3 body, final ApiCallback<QueryJobMetricsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -187,7 +187,7 @@ public class MetricApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getJobsMetricsValidateBeforeCall(xProjectId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getJobsMetricsValidateBeforeCall(projectId, body, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<QueryJobMetricsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

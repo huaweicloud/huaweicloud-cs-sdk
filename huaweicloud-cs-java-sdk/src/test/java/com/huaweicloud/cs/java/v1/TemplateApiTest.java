@@ -52,9 +52,9 @@ public class TemplateApiTest {
      */
     @Test
     public void createJobTemplateTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         CreateJobTemplateRequest body = null;
-        JobTemplateCreateResponse response = api.createJobTemplate(xProjectId, body);
+        JobTemplateCreateResponse response = api.createJobTemplate(projectId, body);
 
         // TODO: test validations
     }
@@ -69,9 +69,9 @@ public class TemplateApiTest {
      */
     @Test
     public void deleteJobTemplateTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long templateId = null;
-        JobTemplateDeleteResponse response = api.deleteJobTemplate(xProjectId, templateId);
+        JobTemplateDeleteResponse response = api.deleteJobTemplate(projectId, templateId);
 
         // TODO: test validations
     }
@@ -86,11 +86,11 @@ public class TemplateApiTest {
      */
     @Test
     public void getJobTemplatesTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         Long cursor = null;
         Integer limit = null;
         String order = null;
-        JobTemplateListResponse response = api.getJobTemplates(xProjectId, cursor, limit, order);
+        JobTemplateListResponse response = api.getJobTemplates(projectId, cursor, limit, order);
 
         // TODO: test validations
     }
@@ -105,9 +105,9 @@ public class TemplateApiTest {
      */
     @Test
     public void updateJobTemplateTest() throws ApiException {
-        String xProjectId = null;
+        String projectId = null;
         UpdateJobTemplateRequest body = null;
-        JobTemplateUpdateResponse response = api.updateJobTemplate(xProjectId, body);
+        JobTemplateUpdateResponse response = api.updateJobTemplate(projectId, body);
 
         // TODO: test validations
     }
