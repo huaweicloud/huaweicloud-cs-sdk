@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * UpdateJobTemplateRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T10:07:58.610+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-01T10:03:30.829+08:00")
 public class UpdateJobTemplateRequest {
   @SerializedName("id")
   private Long id = null;
@@ -43,9 +43,6 @@ public class UpdateJobTemplateRequest {
 
   @SerializedName("sql_body")
   private String sqlBody = null;
-
-  @SerializedName("tags")
-  private String tags = null;
 
   public UpdateJobTemplateRequest id(Long id) {
     this.id = id;
@@ -119,24 +116,6 @@ public class UpdateJobTemplateRequest {
     this.sqlBody = sqlBody;
   }
 
-  public UpdateJobTemplateRequest tags(String tags) {
-    this.tags = tags;
-    return this;
-  }
-
-   /**
-   * 模板标签
-   * @return tags
-  **/
-  @ApiModelProperty(value = "模板标签")
-  public String getTags() {
-    return tags;
-  }
-
-  public void setTags(String tags) {
-    this.tags = tags;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -150,13 +129,12 @@ public class UpdateJobTemplateRequest {
     return Objects.equals(this.id, updateJobTemplateRequest.id) &&
         Objects.equals(this.name, updateJobTemplateRequest.name) &&
         Objects.equals(this.desc, updateJobTemplateRequest.desc) &&
-        Objects.equals(this.sqlBody, updateJobTemplateRequest.sqlBody) &&
-        Objects.equals(this.tags, updateJobTemplateRequest.tags);
+        Objects.equals(this.sqlBody, updateJobTemplateRequest.sqlBody);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, desc, sqlBody, tags);
+    return Objects.hash(id, name, desc, sqlBody);
   }
 
 
@@ -169,7 +147,6 @@ public class UpdateJobTemplateRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    desc: ").append(toIndentedString(desc)).append("\n");
     sb.append("    sqlBody: ").append(toIndentedString(sqlBody)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

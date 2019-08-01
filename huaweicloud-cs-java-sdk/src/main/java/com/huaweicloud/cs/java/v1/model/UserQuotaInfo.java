@@ -34,7 +34,7 @@ import java.util.List;
  * 用户配额信息
  */
 @ApiModel(description = "用户配额信息")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T10:07:58.610+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-01T10:03:30.829+08:00")
 public class UserQuotaInfo {
   @SerializedName("user_id")
   private String userId = null;

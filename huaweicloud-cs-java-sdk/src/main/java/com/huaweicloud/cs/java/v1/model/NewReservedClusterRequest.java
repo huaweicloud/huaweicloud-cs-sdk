@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * NewReservedClusterRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-07-30T10:07:58.610+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-01T10:03:30.829+08:00")
 public class NewReservedClusterRequest {
   @SerializedName("name")
   private String name = null;
@@ -209,10 +209,10 @@ public class NewReservedClusterRequest {
   }
 
    /**
-   * 集群管理节点规格
+   * 集群管理节点spu规格
    * @return managerNodeSpu
   **/
-  @ApiModelProperty(value = "集群管理节点规格")
+  @ApiModelProperty(value = "集群管理节点spu规格")
   public String getManagerNodeSpu() {
     return managerNodeSpu;
   }

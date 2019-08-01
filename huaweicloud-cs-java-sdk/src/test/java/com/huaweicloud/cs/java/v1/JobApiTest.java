@@ -259,9 +259,8 @@ public class JobApiTest {
         String mainClass = null;
         String args = null;
         Boolean restartWhenException = null;
-        String tags = null;
         String sysEnterpriseProjectId = null;
-        JobUpdateResponse response = api.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
+        JobUpdateResponse response = api.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId);
 
         // TODO: test validations
     }
