@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * VpcInfo
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-01T10:03:30.829+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-02T13:59:14.712+08:00")
 public class VpcInfo {
   @SerializedName("vpc_id")
   private String vpcId = null;

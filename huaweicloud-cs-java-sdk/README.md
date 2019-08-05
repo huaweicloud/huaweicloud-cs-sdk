@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.huaweicloud.cs</groupId>
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.2.2"
+compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.2.3"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/huaweicloud-cs-java-sdk-1.2.2.jar
+* target/huaweicloud-cs-java-sdk-1.2.3.jar
 * target/lib/*.jar
 
 ## Getting Started

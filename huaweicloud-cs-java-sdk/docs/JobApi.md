@@ -366,7 +366,7 @@ No authorization required
 
 <a name="submitJarJob"></a>
 # **submitJarJob**
-> JobStatusResponse submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId)
+> JobStatusResponse submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId)
 
 创建一个用户自定义作业
 
@@ -400,10 +400,9 @@ String configUrl = "configUrl_example"; // String | 用户上传的config包OBS�
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 Boolean restartWhenException = false; // Boolean | 是否开启异常重启功能
-String tags = "tags_example"; // String | 作业标签
 String sysEnterpriseProjectId = "sysEnterpriseProjectId_example"; // String | 作业所属的企业项目id
 try {
-    JobStatusResponse result = apiInstance.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
+    JobStatusResponse result = apiInstance.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitJarJob");
@@ -435,7 +434,6 @@ Name | Type | Description  | Notes
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
  **restartWhenException** | **Boolean**| 是否开启异常重启功能 | [optional] [default to false]
- **tags** | **String**| 作业标签 | [optional]
  **sysEnterpriseProjectId** | **String**| 作业所属的企业项目id | [optional]
 
 ### Return type

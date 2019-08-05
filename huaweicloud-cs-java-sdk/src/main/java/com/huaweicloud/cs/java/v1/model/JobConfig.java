@@ -31,7 +31,7 @@ import java.io.IOException;
  * 作业配置, show_detail为true时独有
  */
 @ApiModel(description = "作业配置, show_detail为true时独有")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-01T10:03:30.829+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-02T13:59:14.712+08:00")
 public class JobConfig {
   @SerializedName("checkpoint_enabled")
   private Boolean checkpointEnabled = null;

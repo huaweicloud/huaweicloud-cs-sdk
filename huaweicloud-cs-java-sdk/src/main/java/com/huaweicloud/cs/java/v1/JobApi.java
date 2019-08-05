@@ -1077,14 +1077,13 @@ public class JobApi {
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param restartWhenException 是否开启异常重启功能 (optional, default to false)
-     * @param tags 作业标签 (optional)
      * @param sysEnterpriseProjectId 作业所属的企业项目id (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobCall(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String tags, String sysEnterpriseProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobCall(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String sysEnterpriseProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1135,8 +1134,6 @@ public class JobApi {
         localVarFormParams.put("args", args);
         if (restartWhenException != null)
         localVarFormParams.put("restart_when_exception", restartWhenException);
-        if (tags != null)
-        localVarFormParams.put("tags", tags);
         if (sysEnterpriseProjectId != null)
         localVarFormParams.put("sys_enterprise_project_id", sysEnterpriseProjectId);
 
@@ -1169,7 +1166,7 @@ public class JobApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String tags, String sysEnterpriseProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call submitJarJobValidateBeforeCall(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String sysEnterpriseProjectId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
@@ -1202,7 +1199,7 @@ public class JobApi {
         }
         
 
-        com.squareup.okhttp.Call call = submitJarJobCall(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitJarJobCall(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1230,13 +1227,12 @@ public class JobApi {
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param restartWhenException 是否开启异常重启功能 (optional, default to false)
-     * @param tags 作业标签 (optional)
      * @param sysEnterpriseProjectId 作业所属的企业项目id (optional)
      * @return JobStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public JobStatusResponse submitJarJob(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String tags, String sysEnterpriseProjectId) throws ApiException {
-        ApiResponse<JobStatusResponse> resp = submitJarJobWithHttpInfo(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
+    public JobStatusResponse submitJarJob(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String sysEnterpriseProjectId) throws ApiException {
+        ApiResponse<JobStatusResponse> resp = submitJarJobWithHttpInfo(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId);
         return resp.getData();
     }
 
@@ -1263,13 +1259,12 @@ public class JobApi {
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param restartWhenException 是否开启异常重启功能 (optional, default to false)
-     * @param tags 作业标签 (optional)
      * @param sysEnterpriseProjectId 作业所属的企业项目id (optional)
      * @return ApiResponse&lt;JobStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String tags, String sysEnterpriseProjectId) throws ApiException {
-        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId, null, null);
+    public ApiResponse<JobStatusResponse> submitJarJobWithHttpInfo(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String sysEnterpriseProjectId) throws ApiException {
+        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId, null, null);
         Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1297,13 +1292,12 @@ public class JobApi {
      * @param mainClass 作业入口类 (optional)
      * @param args 作业入口类参数 (optional)
      * @param restartWhenException 是否开启异常重启功能 (optional, default to false)
-     * @param tags 作业标签 (optional)
      * @param sysEnterpriseProjectId 作业所属的企业项目id (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call submitJarJobAsync(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String tags, String sysEnterpriseProjectId, final ApiCallback<JobStatusResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call submitJarJobAsync(String projectId, String name, String desc, Integer clusterId, Integer managerSpu, String jobType, Integer spuNumber, Integer parallelNumber, Integer executorNumber, Integer executorSpu, Boolean logEnabled, String obsBucket, String smnTopic, File jar, String jarUrl, File config, String configUrl, String mainClass, String args, Boolean restartWhenException, String sysEnterpriseProjectId, final ApiCallback<JobStatusResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1324,7 +1318,7 @@ public class JobApi {
             };
         }
 
-        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = submitJarJobValidateBeforeCall(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<JobStatusResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

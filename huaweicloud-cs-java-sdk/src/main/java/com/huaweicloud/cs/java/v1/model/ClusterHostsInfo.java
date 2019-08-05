@@ -34,7 +34,7 @@ import java.util.List;
  * 集群IP域名映射信息列表
  */
 @ApiModel(description = "集群IP域名映射信息列表")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-01T10:03:30.829+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-02T13:59:14.712+08:00")
 public class ClusterHostsInfo {
   @SerializedName("hosts_info")
   private List<ClusterHostsInfoHostsInfo> hostsInfo = null;
