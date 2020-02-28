@@ -19,6 +19,7 @@ package com.huaweicloud.cs.java.v1;
 
 import com.huaweicloud.cs.java.v1.client.ApiException;
 import java.io.File;
+import com.huaweicloud.cs.java.v1.model.FlinkGlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GetJobDetailResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalErrorResponse;
 import com.huaweicloud.cs.java.v1.model.GlobalResponse;
@@ -26,6 +27,7 @@ import com.huaweicloud.cs.java.v1.model.JobApigSinksResponse;
 import com.huaweicloud.cs.java.v1.model.JobExecutePlanResponse;
 import com.huaweicloud.cs.java.v1.model.JobStatusResponse;
 import com.huaweicloud.cs.java.v1.model.JobUpdateResponse;
+import com.huaweicloud.cs.java.v1.model.QueryFlinkJobListResponse;
 import com.huaweicloud.cs.java.v1.model.QueryJobListResponse;
 import com.huaweicloud.cs.java.v1.model.SubmitSqlJobRequest;
 import com.huaweicloud.cs.java.v1.model.UpdateSqlJobRequest;
@@ -76,6 +78,33 @@ public class JobApiTest {
         String projectId = null;
         Long jobId = null;
         JobApigSinksResponse response = api.getApigSinks(projectId, jobId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 查询DLI流作业列表
+     *
+     * DLI流作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order, root_job_id. The cursor here is job id.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getFlinkJobsTest() throws ApiException {
+        String projectId = null;
+        String name = null;
+        String status = null;
+        String queueName = null;
+        Boolean showDetail = null;
+        Long offset = null;
+        Integer limit = null;
+        String order = null;
+        Long rootJobId = null;
+        String userName = null;
+        String jobType = null;
+        String showJobType = null;
+        QueryFlinkJobListResponse response = api.getFlinkJobs(projectId, name, status, queueName, showDetail, offset, limit, order, rootJobId, userName, jobType, showJobType);
 
         // TODO: test validations
     }
@@ -205,8 +234,9 @@ public class JobApiTest {
         String mainClass = null;
         String args = null;
         Boolean restartWhenException = null;
+        String tags = null;
         String sysEnterpriseProjectId = null;
-        JobStatusResponse response = api.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId);
+        JobStatusResponse response = api.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
 
         // TODO: test validations
     }
@@ -258,8 +288,9 @@ public class JobApiTest {
         String mainClass = null;
         String args = null;
         Boolean restartWhenException = null;
+        String tags = null;
         String sysEnterpriseProjectId = null;
-        JobUpdateResponse response = api.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId);
+        JobUpdateResponse response = api.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
 
         // TODO: test validations
     }

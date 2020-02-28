@@ -33,7 +33,7 @@ import java.io.IOException;
  * 概要统计信息实体
  */
 @ApiModel(description = "概要统计信息实体")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-02T13:59:14.712+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-28T09:45:31.014+08:00")
 public class OverviewEntity {
   @SerializedName("total_cost")
   private Double totalCost = null;

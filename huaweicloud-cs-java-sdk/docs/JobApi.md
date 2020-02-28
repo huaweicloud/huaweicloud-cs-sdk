@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteJob**](JobApi.md#deleteJob) | **DELETE** /{project_id}/job/{job_id} | 删除作业
 [**getApigSinks**](JobApi.md#getApigSinks) | **GET** /{project_id}/job/{job_id}/apig_sinks | 查询作业apig网关服务访问地址
+[**getFlinkJobs**](JobApi.md#getFlinkJobs) | **GET** /{project_id}/streaming/jobs | 查询DLI流作业列表
 [**getJobDetail**](JobApi.md#getJobDetail) | **GET** /{project_id}/job/{job_id} | 查询作业详情
 [**getJobExecuteGraph**](JobApi.md#getJobExecuteGraph) | **GET** /{project_id}/job/{job_id}/execute_graph | 查询作业执行计划图
 [**getJobs**](JobApi.md#getJobs) | **GET** /{project_id}/jobs | 查询作业列表
@@ -101,6 +102,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**JobApigSinksResponse**](JobApigSinksResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getFlinkJobs"></a>
+# **getFlinkJobs**
+> QueryFlinkJobListResponse getFlinkJobs(projectId, name, status, queueName, showDetail, offset, limit, order, rootJobId, userName, jobType, showJobType)
+
+查询DLI流作业列表
+
+DLI流作业列表查询, 支持以下参数: name, status, show_detail, cursor, next, limit, order, root_job_id. The cursor here is job id.
+
+### Example
+```java
+// Import classes:
+//import com.huaweicloud.cs.java.v1.client.ApiException;
+//import com.huaweicloud.cs.java.v1.JobApi;
+
+
+JobApi apiInstance = new JobApi();
+String projectId = "projectId_example"; // String | project id, 用于不同project取token.
+String name = "name_example"; // String | 作业名
+String status = "status_example"; // String | 作业状态码, 请参考DLI文档
+String queueName = "queueName_example"; // String | 队列名称
+Boolean showDetail = false; // Boolean | 是否返回作业详情信息
+Long offset = 789L; // Long | 作业偏移量
+Integer limit = 10; // Integer | 返回的数据条数
+String order = "desc"; // String | 查询结果排序, 升序和降序两种可选
+Long rootJobId = 789L; // Long | 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业
+String userName = "userName_example"; // String | 用户名，可作为筛选条件
+String jobType = "jobType_example"; // String | 作业类型
+String showJobType = "all"; // String | 显示数据类型，可选spark，flink， all， 默认为all
+try {
+    QueryFlinkJobListResponse result = apiInstance.getFlinkJobs(projectId, name, status, queueName, showDetail, offset, limit, order, rootJobId, userName, jobType, showJobType);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling JobApi#getFlinkJobs");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| project id, 用于不同project取token. |
+ **name** | **String**| 作业名 | [optional]
+ **status** | **String**| 作业状态码, 请参考DLI文档 | [optional] [enum: job_init, job_submitting, job_submit_fail, job_running, job_running_exception, job_canceling, job_cancel_success, job_cancel_fail]
+ **queueName** | **String**| 队列名称 | [optional]
+ **showDetail** | **Boolean**| 是否返回作业详情信息 | [optional] [default to false]
+ **offset** | **Long**| 作业偏移量 | [optional]
+ **limit** | **Integer**| 返回的数据条数 | [optional] [default to 10]
+ **order** | **String**| 查询结果排序, 升序和降序两种可选 | [optional] [default to desc] [enum: desc, asc]
+ **rootJobId** | **Long**| 边缘父作业ID, 用于查询指定边缘作业的子作业; 不带该参数时, 查询所有非边缘作业和边缘父作业, 不包括边缘子作业 | [optional]
+ **userName** | **String**| 用户名，可作为筛选条件 | [optional]
+ **jobType** | **String**| 作业类型 | [optional]
+ **showJobType** | **String**| 显示数据类型，可选spark，flink， all， 默认为all | [optional] [default to all] [enum: spark, flink, all]
+
+### Return type
+
+[**QueryFlinkJobListResponse**](QueryFlinkJobListResponse.md)
 
 ### Authorization
 
@@ -366,7 +434,7 @@ No authorization required
 
 <a name="submitJarJob"></a>
 # **submitJarJob**
-> JobStatusResponse submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId)
+> JobStatusResponse submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId)
 
 创建一个用户自定义作业
 
@@ -400,9 +468,10 @@ String configUrl = "configUrl_example"; // String | 用户上传的config包OBS�
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 Boolean restartWhenException = false; // Boolean | 是否开启异常重启功能
+String tags = "tags_example"; // String | 作业标签
 String sysEnterpriseProjectId = "sysEnterpriseProjectId_example"; // String | 作业所属的企业项目id
 try {
-    JobStatusResponse result = apiInstance.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId);
+    JobStatusResponse result = apiInstance.submitJarJob(projectId, name, desc, clusterId, managerSpu, jobType, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#submitJarJob");
@@ -434,6 +503,7 @@ Name | Type | Description  | Notes
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
  **restartWhenException** | **Boolean**| 是否开启异常重启功能 | [optional] [default to false]
+ **tags** | **String**| 作业标签 | [optional]
  **sysEnterpriseProjectId** | **String**| 作业所属的企业项目id | [optional]
 
 ### Return type
@@ -498,7 +568,7 @@ No authorization required
 
 <a name="updateJarJob"></a>
 # **updateJarJob**
-> JobUpdateResponse updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId)
+> JobUpdateResponse updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId)
 
 更新用户自定义作业
 
@@ -532,9 +602,10 @@ String configUrl = "configUrl_example"; // String | 用户上传的config包OBS�
 String mainClass = "mainClass_example"; // String | 作业入口类
 String args = "args_example"; // String | 作业入口类参数
 Boolean restartWhenException = false; // Boolean | 是否开启异常重启功能
+String tags = "tags_example"; // String | 作业标签
 String sysEnterpriseProjectId = "sysEnterpriseProjectId_example"; // String | 作业所属的企业项目id
 try {
-    JobUpdateResponse result = apiInstance.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, sysEnterpriseProjectId);
+    JobUpdateResponse result = apiInstance.updateJarJob(projectId, jobId, managerSpu, name, desc, clusterId, spuNumber, parallelNumber, executorNumber, executorSpu, logEnabled, obsBucket, smnTopic, jar, jarUrl, config, configUrl, mainClass, args, restartWhenException, tags, sysEnterpriseProjectId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling JobApi#updateJarJob");
@@ -566,6 +637,7 @@ Name | Type | Description  | Notes
  **mainClass** | **String**| 作业入口类 | [optional]
  **args** | **String**| 作业入口类参数 | [optional]
  **restartWhenException** | **Boolean**| 是否开启异常重启功能 | [optional] [default to false]
+ **tags** | **String**| 作业标签 | [optional]
  **sysEnterpriseProjectId** | **String**| 作业所属的企业项目id | [optional]
 
 ### Return type

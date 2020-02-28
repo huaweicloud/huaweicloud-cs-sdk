@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.huaweicloud.cs</groupId>
     <artifactId>huaweicloud-cs-java-sdk</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.2.3"
+compile "com.huaweicloud.cs:huaweicloud-cs-java-sdk:1.2.4"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/huaweicloud-cs-java-sdk-1.2.3.jar
+* target/huaweicloud-cs-java-sdk-1.2.4.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -117,6 +117,7 @@ Class | Method | HTTP request | Description
 *ClusterApi* | [**updateUserQuota**](docs/ClusterApi.md#updateUserQuota) | **PATCH** /{project_id}/user_quota/{user_id} | 更新指定用户配额信息
 *JobApi* | [**deleteJob**](docs/JobApi.md#deleteJob) | **DELETE** /{project_id}/job/{job_id} | 删除作业
 *JobApi* | [**getApigSinks**](docs/JobApi.md#getApigSinks) | **GET** /{project_id}/job/{job_id}/apig_sinks | 查询作业apig网关服务访问地址
+*JobApi* | [**getFlinkJobs**](docs/JobApi.md#getFlinkJobs) | **GET** /{project_id}/streaming/jobs | 查询DLI流作业列表
 *JobApi* | [**getJobDetail**](docs/JobApi.md#getJobDetail) | **GET** /{project_id}/job/{job_id} | 查询作业详情
 *JobApi* | [**getJobExecuteGraph**](docs/JobApi.md#getJobExecuteGraph) | **GET** /{project_id}/job/{job_id}/execute_graph | 查询作业执行计划图
 *JobApi* | [**getJobs**](docs/JobApi.md#getJobs) | **GET** /{project_id}/jobs | 查询作业列表
@@ -161,6 +162,9 @@ Class | Method | HTTP request | Description
  - [CreateRouteResponse](docs/CreateRouteResponse.md)
  - [DeleteHostsInfoResponse](docs/DeleteHostsInfoResponse.md)
  - [EngineVersion](docs/EngineVersion.md)
+ - [FlinkGlobalErrorResponse](docs/FlinkGlobalErrorResponse.md)
+ - [FlinkJobConfig](docs/FlinkJobConfig.md)
+ - [FlinkJobEntity](docs/FlinkJobEntity.md)
  - [GetJobDetailResponse](docs/GetJobDetailResponse.md)
  - [GetPeeringsResponse](docs/GetPeeringsResponse.md)
  - [GetRoutesResponse](docs/GetRoutesResponse.md)
@@ -201,6 +205,8 @@ Class | Method | HTTP request | Description
  - [QueryClusterResponse](docs/QueryClusterResponse.md)
  - [QueryClustersResponse](docs/QueryClustersResponse.md)
  - [QueryClustersResponsePayload](docs/QueryClustersResponsePayload.md)
+ - [QueryFlinkJobListResponse](docs/QueryFlinkJobListResponse.md)
+ - [QueryFlinkJobListResponseJobList](docs/QueryFlinkJobListResponseJobList.md)
  - [QueryJobListResponse](docs/QueryJobListResponse.md)
  - [QueryJobListResponsePayload](docs/QueryJobListResponsePayload.md)
  - [QueryJobMetricsResponse](docs/QueryJobMetricsResponse.md)

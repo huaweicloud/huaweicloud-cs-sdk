@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * UpdateSqlJobRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-02T13:59:14.712+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-28T09:45:31.014+08:00")
 public class UpdateSqlJobRequest {
   @SerializedName("job_id")
   private Long jobId = null;
@@ -178,6 +178,9 @@ public class UpdateSqlJobRequest {
 
   @SerializedName("edge_group_ids")
   private String edgeGroupIds = null;
+
+  @SerializedName("tags")
+  private String tags = null;
 
   @SerializedName("sys_enterprise_project_id")
   private String sysEnterpriseProjectId = null;
@@ -498,6 +501,24 @@ public class UpdateSqlJobRequest {
     this.edgeGroupIds = edgeGroupIds;
   }
 
+  public UpdateSqlJobRequest tags(String tags) {
+    this.tags = tags;
+    return this;
+  }
+
+   /**
+   * 作业标签
+   * @return tags
+  **/
+  @ApiModelProperty(value = "作业标签")
+  public String getTags() {
+    return tags;
+  }
+
+  public void setTags(String tags) {
+    this.tags = tags;
+  }
+
   public UpdateSqlJobRequest sysEnterpriseProjectId(String sysEnterpriseProjectId) {
     this.sysEnterpriseProjectId = sysEnterpriseProjectId;
     return this;
@@ -579,6 +600,7 @@ public class UpdateSqlJobRequest {
         Objects.equals(this.restartWhenException, updateSqlJobRequest.restartWhenException) &&
         Objects.equals(this.idleStateRetention, updateSqlJobRequest.idleStateRetention) &&
         Objects.equals(this.edgeGroupIds, updateSqlJobRequest.edgeGroupIds) &&
+        Objects.equals(this.tags, updateSqlJobRequest.tags) &&
         Objects.equals(this.sysEnterpriseProjectId, updateSqlJobRequest.sysEnterpriseProjectId) &&
         Objects.equals(this.udfJarUrl, updateSqlJobRequest.udfJarUrl) &&
         Objects.equals(this.dirtyDataStrategy, updateSqlJobRequest.dirtyDataStrategy);
@@ -586,7 +608,7 @@ public class UpdateSqlJobRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, restartWhenException, idleStateRetention, edgeGroupIds, sysEnterpriseProjectId, udfJarUrl, dirtyDataStrategy);
+    return Objects.hash(jobId, name, desc, clusterId, sqlBody, runMode, spuNumber, parallelNumber, checkpointEnabled, checkpointMode, checkpointInterval, obsBucket, logEnabled, smnTopic, restartWhenException, idleStateRetention, edgeGroupIds, tags, sysEnterpriseProjectId, udfJarUrl, dirtyDataStrategy);
   }
 
 
@@ -612,6 +634,7 @@ public class UpdateSqlJobRequest {
     sb.append("    restartWhenException: ").append(toIndentedString(restartWhenException)).append("\n");
     sb.append("    idleStateRetention: ").append(toIndentedString(idleStateRetention)).append("\n");
     sb.append("    edgeGroupIds: ").append(toIndentedString(edgeGroupIds)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    sysEnterpriseProjectId: ").append(toIndentedString(sysEnterpriseProjectId)).append("\n");
     sb.append("    udfJarUrl: ").append(toIndentedString(udfJarUrl)).append("\n");
     sb.append("    dirtyDataStrategy: ").append(toIndentedString(dirtyDataStrategy)).append("\n");

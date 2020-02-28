@@ -31,7 +31,7 @@ import java.io.IOException;
  * 独享集群信息
  */
 @ApiModel(description = "独享集群信息")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-02T13:59:14.712+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-28T09:45:31.014+08:00")
 public class ClusterInfo {
   @SerializedName("cluster_id")
   private Integer clusterId = null;

@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * UpdateClusterRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-02T13:59:14.712+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-28T09:45:31.014+08:00")
 public class UpdateClusterRequest {
   @SerializedName("name")
   private String name = null;
@@ -41,8 +41,14 @@ public class UpdateClusterRequest {
   @SerializedName("maximum_spu_quota")
   private Integer maximumSpuQuota = null;
 
+  @SerializedName("tags")
+  private String tags = null;
+
   @SerializedName("sys_enterprise_project_id")
   private String sysEnterpriseProjectId = null;
+
+  @SerializedName("manager_node_spu")
+  private String managerNodeSpu = null;
 
   public UpdateClusterRequest name(String name) {
     this.name = name;
@@ -98,6 +104,24 @@ public class UpdateClusterRequest {
     this.maximumSpuQuota = maximumSpuQuota;
   }
 
+  public UpdateClusterRequest tags(String tags) {
+    this.tags = tags;
+    return this;
+  }
+
+   /**
+   * 集群标签
+   * @return tags
+  **/
+  @ApiModelProperty(value = "集群标签")
+  public String getTags() {
+    return tags;
+  }
+
+  public void setTags(String tags) {
+    this.tags = tags;
+  }
+
   public UpdateClusterRequest sysEnterpriseProjectId(String sysEnterpriseProjectId) {
     this.sysEnterpriseProjectId = sysEnterpriseProjectId;
     return this;
@@ -116,6 +140,24 @@ public class UpdateClusterRequest {
     this.sysEnterpriseProjectId = sysEnterpriseProjectId;
   }
 
+  public UpdateClusterRequest managerNodeSpu(String managerNodeSpu) {
+    this.managerNodeSpu = managerNodeSpu;
+    return this;
+  }
+
+   /**
+   * 集群管理节点spu规格
+   * @return managerNodeSpu
+  **/
+  @ApiModelProperty(value = "集群管理节点spu规格")
+  public String getManagerNodeSpu() {
+    return managerNodeSpu;
+  }
+
+  public void setManagerNodeSpu(String managerNodeSpu) {
+    this.managerNodeSpu = managerNodeSpu;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -129,12 +171,14 @@ public class UpdateClusterRequest {
     return Objects.equals(this.name, updateClusterRequest.name) &&
         Objects.equals(this.desc, updateClusterRequest.desc) &&
         Objects.equals(this.maximumSpuQuota, updateClusterRequest.maximumSpuQuota) &&
-        Objects.equals(this.sysEnterpriseProjectId, updateClusterRequest.sysEnterpriseProjectId);
+        Objects.equals(this.tags, updateClusterRequest.tags) &&
+        Objects.equals(this.sysEnterpriseProjectId, updateClusterRequest.sysEnterpriseProjectId) &&
+        Objects.equals(this.managerNodeSpu, updateClusterRequest.managerNodeSpu);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, desc, maximumSpuQuota, sysEnterpriseProjectId);
+    return Objects.hash(name, desc, maximumSpuQuota, tags, sysEnterpriseProjectId, managerNodeSpu);
   }
 
 
@@ -146,7 +190,9 @@ public class UpdateClusterRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    desc: ").append(toIndentedString(desc)).append("\n");
     sb.append("    maximumSpuQuota: ").append(toIndentedString(maximumSpuQuota)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    sysEnterpriseProjectId: ").append(toIndentedString(sysEnterpriseProjectId)).append("\n");
+    sb.append("    managerNodeSpu: ").append(toIndentedString(managerNodeSpu)).append("\n");
     sb.append("}");
     return sb.toString();
   }
